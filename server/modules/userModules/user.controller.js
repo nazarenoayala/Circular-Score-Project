@@ -4,25 +4,19 @@ import userDal from './user.dal.js';
 
 class UserController {
 
-  test = (req, res) => {
-    try {
-      res.status(200).json('Ruta ok')
-    } catch (error) {
-      res.status(500).json('Ruta no ok')
-      console.log(error);
-    }
-  }
-
   register = async (req, res) => {
     try{
-      const { email, password} = req.body;
+      const {name, email, password} = req.body;
 
       //encriptar la password
       let hashedPass = await hashString(password, 10);
 
-      let result = await userDal.register([ email, hashedPass]);
-      console.log("registro insertado en la tabla user");
-      res.status(200).json(result);
+      let values = [name, email, hashedPass]
+
+      let result = await userDal.register(values);
+      
+      res.status(200).json({message: 'Datos insertados en BD', result});
+
     } catch (error){
       console.log(error);
       res.status(500).json(error);
