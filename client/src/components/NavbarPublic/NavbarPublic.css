@@ -1,0 +1,7 @@
+.header-public {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(250, 252, 254);
+  height: 20dvh;
+}
