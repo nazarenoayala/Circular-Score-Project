@@ -6,6 +6,6 @@ const routes = express.Router();
 // Conexión de prueba
 routes.get('/test', userController.test);
 routes.get('/register', userController.register);
-routes.get('/login', userController.)
+routes.get('/login', userController.login)
 
 export default routes;
