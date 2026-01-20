@@ -4,7 +4,7 @@ import executeQuery from "../../config/db.js";
 class UserDal {
   register = async (values) => {
     try {
-      let sql = `INSERT INTO user (user_email, password) VALUES (?,?)`;
+      let sql = `INSERT INTO user (name, user_email, password) VALUES (?,?,?)`;
       let result = await executeQuery(sql, values);
       return result;
     } catch (error) {
