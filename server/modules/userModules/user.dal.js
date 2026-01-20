@@ -3,4 +3,4 @@ class UserDal {
 
 }
 
-export default UserDal();
+export default new UserDal();
