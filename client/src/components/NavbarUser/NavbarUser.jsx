@@ -1,7 +1,7 @@
 import React from 'react';
-import './NavbarPublic.css';
+import './NavbarUser.css';
 
-export const NavbarPublic = () => {
+export const NavbarUser = () => {
   return (
     <div class="front-page">
       <section class="lateral-bar">
