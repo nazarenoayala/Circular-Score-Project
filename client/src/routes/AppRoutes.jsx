@@ -1,14 +1,14 @@
-import {lazy, Suspense} from 'react'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router';
-import {PrivateRoutes} from './PrivateRoutes'
+import { PrivateRoutes } from './PrivateRoutes';
 
 
 
 
-const AllTestsPage = lazy(()=>import("../pages/compagnyPages/AllTestsPage/AllTestsPage"))
-const CompagnyProfilePage = lazy(()=>import("../pages/compagnyPages/CompagnyProfilePage/CompagnyProfilePage"))
-const EditCompagnyPage = lazy(()=>import("../pages/compagnyPages/EditCompagnyPage/EditCompagnyPage"))
-const GeneralGraphicPage = lazy(()=>import("../pages/compagnyPages/GeneralGraphicPage/GeneralGraphicPage"))
+const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTestsPage"));
+const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
+const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
+const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
 
 
 
@@ -22,8 +22,8 @@ export const AppRoutes = () => {
 
           <Route element={<PrivateRoutes />}>
             <Route path="/allTests" element={<AllTestsPage />} />
-            <Route path="/compagnyProfile" element={<CompagnyProfilePage />} />
-            <Route path="/editCompagny" element={<EditCompagnyPage />} />
+            <Route path="/companyProfile" element={<CompanyProfilePage />} />
+            <Route path="/editCompany" element={<EditCompanyPage />} />
             <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
           </Route>
 
