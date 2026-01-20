@@ -28,9 +28,6 @@ export const AppRoutes = () => {
           </Route>
 
 
-
-
-
         </Routes>
       </Suspense>
     </BrowserRouter>
