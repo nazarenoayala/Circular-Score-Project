@@ -1,3 +1,4 @@
+import executeQuery from "../../config/db.js";
 
 
 class UserDal {
