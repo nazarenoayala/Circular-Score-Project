@@ -1,5 +1,4 @@
 //Genera Token y define validez
-
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 

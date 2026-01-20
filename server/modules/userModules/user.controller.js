@@ -1,6 +1,7 @@
-import {compareString, hashString} from '../../utils/bcryptUtils.js'
-import {generateToken} from '../../utils/jwtUtils.ejs'
+import {compareString , hashString} from '../../utils/bcryptUtils.js'
+import {generateToken} from '../../utils/jwtUtils.js'
 import userDal from './user.dal.js';
+
 class UserController {
 
   test = (req, res) => {
