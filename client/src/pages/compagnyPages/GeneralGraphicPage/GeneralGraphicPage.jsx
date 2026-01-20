@@ -6,4 +6,4 @@ const GeneralGraphicPage = () => {
   )
 }
 
-export default GeneralGraphicPage
+export default GeneralGraphicPage;

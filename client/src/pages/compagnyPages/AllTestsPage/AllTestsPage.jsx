@@ -6,4 +6,4 @@ const AllTestsPage = () => {
   )
 }
 
-export default AllTestsPage
+export default AllTestsPage;
