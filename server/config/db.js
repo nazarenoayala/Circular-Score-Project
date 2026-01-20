@@ -11,6 +11,7 @@ export const dbPool = sql.createPool({
   datestrings: true
 })
 
+
 const executeQuery = async (sql, values = []) => {
 
   let connection;
@@ -22,6 +23,8 @@ const executeQuery = async (sql, values = []) => {
     
     // Ejecutamos la petición
     const [result] = await connection.query(sql, values);
+
+    console.log('Conectado a la base de datos');
 
     return result;
     
