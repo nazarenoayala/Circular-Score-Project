@@ -8,8 +8,8 @@ export const FooterPublic = () => {
       <div>
         <img src="/src/assets/logoblanco.png" />
       </div>
-      <div className="child2">
-        <div>
+      <div>
+        <div className='child2'>
           <p>Privacidad</p>
           <p>Cookies</p>
           <p>Aviso legal</p>

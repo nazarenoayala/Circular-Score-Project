@@ -25,7 +25,8 @@ export const FormUserRegister = () => {
   }
 
   return (
-    <Form>
+    <Form className='register-container'>
+      <h1>Regístrate</h1>
       <Form.Group className="mb-3">
         <Form.Control
           type="email"
@@ -45,6 +46,7 @@ export const FormUserRegister = () => {
         />
       </Form.Group>
       <Button
+        className='btn-green'
         onClick={onSubmit}
       >Enviar
       </Button>
