@@ -1,5 +1,5 @@
-import React from 'react';
-import 'FooterPublic.css';
+
+import './FooterPublic.css';
 import { Row, Col } from 'react-bootstrap';
 
 export const FooterPublic = () => {
@@ -9,7 +9,7 @@ export const FooterPublic = () => {
         <Col>
           <img src="/src/assets/logoblanco.png" />
         </Col>
-        <Col class="child2">
+        <Col className="child2">
           <Row>
             <Col>
               <p>Privacidad</p>
@@ -17,10 +17,10 @@ export const FooterPublic = () => {
               <p>Aviso legal</p>
             </Col>
 
-            <Col class="logos">
-              <i class="fa-brands fa-youtube"></i>
-              <i class="fa-brands fa-facebook"></i>
-              <i class="fa-brands fa-instagram"></i>
+            <Col className="logos">
+              <i className="fa-brands fa-youtube"></i>
+              <i className="fa-brands fa-facebook"></i>
+              <i className="fa-brands fa-instagram"></i>
             </Col>
           </Row>
         </Col>
