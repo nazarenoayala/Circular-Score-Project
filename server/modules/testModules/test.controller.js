@@ -18,6 +18,26 @@ class TestController {
 
   }
 
+
+  selectOneTest = async (req, res) => {
+
+    const {id} = req.params;
+
+    let value = [id];
+
+    try {
+
+      let result = await testDal.selectOneTest(value);
+
+      res.status(200).json({message: 'El test se ha cargado de BD', result});
+      
+    } catch (error) {
+      res.status(500).json(error);
+      console.log(error);
+    }
+
+  }
+
 }
 
 export default new TestController();

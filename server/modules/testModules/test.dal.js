@@ -6,7 +6,7 @@ class TestDal {
 
     try {
 
-      let sql = 'SELECT * FROM test;'
+      let sql = 'SELECT * FROM test WHERE is_public = 1;'
 
       let result = await executeQuery(sql);
 
@@ -14,6 +14,24 @@ class TestDal {
       
     } catch (error) {
       throw error;
+    }
+
+  }
+
+  selectOneTest = async (value) => {
+
+    let sql = 'SELECT * FROM test WHERE test_id = ? AND is_public = 1;';
+
+    try {
+
+      let result = await executeQuery(sql, value);
+
+      return result;
+      
+    } catch (error) {
+
+      throw error;
+
     }
 
   }
