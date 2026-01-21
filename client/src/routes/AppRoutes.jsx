@@ -2,7 +2,8 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
-;
+import { AdminRoutes } from './AdminRoutes';
+
 
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
@@ -29,7 +30,9 @@ export const AppRoutes = () => {
 
           {/* rutas públicas */}
           <Route element={<PublicRoutes />}>
-            <Route path='/' element={<Home />} />
+            <Route element={<PublicLayout />}>
+              <Route path='/' element={<Home />} />
+            </Route>
           </Route>
 
           {/* rutas privadas de la empresa normal*/}
