@@ -1,12 +1,87 @@
 .homepage {
+  min-height: 70dvh;
+  padding: 3rem;
+  background-color: rgb(250, 252, 254);
+  font-size: larger;
+  text-align: center;
+
+  section {
+    padding: 3rem;
+  }
+
+  .card-unique {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(204, 204, 204);
+    width: 20rem;
+    height: 30rem;
+    border-radius: 1rem;
+    padding: 1rem;
+
+    img {
+      height: 13rem;
+      border-radius: 2rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .btn-green {
+    background-color: rgb(0, 212, 126);
+    border: none;
+
+    &:hover {
+      background-color: rgb(193, 242, 222);
+      color: rgb(0, 212, 126);
+    }
+  }
+
 
   .logos {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     img {
-      width: 2rem;
+      width: 18rem;
     }
+  }
+
+  .logos2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    .santander {
+      width: 10rem;
+    }
+
+    img {
+      height: 5rem;
+    }
+  }
+
+  .section-register {
+    height: 70dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .first-text {
+      max-width: 40rem;
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  .section-contact {
+    height: 70dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
