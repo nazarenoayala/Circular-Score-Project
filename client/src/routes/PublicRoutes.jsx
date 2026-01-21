@@ -1,7 +1,7 @@
 import { Outlet } from "react-router"
 
 
-export const AdminRoutes = () => {
+export const PublicRoutes = () => {
   return (
     <div>
       <Outlet />
