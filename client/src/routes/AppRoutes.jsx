@@ -2,12 +2,14 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
-;
+import { AdminRoutes } from './AdminRoutes';
+
 
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
 const Home = lazy(() => import("../pages/publicPages/Home"));
 const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.jsx"));
+const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
 
 //Páginas privadas usuario
 import { UserLayout } from '../layouts/UserLayout.jsx'
@@ -35,7 +37,9 @@ export const AppRoutes = () => {
 
           {/* rutas públicas */}
           <Route element={<PublicRoutes />}>
-            <Route path='/' element={<Home />} />
+            <Route element={<PublicLayout />}>
+              <Route path='/' element={<Home />} />
+            </Route>
           </Route>
 
           {/* rutas privadas*/}
