@@ -32,16 +32,13 @@ const Home = () => {
        
       </section>
 
-      <section>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="../assets/forHome/cards1.png" />
-          <Card.Body>
-            <Card.Title>Evalúa el impacto</Card.Title>
-            <Card.Text>
-              Comienza midiendo y supervisando tu huella medioambiental.
-            </Card.Text>
-          </Card.Body>
-        </Card>
+      <section className='cards-cont d-flex gap-4 justify-content-evenly p-5 flex-wrap'>
+        <div className='card-unique'>
+          <h3 className="gray">01</h3>
+          <img src="/src/assets/forHome/cards1.png" />
+          <h3>Evalúa el impacto</h3>
+          <p>Comienza midiendo y supervisando tu huella medioambiental.</p>
+        </div>
 
         <Card style={{ width: '18rem' }}>
           <Card.Img variant="top" src="../assets/forHome/cards2.png" />
@@ -71,6 +68,26 @@ const Home = () => {
         <div className="logos">
           <img src="../assets/forHome/logocatedra.png" alt="" />
           <img src="../assets/forHome/logogeneralitat.png" alt="" />
+        <div className='card-unique'>
+          <h3 className="gray">02</h3>
+          <img src="/src/assets/forHome/cards2.png" />
+          <h3>Acelera el progreso</h3>
+          <p>Adopta soluciones más sofisticadas para minimizar el impacto de tu organización y cadena de suministro.</p>
+        </div>
+
+        <div className='card-unique'>
+          <h3 className="gray">03</h3>
+          <img src="/src/assets/forHome/cards3.png" />
+          <h3>Transforma la empresa</h3>
+          <p>Reinventa tus sistemas y modelos de negocio a la vez que satisfaces las necesidades del planeta.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 className='pb-4'>Entidades colaboradoras</h2>
+        <div className='logos'>
+          <img src="/src/assets/forHome/logocatedra.png" />
+          <img src="/src/assets/forHome/logogeneralitat.png" />
         </div>
       </section>
 
@@ -82,7 +99,20 @@ const Home = () => {
           <img src="../assets/forHome/imagin.png" alt="" />
           <img src="../assets/forHome/universitat.png" alt="" />
           <img src="../assets/forHome/ayto.png" alt="" />
+        <h2 className='pb-4'>Premios y reconocimientos</h2>
+        <div className='logos2'>
+          <img src="/src/assets/forHome/santander.png" className='santander' />
+          <img src="/src/assets/forHome/CGP.png" />
+          <img src="/src/assets/forHome/imagin.jpg" />
+          <img src="/src/assets/forHome/universitat.png" />
+          <img src="/src/assets/forHome/ayto.png" />
         </div>
+      </section>
+
+      <section className='section-contact'>
+        <h2 className='p-5'>¿Tienes alguna pregunta?</h2>
+
+        <FormContact />
       </section>
     </div>
   );

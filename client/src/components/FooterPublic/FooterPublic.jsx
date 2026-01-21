@@ -1,15 +1,13 @@
-
 import './FooterPublic.css';
-import { Row, Col } from 'react-bootstrap';
 
 export const FooterPublic = () => {
   return (
     <div className='footer-public'>
       <div>
-        <img src="/src/assets/logoblanco.png" />
+        <img src="/src/assets/logo/logoblanco.png" />
       </div>
-      <div className="child2">
-        <div>
+      <div>
+        <div className='child2'>
           <p>Privacidad</p>
           <p>Cookies</p>
           <p>Aviso legal</p>
