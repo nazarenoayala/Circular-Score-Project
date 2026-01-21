@@ -7,3 +7,4 @@ const routes = express.Router();
 routes.get('/allTest', testController.selectAllTest);
 
 export default routes;
+
