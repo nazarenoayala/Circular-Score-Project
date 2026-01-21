@@ -1,0 +1,12 @@
+.homepage {
+
+  .logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    img {
+      width: 2rem;
+    }
+  }
+}

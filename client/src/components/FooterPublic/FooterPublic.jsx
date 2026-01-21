@@ -5,26 +5,22 @@ import { Row, Col } from 'react-bootstrap';
 export const FooterPublic = () => {
   return (
     <div className='footer-public'>
-      <Row>
-        <Col>
-          <img src="/src/assets/logoblanco.png" />
-        </Col>
-        <Col className="child2">
-          <Row>
-            <Col>
-              <p>Privacidad</p>
-              <p>Cookies</p>
-              <p>Aviso legal</p>
-            </Col>
+      <div>
+        <img src="/src/assets/logoblanco.png" />
+      </div>
+      <div className="child2">
+        <div>
+          <p>Privacidad</p>
+          <p>Cookies</p>
+          <p>Aviso legal</p>
+        </div>
 
-            <Col className="logos">
-              <i className="fa-brands fa-youtube"></i>
-              <i className="fa-brands fa-facebook"></i>
-              <i className="fa-brands fa-instagram"></i>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+        <div className="logos">
+          <i className="fa-brands fa-youtube"></i>
+          <i className="fa-brands fa-facebook"></i>
+          <i className="fa-brands fa-instagram"></i>
+        </div>
+      </div>
     </div>
   )
 }
