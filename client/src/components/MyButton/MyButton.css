@@ -1,6 +1,6 @@
 /* ESTILOS DE BOTÓN */
 .btn-green {
-  background-color: rgb(0, 212, 126)!important; 
+  background-color: rgb(0, 212, 126);
   border: none;
 
   &:hover {
@@ -10,7 +10,7 @@
 }
 
 .btn-white {
-  background-color: rgb(255, 255, 255)!important;
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgb(143, 143, 143);
   color: black;
 

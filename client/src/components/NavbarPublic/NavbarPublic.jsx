@@ -6,9 +6,8 @@ export const NavbarPublic = () => {
   return (
     <div className='header-public'>
       <div>
-        <img src="/src/assets/logo/logo.png" />
+        <img src="/src/assets/Images/logo/logo.png" />
       </div>
-
       <div className='buttons-cont'>
         <MyButton
           text='Inicio'
@@ -30,7 +29,6 @@ export const NavbarPublic = () => {
           /*   onSubmit={} */
           btnClass='btn-green'
         />
-
       </div>
     </div>
   )
