@@ -8,6 +8,7 @@ import { AdminRoutes } from './AdminRoutes';
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
 const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
+const ErrorPage = lazy(()=> import("../pages/publicPages/ErrorPage/ErrorPage.jsx"))
 
 //Páginas privadas usuario
 import { UserLayout } from '../layouts/UserLayout.jsx'
@@ -46,6 +47,10 @@ export const AppRoutes = () => {
           </Route>
 
           {/* rutas privadas de usuario */}
+
+          {/* rutas para el error */}
+          <Route path='*' element={<ErrorPage/>}/>
+
 
         </Routes>
       </Suspense>
