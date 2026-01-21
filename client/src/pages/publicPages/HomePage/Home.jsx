@@ -5,6 +5,7 @@ import { FormContact } from '../../../components/FormContact/FormContact';
 import Card from 'react-bootstrap/Card';
 
 const Home = () => {
+
   return (
     <div className='homepage'>
       <section className='section-register'>
