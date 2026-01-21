@@ -1,23 +1,24 @@
-import './FormUserRegister.css';
+
 import { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Button, Form } from "react-bootstrap"
 
 const initialValue = {
-  user_email: "",
+  email: "",
   password: ""
 }
 
-export const FormUserRegister = ({setShowPage}) => {
-  const [registerUser, setRegisterUser] = useState(initialValue);
+export const FormUserLogin = ({setShowPage}) => {
+const [userLogin, setUserLogin] = useState(initialValue);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRegisterUser({ ...registerUser, [name]: value });
+  const handleChange = (e) =>{
+    const {name, value} = e.target;
+    setUserLogin({...userLogin, [name]:value});
   }
 
-  const onSubmit = async () => {
+
+   const onSubmit = async () => {
     try {
-      setShowPage('register')
+       setShowPage('login')
       // ENVIAR DATOS AL BACK
 
     } catch (error) {
@@ -25,14 +26,15 @@ export const FormUserRegister = ({setShowPage}) => {
     }
   }
 
+
   return (
-    <Form>
+   <Form>
       <Form.Group className="mb-3">
         <Form.Control
           type="email"
           placeholder="Email"
           name="user_email"
-          value={registerUser.user_email}
+          value={userLogin.user_email}
           onChange={handleChange}
         />
       </Form.Group>
@@ -41,7 +43,7 @@ export const FormUserRegister = ({setShowPage}) => {
           type="text"
           placeholder="Contraseña"
           name="password"
-          value={registerUser.password}
+          value={userLogin.password}
           onChange={handleChange}
         />
       </Form.Group>
