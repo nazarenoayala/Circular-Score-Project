@@ -4,6 +4,16 @@ import userDal from './user.dal.js';
 
 class UserController {
 
+  test = async (req, res) => {
+
+    try {
+      res.status(200).json('Bien');
+    } catch (error) {
+      res.status(500).json('Mal');
+    }
+
+  }
+
   register = async (req, res) => {
     try{
       const {name, email, password} = req.body;
