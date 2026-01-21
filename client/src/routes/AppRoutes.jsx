@@ -7,7 +7,7 @@ import { AdminRoutes } from './AdminRoutes';
 
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
-const Home = lazy(() => import("../pages/publicPages/Home"));
+const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
 
 //Páginas privadas usuario
 import { UserLayout } from '../layouts/UserLayout.jsx'
