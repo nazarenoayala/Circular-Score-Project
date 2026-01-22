@@ -1,4 +1,4 @@
-
+import './FormUserLogin.css'
 import { useState } from 'react';
 import { Button, Form } from "react-bootstrap"
 
@@ -28,7 +28,8 @@ const [userLogin, setUserLogin] = useState(initialValue);
 
 
   return (
-   <Form>
+    <Form className='login-container'>
+      <h1>Login</h1>
       <Form.Group className="mb-3">
         <Form.Control
           type="email"
@@ -48,6 +49,7 @@ const [userLogin, setUserLogin] = useState(initialValue);
         />
       </Form.Group>
       <Button
+      className='btn-green'
         onClick={onSubmit}
       >Enviar
       </Button>
