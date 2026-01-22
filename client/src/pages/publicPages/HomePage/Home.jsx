@@ -4,7 +4,6 @@ import { FormUserRegister } from '../../../components/FormUserRegister/FormUserR
 import { FormUserLogin } from '../../../components/FormUserLogin/FormUserLogin';
 import { FormModalRegister } from '../../../components/FormModalRegister/FormModalRegister';
 import { FormContact } from '../../../components/FormContact/FormContact'
-import Card from 'react-bootstrap/Card';
 
 const Home = () => {
   const [showPage, setShowPage] = useState('register');
