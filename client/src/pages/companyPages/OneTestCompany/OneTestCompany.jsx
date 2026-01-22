@@ -6,4 +6,4 @@ const OneTestCompany = () => {
   )
 }
 
-export default OneTest
+export default OneTestCompany;
