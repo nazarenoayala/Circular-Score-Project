@@ -4,7 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 
 const initialValue = {
   user_email: "",
-  password: ""
+  password: "",
+  repPassword: ""
 }
 
 export const FormUserRegister = ({setShowPage}) => {
