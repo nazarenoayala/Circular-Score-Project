@@ -1,34 +1,35 @@
-import './FormUserLogin.css'
+import './FormUserLogin.css';
 import { useState } from 'react';
-import { Button, Form } from "react-bootstrap"
+import { Button, Form } from 'react-bootstrap';
+import { useNavigate } from "react-router"
 
 const initialValue = {
-  email: "",
-  password: ""
-}
+  email: '',
+  password: '',
+};
 
-export const FormUserLogin = ({setShowPage}) => {
-const [userLogin, setUserLogin] = useState(initialValue);
+export const FormUserLogin = ({ setShowPage }) => {
+  const [userLogin, setUserLogin] = useState(initialValue);
 
-  const handleChange = (e) =>{
-    const {name, value} = e.target;
-    setUserLogin({...userLogin, [name]:value});
-  }
+    const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserLogin({ ...userLogin, [name]: value });
+  };
 
-   const onSubmit = async () => {
+  const onSubmit = async () => {
     try {
-       setShowPage('login')
+      setShowPage('login');
       // ENVIAR DATOS AL BACK
-
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   return (
-    <Form className='login-container'>
+
+    <Form className="login-container">
       <h1>Login</h1>
       <Form.Group className="mb-3">
         <Form.Control
@@ -48,11 +49,16 @@ const [userLogin, setUserLogin] = useState(initialValue);
           onChange={handleChange}
         />
       </Form.Group>
-      <Button
-      className='btn-green'
-        onClick={onSubmit}
-      >Enviar
+      <Form.Group className='gap-2 d-flex justify-content-center'>
+        <Button className="btn-green" onClick={onSubmit}>
+        Enviar
       </Button>
+      <Button className="btn-green"
+        onClick={()=>navigate('/')}
+      >Cancelar</Button>
+      </Form.Group>
     </Form>
-  )
-}
+
+
+  );
+};

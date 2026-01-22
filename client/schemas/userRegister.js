@@ -2,11 +2,9 @@ import {z} from 'zod';
 
 // Esquema de validación de datos de la ventana de registro de usuarios
 const registerSchema = z.object({
-  name: z.string()
-            .min(2, 'El nombre debe contener al menos 3 caracteres')
-            .max(50, 'El nombre debe contener como máximo 50 caracteres')
-            .regex(/^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, 'El nombre no puede contener ni números ni carácteres especiales'),
-  email: z.string()
+  
+  
+  user_email: z.string()
             .email('Debes introducir un email válido'),
   password: z.string()
                 .min(8, 'La contraseña debe tener mínimo, 8 carácteres')
