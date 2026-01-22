@@ -16,7 +16,7 @@ const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTe
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
-const CompanyRegister = lazy(() => import("../pages/companyPages/CompanyRegister/CompanyRegister"));
+const CompanyRegister = lazy(() => import("../pages/companyPages/CompanyRegister/CompanyRegister.jsx"));
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
