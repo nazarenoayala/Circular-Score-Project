@@ -1,21 +1,36 @@
-import React from 'react'
-import './NavbarPublic.css'
-import '../../App.css';
-import { Button } from 'react-bootstrap';
+import './NavbarPublic.css';
+import { MyButton } from '../../components/MyButton/MyButton';
 
 export const NavbarPublic = () => {
 
   return (
     <div className='header-public'>
       <div>
-        <img src="/src/assets/logo.png" />
+        <img src="/src/assets/logo/logo.png" />
       </div>
 
       <div className='buttons-cont'>
-        <Button className='btn-white'>Inicio</Button>
-        <Button className='btn-white'>Características</Button>
-        <Button className='btn-white'>Contacto</Button>
-        <Button className='btn-green'>Iniciar sesión</Button>
+        <MyButton
+          text='Inicio'
+          /*  onSubmit={} */
+          btnClass='btn-white'
+        />
+        <MyButton
+          text='Características'
+          /*  onSubmit={} */
+          btnClass='btn-white'
+        />
+        <MyButton
+          text='Contacto'
+          /*     onSubmit={} */
+          btnClass='btn-white'
+        />
+        <MyButton
+          text='Iniciar sesión'
+          /*   onSubmit={} */
+          btnClass='btn-green'
+        />
+
       </div>
     </div>
   )

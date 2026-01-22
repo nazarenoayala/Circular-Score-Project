@@ -28,17 +28,6 @@
     }
   }
 
-  .btn-green {
-    background-color: rgb(0, 212, 126);
-    border: none;
-
-    &:hover {
-      background-color: rgb(193, 242, 222);
-      color: rgb(0, 212, 126);
-    }
-  }
-
-
   .logos {
     display: flex;
     flex-direction: row;
