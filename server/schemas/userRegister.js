@@ -8,6 +8,7 @@ export const registerSchema = z.object({
             .max(50, 'El nombre debe contener como máximo 50 caracteres')
             .regex(/^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, 'El nombre no puede contener ni números ni carácteres especiales'),
   email: z.string()
+            .min(1, 'el email no puede estar vacío')
             .email('Debes introducir un email válido'),
   password: z.string()
                 .min(8, 'La contraseña debe tener mínimo, 8 carácteres')
