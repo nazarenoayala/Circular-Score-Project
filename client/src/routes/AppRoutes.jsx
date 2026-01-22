@@ -2,12 +2,12 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
-import { AdminRoutes } from './AdminRoutes';
+
 
 
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
-const Home = lazy(() => import("../pages/publicPages/Home"));
+const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
 const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.jsx"));
 
 //Páginas privadas usuario
