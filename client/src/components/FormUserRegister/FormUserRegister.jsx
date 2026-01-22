@@ -47,6 +47,15 @@ export const FormUserRegister = ({setShowPage}) => {
           onChange={handleChange}
         />
       </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="text"
+          placeholder="Confirmar contraseña"
+          name="confirmPassword"
+          value={registerUser.confirmPassword}
+          onChange={handleChange}
+        />
+      </Form.Group>
       <Button
         className='btn-green'
         onClick={onSubmit}
