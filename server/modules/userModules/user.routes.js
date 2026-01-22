@@ -4,6 +4,8 @@ import { validateUserRegister } from '../../middlewares/validateUserRegister.js'
 import { registerSchema } from '../../schemas/userRegister.js';
 import { validateUserLogin } from '../../middlewares/validateUserLogin.js';
 import { loginSchema } from '../../schemas/userLogin.js';
+import { validateUserEdit } from '../../middlewares/validateUserEdit.js';
+import { editSchema } from '../../schemas/userEdit.js';
 
 const routes = express.Router();
 
@@ -15,5 +17,8 @@ routes.post('/register', validateUserRegister(registerSchema), userController.re
 
 // Ruta de login de usuario
 routes.get('/login', validateUserLogin(loginSchema), userController.login);
+
+// Ruta edición datos de usuario
+routes.post('/editUser', validateUserEdit(editSchema), userController.editUser);
 
 export default routes;
