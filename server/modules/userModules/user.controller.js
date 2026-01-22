@@ -21,12 +21,12 @@ class UserController {
   register = async (req, res) => {
     
     try{
-      const {email, password} = req.body;
+      const {user_email, password} = req.body;
 
       //encriptar la password
       let hashedPass = await hashString(password, 10);
 
-      let values = [email, hashedPass]
+      let values = [user_email, hashedPass]
 
       let result = await userDal.register(values);
       
