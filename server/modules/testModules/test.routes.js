@@ -9,5 +9,7 @@ routes.get('/allTest', testController.selectAllTest);
 // Ruta para seleccionar un test:
 routes.get('/oneTest/:test');
 
+//Ruta nueva:
+
 export default routes;
 
