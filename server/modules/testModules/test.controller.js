@@ -41,7 +41,7 @@ class TestController {
 
   }
 
-  disableTest = async () => {
+  disableTest = async (req, res) => {
 
     const {id} = req.params;
     let values = [id];
