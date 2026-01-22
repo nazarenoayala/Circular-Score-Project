@@ -62,6 +62,41 @@ class UserController {
       res.status(500).json(error)
     }
   }
+
+  showUserProfile = async (req, res) => {
+    const {user_id} = req.params;
+
+    try {
+      let userResult = await userDal.showUserProfile([user_id]);
+
+      res.status(200).json({
+        message: `Información obtenida del user_id ${user_id}`,
+        userResult
+      })
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+  editUser = async (req, res) => {
+    try {
+      const {name, last_name, phone_number, city_id , province_id, position, user_id} = req.body;
+      let values = [name, last_name, phone_number, city_id, province_id, position, user_id];
+
+      let uptResult = await userDal.editUser(values);
+
+      res.status(200).json({
+        message: "Actualizado correctamente",
+        uptResult
+      });
+      
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
 }
 
 export default new UserController();

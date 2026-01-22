@@ -4,7 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 
 const initialValue = {
   user_email: "",
-  password: ""
+  password: "",
+  repPassword: ""
 }
 
 export const FormUserRegister = ({ setShowPage }) => {
@@ -53,8 +54,8 @@ export const FormUserRegister = ({ setShowPage }) => {
         <Form.Control
           type="text"
           placeholder="Confirmar contraseña"
-          name="confirmPassword"
-          value={registerUser.confirmPassword}
+          name="repPassword"
+          value={registerUser.repPassword}
           onChange={handleChange}
           required
         />

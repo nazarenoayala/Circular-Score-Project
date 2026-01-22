@@ -15,10 +15,12 @@ export const registerSchema = z.object({
   repPassword: z.string()
                 .min(8, 'La contraseña debe tener mínimo, 8 carácteres')
                 .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/, 'La contraseña debe tener al menos una mayúscula, un carácter especial y un número'),
-}).refine((data) => data.password === data.repPassword, {
+})
+.refine((data) => data.password === data.repPassword, {
   message: 'Las contraseñas no coinciden',
   path: ['repPassword']
 });
+
 
 // Las validaciones para el registro de usuario:
 // nombre, debe contener al menos 2 carácteres, máximo 50 y no puede contener ni números ni carácteres especiales
