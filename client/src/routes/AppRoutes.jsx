@@ -10,19 +10,21 @@ const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
 const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.jsx"));
 
 //Páginas privadas usuario
-import { UserLayout } from '../layouts/UserLayout.jsx'; 
+import { UserLayout } from '../layouts/UserLayout.jsx';
 const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTestsPage"));
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
+const OneTestCompany = lazy(() => import("../pages/companyPages/OneTest/OneTestCompany.jsx"));
+const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx"));
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
-const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
-const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
-const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
-const AllCompanies = lazy(()=>import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
-const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
+const AdminTests = lazy(() => import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
+const CreateTest = lazy(() => import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
+const OneTest = lazy(() => import('../pages/AdminPages/OneTest/OneTest.jsx'));
+const AllCompanies = lazy(() => import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
+const OneCompany = lazy(() => import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
 
 
 
@@ -42,27 +44,29 @@ export const AppRoutes = () => {
 
           {/* rutas privadas*/}
           <Route element={<PrivateRoutes />}>
-          {/* rutas de empresa */}
+            {/* rutas de empresa */}
             <Route element={<UserLayout />}>
               <Route path="/allTests" element={<AllTestsPage />} />
-              <Route path="/companyProfile" element={<CompanyProfilePage />} />
-              <Route path="/editCompany" element={<EditCompanyPage />} />
+              <Route path="/companyProfile/:id" element={<CompanyProfilePage />} />
+              <Route path="/editCompany/:id" element={<EditCompanyPage />} />
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
+              <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
+              <Route path="/oneTestCompany/:id/oneQuestion/:id" element={<OneQuestion />} />
             </Route>
             {/* rutas de Admin */}
-            <Route element={<AdminLayout/>}>
-              <Route path='/tests' element={<AdminTests/>}/>
-              <Route path='/createTest' element={<CreateTest/>}/>
-              <Route path='/oneTest' element={<OneTest/>}/>
-              <Route path='/allCompanies' element={<AllCompanies/>}/>
-              <Route path='/oneCompany' element={<OneCompany/>}/>
+            <Route element={<AdminLayout />}>
+              <Route path='/tests' element={<AdminTests />} />
+              <Route path='/createTest' element={<CreateTest />} />
+              <Route path='/oneTest/:id' element={<OneTest />} />
+              <Route path='/allCompanies' element={<AllCompanies />} />
+              <Route path='/oneCompany/:id' element={<OneCompany />} />
             </Route>
           </Route>
 
           {/* rutas privadas de usuario */}
 
           {/* rutas para el error */}
-          <Route path='*' element={<ErrorPage/>}/>
+          <Route path='*' element={<ErrorPage />} />
 
 
         </Routes>
