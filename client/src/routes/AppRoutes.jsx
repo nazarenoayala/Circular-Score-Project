@@ -15,7 +15,7 @@ const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTe
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
-const OneTestCompany = lazy(() => import("../pages/companyPages/OneTest/OneTestCompany.jsx"));
+const OneTestCompany = lazy(() => import("../pages/companyPages/OneTestCompany/OneTestCompany.jsx"));
 const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx"));
 
 //Páginas privadas administrador
