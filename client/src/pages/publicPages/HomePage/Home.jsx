@@ -17,8 +17,6 @@ const Home = () => {
           el futuro utilizando inteligencia de datos medioambientales, sociales
           y de gobernanza (ASG).
         </p>
-
-
       </section>
 
       <section className='section-register'>
