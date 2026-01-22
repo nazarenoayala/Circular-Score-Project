@@ -11,7 +11,7 @@ const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.js
 
 //Páginas privadas usuario
 import { UserLayout } from '../layouts/UserLayout.jsx'; 
-const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTestsPage"));
+const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTestsPage.jsx"));
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
