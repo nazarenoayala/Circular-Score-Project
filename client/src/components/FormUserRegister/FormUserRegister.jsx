@@ -51,8 +51,8 @@ export const FormUserRegister = ({setShowPage}) => {
         <Form.Control
           type="text"
           placeholder="Confirmar contraseña"
-          name="confirmPassword"
-          value={registerUser.confirmPassword}
+          name="repPassword"
+          value={registerUser.repPassword}
           onChange={handleChange}
         />
       </Form.Group>
