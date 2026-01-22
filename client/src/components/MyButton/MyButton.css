@@ -1,0 +1,21 @@
+/* ESTILOS DE BOTÓN */
+.btn-green {
+  background-color: rgb(0, 212, 126)!important; 
+  border: none;
+
+  &:hover {
+    background-color: rgb(193, 242, 222);
+    color: rgb(0, 212, 126);
+  }
+}
+
+.btn-white {
+  background-color: rgb(255, 255, 255)!important;
+  border: 1px solid rgb(143, 143, 143);
+  color: black;
+
+  &:hover {
+    background-color: rgb(188, 188, 188);
+    border: 1px solid rgb(255, 255, 255);
+  }
+}
