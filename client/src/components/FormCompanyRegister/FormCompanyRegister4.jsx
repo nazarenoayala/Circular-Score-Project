@@ -17,7 +17,7 @@ export const FormCompanyRegister4 = ({
       <form action="" className='form'>
           <h2>5. Clientes y grupos de interés</h2>
 
-          <label htmlFor="">14. Tipo de clientes principales</label>
+          <label>14. Tipo de clientes principales</label>
           <select 
               value={newCompany.client_segment}
                 name='client_segment'
@@ -30,7 +30,7 @@ export const FormCompanyRegister4 = ({
             })} 
           </select>
 
-          <label htmlFor="">15. Principales grupos de interés(stakeholders)</label>
+          <label>15. Principales grupos de interés(stakeholders)</label>
           <input
             type="text"
             placeholder='Principales grupos de interés'
@@ -40,7 +40,7 @@ export const FormCompanyRegister4 = ({
 
           <h2>6. Sostenibilidad y ODS (preguntas puente)</h2>
 
-          <label htmlFor="">16. ¿La empresa dispone de una política de sostenibilidad, RSC o ESG?</label>
+          <label> 16. ¿La empresa dispone de una política de sostenibilidad, RSC o ESG?</label>
           <select
             value={newCompany.sustainability}
             name='sustainability'
@@ -54,7 +54,7 @@ export const FormCompanyRegister4 = ({
           </select>
             
 
-          <label htmlFor="">17. ¿Nivel de experiencia de la empresa con los ODS?</label>
+          <label>17. ¿Nivel de experiencia de la empresa con los ODS?</label>
           <select
             value={newCompany.ods_background}
             name='ods_background'

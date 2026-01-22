@@ -11,22 +11,25 @@ export const FormCompanyRegister1 = ({
     <>
       <div className='ppal'>
         <h2>1. Identificación de la empresa</h2>
+
         <form action="" className='form'>
-          <label htmlFor="">1. Nombre de la empresa</label>
+          <label>1. Nombre de la empresa</label>
           <input
             type="text"
             placeholder='Nombre de la empresa'
             value={newCompany.company_name}
             name='company_name'
             onChange={handleChange} />
-          <label htmlFor="">2. Nombre de la persona de contacto</label>
+            
+          <label>2. Nombre de la persona de contacto</label>
           <input
             type="text"
             placeholder='Nombre de la persona de contacto'
             value={newCompany.contact_name}
             name='contact_name'
             onChange={handleChange} />
-          <label htmlFor="">3. Cargo de la persona de contacto</label>
+
+          <label>3. Cargo de la persona de contacto</label>
           <select
               value={newCompany.position}
               name='position'
@@ -38,19 +41,21 @@ export const FormCompanyRegister1 = ({
             )
           })}
           </select>
-            {newCompany.position === 'Otro (específicar)' && <input
+            {newCompany.position === 'Otro (Especificar)' && <input
             type="text"
             placeholder='Especificar el cargo'
             value={newCompany.position_other}
             name='position_other'
             onChange={handleChange} />}
-          <label htmlFor="">4. Teléfono de contacto</label>
+
+          <label>4. Teléfono de contacto</label>
           <input
             type="text"
             placeholder='Teléfono de contacto'
             value={newCompany.phone_number}
             name='phone_number'
             onChange={handleChange} />
+
           <label htmlFor="">5. Correo electrónico de contacto</label>
           <input
             type="text"

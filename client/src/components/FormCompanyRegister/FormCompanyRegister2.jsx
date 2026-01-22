@@ -13,9 +13,11 @@ export const FormCompanyRegister2 = ({
   return (
     <>
       <div className="ppal">
+
         <h2>2 . Características de la empresa</h2>
+
         <form action="" className="form">
-          <label htmlFor="">6. Tipo de empresa</label>
+          <label>6. Tipo de empresa</label>
           <select
             value={newCompany.company_type}
             name="company_type"
@@ -28,7 +30,8 @@ export const FormCompanyRegister2 = ({
               return <option key={elem.id}>{elem.name}</option>;
             })}
           </select>
-          <label htmlFor="">7. Forma jurídica</label>
+
+          <label>7. Forma jurídica</label>
           <select
             value={newCompany.legal_form}
             name="legal_form"
@@ -41,7 +44,8 @@ export const FormCompanyRegister2 = ({
               return <option key={elem.id}>{elem.name}</option>;
             })}
           </select>
-          <label htmlFor="">8. Años en activo</label>
+          
+          <label>8. Años en activo</label>
           <select
             value={newCompany.active_years}
             name="active_years"
@@ -55,7 +59,7 @@ export const FormCompanyRegister2 = ({
             })}
           </select>
 
-          <label htmlFor="">9. Números de empleados</label>
+          <label>9. Números de empleados</label>
           <select 
             value={newCompany.company_size}
             name="company_size"

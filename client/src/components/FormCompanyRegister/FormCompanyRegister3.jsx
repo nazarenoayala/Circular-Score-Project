@@ -13,7 +13,8 @@ export const FormCompanyRegister3 = ({
       <div className="ppal">
         <form action="" className="form">
           <h2>3. Sector de actividad</h2>
-          <label htmlFor="">10. Sector principal de la empresa</label>
+
+          <label>10. Sector principal de la empresa</label>
           <select
             value={newCompany.sector_name}
             name="sector_name"
@@ -35,8 +36,10 @@ export const FormCompanyRegister3 = ({
               onChange={handleChange}
             />
           )}
+
           <h2>4. Localización y ámbito geográfico</h2>
-          <label htmlFor="">11. Localización de la sede principal</label>
+
+          <label>11. Localización de la sede principal</label>
           <input
             type="text"
             placeholder="Localización de la sede principal"
@@ -44,7 +47,8 @@ export const FormCompanyRegister3 = ({
             name="city_name"
             onChange={handleChange}
           />
-          <label htmlFor="">12. Provincia de la sede principal</label>
+
+          <label>12. Provincia de la sede principal</label>
           <input
             type="text"
             placeholder="Provincia de la sede principal"
@@ -52,7 +56,8 @@ export const FormCompanyRegister3 = ({
             name="province_name"
             onChange={handleChange}
           />
-          <label htmlFor="">13. Ámbito geográfico principal de operación</label>
+
+          <label>13. Ámbito geográfico principal de operación</label>
           <select
             value={newCompany.gso}
             name="gso"
