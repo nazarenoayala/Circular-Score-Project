@@ -3,6 +3,7 @@ import './Home.css';
 import { FormUserRegister } from '../../../components/FormUserRegister/FormUserRegister';
 import { FormUserLogin } from '../../../components/FormUserLogin/FormUserLogin';
 import { FormModalRegister } from '../../../components/FormModalRegister/FormModalRegister';
+import {FormContact} from '../../../components/FormContact/FormContact'
 import Card from 'react-bootstrap/Card';
 
 const Home = () => {
@@ -23,11 +24,11 @@ const Home = () => {
             <FormUserRegister setShowPage={setShowPage} />
           )}
 
-          {showPage === 'login' && <FormUserLogin setShowPage={setShowPage} />}
-
-        
           {showPage === 'modal' && (
-            <FormModalRegister setShowPage={setShowPage} />
+            <FormModalRegister setShowPage={setShowPage} /> )}
+         
+
+        {showPage === 'login' && (<FormUserLogin setShowPage={setShowPage} />
           )}
        
       </section>
@@ -68,26 +69,6 @@ const Home = () => {
         <div className="logos">
           <img src="../assets/forHome/logocatedra.png" alt="" />
           <img src="../assets/forHome/logogeneralitat.png" alt="" />
-        <div className='card-unique'>
-          <h3 className="gray">02</h3>
-          <img src="/src/assets/forHome/cards2.png" />
-          <h3>Acelera el progreso</h3>
-          <p>Adopta soluciones más sofisticadas para minimizar el impacto de tu organización y cadena de suministro.</p>
-        </div>
-
-        <div className='card-unique'>
-          <h3 className="gray">03</h3>
-          <img src="/src/assets/forHome/cards3.png" />
-          <h3>Transforma la empresa</h3>
-          <p>Reinventa tus sistemas y modelos de negocio a la vez que satisfaces las necesidades del planeta.</p>
-        </div>
-      </section>
-
-      <section>
-        <h2 className='pb-4'>Entidades colaboradoras</h2>
-        <div className='logos'>
-          <img src="/src/assets/forHome/logocatedra.png" />
-          <img src="/src/assets/forHome/logogeneralitat.png" />
         </div>
       </section>
 
@@ -99,6 +80,7 @@ const Home = () => {
           <img src="../assets/forHome/imagin.png" alt="" />
           <img src="../assets/forHome/universitat.png" alt="" />
           <img src="../assets/forHome/ayto.png" alt="" />
+          </div>
         <h2 className='pb-4'>Premios y reconocimientos</h2>
         <div className='logos2'>
           <img src="/src/assets/forHome/santander.png" className='santander' />

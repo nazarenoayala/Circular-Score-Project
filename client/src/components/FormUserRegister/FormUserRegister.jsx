@@ -13,11 +13,12 @@ export const FormUserRegister = ({setShowPage}) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRegisterUser({ ...registerUser, [name]: value });
+     
   }
 
   const onSubmit = async () => {
     try {
-      setShowPage('register')
+     setShowPage('modal')
       // ENVIAR DATOS AL BACK
 
     } catch (error) {
