@@ -1,18 +1,19 @@
 import './NavbarPublic.css';
 import { MyButton } from '../../components/MyButton/MyButton';
+import { Link, useNavigate } from 'react-router';
 
 export const NavbarPublic = () => {
-
+  const navigate = useNavigate();
+  
   return (
     <div className='header-public'>
       <div>
-        <img src="/src/assets/logo/logo.png" />
+        <img src="/src/assets/Images/logo/logo.png" />
       </div>
-
       <div className='buttons-cont'>
         <MyButton
           text='Inicio'
-          /*  onSubmit={} */
+          onSubmit={() => navigate('/')}
           btnClass='btn-white'
         />
         <MyButton
@@ -30,7 +31,6 @@ export const NavbarPublic = () => {
           /*   onSubmit={} */
           btnClass='btn-green'
         />
-
       </div>
     </div>
   )

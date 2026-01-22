@@ -3,8 +3,7 @@ import './Home.css';
 import { FormUserRegister } from '../../../components/FormUserRegister/FormUserRegister';
 import { FormUserLogin } from '../../../components/FormUserLogin/FormUserLogin';
 import { FormModalRegister } from '../../../components/FormModalRegister/FormModalRegister';
-import {FormContact} from '../../../components/FormContact/FormContact'
-import Card from 'react-bootstrap/Card';
+import { FormContact } from '../../../components/FormContact/FormContact'
 
 const Home = () => {
   const [showPage, setShowPage] = useState('register');
@@ -19,18 +18,15 @@ const Home = () => {
           y de gobernanza (ASG).
         </p>
 
-      
-          {showPage === 'register' && (
-            <FormUserRegister setShowPage={setShowPage} />
-          )}
+        {showPage === 'register' && (
+          <FormUserRegister setShowPage={setShowPage} />
+        )}
 
-          {showPage === 'modal' && (
-            <FormModalRegister setShowPage={setShowPage} /> )}
-         
+        {showPage === 'modal' && (
+          <FormModalRegister setShowPage={setShowPage} />)}
 
         {showPage === 'login' && (<FormUserLogin setShowPage={setShowPage} />
-          )}
-       
+        )}
       </section>
 
       <section className='cards-cont d-flex gap-4 justify-content-evenly p-5 flex-wrap'>
@@ -41,27 +37,21 @@ const Home = () => {
           <p>Comienza midiendo y supervisando tu huella medioambiental.</p>
         </div>
 
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="../assets/forHome/cards2.png" />
-          <Card.Body>
-            <Card.Title>Acelera el progreso</Card.Title>
-            <Card.Text>
-              Adopta soluciones más sofisticadas para minimizar el impacto de tu
-              organización y cadena de suministro.
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <div className='card-unique'>
+          <h3 className="gray">02</h3>
+          <img src="/src/assets/forHome/cards2.png" />
+          <h3>Acelera el progreso</h3>
+          <p>Adopta soluciones más sofisticadas para minimizar el impacto de tu
+            organización y cadena de suministro.</p>
+        </div>
 
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="../assets/forHome/cards3.png" />
-          <Card.Body>
-            <Card.Title>Transforma la empresa</Card.Title>
-            <Card.Text>
-              Reinventa tus sistemas y modelos de negocio a la vez que
-              satisfaces las necesidades del planeta.
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <div className='card-unique'>
+          <h3 className="gray">03</h3>
+          <img src="/src/assets/forHome/cards3.png" />
+          <h3>Transforma la empresa</h3>
+          <p>Reinventa tus sistemas y modelos de negocio a la vez que
+            satisfaces las necesidades del planeta.</p>
+        </div>
       </section>
 
       <section>
@@ -80,7 +70,7 @@ const Home = () => {
           <img src="../assets/forHome/imagin.png" alt="" />
           <img src="../assets/forHome/universitat.png" alt="" />
           <img src="../assets/forHome/ayto.png" alt="" />
-          </div>
+        </div>
         <h2 className='pb-4'>Premios y reconocimientos</h2>
         <div className='logos2'>
           <img src="/src/assets/forHome/santander.png" className='santander' />
@@ -93,7 +83,6 @@ const Home = () => {
 
       <section className='section-contact'>
         <h2 className='p-5'>¿Tienes alguna pregunta?</h2>
-
         <FormContact />
       </section>
     </div>
