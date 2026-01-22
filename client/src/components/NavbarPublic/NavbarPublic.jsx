@@ -1,8 +1,10 @@
 import './NavbarPublic.css';
 import { MyButton } from '../../components/MyButton/MyButton';
+import { Link, useNavigate } from 'react-router';
 
 export const NavbarPublic = () => {
-
+  const navigate = useNavigate();
+  
   return (
     <div className='header-public'>
       <div>
@@ -11,7 +13,7 @@ export const NavbarPublic = () => {
       <div className='buttons-cont'>
         <MyButton
           text='Inicio'
-          /*  onSubmit={} */
+          onSubmit={() => navigate('/')}
           btnClass='btn-white'
         />
         <MyButton

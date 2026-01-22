@@ -13,26 +13,30 @@ const Home = () => {
         <FormUserRegister />
       </section>
 
-      <section className='cards-cont d-flex gap-4 justify-content-evenly p-5 flex-wrap'>
-        <div className='card-unique'>
-          <h3 className="gray">01</h3>
-          <img src="/src/assets/Images/forHome/cards1.png" />
-          <h3>Evalúa el impacto</h3>
-          <p>Comienza midiendo y supervisando tu huella medioambiental.</p>
-        </div>
+      <section>
+        <h2 className='pb-4'>Características</h2>
+        <div className='d-flex gap-4 justify-content-evenly p-5 flex-wrap'>
 
-        <div className='card-unique'>
-          <h3 className="gray">02</h3>
-          <img src="/src/assets/Images/forHome/cards2.png" />
-          <h3>Acelera el progreso</h3>
-          <p>Adopta soluciones más sofisticadas para minimizar el impacto de tu organización y cadena de suministro.</p>
-        </div>
+          <div className='card-unique'>
+            <h3 className="gray">01</h3>
+            <img src="/src/assets/Images/forHome/cards1.png" />
+            <h3>Evalúa el impacto</h3>
+            <p>Comienza midiendo y supervisando tu huella medioambiental.</p>
+          </div>
 
-        <div className='card-unique'>
-          <h3 className="gray">03</h3>
-          <img src="/src/assets/Images/forHome/cards3.png" />
-          <h3>Transforma la empresa</h3>
-          <p>Reinventa tus sistemas y modelos de negocio a la vez que satisfaces las necesidades del planeta.</p>
+          <div className='card-unique'>
+            <h3 className="gray">02</h3>
+            <img src="/src/assets/Images/forHome/cards2.png" />
+            <h3>Acelera el progreso</h3>
+            <p>Adopta soluciones más sofisticadas para minimizar el impacto de tu organización y cadena de suministro.</p>
+          </div>
+
+          <div className='card-unique'>
+            <h3 className="gray">03</h3>
+            <img src="/src/assets/Images/forHome/cards3.png" />
+            <h3>Transforma la empresa</h3>
+            <p>Reinventa tus sistemas y modelos de negocio a la vez que satisfaces las necesidades del planeta.</p>
+          </div>
         </div>
       </section>
 
