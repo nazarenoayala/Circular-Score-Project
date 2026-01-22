@@ -4,7 +4,7 @@ export const FooterPublic = () => {
   return (
     <div className='footer-public'>
       <div>
-        <img src="/src/assets/logo/logoblanco.png" />
+        <img src="/src/assets/Images/logo/logoblanco.png" />
       </div>
       <div>
         <div className='child2'>
