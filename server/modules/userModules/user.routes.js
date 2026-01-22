@@ -18,6 +18,9 @@ routes.post('/register', validateUserRegister(registerSchema), userController.re
 // Ruta de login de usuario
 routes.get('/login', validateUserLogin(loginSchema), userController.login);
 
+// Obtener información de usuario
+routes.get('/showUserProfile/:user_id', userController.showUserProfile)
+
 // Ruta edición datos de usuario
 routes.post('/editUser', validateUserEdit(editSchema), userController.editUser);
 
