@@ -97,6 +97,20 @@ class UserController {
       res.status(500).json(error)
     }
   }
+
+  banUser = async (req, res) => {
+    const {user_id} = req.params;
+    try {
+      let banResult = await userDal.banUser([user_id]);
+      res.status(200).json({
+        message: `Usuario con id ${user_id} baneado`,
+        banResult
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
 }
 
 export default new UserController();

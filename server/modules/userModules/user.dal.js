@@ -43,16 +43,25 @@ class UserDal {
 
   //Método para actualizar la info del usuario de la tabla "user"
 
-  editUser = async (values) => {
+  editUser = async (user_id) => {
 
     try {
       let sql = 'UPDATE user SET name=?, last_name=?, phone_number=?, city_id=?, province_id=?, position=? WHERE user_id=?'
-      await executeQuery(sql, values);
+      await executeQuery(sql, user_id);
     } catch (error) {
       throw error;
     }
   }
 
+  banUser = async (user_id) => {
+
+    try {
+      let sql = 'UPDATE user SET is_deleted = 1 where user_id = ?'
+      await executeQuery(sql, user_id);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default new UserDal();

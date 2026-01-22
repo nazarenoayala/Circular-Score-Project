@@ -24,4 +24,7 @@ routes.get('/showUserProfile/:user_id', userController.showUserProfile)
 // Ruta edición datos de usuario
 routes.post('/editUser', validateUserEdit(editSchema), userController.editUser);
 
+// Ruta baneo de usuario
+routes.put('/banUser/:user_id', userController.banUser);
+
 export default routes;
