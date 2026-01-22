@@ -1,29 +1,28 @@
 import './NavbarPublic.css';
 import { MyButton } from '../../components/MyButton/MyButton';
-import { Link, useNavigate } from 'react-router';
 
 export const NavbarPublic = () => {
-  const navigate = useNavigate();
-  
+
   return (
     <div className='header-public'>
       <div>
-        <img src="/src/assets/Images/logo/logo.png" />
+        <img id='inicio' src="/src/assets/Images/logo/logo.png" />
       </div>
       <div className='buttons-cont'>
+        {/* Botones que redirigen de una sección a otra del home */}
         <MyButton
           text='Inicio'
-          onSubmit={() => navigate('/')}
+          onSubmit={() => document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' })}
           btnClass='btn-white'
         />
         <MyButton
           text='Características'
-          /*  onSubmit={} */
+          onSubmit={() => document.getElementById('caracteristicas').scrollIntoView({ behavior: 'smooth' })}
           btnClass='btn-white'
         />
         <MyButton
           text='Contacto'
-          /*     onSubmit={} */
+          onSubmit={() => document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })}
           btnClass='btn-white'
         />
         <MyButton

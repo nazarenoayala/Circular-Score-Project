@@ -7,7 +7,7 @@ export const NavbarAdmin = () => {
       <section className="lateral-bar">
         <div>
           <img
-            src="/src/assets/logoblanco.png"
+            src="/src/assets/Images/logoblanco.png"
             alt=""
           ></img>
           <div className="container-logo">

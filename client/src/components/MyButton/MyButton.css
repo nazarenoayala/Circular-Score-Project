@@ -22,4 +22,8 @@
 
 .btn-blue {
   background-color: rgb(68, 126, 247) !important;
+
+  &:hover {
+    background-color: rgb(38, 75, 151) !important;
+  }
 }
