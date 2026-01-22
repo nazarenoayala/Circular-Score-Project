@@ -7,9 +7,7 @@ const routes = express.Router();
 routes.get('/allTest', testController.selectAllTest);
 
 // Ruta para seleccionar un test:
-routes.get('/oneTest/:test');
-
-//Ruta nueva:
+routes.get('/oneTest/:id', testController.selectOneTest);
 
 export default routes;
 
