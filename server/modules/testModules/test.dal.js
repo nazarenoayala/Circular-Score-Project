@@ -36,6 +36,21 @@ class TestDal {
 
   }
 
+  disableTest = async () => {
+
+    try {
+
+      let sql = 'UPDATE TABLE test SET is_public = 1 WHERE test_id = ?'
+
+      let result = executeQuery(sql, value);
+      return result;
+      
+    } catch (error) {
+      throw error;
+    }
+
+  }
+
 }
 
 export default new TestDal();

@@ -41,6 +41,45 @@ class TestController {
 
   }
 
+  disableTest = async () => {
+
+    const {id} = req.params;
+    let values = [id];
+
+    try {
+
+      let result = await testDal.disableTest(values);
+
+      res.status(200).json({message: 'Test deshabilitado', result});
+      
+    } catch (error) {
+
+      console.log(error);
+      res.status(500).json(error);
+      
+    }
+
+  }
+
+  editTest = async (req, res) => {
+
+    const {test_name} = req.body;
+    let value = [test_name];
+
+    try {
+
+      let result = testDal.createTest(value);
+
+      res.status(200).json({message: 'test editado correctamente', result});
+      
+    } catch (error) {
+
+      res.status(500).json(error);
+      console.log(error);
+    }
+
+  }
+
 }
 
 export default new TestController();

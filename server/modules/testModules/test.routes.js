@@ -9,5 +9,11 @@ routes.get('/allTest', testController.selectAllTest);
 // Ruta para seleccionar un test:
 routes.get('/oneTest/:id', testController.selectOneTest);
 
+// Ruta para deshabilitar test:
+routes.put('/disableTest/:id', testController.disableTest);
+
+// Ruta para la creación de un test:
+routes.post('/editTest', testController.editTest);
+
 export default routes;
 
