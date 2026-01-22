@@ -4,21 +4,22 @@ import { Form, Button } from 'react-bootstrap';
 
 const initialValue = {
   user_email: "",
-  password: ""
+  password: "",
+  repPassword: ""
 }
 
-export const FormUserRegister = ({setShowPage}) => {
+export const FormUserRegister = ({ setShowPage }) => {
   const [registerUser, setRegisterUser] = useState(initialValue);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRegisterUser({ ...registerUser, [name]: value });
-     
+
   }
 
   const onSubmit = async () => {
     try {
-     setShowPage('modal')
+      setShowPage('modal')
       // ENVIAR DATOS AL BACK
 
     } catch (error) {
@@ -36,6 +37,7 @@ export const FormUserRegister = ({setShowPage}) => {
           name="user_email"
           value={registerUser.user_email}
           onChange={handleChange}
+          required
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -45,6 +47,17 @@ export const FormUserRegister = ({setShowPage}) => {
           name="password"
           value={registerUser.password}
           onChange={handleChange}
+          required
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="text"
+          placeholder="Confirmar contraseña"
+          name="repPassword"
+          value={registerUser.repPassword}
+          onChange={handleChange}
+          required
         />
       </Form.Group>
       <Button

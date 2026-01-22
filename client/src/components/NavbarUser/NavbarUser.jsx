@@ -2,12 +2,13 @@ import React from 'react';
 import './NavbarUser.css';
 
 export const NavbarUser = () => {
+
   return (
     <div className="front-page">
       <section className="lateral-bar">
         <div>
           <img
-            src="/src/assets/logoblanco.png"
+            src="/src/assets/Images/logoblanco.png"
             alt=""
           ></img>
           <div className="container-logo">
