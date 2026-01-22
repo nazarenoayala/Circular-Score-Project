@@ -5,6 +5,13 @@
   font-size: larger;
   text-align: center;
 
+  .section1 {
+    align-items: center;
+    max-width: 60rem;
+    text-align: center;
+    margin: 0 auto;
+  }
+
   section {
     padding: 3rem;
   }
@@ -45,16 +52,16 @@
     justify-content: space-evenly;
 
     .santander {
-      width: 10rem;
+      width: 13rem;
     }
 
     img {
-      height: 5rem;
+      height: 5rem;      
     }
   }
 
   .section-register {
-    height: 50dvh;
+    min-height: 50dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
