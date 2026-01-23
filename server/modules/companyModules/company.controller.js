@@ -1,5 +1,4 @@
 import companyDal from "./company.dal.js";
-import { generateToken } from '../../utils/jwtUtils.js'
 
 class CompanyController {
 
@@ -91,10 +90,10 @@ class CompanyController {
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
->>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
     }
   }
 }
+>>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
 
 <<<<<<< HEAD
 =======
