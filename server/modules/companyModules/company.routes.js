@@ -3,12 +3,14 @@ import companyController from './company.controller.js';
 
 const routes = express.Router();
 
-routes.get
+// Prueba
+routes.get('/test', companyController.test);
 
+//falta insertar middleware validateToken
 //http://localhost:4000/company/registerCompany
-routes.post('/registerCompany', companyController.registerCompany);
+routes.post('/registerCompany/:user_id', companyController.registerCompany);
 
-routes.get('/CompanyProfilePage', companyController.showCompanyProfile);
+routes.get('/companyProfilePage/:user_id', companyController.showCompanyProfile);
 
 
 export default routes;
