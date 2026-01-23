@@ -25,4 +25,30 @@ class CompanyController {
       
   //    }
   // }
+
+
+  //pedir datos de localidades y provincias
+
+  locality = async(req, res)=>{
+    try{
+      let result = await companyDal.locality();
+      res.status(200).json(result);
+    }catch(error){
+      console.log(error);
+      res.status(500).json(error);
+      
+    }
+  }
+  Province = async(req, res)=>{
+    try{
+      let result = await companyDal.Province();
+      res.status(200).json(result);
+    }catch(error){
+      console.log(error);
+      res.status(500).json(error);
+      
+    }
+  }
 }
+
+export default new CompanyController()

@@ -3,6 +3,7 @@ import './formCompanyRegister.css'
 import { question14 } from '../../data/CompanyRegisterData/Question14'
 import { question16 } from '../../data/CompanyRegisterData/Question16'
 import { question17 } from '../../data/CompanyRegisterData/Question17'
+import { question15 } from '../../data/CompanyRegisterData/Question15'
 
 export const FormCompanyRegister4 = ({
                 newCompany, 
@@ -18,25 +19,34 @@ export const FormCompanyRegister4 = ({
           <h2>5. Clientes y grupos de interés</h2>
 
           <label>14. Tipo de clientes principales</label>
-          <select 
-              value={newCompany.client_segment}
-                name='client_segment'
-                onchange={handleChange}
-              >
-            {question14.map((elem)=>{
-              return(
-                <option key={elem.id}>{elem.name}</option>
-              )
-            })} 
-          </select>
+           {question14.map((elem)=>{
+                return(
+                <label key={elem.id}>
+                <input
+                  type='checkbox'
+                  checked={newCompany.client_segment.includes(elem.id)}
+                  name='client_segment'
+                  onChange={(e)=>handleChange(e, elem.id)}
+                />
+                {elem.name}
+            </label> 
+                 )
+              })}
 
           <label>15. Principales grupos de interés(stakeholders)</label>
-          <input
-            type="text"
-            placeholder='Principales grupos de interés'
-            value={newCompany.stakeholders}
-            name='stakeholders'
-            onChange={handleChange} />
+            {question15.map((elem)=>{
+                return(
+                <label key={elem.id}>
+                <input
+                  type='checkbox'
+                  value={newCompany.stakeholders.includes(elem.id)}
+                  name='stakeholders'
+                  onChange={(e)=>handleChange(e, elem.id)}
+                />
+                {elem.name}
+            </label> 
+                 )
+              })}
 
           <h2>6. Sostenibilidad y ODS (preguntas puente)</h2>
 

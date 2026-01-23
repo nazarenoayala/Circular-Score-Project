@@ -4,27 +4,27 @@ export const question6 = [
     name:'Autónomo/a'
   },
   {
-    id:1,
+    id:2,
     name:'Startup '
   },
   {
-    id:1,
+    id:3,
     name:'Microempresa '
   },
   {
-    id:1,
+    id:4,
     name:'Pyme'
   },
   {
-    id:1,
+    id:5,
     name:'Gran empresa'
   },
   {
-    id:1,
+    id:6,
     name:'Entidad sin ánimo de lucro'
   },
   {
-    id:1,
+    id:7,
     name:'Administración pública / entidad pública '
   }
 ]

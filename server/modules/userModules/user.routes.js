@@ -4,16 +4,30 @@ import { validateUserRegister } from '../../middlewares/validateUserRegister.js'
 import { registerSchema } from '../../schemas/userRegister.js';
 import { validateUserLogin } from '../../middlewares/validateUserLogin.js';
 import { loginSchema } from '../../schemas/userLogin.js';
+import { validateUserEdit } from '../../middlewares/validateUserEdit.js';
+import { editSchema } from '../../schemas/userEdit.js';
 
 const routes = express.Router();
-
-// Prueba
-routes.get('/test', validateUserLogin(loginSchema), userController.test);
 
 // Ruta de registro de usuario
 routes.post('/register', validateUserRegister(registerSchema), userController.register);
 
 // Ruta de login de usuario
 routes.get('/login', validateUserLogin(loginSchema), userController.login);
+
+
+// Ruta edición datos de usuario
+routes.post('/editUser', validateUserEdit(editSchema), userController.editUser);
+
+// Ruta baneo de usuario
+routes.put('/banUser/:user_id', userController.banUser);
+
+// Rutas de obtención de datos del user
+// Obtener información de perfil de usuario
+routes.get('/showUserProfile/:user_id', userController.showUserProfile)
+
+// Token y datos de los test del usuario
+// Hay que verificar el token con el middleware !!!!
+routes.get('/userByToken/:user_id', userController.userByToken)
 
 export default routes;

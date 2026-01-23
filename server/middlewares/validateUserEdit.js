@@ -1,10 +1,9 @@
 import {ZodError} from 'zod';
 
-export const validateUserRegister = (schema) => (req, res, next) => {
+export const validateUserEdit = (schema) => (req, res, next) => {
   try {
 
     schema.parse(req.body);
-    next();
 
   } catch (error) {
     if (error instanceof ZodError){
@@ -16,5 +15,6 @@ export const validateUserRegister = (schema) => (req, res, next) => {
       console.log(error);
     }
   }
-  
+
+  next();
 }

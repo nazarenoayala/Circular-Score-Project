@@ -7,9 +7,12 @@ export const FormCompanyRegister3 = ({
   newCompany,
   handleChange,
   setCurrentFormPage,
+  locality,
+  province
 }) => {
+  
   return (
-    <>
+    <>  
       <div className="ppal">
         <form action="" className="form">
           <h2>3. Sector de actividad</h2>
@@ -40,22 +43,30 @@ export const FormCompanyRegister3 = ({
           <h2>4. Localización y ámbito geográfico</h2>
 
           <label>11. Localización de la sede principal</label>
-          <input
-            type="text"
-            placeholder="Localización de la sede principal"
+          <select
             value={newCompany.city_name}
             name="city_name"
-            onChange={handleChange}
-          />
-
+            onChange={handleChange}>
+            <option>Elige solo una opción</option>
+            {locality?.map((elem)=>{
+              return(
+                <option key={elem.id}>{elem.name}</option>
+              )
+            })}
+          </select>
+            
           <label>12. Provincia de la sede principal</label>
-          <input
-            type="text"
-            placeholder="Provincia de la sede principal"
+    <select
             value={newCompany.province_name}
             name="province_name"
-            onChange={handleChange}
-          />
+            onChange={handleChange}>
+            <option>Elige solo una opción</option>
+            {province?.map((elem)=>{
+              return(
+                <option key={elem.province_id}>{elem.name}</option>
+              )
+            })}
+          </select>
 
           <label>13. Ámbito geográfico principal de operación</label>
           <select
@@ -65,7 +76,7 @@ export const FormCompanyRegister3 = ({
               <option value="" disabled>Elegir una opción</option>
               {question13.map((elem)=>{
                 return(
-                  <option key={elem.id}>{elem.name}</option>
+                  <option key={elem.city_id}>{elem.name}</option>
                 )
               })}
           </select>
