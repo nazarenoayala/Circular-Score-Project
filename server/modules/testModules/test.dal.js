@@ -40,7 +40,7 @@ class TestDal {
 
     try {
 
-      let sql = 'UPDATE test SET is_public = 1 WHERE test_id = ?'
+      let sql = 'UPDATE test SET is_public = 0 WHERE test_id = ?'
 
       let result = executeQuery(sql, values);
       return result;
