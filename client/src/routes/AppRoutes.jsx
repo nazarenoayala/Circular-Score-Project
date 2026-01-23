@@ -20,6 +20,7 @@ const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/One
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
+import { useState } from 'react';
 const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
 const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
 const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
@@ -30,6 +31,11 @@ const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.js
 
 
 export const AppRoutes = () => {
+
+    const [showPage, setShowPage] = useState('register');
+
+
+
   return (
     <BrowserRouter>
       <Suspense fallback={<h1>Cargando...</h1>}>
@@ -37,8 +43,8 @@ export const AppRoutes = () => {
 
           {/* rutas públicas */}
           <Route element={<PublicRoutes />}>
-            <Route element={<PublicLayout />}>
-              <Route path='/' element={<Home />} />
+            <Route element={<PublicLayout  setShowPage={setShowPage} showPage={showPage}/>}>
+            <Route path='/' element={<Home  setShowPage={setShowPage} showPage={showPage}/>} />
             </Route>
           </Route>
 

@@ -1,7 +1,15 @@
 import './NavbarPublic.css';
 import { MyButton } from '../../components/MyButton/MyButton';
+import { useEffect } from 'react';
 
-export const NavbarPublic = () => {
+
+export const NavbarPublic = ({setShowPage, showPage}) => {
+
+  
+
+
+
+
 
   return (
     <div className='header-public'>
@@ -27,7 +35,7 @@ export const NavbarPublic = () => {
         />
         <MyButton
           text='Iniciar sesión'
-          /*   onSubmit={} */
+          onSubmit={() =>setShowPage('login')} 
           btnClass='btn-green'
         />
       </div>
