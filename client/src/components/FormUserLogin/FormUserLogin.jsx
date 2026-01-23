@@ -1,31 +1,60 @@
 import './FormUserLogin.css';
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from "react-router"
+import { useNavigate } from 'react-router'
+import { Button, Form } from "react-bootstrap"
+import { AuthContext } from '../../context/AuthContext/AuthContext';
+import { useContext } from 'react';
+import { fetchData } from '../../../helpers/axiosHelper';
 
 const initialValue = {
-  email: '',
+  user_email: '',
   password: '',
 };
 
-export const FormUserLogin = ({ setShowPage }) => {
-  const [userLogin, setUserLogin] = useState(initialValue);
+export const FormUserLogin = () => {
 
-    const navigate = useNavigate();
+  const [userLogin, setUserLogin] = useState(initialValue);
+  const {setUserData, setCompanyData, setToken} = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserLogin({ ...userLogin, [name]: value });
   };
 
-  const onSubmit = async () => {
+   const onSubmit = async () => {
+    //TODO Hace falta, validar los campos desde el front !!!!!
     try {
-      setShowPage('login');
-      // ENVIAR DATOS AL BACK
+
+      // Fetch para mandar el input del usuario a autenticación
+      const userRes = await fetchData('/user/login', 'POST', userLogin);
+      const token = userRes.data.token;
+
+      // Mando token con la petición para validar la autenticación
+      const userByToken = await fetchData('/user/userByToken', 'GET', null, token);
+
+      // Guardamos en local storage el token del user
+      localStorage.setItem('credentials', token);
+      console.log("datos obtenidos por user By Token", userByToken);
+      
+      setUserData(userByToken.data.userData);
+      setCompanyData(userByToken.data.companyData);
+      setToken(token);
+      
+      // Si todo es correcto, mandamos al usuario a su perfil
+      
+      //TODO Supongamos que navega a company profile tras loguear, ya lo que decidamos
+      //navigate(`/companyProfile`)
+      //TODO Esta pa cuando la vista esté disponible
+      // const user_id = userByToken.data.userData.user_id;
+      // navigate(`/companyProfile/${user_id}`)
+
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   return (
 
@@ -58,7 +87,5 @@ export const FormUserLogin = ({ setShowPage }) => {
       >Cancelar</Button>
       </Form.Group>
     </Form>
-
-
   );
 };

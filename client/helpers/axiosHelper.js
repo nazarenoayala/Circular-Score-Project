@@ -7,7 +7,7 @@ export const fetchData = async (url, method, data = null, token = null) => {
   let headers = {}
 
   if (token) {
-    headers = {authorization: `bearer ${token}`}
+    headers = {authorization: `Bearer ${token}`}
   }
 
   const config = {

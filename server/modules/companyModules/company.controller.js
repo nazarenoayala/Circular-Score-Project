@@ -31,7 +31,6 @@ class CompanyController {
       
     }
   }
-
  
   //pedir datos de localidades y provincias
 

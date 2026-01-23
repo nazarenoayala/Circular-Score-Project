@@ -3,7 +3,8 @@ import executeQuery from "../../config/db.js";
 class UserDal {
 
   //Método que trae la información del usuario, y su empresa validando el token desde local storage
-  userByToken = async(user_id) => {
+  showTestData = async(user_id) => {
+    
     try {
 
       let sql = `SELECT
@@ -27,6 +28,7 @@ class UserDal {
                     ORDER BY aset.test_date DESC, aset.answer_set_id, q.question_id`
 
       let result = await executeQuery(sql, user_id)
+      console.log("resultado de la consulta de datos de test", result);
       return result;
     } catch (error) {
       console.log();
@@ -49,11 +51,58 @@ class UserDal {
 
   //Metodo para buscar el email del user en la base de datos, para validar las credenciales en el login
 
-  findUserByEmail = async (email) => {
+  findUserByEmail = async (user_email) => {
     try{
       let sql = 'SELECT user_id, password FROM user WHERE user_email = ? AND is_deleted = 0 AND is_confirmed = 1'
       let result = await executeQuery(sql, [user_email]);
       return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  userByToken = async (user_id) => {
+
+    try {
+      
+      let sql = `SELECT u.user_id, u.name, u.last_name, u.type, u.phone_number, 
+                u.province_id, u.city_id, u.user_email, u.position, c.company_name,
+                c.sector_id, c.company_type, c.legal_form, c.active_years, c.company_size, 
+                c.gso, c.client_segment, c.stakeholders, c.sustainability, c.ods_background
+                FROM user u
+                LEFT JOIN company_data c ON u.user_id = c.user_id
+                WHERE u.user_id = ?`
+
+      let values = [user_id];
+
+      let result = await executeQuery(sql, values);
+
+      const userData = {
+        user_id: result[0].user_id,
+        name: result[0].name,
+        last_name: result[0].last_name,
+        type: result[0].type,
+        phone_number: result[0].phone_number,
+        province_id: result[0].province_id,
+        city_id: result[0].city_id,
+        position: result[0].position
+      }
+
+      const companyData = {
+        company_name: result[0].company_name,
+        sector_id: result[0].sector_id, 
+        company_type: result[0].company_type, 
+        legal_form: result[0].legal_form, 
+        active_years: result[0].active_years, 
+        company_size: result[0].company_size, 
+        gso: result[0].gso, 
+        client_segment: result[0].client_segment, 
+        stakeholders: result[0].stakeholders, 
+        sustainability: result[0].sustainability, 
+        ods_background: result[0].ods_background
+      }
+
+      return {userData, companyData};
     } catch (error) {
       throw error;
     }
@@ -66,7 +115,6 @@ class UserDal {
       let sql = 'SELECT * FROM user WHERE user_id = ? AND is_deleted = 0 AND is_confirmed = 1'
 
       let profileResult = await executeQuery(sql, user_id);
-      console.log("Result de traer los datos de este user", profileResult);
       
     } catch (error) {
       throw error;
