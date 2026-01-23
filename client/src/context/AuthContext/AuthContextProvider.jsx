@@ -35,9 +35,6 @@ export const AuthContextProvider = ({children}) => {
     localStorage.removeItem("token");
   }
 
-  console.log("userData y companyData en el context", companyData, userData);
-  
-
   return (
     <>
       <AuthContext.Provider value={{

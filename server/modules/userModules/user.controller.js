@@ -61,8 +61,11 @@ class UserController {
         } else {
           //generamos un token
           const token = generateToken(result[0].user_id);
-          console.log("Token generado correctamente", token);
-          res.status(200).json({message: "Login correcto", token: token});
+          res.status(200).json({
+              message: "Login correcto",
+              token: token, 
+              user_id: result[0].user_id
+            });
         }
       }
     } catch (error) {
@@ -73,14 +76,14 @@ class UserController {
 
   userByToken = async (req, res) => {
     const {user_id} = req;
-
+    
     try {
       const userDataResult = await userDal.userByToken(user_id);
 
       res.status(200).json({
-        message: 'User recuperado por token',
         userData: userDataResult.userData,
-        companyData: userDataResult.companyData
+        companyData: userDataResult.companyData,
+        message: 'User recuperado por token'
       })
     } catch (error) {
       console.log(error);

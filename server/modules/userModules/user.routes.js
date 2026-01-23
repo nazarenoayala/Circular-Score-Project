@@ -6,6 +6,7 @@ import { validateUserLogin } from '../../middlewares/validateUserLogin.js';
 import { loginSchema } from '../../schemas/userLogin.js';
 import { validateUserEdit } from '../../middlewares/validateUserEdit.js';
 import { editSchema } from '../../schemas/userEdit.js';
+import { verifyToken } from '../../middlewares/verifyToken.js';
 
 //TODO Hay que añadir el middleware de verifyToken cuando esté 100% correcto a todas las rutas
 
@@ -28,7 +29,7 @@ routes.put('/banUser/:user_id', userController.banUser);
 routes.get('/showUserProfile/:user_id', userController.showUserProfile);
 
 // Traer info dede token
-routes.get('/userByToken', userController.userByToken);
+routes.get('/userByToken', verifyToken, userController.userByToken);
 
 // Token y datos de los test del usuario
 // Hay que verificar el token con el middleware !!!!

@@ -4,24 +4,25 @@ import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
 
 
-
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
 const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
 const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.jsx"));
 
 //Páginas privadas usuario
-import { UserLayout } from '../layouts/UserLayout.jsx'; 
+import { UserLayout } from '../layouts/UserLayout.jsx';
 const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTestsPage.jsx"));
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
-const CompanyRegister = lazy(() => import("../pages/companyPages/CompanyRegister/CompanyRegister.jsx"));
+const UserODSGraphic = lazy(() => import('../pages/companyPages/UserODSGraphic/UserODSGraphic.jsx'));
 const OneTestCompany = lazy(() => import("../pages/companyPages/OneTestCompany/OneTestCompany.jsx"));
 const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx"));
+const UserTestRecord = lazy(() => import("../pages/companyPages/UserTestRecord/UserTestRecord.jsx"));
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
+import { useState } from 'react';
 const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
 const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
 const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
@@ -32,6 +33,11 @@ const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.js
 
 
 export const AppRoutes = () => {
+
+    const [showPage, setShowPage] = useState('register');
+
+
+
   return (
     <BrowserRouter>
       <Suspense fallback={<h1>Cargando...</h1>}>
@@ -39,23 +45,27 @@ export const AppRoutes = () => {
 
           {/* rutas públicas */}
           <Route element={<PublicRoutes />}>
-            <Route element={<PublicLayout />}>
-              <Route path='/' element={<Home />} />
+            <Route element={<PublicLayout  setShowPage={setShowPage} showPage={showPage}/>}>
+            <Route path='/' element={<Home  setShowPage={setShowPage} showPage={showPage}/>} />
             </Route>
           </Route>
 
           {/* rutas privadas*/}
           <Route element={<PrivateRoutes />}>
+
             {/* rutas de empresa */}
             <Route element={<UserLayout />}>
               <Route path="/allTests" element={<AllTestsPage />} />
               <Route path="/companyProfile/:id" element={<CompanyProfilePage />} />
               <Route path="/editCompany/:id" element={<EditCompanyPage />} />
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
-              <Route path="/companyRegister" element={<CompanyRegister />} />
+              <Route path="/userODSGraphic" element={<UserODSGraphic />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
               <Route path="/oneTestCompany/:id/oneQuestion/:id" element={<OneQuestion />} />
+              <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
+              {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
+
             {/* rutas de Admin */}
             <Route element={<AdminLayout />}>
               <Route path='/tests' element={<AdminTests />} />
@@ -63,10 +73,13 @@ export const AppRoutes = () => {
               <Route path='/oneTest/:id' element={<OneTest />} />
               <Route path='/allCompanies' element={<AllCompanies />} />
               <Route path='/oneCompany/:id' element={<OneCompany />} />
+              {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+              {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
+              {/* <Route path='/graphic' element={<AdminGraphics />} /> */}
+              {/* <Route path='/AdminODSGraphic' element={<AdminODSgraphic />} /> */}
             </Route>
+            {/* "/IApromptEdit" -> navbar admin IA Prompt Editor */}
           </Route>
-
-          {/* rutas privadas de usuario */}
 
           {/* rutas para el error */}
           <Route path='*' element={<ErrorPage />} />

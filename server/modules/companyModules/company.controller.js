@@ -44,6 +44,7 @@ class CompanyController {
       
     }
   }
+
   Province = async(req, res)=>{
     try{
       let result = await companyDal.Province();
@@ -51,9 +52,46 @@ class CompanyController {
     }catch(error){
       console.log(error);
       res.status(500).json(error);
-      
+    }
+  }
+
+
+  showCompanyProfile = async (req, res) => {
+    const {user_id} = req.params;
+
+    try {
+      let companyResult = await companyDal.showCompanyProfile([user_id]);
+      res.status(200).json({
+        message: `Información obtenida del user_id ${user_id}`,
+        companyResult})
+
+    } catch (error) {
+      console.log(error)
+      res.status(500).json(error);
+    }
+  }
+
+  editCompanyProfile = async (req, res) => {
+
+    const {user_id} = req.params;
+
+    const {company_name, sector_id, legal_form, active_years, company_size, gso, stakeholders, sustainability, ods_background} = req.body
+
+    try {
+
+
+      let uptResult = await companyDal.editCompanyProfile([user_id, company_name, sector_id, legal_form, active_years, company_size, gso, stakeholders, sustainability, ods_background]);
+
+      res.status(200).json({
+        message: "Actualizado correctamente",
+        uptResult
+      })
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
     }
   }
 }
 
-export default new CompanyController;
+export default new CompanyController();

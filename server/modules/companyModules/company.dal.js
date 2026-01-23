@@ -19,27 +19,31 @@ class CompanyDal {
       
     }
   }
-  //pedir datos de localidades y provincias
-  locality = async() => {
-    try{
-      let sql = 'SELECT * FROM city';
-      let result = await executeQuery(sql);
-      return result;
-    }catch(error){
-      console.log(error);
+
+
+  showCompanyProfile = async(user_id) => {
+    try {
+      let sql = 'SELECT * FROM company_data WHERE user_id=?'
+
+      return await executeQuery(sql, [user_id]);
+
+    } catch (error) {
       throw error;
     }
   }
-  Province = async() => {
-    try{
-      let sql = 'SELECT * FROM province';
-      let result = await executeQuery(sql);
-      return result;
-    }catch(error){
-      console.log(error);
+
+  editCompanyProfile = async (values) => {
+    try {
+      let sql = 'UPDATE company_data SET company_name=?, sector_id=?, legal_form=?, active_years=?, company_size=?, gso=?, stakeholders=?, sustainability=?, ods_background=? WHERE user_id=?'
+
+      await executeQuery(sql, values);
+
+    } catch (error) {
       throw error;
     }
   }
+
+
 }
 
 export default new CompanyDal();

@@ -29,29 +29,26 @@ export const FormUserLogin = () => {
     try {
 
       // Fetch para mandar el input del usuario a autenticación
-      const tokenRes = await fetchData('/user/login', 'POST', userLogin);
-      const token = tokenRes.data.token;
+      const userRes = await fetchData('/user/login', 'POST', userLogin);
+      const token = userRes.data.token;
 
       // Mando token con la petición para validar la autenticación
       const userByToken = await fetchData('/user/userByToken', 'GET', null, token);
 
       // Guardamos en local storage el token del user
       localStorage.setItem('credentials', token);
-      console.log(userByToken);
+      console.log("datos obtenidos por user By Token", userByToken);
       
       setUserData(userByToken.data.userData);
       setCompanyData(userByToken.data.companyData);
       setToken(token);
-      console.log("los datos del user", userByToken.data.userData);
-      console.log("los datos de la company", userByToken.data.companyData);
       
-
       // Si todo es correcto, mandamos al usuario a su perfil
-      const user_id = userByToken.data.userData.user_id;
-
+      
       //TODO Supongamos que navega a company profile tras loguear, ya lo que decidamos
-      navigate(`/companyProfile`)
+      //navigate(`/companyProfile`)
       //TODO Esta pa cuando la vista esté disponible
+      // const user_id = userByToken.data.userData.user_id;
       // navigate(`/companyProfile/${user_id}`)
 
     } catch (error) {
@@ -90,7 +87,5 @@ export const FormUserLogin = () => {
       >Cancelar</Button>
       </Form.Group>
     </Form>
-
-
   );
 };

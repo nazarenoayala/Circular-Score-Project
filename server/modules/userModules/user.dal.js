@@ -65,36 +65,41 @@ class UserDal {
 
     try {
       
-      let sql = `SELECT u.user_id, name, last_name, type, phone_number, province_id, city_id, position,company_name, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background 
-            FROM user AS u, company_data AS c
-            WHERE u.user_id = ? AND c.user_id = ?;`
-      let values = [user_id, user_id];
+      let sql = `SELECT u.user_id, u.name, u.last_name, u.type, u.phone_number, 
+                u.province_id, u.city_id, u.user_email, u.position, c.company_name,
+                c.sector_id, c.company_type, c.legal_form, c.active_years, c.company_size, 
+                c.gso, c.client_segment, c.stakeholders, c.sustainability, c.ods_background
+                FROM user u
+                LEFT JOIN company_data c ON u.user_id = c.user_id
+                WHERE u.user_id = ?`
+
+      let values = [user_id];
 
       let result = await executeQuery(sql, values);
 
       const userData = {
-        user_id: result.user_id,
-        name: result.name,
-        last_name: result.last_name,
-        type: result.type,
-        phone_number: result.phone_number,
-        province_id: result.province_id,
-        city_id: result.city_id,
-        position: result.position
+        user_id: result[0].user_id,
+        name: result[0].name,
+        last_name: result[0].last_name,
+        type: result[0].type,
+        phone_number: result[0].phone_number,
+        province_id: result[0].province_id,
+        city_id: result[0].city_id,
+        position: result[0].position
       }
 
       const companyData = {
-        company_name: result.company_name,
-        sector_id: result.sector_id, 
-        company_type: result.company_type, 
-        legal_form: result.legal_form, 
-        active_years: result.active_years, 
-        company_size: result.company_size, 
-        gso: result.gso, 
-        client_segment: result.client_segment, 
-        stakeholders: result.stakeholders, 
-        sustainability: result.sustainability, 
-        ods_background: result.ods_background
+        company_name: result[0].company_name,
+        sector_id: result[0].sector_id, 
+        company_type: result[0].company_type, 
+        legal_form: result[0].legal_form, 
+        active_years: result[0].active_years, 
+        company_size: result[0].company_size, 
+        gso: result[0].gso, 
+        client_segment: result[0].client_segment, 
+        stakeholders: result[0].stakeholders, 
+        sustainability: result[0].sustainability, 
+        ods_background: result[0].ods_background
       }
 
       return {userData, companyData};
