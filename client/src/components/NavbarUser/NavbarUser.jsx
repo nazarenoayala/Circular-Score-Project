@@ -1,5 +1,6 @@
 import React from 'react';
 import './NavbarUser.css';
+import { Link } from 'react-router';
 
 export const NavbarUser = () => {
 
@@ -13,19 +14,19 @@ export const NavbarUser = () => {
           ></img>
           <div className="container-logo">
             <i className="fa-regular fa-house"></i>
-            <p>HOME</p>
+            <Link className='link' to={"/"} > HOME</Link>
           </div>
           <div className="container-logo">
             <i className="fa-solid fa-business-time"></i>
-            <p>Perfil de empresa</p>
+            <Link className='link' to={"/companyProfile/:id"} > Perfil de empresa</Link>
           </div>
           <div className="container-logo">
             <i className="fa-regular fa-file-lines"></i>
-            <p>Todos los tests</p>
+            <Link className='link' to={"/allTests"}>Todos los tests</Link>
           </div>
           <div className="container-logo">
             <i className="fa-regular fa-calendar"></i>
-            <p>Historial de tests</p>
+            <Link className='link' to={"/userTestRecord"}>Historial de tests</Link>
           </div>
 
           <div className="container-graphics">
@@ -34,17 +35,19 @@ export const NavbarUser = () => {
               id=""
             >
               <summary>
-                <i className="fa-solid fa-chart-column me-2"></i>
-                Datos analíticos
+                <i className="fa-solid fa-chart-column"></i>
+                <p>Datos analíticos</p>
               </summary>
-              <option value="graphic">· Gráficos</option>
-              <option value="g-ODS">· Gráficos por ODS</option>
+              <div className='options-cont'>
+                <Link className='link' to={"/generalGraphic"}>· Gráficos</Link>
+                <Link className='link' to={"/userODSGraphic"}>· Gráficos por ODS</Link>
+              </div>
             </details>
           </div>
 
           <div className="container-logo">
             <i className="fa-solid fa-circle-notch"></i>
-            <p>IA Chat</p>
+            <Link className='link' to={"/IAChat"}>IA Chat</Link>
           </div>
         </div>
 
