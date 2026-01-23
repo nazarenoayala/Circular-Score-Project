@@ -3,17 +3,18 @@ import './modal.css'
 import { Modal, Button } from 'react-bootstrap';
 import { MyButton } from '../MyButton/MyButton';
 
+
 export const FormModalRegister = ({ setShowPage }) => {
 
 
   const onSubmit = async () => {
     try {
-      setShowPage('login')
-
+      setShowPage('login');
+      // ENVIAR DATOS AL BACK
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
 
 
@@ -43,5 +44,4 @@ export const FormModalRegister = ({ setShowPage }) => {
       </Modal.Dialog>
     </div>
   );
-
-}
+};
