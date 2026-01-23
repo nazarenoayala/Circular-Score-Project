@@ -11,7 +11,7 @@ export const NavbarAdmin = () => {
             alt=""
           ></img>
           <div className="container-logo">
-            <i class="fa-regular fa-house"></i>
+            <i className="fa-regular fa-house"></i>
             <p> HOME</p>
           </div>
           <div className="container-logo">
@@ -19,7 +19,7 @@ export const NavbarAdmin = () => {
             <p>Admin Dashboard</p>
           </div>
           <div className="container-logo">
-            <i class="fa-solid fa-business-time"></i>
+            <i className="fa-solid fa-business-time"></i>
             <p>Control de empresas</p>
           </div>
 
