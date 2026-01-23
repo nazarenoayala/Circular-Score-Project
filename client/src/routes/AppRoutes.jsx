@@ -28,15 +28,15 @@ const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.js
 const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
 const AllCompanies = lazy(()=>import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
 const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
-
-
+const Dashboard = lazy(()=> import('../pages/AdminPages/Dashboard/Dashboard.jsx'));
+const Record = lazy(()=> import ('../pages/AdminPages/AdminTestsRecord/AdminTestsRecord.jsx'));
+const AdminGraphics = lazy(()=> import ('../pages/AdminPages/AdminGraphics/AdminGraphics.jsx'));
+const AdminODSGraphics = lazy(()=> import ('../pages/AdminPages/AdminODSGraphic/AdminODSGraphic.jsx'));
 
 
 export const AppRoutes = () => {
 
     const [showPage, setShowPage] = useState('register');
-
-
 
   return (
     <BrowserRouter>
