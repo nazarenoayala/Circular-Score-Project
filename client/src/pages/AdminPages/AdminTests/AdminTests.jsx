@@ -14,11 +14,9 @@ const AdminTests = () => {
         {test.map((e) => {
           return (
             <Col className='col-lg-6 mb-3' key={e.test_id}>
-              <div>
                 <CardTestAdmin
                   test = {e}
                 />
-              </div>
             </Col>
           )
         })}
