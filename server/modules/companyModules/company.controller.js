@@ -31,7 +31,7 @@ class CompanyController {
       
     }
   }
-<<<<<<< HEAD
+
  
   //pedir datos de localidades y provincias
 
@@ -52,8 +52,7 @@ class CompanyController {
     }catch(error){
       console.log(error);
       res.status(500).json(error);
-      
-=======
+    }
 
 
   showCompanyProfile = async (req, res) => {
@@ -96,10 +95,3 @@ class CompanyController {
 
 
 export default new CompanyController();
-
->>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
