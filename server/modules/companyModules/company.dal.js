@@ -19,6 +19,29 @@ class CompanyDal {
       
     }
   }
+<<<<<<< HEAD
+  //pedir datos de localidades y provincias
+  locality = async() => {
+    try{
+      let sql = 'SELECT * FROM city';
+      let result = await executeQuery(sql);
+      return result;
+    }catch(error){
+      console.log(error);
+      throw error;
+    }
+  }
+  Province = async() => {
+    try{
+      let sql = 'SELECT * FROM province';
+      let result = await executeQuery(sql);
+      return result;
+    }catch(error){
+      console.log(error);
+      throw error;
+    }
+  }
+=======
 
 
   showCompanyProfile = async(user_id) => {
@@ -44,6 +67,7 @@ class CompanyDal {
   }
 
 
+>>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
 }
 
 export default new CompanyDal();

@@ -3,6 +3,13 @@ import companyController from './company.controller.js';
 
 const routes = express.Router();
 
+<<<<<<< HEAD
+//Conexión de prueba
+routes.post('/registerCompany', companyController.registerCompany);
+//pedir datos de localidades y provincias
+routes.get('/locality', companyController.locality);
+routes.get('/province', companyController.Province);
+=======
 // Prueba
 routes.get('/test', companyController.test);
 
@@ -14,6 +21,7 @@ routes.get('/companyProfilePage/:user_id', companyController.showCompanyProfile)
 
 //poner middleware validación inputs
  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile)
+>>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
 
 
-export default routes;
+export default routes
