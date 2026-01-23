@@ -34,15 +34,6 @@ class CompanyController {
   }
 <<<<<<< HEAD
  
-  // editCompany = async (req, res) => {
-  //    try {
-  //      const {company_name, company_type}
-  //    } catch (error) {
-      
-  //    }
-  // }
-
-
   //pedir datos de localidades y provincias
 
   locality = async(req, res)=>{
@@ -106,7 +97,6 @@ class CompanyController {
 }
 
 <<<<<<< HEAD
-export default new CompanyController()
 =======
 
 export default new CompanyController();
