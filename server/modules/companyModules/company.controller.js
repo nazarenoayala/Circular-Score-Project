@@ -32,6 +32,38 @@ class CompanyController {
       
     }
   }
+<<<<<<< HEAD
+ 
+  // editCompany = async (req, res) => {
+  //    try {
+  //      const {company_name, company_type}
+  //    } catch (error) {
+      
+  //    }
+  // }
+
+
+  //pedir datos de localidades y provincias
+
+  locality = async(req, res)=>{
+    try{
+      let result = await companyDal.locality();
+      res.status(200).json(result);
+    }catch(error){
+      console.log(error);
+      res.status(500).json(error);
+      
+    }
+  }
+  Province = async(req, res)=>{
+    try{
+      let result = await companyDal.Province();
+      res.status(200).json(result);
+    }catch(error){
+      console.log(error);
+      res.status(500).json(error);
+      
+=======
 
 
   showCompanyProfile = async (req, res) => {
@@ -68,9 +100,14 @@ class CompanyController {
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
+>>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
     }
   }
 }
 
+<<<<<<< HEAD
+export default new CompanyController()
+=======
 
 export default new CompanyController();
+>>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
