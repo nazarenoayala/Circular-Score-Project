@@ -4,13 +4,16 @@ import userDal from './user.dal.js';
 
 class UserController {
 
-  userByToken = async(req, res) => {
+  showTestData = async(req, res) => {
     const {user_id} = req.params;
+    console.log(user_id);
+    
     try {
-      let ubtResult = await userDal.userByToken([user_id])
+      let utdResult = await userDal.showTestData([user_id])
+      
       res.status(201).json({
-        message: "Datos de usuario obtenidos",
-        ubtResult
+        message: `Datos de test de usuario ${user_id} obtenidos`,
+        utdResult
       })
     } catch (error) {
       console.log();
@@ -41,7 +44,7 @@ class UserController {
   login = async (req, res) => {
     
     const {user_email, password} = req.body;
-
+    
     try {
       //comprobamos la existencia del email
       let result = await userDal.findUserByEmail(user_email);
@@ -58,10 +61,30 @@ class UserController {
         } else {
           //generamos un token
           const token = generateToken(result[0].user_id);
-          console.log("Token generado correctamente");
-          res.status(200).json({message: "Login correcto", token});
+          res.status(200).json({
+              message: "Login correcto",
+              token: token, 
+              user_id: result[0].user_id
+            });
         }
       }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
+
+  userByToken = async (req, res) => {
+    const {user_id} = req;
+    
+    try {
+      const userDataResult = await userDal.userByToken(user_id);
+
+      res.status(200).json({
+        userData: userDataResult.userData,
+        companyData: userDataResult.companyData,
+        message: 'User recuperado por token'
+      })
     } catch (error) {
       console.log(error);
       res.status(500).json(error)

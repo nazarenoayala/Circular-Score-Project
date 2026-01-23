@@ -1,13 +1,25 @@
 import './layout.css';
 import { Outlet } from 'react-router';
+
 import { NavbarPublic } from '../components/NavbarPublic/NavbarPublic';
 import { FooterPublic } from '../components/FooterPublic/FooterPublic';
 
-export const PublicLayout = () => {
+
+
+
+
+
+export const PublicLayout = ({ setShowPage, showPage}) => {
+
+
+
+
+
+
   return (
     <div className=''>
       <header>
-        <NavbarPublic />
+        <NavbarPublic  setShowPage={setShowPage} showPage={showPage}/>
       </header>
 
       <main>
