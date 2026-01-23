@@ -1,11 +1,22 @@
+import { MyButton } from '../MyButton/MyButton';
 import './FooterPublic.css';
 
 export const FooterPublic = () => {
+
   return (
     <div className='footer-public'>
       <div>
         <img src="/src/assets/Images/logo/logoblanco.png" />
       </div>
+
+      <div>
+        <MyButton
+          text={"Volver arriba"}
+          onSubmit={() => document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' })}
+          btnClass='btn-white'
+        />
+      </div>
+
       <div>
         <div className='child2'>
           <p>Privacidad</p>

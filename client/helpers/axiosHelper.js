@@ -1,19 +1,23 @@
 import axios from 'axios';
+
+const apiUrl = import.meta.env.VITE_SERVER_URL;
+
 export const fetchData = async (url, method, data = null, token = null) => {
-  
-  let headers = {};
+
+  let headers = {}
 
   if (token) {
-    headers = { Authorization: `Bearer ${token}` };
+    headers = {authorization: `bearer ${token}`}
   }
-  //configuracion para hacer la peticion
+
   const config = {
-    url,
+    url: apiUrl + url,
     method,
     data,
-    headers,
-  };
+    headers
+  }
 
   const res = await axios(config);
+
   return res;
-};
+}

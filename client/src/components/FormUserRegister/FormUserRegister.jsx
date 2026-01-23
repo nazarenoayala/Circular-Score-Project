@@ -1,9 +1,9 @@
 import './FormUserRegister.css';
 import { useState } from 'react';
-import { Form, Button, FormText } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import registerSchema from '../../../schemas/userRegister';
 import { ZodError } from 'zod';
-import { fetchData } from '../../helpers/axiosHelper';
+import { fetchData } from '../../../helpers/axiosHelper';
 
 const initialValue = {
   user_email: '',
@@ -13,8 +13,8 @@ const initialValue = {
 
 export const FormUserRegister = ({ setShowPage }) => {
   const [registerUser, setRegisterUser] = useState(initialValue);
-  const [errorValidation, setErrorValidation] = useState('');
-  //console.log(registerUser);
+  const [errorValidation, setErrorValidation] = useState();
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,24 +22,26 @@ export const FormUserRegister = ({ setShowPage }) => {
   };
 
   const onSubmit = async () => {
-   
     try {
       registerSchema.parse(registerUser);
-      //mandamos los datos al back
-     const res = await fetchData('http://localhost:4000/user/register', "POST", registerUser)
-     console.log("DAMeee resultttt", res);
      
+    
+     const res = await fetchData('/user/register', 'POST', registerUser);
+      console.log('resulllllllllllt', res);
       setShowPage('modal');
-
+      
     } catch (error) {
       if (error instanceof ZodError) {
+        
         //objecto que guarda todos los errores
         const ErrorObject = {};
 
         error.issues.forEach((elem) => {
-          ErrorObject[elem.path[0]] = elem.message;
+        ErrorObject[elem.path[0]] = elem.message;
         });
-        setErrorValidation(ErrorObject);
+      console.log(ErrorObject);
+
+       setErrorValidation(ErrorObject);
       } else {
         console.log('otro error', error);
       }
@@ -57,15 +59,12 @@ export const FormUserRegister = ({ setShowPage }) => {
           name="user_email"
           value={registerUser.user_email}
           onChange={handleChange}
+          required
         />
         {errorValidation?.user_email && (
-        <p className="error-alert">
-          {errorValidation.user_email}
-          </p>
-      )}
+          <p className="error-alert">{errorValidation.user_email}</p>
+        )}
       </Form.Group>
-
-      
 
       <Form.Group className="mb-3">
         <Form.Control
@@ -74,6 +73,7 @@ export const FormUserRegister = ({ setShowPage }) => {
           name="password"
           value={registerUser.password}
           onChange={handleChange}
+          required
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -83,14 +83,12 @@ export const FormUserRegister = ({ setShowPage }) => {
           name="repPassword"
           value={registerUser.repPassword}
           onChange={handleChange}
+          required
         />
-         {errorValidation?.repPassword && (
-        <p className=" error-alert">
-          {errorValidation.repPassword}
-        </p>
-      )}
+        {errorValidation?.repPassword && (
+          <p className=" error-alert">{errorValidation.repPassword}</p>
+        )}
       </Form.Group>
-     
 
       <Form.Group>
         <Button className="btn-green" onClick={onSubmit}>
