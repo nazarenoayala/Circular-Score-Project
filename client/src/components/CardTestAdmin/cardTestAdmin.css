@@ -1,0 +1,32 @@
+.card-test {
+
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #E5E7EA;
+  padding: 2rem;
+  border-radius: .5rem;
+  gap: 2rem;
+
+  .image-title {
+
+    display: flex;
+    gap: 1rem;
+
+    img {
+      width: 90px;
+    }
+
+    .odsTitle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .buttonsAdminTest {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+}

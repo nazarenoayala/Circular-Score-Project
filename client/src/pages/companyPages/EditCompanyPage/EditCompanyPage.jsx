@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavbarUser } from '../../../components/NavbarUser/NavbarUser';
 import { FormEditCompany } from '../../../components/FormEditCompany/FormEditCompany';
 import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
-import { MyButton } from '../../../components/MyMyButton/MyMyButton';
+import { MyButton } from '../../../components/MyButton/MyButton';
 
 import './EditCompany.css'
 
@@ -59,7 +59,6 @@ const EditCompanyPage = () => {
   
   return (
     <div className='edit-profile-container'>
-    <NavbarUser/>
     <main>
       <header>
         <h1>Hola {editUserData.name}</h1>

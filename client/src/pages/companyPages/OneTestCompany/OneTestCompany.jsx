@@ -1,3 +1,4 @@
+
 import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
@@ -9,10 +10,10 @@ const urlImage = import.meta.env.VITE_IMAGES;
 const OneTestCompany = () => {
 
   // Nos traemos el array de los test
-  const {test} = useContext(AuthContext);
+  const { test } = useContext(AuthContext);
   // Usamos el useParams para rescatar el id del parámetro dinámico para no tener que volver a hacer la llamada a la base de datos
-  const {id} = useParams();
-  
+  const { id } = useParams();
+
   const navigate = useNavigate()
 
   const oneTest = test.filter((e) => e.test_id == id);
@@ -26,11 +27,11 @@ const OneTestCompany = () => {
         <img src={`${urlImage}/ODSimages/${oneTest[0].test_image}`} alt="" />
         <div className='btnOneTest'>
           <MyButton
-            text= 'Comenzar test'
+            text='Comenzar test'
             btnClass='btn-green'
-            />
+          />
           <MyButton
-            text= 'Volver atrás'
+            text='Volver atrás'
             btnClass='btn-blue'
             onSubmit={() => navigate('/allTests')}
           />
