@@ -1,6 +1,7 @@
-.front-page {  
+.front-page {
   line-height: 2.5rem;
   color: white;
+  height: 100dvh;
 
   h1 {
     padding: 1rem;
@@ -10,6 +11,8 @@
 .lateral-bar {
   background-color: rgb(28, 37, 52);
   padding: 2rem;
+  height: 100%;
+
 
   display: flex;
   flex-direction: column;
@@ -58,9 +61,9 @@
     list-style: none;
   }
 
-  details summary::after {
+ details summary::after {
     padding-left: 1rem;
-    content: "▶";
+    content: "➤";
     transition: transform 0.1s;
   }
 
@@ -70,5 +73,6 @@
 
   details> :not(summary) {
     padding-left: 1rem;
-  }
+  } 
+
 }

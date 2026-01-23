@@ -1,9 +1,12 @@
+import {useNavigate} from 'react-router';
 import { MyButton } from '../MyButton/MyButton';
 import './cardTest.css';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTest = ({test}) => {
+
+  const navigate = useNavigate()
 
   return (
     <div className='card-test'>
@@ -21,7 +24,7 @@ const CardTest = ({test}) => {
       <div className='btnTest'>
         <MyButton
           text = 'comenzar test'
-          // onSubmit = {}
+          onSubmit = {() => navigate(`/oneTestCompany/${test.test_id}`)}
           btnClass = 'btn-green'
         />
       </div>
