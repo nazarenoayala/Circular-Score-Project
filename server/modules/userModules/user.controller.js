@@ -43,11 +43,11 @@ class UserController {
 
   login = async (req, res) => {
     
-    const {email, password} = req.body;
+    const {user_email, password} = req.body;
 
     try {
       //comprobamos la existencia del email
-      let result = await userDal.findUserByEmail(email);
+      let result = await userDal.findUserByEmail(user_email);
 
       //si no hay user
       if(result.length === 0){

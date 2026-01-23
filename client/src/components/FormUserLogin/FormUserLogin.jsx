@@ -1,4 +1,4 @@
-import './FormUserLogin.css'
+import './FormUserLogin.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router'
 import { Button, Form } from "react-bootstrap"
@@ -7,9 +7,9 @@ import { useContext } from 'react';
 import { fetchData } from '../../../helpers/axiosHelper';
 
 const initialValue = {
-  email: "",
-  password: ""
-}
+  email: '',
+  password: '',
+};
 
 export const FormUserLogin = ({setShowPage}) => {
 
@@ -18,11 +18,12 @@ export const FormUserLogin = ({setShowPage}) => {
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e) =>{
-    const {name, value} = e.target;
-    setUserLogin({...userLogin, [name]:value});
-  }
+    const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserLogin({ ...userLogin, [name]: value });
+  };
 
    const onSubmit = async () => {
     //TODO Hace falta, validar los campos desde el front !!!!!
@@ -51,7 +52,8 @@ export const FormUserLogin = ({setShowPage}) => {
   }
 
   return (
-    <Form className='login-container'>
+
+    <Form className="login-container">
       <h1>Login</h1>
       <Form.Group className="mb-3">
         <Form.Control
@@ -71,11 +73,16 @@ export const FormUserLogin = ({setShowPage}) => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Button
-      className='btn-green'
-        onClick={onSubmit}
-      >Enviar
+      <Form.Group className='gap-2 d-flex justify-content-center'>
+        <Button className="btn-green" onClick={onSubmit}>
+        Enviar
       </Button>
+      <Button className="btn-green"
+        onClick={()=>navigate('/')}
+      >Cancelar</Button>
+      </Form.Group>
     </Form>
-  )
-}
+
+
+  );
+};

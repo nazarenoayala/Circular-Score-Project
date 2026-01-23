@@ -6,4 +6,4 @@ const OneQuestion = () => {
   )
 }
 
-export default OneQuestion
+export default OneQuestion;

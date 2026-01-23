@@ -7,7 +7,7 @@ class TestDal {
     try {
 
       // A futuro cambiar is_deleted a 0;
-      let sql = 'SELECT * FROM test WHERE is_public = 1;'
+      let sql = 'SELECT * FROM test;'
 
       let result = await executeQuery(sql);
 
@@ -24,7 +24,7 @@ class TestDal {
     try {
 
       // A futuro cambiar is_deleted a 0;
-      let sql = 'SELECT * FROM test WHERE test_id = ? AND is_public = 1';
+      let sql = 'SELECT * FROM test WHERE test_id = ?';
 
       let result = await executeQuery(sql, value);
 
@@ -40,9 +40,24 @@ class TestDal {
 
     try {
 
-      let sql = 'UPDATE test SET is_public = 1 WHERE test_id = ?'
+      let sql = 'UPDATE test SET is_public = 0 WHERE test_id = ?'
 
       let result = executeQuery(sql, values);
+      return result;
+      
+    } catch (error) {
+      throw error;
+    }
+
+  }
+
+  enableTest = async (value) => {
+
+    try {
+
+      let sql = 'UPDATE test SET is_public = 1 WHERE test_id = ?'
+
+      let result = await executeQuery(sql, value);
       return result;
       
     } catch (error) {

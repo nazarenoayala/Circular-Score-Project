@@ -4,6 +4,7 @@ import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
 
 
+
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
 const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
@@ -15,16 +16,18 @@ const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTe
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
+const CompanyRegister = lazy(() => import("../pages/companyPages/CompanyRegister/CompanyRegister.jsx"));
 const OneTestCompany = lazy(() => import("../pages/companyPages/OneTestCompany/OneTestCompany.jsx"));
 const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx"));
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
-const AdminTests = lazy(() => import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
-const CreateTest = lazy(() => import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
-const OneTest = lazy(() => import('../pages/AdminPages/OneTest/OneTest.jsx'));
-const AllCompanies = lazy(() => import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
-const OneCompany = lazy(() => import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
+const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
+const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
+const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
+const AllCompanies = lazy(()=>import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
+const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
+
 
 
 
@@ -43,12 +46,13 @@ export const AppRoutes = () => {
 
           {/* rutas privadas*/}
           <Route element={<PrivateRoutes />}>
-          {/* rutas de empresa */}
+            {/* rutas de empresa */}
             <Route element={<UserLayout />}>
               <Route path="/allTests" element={<AllTestsPage />} />
               <Route path="/companyProfile/:id" element={<CompanyProfilePage />} />
               <Route path="/editCompany/:id" element={<EditCompanyPage />} />
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
+              <Route path="/companyRegister" element={<CompanyRegister />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
               <Route path="/oneTestCompany/:id/oneQuestion/:id" element={<OneQuestion />} />
             </Route>
@@ -65,7 +69,7 @@ export const AppRoutes = () => {
           {/* rutas privadas de usuario */}
 
           {/* rutas para el error */}
-          <Route path='*' element={<ErrorPage/>}/>
+          <Route path='*' element={<ErrorPage />} />
 
 
         </Routes>
