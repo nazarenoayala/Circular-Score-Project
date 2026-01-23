@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import {useNavigate} from 'react-router';
 import { MyButton } from '../MyButton/MyButton';
-import './cardTestAdmin.css';
 import { fetchData } from '../../../helpers/axiosHelper';
+import './cardTestAdmin.css';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTestAdmin = ({test}) => {
 
+  const [isPublic, setIsPublic] = useState(test.is_public);
   const navigate = useNavigate();
 
   const disableTest = async () => {
@@ -15,13 +17,28 @@ const CardTestAdmin = ({test}) => {
 
       // Falta meter el token a esta petición:
       let result = await fetchData(`/test/disableTest/${test.test_id}`, 'PUT', null);
+      setIsPublic(0);
       console.log(result);
       
     } catch (error) {
       console.log(error);
     }
 
-    
+  }
+
+  const enableTest = async () => {
+
+    try {
+
+      // Falta añadir el token;
+      let result = await fetchData(`/test/enableTest/${test.test_id}`, 'PUT', null);
+      setIsPublic(1);
+      console.log(result);
+      
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   return (
@@ -44,11 +61,20 @@ const CardTestAdmin = ({test}) => {
           btnClass='btn-green'
           onSubmit={() => navigate('/createTest')}
         />
+        {
+        test.is_public === 1 && isPublic === 1 ?
         <MyButton
           text = 'Deshabilitar'
-          btnClass='btn-white'
+          btnClass='btn-red'
           onSubmit={disableTest}
         />
+          :
+        <MyButton
+          text = 'Habilitar'
+          btnClass='btn-blue'
+          onSubmit={enableTest}
+        />
+        }
       </div>
     </div>
   )

@@ -61,6 +61,25 @@ class TestController {
 
   }
 
+  enableTest = async (req, res) => {
+
+    const {id} = req.params;
+    let value = [id];
+
+    try {
+
+      let result = await testDal.enableTest(value);
+
+      res.status(200).json({message: 'Test habilitado', result});
+      
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+
+
+  }
+
   editTest = async (req, res) => {
 
     const {test_name} = req.body;
