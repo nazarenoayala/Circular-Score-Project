@@ -18,4 +18,10 @@
     flex-direction: row;
     gap: 2rem;
   }
+
+  .logos {
+    i {
+      width: 4rem;
+    }
+  }
 }

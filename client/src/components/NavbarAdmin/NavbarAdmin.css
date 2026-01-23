@@ -2,6 +2,7 @@
   line-height: 2.5rem;
   color: white;
 
+
   h1 {
     padding: 1rem;
   }
@@ -14,6 +15,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 
   .child2 {
     text-align: right;
@@ -44,10 +46,6 @@
   .container-graphics {
     display: flex;
     align-items: center;
-
-    svg {
-      margin-right: 10px;
-    }
   }
 
   /* DETAILS */
@@ -60,7 +58,7 @@
 
   details summary::after {
     padding-left: 1rem;
-    content: "▶";
+    content: "➤";
     transition: transform 0.1s;
   }
 

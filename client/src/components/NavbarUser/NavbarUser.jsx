@@ -8,15 +8,15 @@ export const NavbarUser = () => {
       <section className="lateral-bar">
         <div>
           <img
-            src="/src/assets/Images/logoblanco.png"
+            src="/src/assets/Images/Logo/logoblanco.png"
             alt=""
           ></img>
           <div className="container-logo">
-            <i className="fa-utility fa-semibold fa-house"></i>
+            <i class="fa-regular fa-house"></i>
             <p>HOME</p>
           </div>
           <div className="container-logo">
-            <i className="fa-utility fa-semibold fa-briefcase"></i>
+            <i class="fa-solid fa-business-time"></i>
             <p>Perfil de empresa</p>
           </div>
           <div className="container-logo">
@@ -34,7 +34,7 @@ export const NavbarUser = () => {
               id=""
             >
               <summary>
-                <i className="fa-solid fa-chart-column"></i>
+                <i className="fa-solid fa-chart-column me-2"></i>
                 Datos analíticos
               </summary>
               <option value="graphic">· Gráficos</option>
