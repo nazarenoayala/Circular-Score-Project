@@ -45,6 +45,7 @@ class CompanyController {
       
     }
   }
+
   Province = async(req, res)=>{
     try{
       let result = await companyDal.Province();
@@ -53,6 +54,7 @@ class CompanyController {
       console.log(error);
       res.status(500).json(error);
     }
+  }
 
 
   showCompanyProfile = async (req, res) => {
@@ -92,6 +94,5 @@ class CompanyController {
     }
   }
 }
-
 
 export default new CompanyController();
