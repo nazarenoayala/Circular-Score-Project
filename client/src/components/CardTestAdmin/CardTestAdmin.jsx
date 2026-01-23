@@ -1,12 +1,28 @@
-// import {useNavigate} from 'react-router';
+import {useNavigate} from 'react-router';
 import { MyButton } from '../MyButton/MyButton';
 import './cardTestAdmin.css';
+import { fetchData } from '../../../helpers/axiosHelper';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTestAdmin = ({test}) => {
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const disableTest = async () => {
+
+    try {
+
+      // Falta meter el token a esta petición:
+      let result = await fetchData(`/test/disableTest/${test.test_id}`, 'PUT', null);
+      console.log(result);
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+    
+  }
 
   return (
     <div className='card-test'>
@@ -21,10 +37,17 @@ const CardTestAdmin = ({test}) => {
         <MyButton
           text = 'Ver info'
           btnClass='btn-green'
+          onSubmit={() => navigate(`/oneTest/${test.test_id}`)}
           />
         <MyButton
           text = 'Editar'
           btnClass='btn-green'
+          onSubmit={() => navigate('/createTest')}
+        />
+        <MyButton
+          text = 'Deshabilitar'
+          btnClass='btn-white'
+          onSubmit={disableTest}
         />
       </div>
     </div>
