@@ -1,13 +1,11 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Form } from 'react-bootstrap'
 
 export const FormEditUser = () => {
   return (
     <Card>
         <Card.Body>
-            <Card.Title>Perfil de usuario</Card.Title>
             <Form>
-                {/* Lado izquierdo */}
                 <Form.Group>
                     <Form.Label>Nombre de usuario</Form.Label>
                     <Form.Control
