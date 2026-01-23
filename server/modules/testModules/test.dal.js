@@ -36,13 +36,13 @@ class TestDal {
 
   }
 
-  disableTest = async () => {
+  disableTest = async (values) => {
 
     try {
 
-      let sql = 'UPDATE TABLE test SET is_public = 1 WHERE test_id = ?'
+      let sql = 'UPDATE test SET is_public = 1 WHERE test_id = ?'
 
-      let result = executeQuery(sql, value);
+      let result = executeQuery(sql, values);
       return result;
       
     } catch (error) {

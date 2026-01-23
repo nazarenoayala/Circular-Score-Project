@@ -11,9 +11,7 @@
 .lateral-bar {
   background-color: rgb(28, 37, 52);
   padding: 2rem;
-  height: 100vh;
-  width: 350px;
-  min-width: 350px;
+  
 
   display: flex;
   flex-direction: column;

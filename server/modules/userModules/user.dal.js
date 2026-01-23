@@ -38,7 +38,6 @@ class UserDal {
 
   register = async (values) => {
     try {
-      
       let sql = `INSERT INTO user (user_email, password) VALUES (?,?)`;
       let result = await executeQuery(sql, values);
       return result;
@@ -46,6 +45,9 @@ class UserDal {
       throw error;
     }
   }
+
+
+  //Metodo para buscar el email del user en la base de datos, para validar las credenciales en el login
 
   findUserByEmail = async (email) => {
     try{
