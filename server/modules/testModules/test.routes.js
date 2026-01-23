@@ -12,6 +12,9 @@ routes.get('/oneTest/:id', testController.selectOneTest);
 // Ruta para deshabilitar test:
 routes.put('/disableTest/:id', testController.disableTest);
 
+// Ruta para habilitar Test:
+routes.put('/enableTest/:id', testController.enableTest)
+
 // Ruta para la creación de un test:
 routes.post('/editTest', testController.editTest);
 
