@@ -4,25 +4,29 @@ import userDal from './user.dal.js';
 
 class UserController {
 
-  test = async (req, res) => {
-
+  userByToken = async(req, res) => {
+    const {user_id} = req.params;
     try {
-      res.status(200).json('Bien');
+      let ubtResult = await userDal.userByToken([user_id])
+      res.status(201).json({
+        message: "Datos de usuario obtenidos",
+        ubtResult
+      })
     } catch (error) {
-      res.status(500).json('Mal');
+      console.log();
+      res.status(500).json(error)
     }
-
   }
 
   register = async (req, res) => {
     
     try{
-      const {name, email, password} = req.body;
+      const {user_email, password} = req.body;
 
       //encriptar la password
       let hashedPass = await hashString(password, 10);
 
-      let values = [name, email, hashedPass]
+      let values = [user_email, hashedPass]
 
       let result = await userDal.register(values);
       
@@ -93,6 +97,20 @@ class UserController {
         uptResult
       });
       
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
+
+  banUser = async (req, res) => {
+    const {user_id} = req.params;
+    try {
+      let banResult = await userDal.banUser([user_id]);
+      res.status(200).json({
+        message: `Usuario con id ${user_id} baneado`,
+        banResult
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json(error)

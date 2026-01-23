@@ -1,8 +1,100 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { NavbarUser } from '../../../components/NavbarUser/NavbarUser';
+import { FormEditCompany } from '../../../components/FormEditCompany/FormEditCompany';
+import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
+import { MyButton } from '../../../components/MyMyButton/MyMyButton';
+
+import './EditCompany.css'
+
+const initialValueCompany = {
+  company_name:'',
+  user_email:'',
+  sector_id:'',
+  company_type:'',
+  active_years:'',
+  company_size:'',
+  sustainability:'',
+  ods_background:''
+}
+
+const initialValueUser = {
+  name:'',
+  phone_number:''
+}
 
 const EditCompanyPage = () => {
+  //para usar boton volver y que redirija al perfil usuario useNavigate, como lo uso en MyButton?
+  
+
+  //Estado para empresa
+  const [editCompanyData, setEditCompanyData] = useState(initialValueCompany);
+  //Estado para user
+  const [editUserData, setEditUserData] = useState(initialValueUser);
+
+  //funciones para control de inputs
+  const handleCompanyChange = (e) => {
+    const {name, value} = e.target;
+    //tengo q probar si funciona  
+    setEditCompanyData((prev) =>({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleUserChange = (e) => {
+    const {name, value} = e.target;
+    //tengo q probar si funciona  
+    setEditUserData((prev) =>({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  //funcion para guardar (enviar a la DB) 
+  const sendDb = async (e) => {
+    e.preventDefault();
+    //probar si funciona
+    //aca iría fetch con que método?
+  }
+  
   return (
-    <div>EditCompanyPage</div>
+    <div className='edit-profile-container'>
+    <NavbarUser/>
+    <main>
+      <header>
+        <h1>Hola {editUserData.name}</h1>
+        <MyButton>Cerrar Sesión</MyButton>
+      </header>
+      <section className='form-card'>
+        {/* Formulario de empresa */}
+        {/* paso por props datos y funcion a los hijos */}
+        <FormEditCompany
+          data={editCompanyData} 
+          onChange={handleCompanyChange}
+        /> 
+      </section>
+
+        {/* dejar espaciado entre formularios */}
+
+      <section className='form-card'>  
+        {/* Formulario de usuario */}
+        <FormEditUser
+          data={editUserData}
+          onChange={handleUserChange}
+        />
+      </section>  
+
+      <footer>
+        <MyButton
+          onSubmit={sendDb}
+          text="Guardar"
+        />
+        <MyButton
+        text="Volver"
+        />
+      </footer>
+    </main>
+    </div>
   )
 }
 

@@ -2,11 +2,43 @@ import executeQuery from "../../config/db.js";
 
 class UserDal {
 
+  //Método que trae la información del usuario, y su empresa validando el token desde local storage
+  userByToken = async(user_id) => {
+    try {
+
+      let sql = `SELECT
+                    t.test_id,
+                    t.test_name,
+                    aset.answer_set_id,
+                    aset.test_date,
+                    aset.completed,
+                    q.question_id,
+                    q.text AS question_text,
+                    a.user_answer
+                    FROM answer_set aset
+                    JOIN test t
+                        ON t.test_id = aset.test_id
+                    JOIN answer a
+                        ON a.answer_set_id = aset.answer_set_id
+                    JOIN question q
+                        ON q.test_id = a.test_id
+                        AND q.question_id = a.question_id
+                    WHERE aset.user_id = ?
+                    ORDER BY aset.test_date DESC, aset.answer_set_id, q.question_id`
+
+      let result = await executeQuery(sql, user_id)
+      return result;
+    } catch (error) {
+      console.log();
+      res.status(500).json(error)
+    }
+  }
+
   //Método de registro de usuario en tabla "user", para el registro rápido, solo email y pass hasheada
 
   register = async (values) => {
     try {
-      let sql = `INSERT INTO user (name, user_email, password) VALUES (?,?,?)`;
+      let sql = `INSERT INTO user (user_email, password) VALUES (?,?)`;
       let result = await executeQuery(sql, values);
       return result;
     } catch (error) {
@@ -43,16 +75,25 @@ class UserDal {
 
   //Método para actualizar la info del usuario de la tabla "user"
 
-  editUser = async (values) => {
+  editUser = async (user_id) => {
 
     try {
       let sql = 'UPDATE user SET name=?, last_name=?, phone_number=?, city_id=?, province_id=?, position=? WHERE user_id=?'
-      await executeQuery(sql, values);
+      await executeQuery(sql, user_id);
     } catch (error) {
       throw error;
     }
   }
 
+  banUser = async (user_id) => {
+
+    try {
+      let sql = 'UPDATE user SET is_deleted = 1 where user_id = ?'
+      await executeQuery(sql, user_id);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default new UserDal();
