@@ -6,6 +6,9 @@ import { validateUserLogin } from '../../middlewares/validateUserLogin.js';
 import { loginSchema } from '../../schemas/userLogin.js';
 import { validateUserEdit } from '../../middlewares/validateUserEdit.js';
 import { editSchema } from '../../schemas/userEdit.js';
+import { verifyToken } from '../../middlewares/verifyToken.js';
+
+//TODO Hay que añadir el middleware de verifyToken cuando esté 100% correcto a todas las rutas
 
 const routes = express.Router();
 
@@ -13,8 +16,7 @@ const routes = express.Router();
 routes.post('/register', validateUserRegister(registerSchema), userController.register);
 
 // Ruta de login de usuario
-routes.get('/login', validateUserLogin(loginSchema), userController.login);
-
+routes.post('/login', validateUserLogin(loginSchema), userController.login);
 
 // Ruta edición datos de usuario
 routes.post('/editUser', validateUserEdit(editSchema), userController.editUser);
@@ -24,10 +26,13 @@ routes.put('/banUser/:user_id', userController.banUser);
 
 // Rutas de obtención de datos del user
 // Obtener información de perfil de usuario
-routes.get('/showUserProfile/:user_id', userController.showUserProfile)
+routes.get('/showUserProfile/:user_id', userController.showUserProfile);
+
+// Traer info dede token
+routes.get('/userByToken', verifyToken, userController.userByToken);
 
 // Token y datos de los test del usuario
 // Hay que verificar el token con el middleware !!!!
-routes.get('/userByToken/:user_id', userController.userByToken)
+routes.get('/showTestData/:user_id', userController.showTestData);
 
 export default routes;

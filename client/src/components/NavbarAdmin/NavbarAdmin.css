@@ -1,6 +1,7 @@
 .front-page {
   line-height: 2.5rem;
   color: white;
+  position: fixed;
 
 
   h1 {
@@ -11,11 +12,17 @@
 .lateral-bar {
   background-color: rgb(28, 37, 52);
   padding: 2rem;
+  height: 100dvh;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100dvh;
+
+  .link {
+    color: white;
+    padding-left: 10px;
+    text-decoration: none;
+  }
 
   .child2 {
     text-align: right;
@@ -37,15 +44,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
-    p {
-      padding-left: 10px;
-    }
   }
 
   .container-graphics {
     display: flex;
     align-items: center;
+
+    .options-cont {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   /* DETAILS */
@@ -54,6 +62,11 @@
     justify-content: space-between;
     align-items: center;
     list-style: none;
+  }
+  
+  details summary p {
+    margin: 0;
+    padding-left: 10px;
   }
 
   details summary::after {
@@ -69,6 +82,5 @@
   details> :not(summary) {
     padding-left: 1rem;
   }
-
 
 }
