@@ -5,8 +5,10 @@ import { FormUserLogin } from '../../../components/FormUserLogin/FormUserLogin';
 import { FormModalRegister } from '../../../components/FormModalRegister/FormModalRegister';
 import { FormContact } from '../../../components/FormContact/FormContact';
 
-const Home = () => {
-  const [showPage, setShowPage] = useState('register');
+const Home = ({setShowPage, showPage}) => {
+
+
+
 
   return (
     <div className="homepage">

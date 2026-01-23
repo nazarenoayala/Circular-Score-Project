@@ -18,7 +18,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(cors({
-  origin: process.env.FRONT_URL
+  origin: process.env.FRONT_URL,
+  credentials: true
 }))
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/user', userRouter);
 app.use('/api/company', companyRouter);
 app.use('/api/test', testRouter);
+app.use('/api/company', companyRouter);
 
 
 // catch 404 and forward to error handler
