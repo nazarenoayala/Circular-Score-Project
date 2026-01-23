@@ -52,7 +52,7 @@ class UserDal {
   findUserByEmail = async (email) => {
     try{
       let sql = 'SELECT user_id, password FROM user WHERE user_email = ? AND is_deleted = 0 AND is_confirmed = 1'
-      let result = await executeQuery(sql, [email]);
+      let result = await executeQuery(sql, [user_email]);
       return result;
     } catch (error) {
       throw error;

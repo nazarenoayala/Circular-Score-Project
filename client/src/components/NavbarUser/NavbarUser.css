@@ -1,6 +1,7 @@
 .front-page {  
   line-height: 2.5rem;
   color: white;
+  position: fixed;
 
   h1 {
     padding: 1rem;
