@@ -10,7 +10,7 @@
 .lateral-bar {
   background-color: rgb(28, 37, 52);
   padding: 2rem;
-  height: 100%;
+  height: 100dvh;
 
 
   display: flex;
