@@ -7,18 +7,17 @@ import { useContext } from 'react';
 import { fetchData } from '../../../helpers/axiosHelper';
 
 const initialValue = {
-  email: '',
+  user_email: '',
   password: '',
 };
 
-export const FormUserLogin = ({setShowPage}) => {
+export const FormUserLogin = () => {
 
   const [userLogin, setUserLogin] = useState(initialValue);
   const {setUserData, setCompanyData, setToken} = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
-  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +27,7 @@ export const FormUserLogin = ({setShowPage}) => {
    const onSubmit = async () => {
     //TODO Hace falta, validar los campos desde el front !!!!!
     try {
-       setShowPage('login')
+
       // Fetch para mandar el input del usuario a autenticación
       const tokenRes = await fetchData('/user/login', 'POST', userLogin);
       const token = tokenRes.data.token;
@@ -38,13 +37,22 @@ export const FormUserLogin = ({setShowPage}) => {
 
       // Guardamos en local storage el token del user
       localStorage.setItem('credentials', token);
+      console.log(userByToken);
+      
       setUserData(userByToken.data.userData);
       setCompanyData(userByToken.data.companyData);
       setToken(token);
+      console.log("los datos del user", userByToken.data.userData);
+      console.log("los datos de la company", userByToken.data.companyData);
+      
 
       // Si todo es correcto, mandamos al usuario a su perfil
       const user_id = userByToken.data.userData.user_id;
-      navigate(`/companyProfile/${user_id}`)
+
+      //TODO Supongamos que navega a company profile tras loguear, ya lo que decidamos
+      navigate(`/companyProfile`)
+      //TODO Esta pa cuando la vista esté disponible
+      // navigate(`/companyProfile/${user_id}`)
 
     } catch (error) {
       console.log(error);

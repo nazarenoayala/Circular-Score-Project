@@ -51,7 +51,7 @@ class UserDal {
 
   //Metodo para buscar el email del user en la base de datos, para validar las credenciales en el login
 
-  findUserByEmail = async (email) => {
+  findUserByEmail = async (user_email) => {
     try{
       let sql = 'SELECT user_id, password FROM user WHERE user_email = ? AND is_deleted = 0 AND is_confirmed = 1'
       let result = await executeQuery(sql, [user_email]);
@@ -110,7 +110,6 @@ class UserDal {
       let sql = 'SELECT * FROM user WHERE user_id = ? AND is_deleted = 0 AND is_confirmed = 1'
 
       let profileResult = await executeQuery(sql, user_id);
-      console.log("Result de traer los datos de este user", profileResult);
       
     } catch (error) {
       throw error;

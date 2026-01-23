@@ -44,7 +44,7 @@ class UserController {
   login = async (req, res) => {
     
     const {user_email, password} = req.body;
-
+    
     try {
       //comprobamos la existencia del email
       let result = await userDal.findUserByEmail(user_email);
@@ -61,8 +61,8 @@ class UserController {
         } else {
           //generamos un token
           const token = generateToken(result[0].user_id);
-          console.log("Token generado correctamente");
-          res.status(200).json({message: "Login correcto", token});
+          console.log("Token generado correctamente", token);
+          res.status(200).json({message: "Login correcto", token: token});
         }
       }
     } catch (error) {
