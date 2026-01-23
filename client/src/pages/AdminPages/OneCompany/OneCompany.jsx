@@ -1,8 +1,24 @@
 import React from 'react'
+import { InfoOneCompany } from '../../../components/InfoOneCompany/InfoOneCompany'
+import { InfoRepresentante } from '../../../components/InfoRepresentante/InfoRepresentante'
 
 const OneCompany = () => {
   return (
-    <div>OneCompany</div>
+    <div>
+      <div>
+        <h1>Nombre Empresa</h1>
+        <button>Deshabilitar</button>
+      </div>
+
+      <h2>Información Representante</h2>
+      <InfoRepresentante/>
+
+      <h2>Información Empresa</h2>
+      <InfoOneCompany/>
+
+
+
+    </div>
   )
 }
 
