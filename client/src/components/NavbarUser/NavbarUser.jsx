@@ -12,11 +12,11 @@ export const NavbarUser = () => {
             alt=""
           ></img>
           <div className="container-logo">
-            <i class="fa-regular fa-house"></i>
+            <i className="fa-regular fa-house"></i>
             <p>HOME</p>
           </div>
           <div className="container-logo">
-            <i class="fa-solid fa-business-time"></i>
+            <i className="fa-solid fa-business-time"></i>
             <p>Perfil de empresa</p>
           </div>
           <div className="container-logo">
