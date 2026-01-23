@@ -37,8 +37,7 @@ const CompanyRegister = () => {
   const navigate = useNavigate()
 //control de formulario, con inputs select/text y checkbox
   const handleChange = (e, id) => {
-    console.log(e);
-    
+
     const { name, value, checked } = e.target;
     if(name === 'client_segment' || name === 'stakeholders'){
       if(checked){
@@ -58,7 +57,7 @@ const CompanyRegister = () => {
       setNewCompany({ ...newCompany, [name]: value });
     }
   };
-console.log(newCompany);
+
 // pedir a base de datos localidades y provincias. 
   useEffect(()=>{
     const fetchDataGeo = async()=>{
@@ -73,6 +72,18 @@ console.log(newCompany);
     }
     fetchDataGeo();
   },[])
+
+  const onSubmit = async(e) =>{
+    //FALTA VALIDAR 
+    try{
+      e.preventDefault()
+      const res = await fetchData('/company/register', 'POST', newCompany);
+      console.log(res);
+      navigate('/')
+    }catch(error){
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -107,6 +118,7 @@ console.log(newCompany);
           setCurrentFormPage={setCurrentFormPage}
           navigate={navigate}
           setNewCompany={setNewCompany}
+          onSubmit={onSubmit}
         />
       )}
     </>

@@ -9,7 +9,7 @@ export const FormCompanyRegister4 = ({
                 newCompany, 
                 handleChange, 
                 setCurrentFormPage,
-                /* setNewCompany */}) => {
+                onSubmit}) => {
     
 
   return (
@@ -79,7 +79,7 @@ export const FormCompanyRegister4 = ({
             
             <div>
               <button onClick={()=>setCurrentFormPage(3)}>Atrás</button>
-              <button>Enviar</button>
+              <button onClick={onSubmit}>Enviar</button>
             </div>
         </form>
     </div>

@@ -4,22 +4,23 @@ class CompanyDal {
 
 
   registerCompany = async (values) => {
-
-    console.log(values);
-    
-    try {
-
-      let sql = 'INSERT INTO company_data (user_id, company_name, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    try{
+      let sql = 'INSERT INTO company_data (company_name, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background) VALUES (?,?,?,?,?,?,?,?,?,?,?)'
       let result = await executeQuery(sql, values);
       return result;
-
-    } catch (error) {
-
-      throw error;
-      
+    }catch(error){
+      throw error
     }
   }
-<<<<<<< HEAD
+  registerCompanyInUser = async (values) => {
+    try{
+      let sql = 'UPDATE user SET contact_name = ?, position = ?, phone_number = ?, user_email = ?, city_name = ?, province_name = ? WHERE user_id = ?'
+      let result = await executeQuery(sql, values);
+      return result;
+    }catch(error){
+      throw error;
+    }
+  }
   //pedir datos de localidades y provincias
   locality = async() => {
     try{
@@ -41,7 +42,6 @@ class CompanyDal {
       throw error;
     }
   }
-=======
 
 
   showCompanyProfile = async(user_id) => {
@@ -67,7 +67,6 @@ class CompanyDal {
   }
 
 
->>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
 }
 
 export default new CompanyDal();
