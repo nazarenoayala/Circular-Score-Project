@@ -11,7 +11,7 @@
 
 .btn-white {
   background-color: rgb(255, 255, 255) !important;
-  border: none !important;
+  border: 1px solid rgb(193, 193, 193) !important;
   color: black !important;
 
   &:hover {
