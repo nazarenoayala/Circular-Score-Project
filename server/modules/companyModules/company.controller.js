@@ -93,10 +93,13 @@ class CompanyController {
     }
   }
 }
+
+
+export default new CompanyController();
+
 >>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
 
 <<<<<<< HEAD
 =======
 
-export default new CompanyController();
 >>>>>>> 99c10b0922398b7ba76834ec0ac85412095999e6
