@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card , Form } from 'react-bootstrap'
 
 export const FormEditUser = () => {
   return (

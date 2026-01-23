@@ -5,7 +5,7 @@ import { Outlet } from 'react-router';
 export const AdminLayout = () => {
   return (
     <div className='layoutAdminPublic'>
-      <header>
+      <header style={{ height: '100%' }}>
         <NavbarAdmin />
       </header>
 

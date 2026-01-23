@@ -20,11 +20,12 @@ const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/One
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
-const AdminTests = lazy(() => import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
-const CreateTest = lazy(() => import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
-const OneTest = lazy(() => import('../pages/AdminPages/OneTest/OneTest.jsx'));
-const AllCompanies = lazy(() => import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
-const OneCompany = lazy(() => import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
+const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
+const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
+const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
+const AllCompanies = lazy(()=>import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
+const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
+
 
 
 
@@ -43,7 +44,7 @@ export const AppRoutes = () => {
 
           {/* rutas privadas*/}
           <Route element={<PrivateRoutes />}>
-          {/* rutas de empresa */}
+            {/* rutas de empresa */}
             <Route element={<UserLayout />}>
               <Route path="/allTests" element={<AllTestsPage />} />
               <Route path="/companyProfile/:id" element={<CompanyProfilePage />} />
@@ -65,7 +66,7 @@ export const AppRoutes = () => {
           {/* rutas privadas de usuario */}
 
           {/* rutas para el error */}
-          <Route path='*' element={<ErrorPage/>}/>
+          <Route path='*' element={<ErrorPage />} />
 
 
         </Routes>
