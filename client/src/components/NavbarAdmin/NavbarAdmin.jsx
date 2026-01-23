@@ -1,5 +1,6 @@
 import React from 'react'
 import './NavbarAdmin.css';
+import { Link } from 'react-router';
 
 export const NavbarAdmin = () => {
   return (
@@ -12,24 +13,24 @@ export const NavbarAdmin = () => {
           ></img>
           <div className="container-logo">
             <i className="fa-regular fa-house"></i>
-            <p> HOME</p>
+            <Link className='link' to={"/"} > HOME</Link>
           </div>
           <div className="container-logo">
             <i className="fa-brands fa-squarespace"></i>
-            <p>Admin Dashboard</p>
+            <Link className='link' to={"/dashboard"}>Admin Dashboard</Link>
           </div>
           <div className="container-logo">
             <i className="fa-solid fa-business-time"></i>
-            <p>Control de empresas</p>
+            <Link className='link' to={"allCompanies"}>Control de empresas</Link>
           </div>
 
           <div className="container-logo">
             <i className="fa-regular fa-file-lines"></i>
-            <p>Control de tests</p>
+            <Link className='link' to={"tests"}>Control de tests</Link>
           </div>
           <div className="container-logo">
             <i className="fa-regular fa-calendar"></i>
-            <p>Historial de tests</p>
+            <Link className='link' to={"/AdminTestsRecord"}>Historial de tests</Link>
           </div>
 
           <div className="container-graphics">
@@ -38,17 +39,19 @@ export const NavbarAdmin = () => {
               id=""
             >
               <summary>
-                <i className="fa-solid fa-chart-column me-2"></i>
-                Datos analíticos
+                <i className="fa-solid fa-chart-column"></i>
+                <p>Datos analíticos</p>
               </summary>
-              <option value="graphic">· Gráficos</option>
-              <option value="g-ODS">· Gráficos por ODS</option>
+              <div className='options-cont'>
+                <Link className='link' to={"/graphic"}>· Gráficos</Link>
+                <Link className='link' to={"/AdminODSgraphic"}>· Gráficos de ODS</Link>
+              </div>
             </details>
           </div>
 
           <div className="container-logo">
             <i className="fa-solid fa-circle-notch"></i>
-            <p>IA Prompt Editor</p>
+            <Link className='link' to={"/IApromptEdit"}>IA Prompt Editor</Link>
           </div>
         </div>
 
