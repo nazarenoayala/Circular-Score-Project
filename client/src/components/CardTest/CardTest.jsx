@@ -6,7 +6,23 @@ const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTest = ({test}) => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  // El valor nos llega con decimales, así que lo pasamos a entero
+  const {testRes} = test;
+  const lastResult = parseInt(testRes);
+
+  let classProgress;
+
+  if (lastResult >= 80) {
+    classProgress = 'highResult'
+  }
+  else if (lastResult >= 50) {
+    classProgress = 'medResult'
+  }
+  else if (lastResult > 0) {
+    classProgress = 'lowResult'
+  }
 
   return (
     <div className='card-test'>
@@ -18,8 +34,14 @@ const CardTest = ({test}) => {
         </div>
       </div>
       <div className='resultsBar'>
-        <h3>0 %</h3>
-        <div className='progressBar'></div>
+        <h3>{lastResult} %</h3>
+        <div className='progressBar'>
+          <div 
+            className={classProgress}
+            style={{ width: `${lastResult}%` }}
+          >
+          </div>
+        </div>
       </div>
       <div className='btnTest'>
         <MyButton
