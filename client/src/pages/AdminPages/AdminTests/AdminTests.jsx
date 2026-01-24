@@ -7,6 +7,8 @@ const AdminTests = () => {
 
   const {test} = useContext(AuthContext);
 
+  console.log(test);
+
   return (
     
     <Container>
