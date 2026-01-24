@@ -14,7 +14,8 @@ const initialValueCompany = {
   active_years:'',
   company_size:'',
   sustainability:'',
-  ods_background:''
+  ods_background:'',
+  gso:''
 }
 
 const initialValueUser = {
@@ -59,12 +60,14 @@ const EditCompanyPage = () => {
   
   return (
     <div className='edit-profile-container'>
-    <main>
-      <header>
+    <main className='container mt-5 mb-5'>
+      <header className='header-content mb-4'>
         <h1>Hola {editUserData.name}</h1>
-        <MyButton>Cerrar Sesión</MyButton>
+        <MyButton text="Cerrar Sesión"/>
       </header>
-      <section className='form-card'>
+      {/* Card 1: Form empresa */}
+      <section className='form-card mb-4'>
+        <h2 className='title-form'>Datos de empresa</h2>
         {/* Formulario de empresa */}
         {/* paso por props datos y funcion a los hijos */}
         <FormEditCompany
@@ -75,7 +78,9 @@ const EditCompanyPage = () => {
 
         {/* dejar espaciado entre formularios */}
 
-      <section className='form-card'>  
+      {/* Card 2: Form user */}
+      <section className='form-card mb-4'>
+        <h2 className='title-form'>Perfil de usuario</h2>  
         {/* Formulario de usuario */}
         <FormEditUser
           data={editUserData}
@@ -83,7 +88,7 @@ const EditCompanyPage = () => {
         />
       </section>  
 
-      <footer>
+      <footer className='btn-footer gap-3 mt-4'>
         <MyButton
           onSubmit={sendDb}
           text="Guardar"
