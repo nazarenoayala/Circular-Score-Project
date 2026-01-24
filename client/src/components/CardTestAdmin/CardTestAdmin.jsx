@@ -14,31 +14,25 @@ const CardTestAdmin = ({test}) => {
   const disableTest = async () => {
 
     try {
-
       // Falta meter el token a esta petición:
       let result = await fetchData(`/test/disableTest/${test.test_id}`, 'PUT', null);
       setIsPublic(0);
       console.log(result);
-      
     } catch (error) {
       console.log(error);
     }
-
   }
 
   const enableTest = async () => {
 
     try {
-
       // Falta añadir el token;
       let result = await fetchData(`/test/enableTest/${test.test_id}`, 'PUT', null);
       setIsPublic(1);
       console.log(result);
-      
     } catch (error) {
       console.log(error);
     }
-
   }
 
   return (
@@ -62,7 +56,7 @@ const CardTestAdmin = ({test}) => {
           onSubmit={() => navigate('/createTest')}
         />
         {
-        test.is_public === 1 && isPublic === 1 ?
+        isPublic === 1 ?
         <MyButton
           text = 'Deshabilitar'
           btnClass='btn-red'
