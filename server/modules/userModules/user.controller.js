@@ -56,7 +56,7 @@ class UserController {
 
   activateUser = async (req, res) => {
 
-    const {user_id, token} = req.params;
+    const {user_id} = req.params;
 
     try {
       
