@@ -26,7 +26,7 @@ export const CompaniesCard = ({empresa}) => {
 
       <div className="card mb-3 py-3">
         <div className="d-flex justify-content-between align-items-center">
-          <h3>Nombre empresa</h3>
+          <h3>{empresa.company_name}</h3>
 
           <div className="d-flex gap-2">
             <MyButton text="Gestionar Empresa" btnClass="btn-green" />
@@ -43,13 +43,13 @@ export const CompaniesCard = ({empresa}) => {
           <div className="d-flex justify-content-around align-items-center">
             <div>
               <ul>
-                <li>Persona de contacto: </li>
-                <li>Teléfono: </li>
-                <li>Email: </li>
+                <li>Persona de contacto: {empresa.name} </li>
+                <li>Teléfono: {empresa.phone_number}</li>
+                <li>Email: {empresa.user_email}</li>
               </ul>
             </div>
             <div className="">
-              <strong>Test realizados: </strong>
+              <strong>Test realizados: empresa.testrealizados </strong>
             </div>
             <MyButton
               text="Cerrar"

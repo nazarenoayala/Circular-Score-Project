@@ -6,36 +6,39 @@ const AllCompanies = () => {
 
   const [nombreEmpresa, setNombreEmpresa] = useState([]);
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    const fetchNombreEmpresa = async () => {
+//     const fetchNombreEmpresa = async () => {
 
-      try {
-        const res = await fetchData(
-          '/company',
-          'GET',
-          nombreEmpresa,
-          null
-        );
-        setNombreEmpresa(res.data);
-      } catch(error) {
-console.log(error);
+//       try {
+//         const res = await fetchData(
+//           '/company',
+//           'GET',
+//           nombreEmpresa,
+//           null
+//         );
+//          console.log(res);
+//        // setNombreEmpresa(res.data);
+       
+        
+//       } catch(error) {
+// console.log(error);
 
-      }
-    };
-    fetchNombreEmpresa();
-  }, []);
+//       }
+//     };
+//     fetchNombreEmpresa();
+//   }, []);
 
 
 
 
 
   return (
-    <>
+    <div>
       {nombreEmpresa.map((empresa) => {
         return <CompaniesCard key={nombreEmpresa.user_id} empresa={empresa} />;
       })}
-    </>
+    </div>
   );
 };
 export default AllCompanies;
