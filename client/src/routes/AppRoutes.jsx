@@ -83,8 +83,6 @@ export const AppRoutes = () => {
 
           {/* rutas para el error */}
           <Route path='*' element={<ErrorPage />} />
-
-
         </Routes>
       </Suspense>
     </BrowserRouter>

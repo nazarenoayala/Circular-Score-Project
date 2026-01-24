@@ -15,6 +15,9 @@ const routes = express.Router();
 // Ruta de registro de usuario
 routes.post('/register', validateUserRegister(registerSchema), userController.register);
 
+// Ruta de activación
+routes.post('/activateUser/:user_id/:token', verifyToken, userController.activateUser)
+
 // Ruta de login de usuario
 routes.post('/login', validateUserLogin(loginSchema), userController.login);
 
