@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { NavbarUser } from '../../../components/NavbarUser/NavbarUser';
 import { FormEditCompany } from '../../../components/FormEditCompany/FormEditCompany';
 import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
 import { MyButton } from '../../../components/MyButton/MyButton';
+import { useNavigate } from 'react-router';
 
 import './EditCompany.css'
 
@@ -24,13 +26,25 @@ const initialValueUser = {
 }
 
 const EditCompanyPage = () => {
-  //para usar boton volver y que redirija al perfil usuario useNavigate, como lo uso en MyButton?
-  
+  //para usar boton volver y que redirija al perfil usuario useNavigate, podria usarlo en mybutton?
+  const navigate = useNavigate();
+
+  const {companyData, userData, token, logout} = useContext(AuthContext)
 
   //Estado para empresa
   const [editCompanyData, setEditCompanyData] = useState(initialValueCompany);
   //Estado para user
   const [editUserData, setEditUserData] = useState(initialValueUser);
+
+  //Cuando tenga los datos, los paso a estados locales
+  useEffect(() =>{
+    if (companyData) {
+      setEditCompanyData(companyData);
+    }
+    if (userData) {
+      setEditUserData(userData);
+    }
+  }, [companyData, userData]);
 
   //funciones para control de inputs
   const handleCompanyChange = (e) => {
@@ -52,18 +66,20 @@ const EditCompanyPage = () => {
   }
 
   //funcion para guardar (enviar a la DB) 
-  const sendDb = async (e) => {
-    e.preventDefault();
-    //probar si funciona
-    //aca iría fetch con que método?
-  }
+  //const sendDb = async (e) => {
+    
+   // e.preventDefault();
+    
+
+  //}
   
   return (
+    
     <div className='edit-profile-container'>
     <main className='container mt-5 mb-5'>
       <header className='header-content mb-4'>
         <h1>Hola {editUserData.name}</h1>
-        <MyButton text="Cerrar Sesión"/>
+        <MyButton text="Cerrar Sesión" onSubmit={logout}/>
       </header>
       {/* Card 1: Form empresa */}
       <section className='form-card mb-4'>
@@ -90,10 +106,11 @@ const EditCompanyPage = () => {
 
       <footer className='btn-footer gap-3 mt-4'>
         <MyButton
-          onSubmit={sendDb}
+          //onSubmit={sendDb}
           text="Guardar"
         />
         <MyButton
+        onSubmit={()=> navigate(`/companyProfile/${companyData?.user_id}`)}
         text="Volver"
         />
       </footer>
