@@ -7,6 +7,9 @@ import { loginSchema } from '../../schemas/userLogin.js';
 import { validateUserEdit } from '../../middlewares/validateUserEdit.js';
 import { editSchema } from '../../schemas/userEdit.js';
 import { verifyToken } from '../../middlewares/verifyToken.js';
+import { verifyActivateToken } from '../../middlewares/verifyActivateToken.js';
+
+
 
 //TODO Hay que añadir el middleware de verifyToken cuando esté 100% correcto a todas las rutas
 
@@ -14,6 +17,9 @@ const routes = express.Router();
 
 // Ruta de registro de usuario
 routes.post('/register', validateUserRegister(registerSchema), userController.register);
+
+// Ruta de activación
+routes.get('/activateUser/:token/:user_id', verifyActivateToken , userController.activateUser)
 
 // Ruta de login de usuario
 routes.post('/login', validateUserLogin(loginSchema), userController.login);

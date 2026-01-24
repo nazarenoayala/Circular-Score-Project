@@ -25,9 +25,13 @@ export const FormUserRegister = ({ setShowPage }) => {
     try {
       registerSchema.parse(registerUser);
      
-    
-     const res = await fetchData('/user/register', 'POST', registerUser);
-      console.log('resulllllllllllt', res);
+      // Lamamos al back para que intente el registro del user
+      const res = await fetchData('/user/register', 'POST', registerUser);
+      const {token} = res.data;
+
+      // Insertamos un item json con el token en local storage
+      localStorage.setItem('credentials', token);
+      console.log('FRONT, USER REGISTER FORM, RES Y TOKEN', res, token);
       setShowPage('modal');
       
     } catch (error) {

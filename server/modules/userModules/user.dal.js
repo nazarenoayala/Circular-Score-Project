@@ -48,6 +48,16 @@ class UserDal {
     }
   }
 
+  activateUser = async (user_id) => {
+    try {
+      let sql = 'UPDATE user SET is_confirmed = 1 WHERE user_id = ?'
+      let result = await executeQuery(sql, [user_id]);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
   //Metodo para buscar el email del user en la base de datos, para validar las credenciales en el login
 
