@@ -10,8 +10,8 @@ const AllTestsPage = () => {
   const {test} = useContext(AuthContext);
   // Añadimos los tests a un Estado
   const [allTest, setAllTest] = useState(test);
-
-  console.log(allTest);
+  // Flag para que se cargue el hijo cuando se haya ejecutado el useEffect y así se le pasa la última actualización del Estado
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
 
@@ -29,6 +29,7 @@ const AllTestsPage = () => {
         }));
 
         setAllTest(updateAllTest);
+        setReady(true);
         
         
       } catch (error) {
@@ -43,8 +44,8 @@ const AllTestsPage = () => {
 
   return (
     <Container>
-      <Row>
-            {test.map((elem) => {
+      {ready && <Row>
+            {allTest.map((elem) => {
               return (
                 <Col key={elem.test_id} className='col-6 mb-3'>
                     <CardTest
@@ -53,7 +54,7 @@ const AllTestsPage = () => {
                 </Col>
               )
             })}
-      </Row>
+      </Row>}
     </Container>
   )
 }
