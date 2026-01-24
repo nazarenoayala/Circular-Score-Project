@@ -7,6 +7,7 @@ export const AuthContextProvider = ({children}) => {
   const [token, setToken] = useState();
   const [userData, setUserData] = useState();
   const [companyData, setCompanyData] = useState();
+  const [test, setTest] = useState();
 
   useEffect(() => {
 
@@ -27,6 +28,20 @@ export const AuthContextProvider = ({children}) => {
       }
       fetchUserData();
     }
+
+    const fetchTest = async () => {
+
+      try {
+        let result = await fetchData('/test/allTest', 'GET', null, null);
+        console.log(result);
+        setTest(result.data.result);
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchTest();
+
   }, []);
 
   const logout = () => {
@@ -44,7 +59,8 @@ export const AuthContextProvider = ({children}) => {
         setCompanyData,
         token,
         setToken,
-        logout
+        logout,
+        test
       }}>
         {children}
       </AuthContext.Provider>
