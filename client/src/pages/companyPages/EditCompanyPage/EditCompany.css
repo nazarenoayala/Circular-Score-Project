@@ -1,7 +1,8 @@
 .edit-profile-container {
     background-color: var(--bg);
     min-height: 100vh;
-    width: 100%;
+    margin-left: 20px;
+    width: calc(100% - 20px);
 }
 
 .header-content {
