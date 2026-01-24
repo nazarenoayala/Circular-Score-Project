@@ -11,7 +11,9 @@ const OneCompany = () => {
       </div>
 
       <h2>Información Representante</h2>
-      <InfoRepresentante/>
+      <InfoRepresentante
+              path
+      />
 
       <h2>Información Empresa</h2>
       <InfoOneCompany/>
