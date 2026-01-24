@@ -1,11 +1,32 @@
 import React from 'react'
-import {Card, Form} from 'react-bootstrap'
+import {Card, Col, Form, Row} from 'react-bootstrap'
+
+const segmentClientOptions = [
+    //lista de opciones con clave valor (uso texto q ya identificaba cada opción)
+    {value: 'b2b', label: 'Empresas (B2B)'},
+    {value: 'b2c', label: 'Consumidor final (B2C)'},
+    {value: 'b2g', label: 'Administraciones públicas (B2G)'},
+    {value: 'third_sector', label: 'Endidades del tercer sector'}
+];
+
+const stakeholderOptions = [
+    //lista de opciones con clave valor numerico, hacer map luego
+    {value: 1, label: 'Personas empleadas'},
+    {value: 2, label: 'Clientes / usuarios'},
+    {value: 3, label: 'Proveedores'},
+    {value: 4, label: 'Comunidad local'},
+    {value: 5, label: 'Accionistas / socios'},
+    {value: 6, label: 'Administraciones públicas'},
+    {value: 7, label: 'Entidades financieras'},
+    {value: 8, label: 'ONG / asociaciones'},
+    {value: 9, label: 'Universidades / centros de investigación'},
+    {value: 10, label: 'Otros grupos de interés'}
+];
 
 export const FormEditCompany = () => {
   return (
     <Card>
         <Card.Body>
-            <Card.Title>Datos de empresa</Card.Title>
             <Form>
                 {/* Lado izquierdo */}
                 <Form.Group>
@@ -136,7 +157,7 @@ export const FormEditCompany = () => {
                 <Form.Group>
                     <Form.Label>Ámbito geográfico principal de operación</Form.Label>
                     <Form.Select
-                        name=''
+                        name='gso'
                         // value={}
                         // onChange={}                     
                     >
@@ -180,17 +201,50 @@ export const FormEditCompany = () => {
                     </Form.Select>
                 </Form.Group>
                     
+                    
+                    <div className='checkbox-container'>
+                    <Row>
+                        {/* Check box lado izquierdo */}
+                        <Col md={6}>
+                        <div className='checkbox-group'>
+                    <Form.Label className='checkbox-title'>Clientes y grupos de interés</Form.Label>
                     <div>
-                    <Form.Label>Grupo de interés</Form.Label>
+                        {segmentClientOptions.map((option) =>(
                     <Form.Check
                         type='checkbox'
-                        name='gso'
-                        // onChange={}
+                        name='client_segment'
+                        key={option.value}
+                        label={option.label}
+                        value={option.value}
+                        id={option.value}
                         
-                    >    
-                    </Form.Check>
+                    />
+                    ))}
+                    </div>    
                     </div>
-                    
+                        </Col>
+
+                    {/* Check box lado derecho */}
+                    <Col md={6}>
+                    <div className='checkbox-group'>
+                    <Form.Label className='checkbox-title'>Principales grupos de interés</Form.Label>
+                    <div>
+                        {stakeholderOptions.map((option) =>(
+                    <Form.Check
+                        type='checkbox'
+                        name='stakeholders'
+                        key={option.value}
+                        label={option.label}
+                        value={option.value}
+                        id={option.value}
+                         
+                    />    
+                    ))}
+                    </div>
+                    </div>
+                    </Col>
+                    </Row>
+                    </div>
 
     
     

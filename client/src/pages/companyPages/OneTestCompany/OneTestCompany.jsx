@@ -13,12 +13,8 @@ const OneTestCompany = () => {
   const { test } = useContext(AuthContext);
   // Usamos el useParams para rescatar el id del parámetro dinámico para no tener que volver a hacer la llamada a la base de datos
   const { id } = useParams();
-
   const navigate = useNavigate()
-
   const oneTest = test.filter((e) => e.test_id == id);
-  console.log(oneTest);
-
 
   return (
     <div className='oneTest'>

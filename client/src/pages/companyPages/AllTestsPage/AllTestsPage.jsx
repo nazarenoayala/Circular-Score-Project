@@ -7,19 +7,15 @@ const AllTestsPage = () => {
 
   const {test} = useContext(AuthContext);
 
-  console.log(test);
-
   return (
     <Container>
       <Row>
             {test.map((elem) => {
               return (
-                <Col className='col-6 mb-3'>
-                  <div key={elem.test_id}>
+                <Col key={elem.test_id} className='col-6 mb-3'>
                     <CardTest
                       test = {elem}
                     />
-                  </div>
                 </Col>
               )
             })}

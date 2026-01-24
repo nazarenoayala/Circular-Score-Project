@@ -4,31 +4,64 @@ import { fetchData } from '../../../helpers/axiosHelper';
 
 export const AuthContextProvider = ({children}) => {
 
+  const [token, setToken] = useState();
+  const [userData, setUserData] = useState();
+  const [companyData, setCompanyData] = useState();
   const [test, setTest] = useState();
 
   useEffect(() => {
 
+    const tokenLS = localStorage.getItem("token");
+    if(tokenLS){
+      const fetchUserData = async () => {
+  
+        try {
+          // Habrá que añadir token en la petición
+          let result = await fetchData('/user/userByToken', 'GET', null, tokenLS);
+          setToken(tokenLS);
+          setUserData(result.userData);
+          setCompanyData(result.companyData);
+        } catch (error) {
+          console.log(error);
+        }
+  
+      }
+      fetchUserData();
+    }
+
     const fetchTest = async () => {
 
       try {
-
-        // Habrá que añadir token en la petición
-        let result = await fetchData('/test/allTest', 'GET');
+        let result = await fetchData('/test/allTest', 'GET', null, null);
+        console.log(result);
         setTest(result.data.result);
-        
+
       } catch (error) {
         console.log(error);
       }
-
     }
-
     fetchTest();
 
-  }, [])
+  }, []);
+
+  const logout = () => {
+    setUserData();
+    setCompanyData();
+    localStorage.removeItem("token");
+  }
 
   return (
     <>
-      <AuthContext.Provider value={{test}}>
+      <AuthContext.Provider value={{
+        userData,
+        setUserData,
+        companyData,
+        setCompanyData,
+        token,
+        setToken,
+        logout,
+        test
+      }}>
         {children}
       </AuthContext.Provider>
     </>

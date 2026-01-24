@@ -20,6 +20,7 @@ routes.post('/registerCompany/:user_id', companyController.registerCompany);
 
 //poner middleware validación inputs
 /*  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile) */
+ routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile)
 
 
-export default routes
+export default routes;
