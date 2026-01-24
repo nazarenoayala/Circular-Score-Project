@@ -1,9 +1,15 @@
 import {compareString , hashString} from '../../utils/bcryptUtils.js'
 import {generateToken} from '../../utils/jwtUtils.js'
+import sendActivationMail from '../../utils/nodeMailer.js';
+import dotenv from 'dotenv'
 import userDal from './user.dal.js';
+
+dotenv.config();
 
 class UserController {
 
+
+  // Controlador para traer la información de los test del user
   showTestData = async(req, res) => {
     const {user_id} = req.params;
     console.log(user_id);
@@ -21,6 +27,7 @@ class UserController {
     }
   }
 
+  // Controlador de registro de usuario
   register = async (req, res) => {
     
     try{
@@ -29,11 +36,17 @@ class UserController {
       //encriptar la password
       let hashedPass = await hashString(password, 10);
 
-      let values = [user_email, hashedPass]
+      let values = [user_email, hashedPass];
 
       let result = await userDal.register(values);
       
-      res.status(200).json({message: 'Datos insertados en BD', result});
+      // Enviamos correo de confirmación
+      const user_id = result.insertId;
+      const mailResult = await sendActivationMail({user_email: user_email, user_id: user_id});
+
+      const {token} = mailResult;
+
+      res.status(200).json({message: 'Datos insertados en BD', token: token});
 
     } catch (error){
       console.log(error);
@@ -41,14 +54,32 @@ class UserController {
     }
   }
 
+  activateUser = async (req, res) => {
+
+    const {user_id, token} = req.params;
+
+    try {
+      
+      const ActivateResult = await userDal.activateUser(user_id);
+
+      res.status(201).json({message: "Usuario activado correctamente.", ActivateResult});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
+
+  // Login de usuario
   login = async (req, res) => {
     
     const {user_email, password} = req.body;
+    console.log("user controller contenido de user_email", user_email);
     
     try {
       //comprobamos la existencia del email
       let result = await userDal.findUserByEmail(user_email);
-
+      console.log("resultado de la busqueda del email", result);
+      
       //si no hay user
       if(result.length === 0){
         res.status(401).json("Email no encontrado en DB");
@@ -60,7 +91,7 @@ class UserController {
           res.status(401).json({message: "Contraseña no coincide"});
         } else {
           //generamos un token
-          const token = generateToken(result[0].user_id);
+          const token = generateToken(result[0].user_id, "2d");
           res.status(200).json({
               message: "Login correcto",
               token: token, 
@@ -74,6 +105,7 @@ class UserController {
     }
   }
 
+  // Recuperamos la información del user usando el token
   userByToken = async (req, res) => {
     const {user_id} = req;
     
@@ -91,6 +123,7 @@ class UserController {
     }
   }
 
+  // Obtiene la info del user para alimentar el profile
   showUserProfile = async (req, res) => {
     const {user_id} = req.params;
 
@@ -108,6 +141,7 @@ class UserController {
     }
   }
 
+  // Hacemos update solo a la tabla user
   editUser = async (req, res) => {
     try {
       const {name, last_name, phone_number, city_id , province_id, position, user_id} = req.body;
@@ -126,6 +160,7 @@ class UserController {
     }
   }
 
+  // Borrado lógico del usuario
   banUser = async (req, res) => {
     const {user_id} = req.params;
     try {
