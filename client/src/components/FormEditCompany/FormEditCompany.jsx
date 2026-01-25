@@ -24,6 +24,7 @@ const stakeholderOptions = [
 ];
 
 export const FormEditCompany = () => {
+    
   return (
     <Card>
         <Card.Body>
@@ -81,14 +82,13 @@ export const FormEditCompany = () => {
                         // onChange={}
                                            
                     >
-                        <option value="" disabled hidden>Seleccionar tipo de empresa</option>
-                        <option value="">Autónomo/a</option>
-                        <option value="">StartUp</option>
-                        <option value="">Micro empresa</option>
-                        <option value="">Pyme</option>
-                        <option value="">Gran empresa</option>
-                        <option value="">Entidad sin ánimo de lucro</option>
-                        <option value="">Administración pública / Entidad pública</option>
+                        <option value="1">Autónomo/a</option>
+                        <option value="2">StartUp</option>
+                        <option value="3">Micro empresa</option>
+                        <option value="4">Pyme</option>
+                        <option value="5">Gran empresa</option>
+                        <option value="6">Entidad sin ánimo de lucro</option>
+                        <option value="7">Administración pública / Entidad pública</option>
                     </Form.Select>
                 </Form.Group>
 
@@ -100,12 +100,11 @@ export const FormEditCompany = () => {
                         // onChange={}
                                              
                     >
-                        <option value="" disabled hidden>Seleccionar..</option>
-                        <option value="">Menos de 2 años</option>
-                        <option value="">Entre 2 y 5 años</option>                       
-                        <option value="">Entre 6 y 10 años</option>
-                        <option value="">Entre 11 y 20 años</option>
-                        <option value="">Más de 20 años</option>
+                        <option value="1">Menos de 2 años</option>
+                        <option value="2">Entre 2 y 5 años</option>                       
+                        <option value="3">Entre 6 y 10 años</option>
+                        <option value="4">Entre 11 y 20 años</option>
+                        <option value="5">Más de 20 años</option>
                     </Form.Select>
                 </Form.Group>
 
@@ -116,11 +115,10 @@ export const FormEditCompany = () => {
                         // value={}
                         // onChange={}                     
                     >
-                        <option value="" disabled hidden>Seleccionar..</option>
-                        <option value="">1-9</option>
-                        <option value="">10-49</option>                       
-                        <option value="">50-249</option>
-                        <option value="">Más de 250</option>
+                        <option value="1">1-9</option>
+                        <option value="2">10-49</option>                       
+                        <option value="3">50-249</option>
+                        <option value="4">Más de 250</option>
                     </Form.Select>
                 </Form.Group>
 
@@ -131,25 +129,25 @@ export const FormEditCompany = () => {
                         // value={}
                         // onChange={}                     
                     >
-                        <option value="" disabled hidden>Seleccionar sector</option>
-                        <option value="">Agricultura, ganadería y pesca</option>
-                        <option value="">Industria alimentaria</option>
-                        <option value="">Industria manufacturera</option>
-                        <option value="">Construcción</option>
-                        <option value="">Comercio mayorista</option>
-                        <option value="">Comercio minorista</option>
-                        <option value="">Servicios profesionales</option>
-                        <option value="">Servicios financieros y seguros</option>
-                        <option value="">Tecnología / Innovación / TIC</option>
-                        <option value="">Energía y utilities</option>
-                        <option value="">Medio ambiente y gestión de residuos</option>
-                        <option value="">Turismo y hostelería</option>
-                        <option value="">Transporte y logística</option>
-                        <option value="">Educación y formación</option>
-                        <option value="">Sanidad y servicios sociales</option>
-                        <option value="">Cultura, deporte y ocio</option>
-                        <option value="">Economía social</option>
-                        <option value="">Otro sector (especificar)</option>
+                        <option value="1">Agricultura, ganadería y pesca</option>
+                        <option value="2">Industria alimentaria</option>
+                        <option value="3">Industria manufacturera</option>
+                        <option value="4">Construcción</option>
+                        <option value="5">Comercio mayorista</option>
+                        <option value="6">Comercio minorista</option>
+                        <option value="7">Servicios profesionales</option>
+                        <option value="8">Servicios financieros y seguros</option>
+                        <option value="9">Tecnología / Innovación / TIC</option>
+                        <option value="10">Energía y utilities</option>
+                        <option value="11">Medio ambiente y gestión de residuos</option>
+                        <option value="12">Turismo y hostelería</option>
+                        <option value="13">Transporte y logística</option>
+                        <option value="14">Educación y formación</option>
+                        <option value="15">Sanidad y servicios sociales</option>
+                        <option value="16">Cultura, deporte y ocio</option>
+                        <option value="17">Economía social</option>
+                        <option value="18">Otro sector (especificar)</option> 
+                        {/* como especificar? */}
                     </Form.Select>
                 </Form.Group>
 
@@ -161,14 +159,13 @@ export const FormEditCompany = () => {
                         // value={}
                         // onChange={}                     
                     >
-                        <option value="" disabled hidden>Seleccionar ámbito geográfico</option>
-                        <option value="">Local (municipio)</option>
-                        <option value="">Comarcal</option>                       
-                        <option value="">Regional / Autónomico</option>
-                        <option value="">Nacional</option>
-                        <option value="">Comercio mayorista</option>
-                        <option value="">Internacional (Europa)</option>
-                        <option value="">Internacional (fuera de Europa)</option>
+                        <option value="1">Local (municipio)</option>
+                        <option value="2">Comarcal</option>                       
+                        <option value="3">Regional / Autónomico</option>
+                        <option value="4">Nacional</option>
+                        <option value="5">Comercio mayorista</option>
+                        <option value="6">Internacional (Europa)</option>
+                        <option value="7">Internacional (fuera de Europa)</option>
                     </Form.Select>
                 </Form.Group>
 
@@ -190,14 +187,13 @@ export const FormEditCompany = () => {
                         name='ods_background'
                         // value={}
                         // onChange={}
-                        >
-                        <option value="" disabled hidden>Seleccionar..</option>    
-                        <option value="">Si, formalizada y en vigor</option>    
-                        <option value="">Si, informal o parcial</option>    
-                        <option value="">En desarrollo</option>    
-                        <option value="">No, pero está previsto abordarlo</option>    
-                        <option value="">No, pero está previsto abordarlo</option>    
-                        <option value="">No, no se ha planteado</option>    
+                        >    
+                        <option value="1">Si, formalizada y en vigor</option>    
+                        <option value="2">Si, informal o parcial</option>    
+                        <option value="3">En desarrollo</option>    
+                        <option value="4">No, pero está previsto abordarlo</option>    
+                        <option value="5">No, pero está previsto abordarlo</option>    
+                        <option value="6">No, no se ha planteado</option>    
                     </Form.Select>
                 </Form.Group>
                     

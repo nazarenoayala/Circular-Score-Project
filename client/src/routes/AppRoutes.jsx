@@ -74,7 +74,7 @@ export const AppRoutes = () => {
               <Route path='/createTest' element={<CreateTest />} />
               <Route path='/oneTest/:id' element={<OneTest />} />
               <Route path='/allCompanies' element={<AllCompanies />} />
-              <Route path='/oneCompany/:id' element={<OneCompany />} />
+              <Route path='/oneCompany/:user_id' element={<OneCompany />} />
               {/* <Route path='/dashboard' element={<Dashboard />} /> */}
               {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
               {/* <Route path='/graphic' element={<AdminGraphics />} /> */}
