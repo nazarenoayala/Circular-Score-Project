@@ -6,7 +6,7 @@ import logger from 'morgan';
 import userRouter from './modules/userModules/user.routes.js';
 import testRouter from './modules/testModules/test.routes.js';
 import companyRouter from './modules/companyModules/company.routes.js';
-import statisticsRouter from './modules/statistics/statistics.routes.js';
+import statisticsRouter from './modules/statisticsModule/statistics.routes.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
