@@ -26,6 +26,7 @@ const OneTestCompany = () => {
           <MyButton
             text='Comenzar test'
             btnClass='btn-green'
+            onSubmit={() => navigate(`/oneQuestion/${id}`)}
           />
           <MyButton
             text='Volver atrás'

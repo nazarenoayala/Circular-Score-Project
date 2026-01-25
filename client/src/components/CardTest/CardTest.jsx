@@ -45,7 +45,7 @@ const CardTest = ({test}) => {
       </div>
       <div className='btnTest'>
         <MyButton
-          text = 'comenzar test'
+          text = 'Ir a test'
           onSubmit = {() => navigate(`/oneTestCompany/${test.test_id}`)}
           btnClass = 'btn-green'
         />

@@ -7,6 +7,7 @@ import userRouter from './modules/userModules/user.routes.js';
 import testRouter from './modules/testModules/test.routes.js';
 import companyRouter from './modules/companyModules/company.routes.js';
 import statisticsRouter from './modules/statisticsModule/statistics.routes.js';
+import questionRouter from './modules/questionModules/question.routes.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
@@ -33,6 +34,7 @@ app.use('/api/company', companyRouter);
 app.use('/api/test', testRouter);
 app.use('/api/company', companyRouter);
 app.use('/api/statistics', statisticsRouter);
+app.use('/api/question', questionRouter);
 
 
 // catch 404 and forward to error handler
