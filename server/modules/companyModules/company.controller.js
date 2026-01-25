@@ -57,10 +57,13 @@ class CompanyController {
 
 
   showCompanyProfile = async (req, res) => {
-    const {user_id} = req.params;
-
+    
     try {
-      let companyResult = await companyDal.showCompanyProfile([user_id]);
+      const {user_id} = req.params;
+      const {company_name, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background} = req.body;
+
+      let companyResult = await companyDal.showCompanyProfile([user_id, company_name, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background]);
+      
       res.status(200).json({
         message: `Información obtenida del user_id ${user_id}`,
         companyResult})
@@ -92,6 +95,25 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
+
+    showOneCompany = async (req, res) => {
+    
+    try {
+      const {user_id} = req.params;
+
+      const companyResult = await companyDal.showOneCompany(user_id);
+      
+      res.status(200).json({
+        message: `Información obtenida del user_id ${user_id}`,
+        company: companyResult[0]
+      });
+
+    } catch (error) {
+      console.log(error)
+      res.status(500).json(error);
+    }
+  }
+
 }
 
 export default new CompanyController();
