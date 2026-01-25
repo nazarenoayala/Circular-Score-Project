@@ -5,6 +5,10 @@ import { FormCompanyRegister3 } from '../../../components/FormCompanyRegister/Fo
 import { FormCompanyRegister4 } from '../../../components/FormCompanyRegister/FormCompanyRegister4';
 import { useNavigate } from 'react-router';
 import { fetchData } from '../../../../helpers/axiosHelper';
+import { companyRegisterSchema } from '../../../../schemas/companyRegister';
+import { ZodError } from 'zod';
+/* import { useContext } from 'react';
+import {AuthContextProvider} from '../../../context/AuthContext/AuthContextProvider' */
 
 const initialValues = {
   company_name: '',
@@ -17,10 +21,10 @@ const initialValues = {
   legal_form: '',
   active_years: '',
   company_size: '',
-  sector_name: '',
-  sector_name_other: '',
-  city_name: '',
-  province_name: '',
+  sector_id: '',
+  sector_id_other: '',
+  city_id: '',
+  province_id: '',
   gso: '',
   client_segment: [],
   stakeholders: [],
@@ -33,12 +37,19 @@ const CompanyRegister = () => {
   const [currentFormPage, setCurrentFormPage] = useState(1);
   const [locality, setLocality] = useState();
   const [province, setProvince] = useState();
+  const [valErrors, setValErrors] = useState('');
+  const [fetchError, setFetchError] = useState('');
 
+  /* const {token} = useContext(AuthContextProvider) */
+  
+  
   const navigate = useNavigate()
 //control de formulario, con inputs select/text y checkbox
   const handleChange = (e, id) => {
 
     const { name, value, checked } = e.target;
+    console.log(e);
+    
     if(name === 'client_segment' || name === 'stakeholders'){
       if(checked){
         if(name === 'stakeholders'){
@@ -72,15 +83,28 @@ const CompanyRegister = () => {
     }
     fetchDataGeo();
   },[])
+  
 
   const onSubmit = async(e) =>{
-    //FALTA VALIDAR 
     try{
       e.preventDefault()
+      //Validación de datos  
+      companyRegisterSchema.parse(newCompany);
+      console.log('Validación ok');
+      //mandar datos al Back
       const res = await fetchData('/company/register', 'POST', newCompany);
       console.log(res);
       navigate('/')
     }catch(error){
+      if (error instanceof ZodError){
+        const fieldsErrors = {};
+        error.issues.forEach((elem)=>{
+          fieldsErrors[elem.path[0]] = elem.message;
+        });
+        setValErrors(fieldsErrors);
+      }else{
+        setFetchError('Hay un error')
+      }
       console.log(error);
     }
   }
@@ -93,6 +117,8 @@ const CompanyRegister = () => {
         handleChange={handleChange}
         setCurrentFormPage={setCurrentFormPage}
         navigate={navigate}
+        valErrors={valErrors}
+        fetchError={fetchError}
       />}
       
       {currentFormPage === 2 && (
@@ -109,6 +135,7 @@ const CompanyRegister = () => {
           setCurrentFormPage={setCurrentFormPage}
           locality={locality}
           province={province}
+          valErrors={valErrors}
         />
       )}
       {currentFormPage === 4 && (

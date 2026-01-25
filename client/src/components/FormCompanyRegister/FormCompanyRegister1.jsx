@@ -6,7 +6,9 @@ export const FormCompanyRegister1 = ({
                       newCompany, 
                       handleChange, 
                       setCurrentFormPage,
-                      navigate}) => {
+                      navigate,
+                      valErrors,
+                      fetchError}) => {
   return (
     <>
       <div className='ppal'>
@@ -20,6 +22,10 @@ export const FormCompanyRegister1 = ({
             value={newCompany.company_name}
             name='company_name'
             onChange={handleChange} />
+
+            {valErrors?.company_name && (
+              <p>{valErrors.company_name}</p>
+            )}
             
           <label>2. Nombre de la persona de contacto</label>
           <input
@@ -29,6 +35,10 @@ export const FormCompanyRegister1 = ({
             name='contact_name'
             onChange={handleChange} />
 
+            {valErrors?.contact_name && (
+              <p>{valErrors.contact_name}</p>
+            )}
+
           <label>3. Cargo de la persona de contacto</label>
           <select
               value={newCompany.position}
@@ -37,16 +47,20 @@ export const FormCompanyRegister1 = ({
               <option value="" disabled>Elige una opción</option>
           {question3.map((elem)=>{
             return(
-              <option key={elem.id}>{elem.name}</option>
+              <option key={elem.id} value={elem.id}>{elem.name}</option>
             )
           })}
           </select>
-            {newCompany.position === 'Otro (Especificar)' && <input
+            {newCompany.position === '12' && <input
             type="text"
             placeholder='Especificar el cargo'
             value={newCompany.position_other}
             name='position_other'
             onChange={handleChange} />}
+
+            {valErrors?.position_other && (
+              <p>{valErrors.position_other}</p>
+            )}
 
           <label>4. Teléfono de contacto</label>
           <input
@@ -56,6 +70,10 @@ export const FormCompanyRegister1 = ({
             name='phone_number'
             onChange={handleChange} />
 
+            {valErrors?.phone_number && (
+              <p>{valErrors.phone_number}</p>
+            )}
+
           <label htmlFor="">5. Correo electrónico de contacto</label>
           <input
             type="text"
@@ -63,6 +81,14 @@ export const FormCompanyRegister1 = ({
             value={newCompany.user_email}
             name='user_email'
             onChange={handleChange} />
+
+            {valErrors?.user_email && (
+              <p>{valErrors.user_email}</p>
+            )}
+            {fetchError?.user_email && (
+              <p>{fetchError.user_email}</p>
+            )}
+
             <div>
               <button onClick={()=>navigate('/')}>Cancelar</button>
               <button onClick={()=>setCurrentFormPage(2)}>Siguiente</button>

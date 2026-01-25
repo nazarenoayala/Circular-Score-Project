@@ -1,6 +1,6 @@
 import companyDal from './company.dal.js';
 import { generateToken } from '../../utils/jwtUtils.js';
-import companyDal from "./company.dal.js";
+
 
 class CompanyController {
   test = async (req, res) => {
@@ -43,7 +43,7 @@ class CompanyController {
         ods_background
       ]);
 
-      res.status(200).json({message:'register ok'});
+      res.status(200).json({message:'register ok', result});
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -58,7 +58,7 @@ class CompanyController {
       let result = await companyDal.registerCompany([
       contact_name, position, phone_number, user_email, city_name, province_name
       ]);
-      res.status(200).json({message: 'register ok'});
+      res.status(200).json({message: 'register ok', result});
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -72,12 +72,7 @@ class CompanyController {
 
   //    }
   // }
-
-  }
- 
-  //pedir datos de localidades y provincias
-
-  locality = async (req, res) => {
+locality = async (req, res) => {
     try {
       let result = await companyDal.locality();
       res.status(200).json(result);
@@ -92,7 +87,7 @@ class CompanyController {
       res.status(200).json(result);
     } catch (error) {
       console.log(error);
-      res.status(500).json(error);
+      res.status(500).json(error);}}
 
       showCompanyProfile = async (req, res) => {
         const { user_id } = req.params;
@@ -147,17 +142,6 @@ class CompanyController {
           res.status(500).json(error);
         }
       };
-  }
-
-  Province = async(req, res)=>{
-    try{
-      let result = await companyDal.Province();
-      res.status(200).json(result);
-    }catch(error){
-      console.log(error);
-      res.status(500).json(error);
-    }
-  }
 
 
   showCompanyProfile = async (req, res) => {
@@ -196,6 +180,7 @@ class CompanyController {
       res.status(500).json(error);
     }
   };
-}
+  }
+ 
 
 export default new CompanyController();

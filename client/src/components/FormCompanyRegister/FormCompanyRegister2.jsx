@@ -27,7 +27,7 @@ export const FormCompanyRegister2 = ({
               Elige una opción
             </option>
             {question6.map((elem) => {
-              return <option key={elem.id}>{elem.name}</option>;
+              return <option key={elem.id} value={elem.id}>{elem.name}</option>;
             })}
           </select>
 
@@ -41,7 +41,7 @@ export const FormCompanyRegister2 = ({
               Elige una opción
             </option>
             {question7.map((elem) => {
-              return <option key={elem.id}>{elem.name}</option>;
+              return <option key={elem.id} value={elem.id}>{elem.name}</option>;
             })}
           </select>
           
@@ -54,7 +54,7 @@ export const FormCompanyRegister2 = ({
             <option value="" disabled>Elige una opción</option>
             {question8.map((elem)=>{
               return(
-                <option key={elem.id}>{elem.name}</option>
+                <option key={elem.id} value={elem.id}>{elem.name}</option>
               )
             })}
           </select>
@@ -67,7 +67,7 @@ export const FormCompanyRegister2 = ({
               <option value='' disabled>Elige una opción</option>
               {question9.map((elem)=>{
                 return(
-                  <option key={elem.id}>{elem.name}</option>
+                  <option key={elem.id} value={elem.id}>{elem.name}</option>
                 )
               })}
           </select>

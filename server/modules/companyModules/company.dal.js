@@ -14,7 +14,7 @@ class CompanyDal {
   }
   registerCompanyInUser = async (values) => {
     try{
-      let sql = 'UPDATE user SET contact_name = ?, position = ?, phone_number = ?, user_email = ?, city_name = ?, province_name = ? WHERE user_id = ?'
+      let sql = 'UPDATE user SET contact_name = ?, position = ?, phone_number = ?, user_email = ?, city_id = ?, province_id = ? WHERE user_id = ?'
       let result = await executeQuery(sql, values);
       return result;
     }catch(error){
