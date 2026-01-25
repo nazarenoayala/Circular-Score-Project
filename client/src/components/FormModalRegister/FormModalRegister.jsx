@@ -25,7 +25,6 @@ export const FormModalRegister = ({ setShowPage }) => {
     >
       <Modal.Dialog>
         <Modal.Header>
-          {/* <Modal.Title className='text-center'>!Ya casi estás!</Modal.Title> */}
           <h1>¡Ya casi estás!</h1>
         </Modal.Header>
 

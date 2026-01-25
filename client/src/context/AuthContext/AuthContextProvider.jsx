@@ -33,9 +33,7 @@ export const AuthContextProvider = ({children}) => {
 
       try {
         let result = await fetchData('/test/allTest', 'GET', null, null);
-        console.log(result);
         setTest(result.data.result);
-
       } catch (error) {
         console.log(error);
       }
