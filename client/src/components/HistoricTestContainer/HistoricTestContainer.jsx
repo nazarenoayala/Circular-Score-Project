@@ -1,16 +1,17 @@
 import React, { useEffect , useState } from 'react';
+import {useNavigate} from 'react-router';
 import { fetchData } from '../../../helpers/axiosHelper';
-import './historyTest.css';
 import { MyButton } from '../MyButton/MyButton';
+import './historyTest.css';
 
 export const HistoricTestContainer = ({id}) => {
 
   const [history, setHistory] = useState();
-  console.log(history)
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
 
-    // Todo: hay que traerse el completed de la base de datos
     const fetchOneTestHistory = async () => {
 
       try {
@@ -37,12 +38,19 @@ export const HistoricTestContainer = ({id}) => {
           <div className='historyTestCard' key={id}>
             <p>{test.test_date ? test.test_date : 'No hay tests' }</p>
             <p>-</p>
-            <p>PUNTUACIÓN: {test.result}</p>
-            <p>{parseInt(test.result_total)} %</p>
+            <p>PUNTUACIÓN: {test.completed && test.result}</p>
+            <p>{test.completed ? parseInt(test.result_total) : 'NC'} </p>
+            {test.completed ? <MyButton
+              btnClass='btn-green'
+              text='Detalles'
+              onSubmit={() => navigate('/userTestRecord')}
+            />
+            :
             <MyButton
               btnClass='btn-green'
-              text='detalles'
+              text='Continuar'
             />
+            }
           </div>
         )
       })}
