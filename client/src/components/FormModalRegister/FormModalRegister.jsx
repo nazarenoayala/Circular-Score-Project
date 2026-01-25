@@ -25,7 +25,6 @@ export const FormModalRegister = ({ setShowPage }) => {
     >
       <Modal.Dialog>
         <Modal.Header>
-          {/* <Modal.Title className='text-center'>!Ya casi estás!</Modal.Title> */}
           <h1>¡Ya casi estás!</h1>
         </Modal.Header>
 
@@ -36,7 +35,7 @@ export const FormModalRegister = ({ setShowPage }) => {
 
         <Modal.Footer >
           <MyButton
-            text={'CORREO CONFIRMADO'}
+            text={'ACTIVARÉ MI CUENTA'}
             btnClass='btn-green'
             onSubmit={onSubmit}
           />

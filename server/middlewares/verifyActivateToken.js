@@ -8,21 +8,17 @@ dotenv.config();
 export const verifyActivateToken = (req, res, next) => {
   
   const {token} = req.params;
-  console.log(req.params);
-  
   
    if (!token) {
-    res.status(401).json({message: "No autorizado"})
+    return res.status(401).json({message: "No autorizado"});
    } else {
       jwt.verify(token, process.env.SECRET_TOKEN_KEY,
         (err, result) => {
-          console.log("error token", result);
           if (err) {
-            res.status(401).json({message: "No autorizado"})
-          } else {
-            next();
+            console.log("Error al validar.", err);
+            res.status(401).json({message: "Token inválido o caducado."})
           }
-
-        })
-    }
+          next();
+        });
+      }
 }

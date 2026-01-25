@@ -19,7 +19,7 @@ const routes = express.Router();
 routes.post('/register', validateUserRegister(registerSchema), userController.register);
 
 // Ruta de activación
-routes.get('/activateUser/:token/:user_id', verifyActivateToken , userController.activateUser)
+routes.put('/activateUser/:token/:user_id', verifyActivateToken , userController.activateUser)
 
 // Ruta de login de usuario
 routes.post('/login', validateUserLogin(loginSchema), userController.login);
