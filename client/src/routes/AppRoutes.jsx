@@ -73,7 +73,7 @@ export const AppRoutes = () => {
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
               <Route path="/userODSGraphic" element={<UserODSGraphic />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
-              <Route path="/oneTestCompany/:id/oneQuestion/:id" element={<OneQuestion />} />
+              <Route path="/oneQuestion/:id" element={<OneQuestion />} />
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
