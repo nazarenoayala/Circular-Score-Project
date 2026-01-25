@@ -16,6 +16,22 @@ class StatisticsDal {
 
   }
 
+  getHistoricFromOneTest = async (values) => {
+
+
+    try {
+
+      let result = await executeQuery(sql.historicOneTest, values);
+
+      return result;
+      
+    } catch (error) {
+      throw error;
+    }
+
+
+  }
+
 }
 
 export default new StatisticsDal();
