@@ -35,7 +35,7 @@ export const FormModalRegister = ({ setShowPage }) => {
 
         <Modal.Footer >
           <MyButton
-            text={'CORREO CONFIRMADO'}
+            text={'ACTIVARÉ MI CUENTA'}
             btnClass='btn-green'
             onSubmit={onSubmit}
           />
