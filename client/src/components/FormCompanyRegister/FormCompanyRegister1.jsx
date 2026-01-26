@@ -3,7 +3,8 @@ import './formCompanyRegister.css'
 import { question3 } from '../../data/CompanyRegisterData/Question3'
 
 export const FormCompanyRegister1 = ({
-                      newCompany, 
+                      newCompany1, 
+                      newCompany2, 
                       handleChange, 
                       setCurrentFormPage,
                       navigate,
@@ -19,7 +20,7 @@ export const FormCompanyRegister1 = ({
           <input
             type="text"
             placeholder='Nombre de la empresa'
-            value={newCompany.company_name}
+            value={newCompany1.company_name}
             name='company_name'
             onChange={handleChange} />
 
@@ -31,7 +32,7 @@ export const FormCompanyRegister1 = ({
           <input
             type="text"
             placeholder='Nombre de la persona de contacto'
-            value={newCompany.contact_name}
+            value={newCompany2.contact_name}
             name='contact_name'
             onChange={handleChange} />
 
@@ -41,7 +42,7 @@ export const FormCompanyRegister1 = ({
 
           <label>3. Cargo de la persona de contacto</label>
           <select
-              value={newCompany.position}
+              value={newCompany2.position}
               name='position'
               onChange={handleChange}>
               <option value="" disabled>Elige una opción</option>
@@ -51,22 +52,16 @@ export const FormCompanyRegister1 = ({
             )
           })}
           </select>
-            {newCompany.position === '12' && <input
-            type="text"
-            placeholder='Especificar el cargo'
-            value={newCompany.position_other}
-            name='position_other'
-            onChange={handleChange} />}
 
-           {/*  {valErrors?.position_other && (
-              <p>{valErrors.position_other}</p>
-            )} */}
+          {valErrors?.position && (
+              <p>{valErrors.position}</p>
+            )}
 
           <label>4. Teléfono de contacto</label>
           <input
             type="text"
             placeholder='Teléfono de contacto'
-            value={newCompany.phone_number}
+            value={newCompany2.phone_number}
             name='phone_number'
             onChange={handleChange} />
 
@@ -78,7 +73,7 @@ export const FormCompanyRegister1 = ({
           <input
             type="text"
             placeholder='Correo electrónico de contacto'
-            value={newCompany.user_email}
+            value={newCompany2.user_email}
             name='user_email'
             onChange={handleChange} />
 

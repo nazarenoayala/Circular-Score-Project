@@ -23,8 +23,8 @@ class CompanyController {
         active_years,
         company_size,
         gso,
-        client_segment,
-        stakeholders,
+/*         client_segment,
+        stakeholders, */
         sustainability,
         ods_background
       } = req.body;
@@ -37,8 +37,8 @@ class CompanyController {
         active_years,
         company_size,
         gso,
-        client_segment,
-        stakeholders,
+/*         client_segment,
+        stakeholders, */
         sustainability,
         ods_background
       ]);
@@ -50,13 +50,16 @@ class CompanyController {
     }
   };
   registerCompanyInUser = async (req, res) => {
+    console.log('BODYyyyyyyyyyyyy:', req.body);
     try {
       const { user_id } = req.params;
 
-      const {contact_name, position, phone_number, user_email, city_name, province_name} = req.body
+      const {contact_name, position, phone_number, user_email, city_id, province_id} = req.body
+      console.log(position);
+      
 
       let result = await companyDal.registerCompany([
-      contact_name, position, phone_number, user_email, city_name, province_name
+      contact_name, position, phone_number, user_email, city_id, province_id, user_id
       ]);
       res.status(200).json({message: 'register ok', result});
     } catch (error) {

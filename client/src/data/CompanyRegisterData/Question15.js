@@ -40,3 +40,5 @@ export const question15 = [
     name:'Otros grupos de interés',
   }
 ]
+
+export const question15Length = question15.length;

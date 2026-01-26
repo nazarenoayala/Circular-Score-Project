@@ -20,3 +20,5 @@ export const question17 = [
     name:'No ha trabajado ni conoce los ODS '
   }
 ]
+
+export const question17Length = question17.length;
