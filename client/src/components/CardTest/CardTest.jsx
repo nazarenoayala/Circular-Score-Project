@@ -12,6 +12,11 @@ const CardTest = ({test}) => {
   const {testRes} = test;
   const lastResult = parseInt(testRes);
 
+    //para separar el nº de ODS en una línea y el nombre del test en otra
+  const ODS = test.test_name.slice(0,6);
+  const testname = test.test_name.slice(8);
+
+
   let classProgress;
 
   if (lastResult >= 80) {
@@ -29,8 +34,8 @@ const CardTest = ({test}) => {
       <div className='image-title'>
         <img src={`${urlImage}/ODSimages/${test.test_image}`}alt="" />
         <div className='odsTitle'>
-          <h3>{test.test_name}</h3>
-          <h3>{test.test_name}</h3>
+          <h3>{ODS}</h3>
+          <h3>{testname}</h3>
         </div>
       </div>
       <div className='resultsBar'>
