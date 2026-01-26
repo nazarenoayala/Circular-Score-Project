@@ -5,7 +5,7 @@ const routes = express.Router();
 
 //Registro de Empresa
 routes.post('/register', companyController.registerCompany);
-routes.put('/register', companyController.registerCompanyInUser);
+routes.put('/registerUpdate', companyController.registerCompanyInUser);
 //pedir datos de localidades y provincias
 routes.get('/locality', companyController.locality);
 routes.get('/province', companyController.Province);

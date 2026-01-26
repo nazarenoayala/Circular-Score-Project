@@ -58,9 +58,9 @@ export const FormCompanyRegister1 = ({
             name='position_other'
             onChange={handleChange} />}
 
-            {valErrors?.position_other && (
+           {/*  {valErrors?.position_other && (
               <p>{valErrors.position_other}</p>
-            )}
+            )} */}
 
           <label>4. Teléfono de contacto</label>
           <input

@@ -93,7 +93,9 @@ const CompanyRegister = () => {
       console.log('Validación ok');
       //mandar datos al Back
       const res = await fetchData('/company/register', 'POST', newCompany);
+      const res2 = await fetchData('/company/registerUpdate', 'PUT', newCompany);
       console.log(res);
+      console.log(res2);
       navigate('/')
     }catch(error){
       if (error instanceof ZodError){
