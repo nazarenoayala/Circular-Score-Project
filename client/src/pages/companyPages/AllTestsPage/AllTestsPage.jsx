@@ -43,7 +43,7 @@ const AllTestsPage = () => {
   },[])
 
   return (
-    <Container>
+    <Container className='p-5'>
       {ready && <Row>
             {allTest.map((elem) => {
               return (

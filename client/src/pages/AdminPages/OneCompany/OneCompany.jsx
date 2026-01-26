@@ -9,7 +9,6 @@ import './oneCompany.css'
 const OneCompany = () => {
 
   const {user_id} = useParams(); 
-  console.log(user_id);
 
   const [company, setCompany] = useState();
 
@@ -22,8 +21,6 @@ const OneCompany = () => {
 
   useEffect(() => {
     const fetchCompany = async () => {
-
-      console.log("userrr_iddddd", user_id);
       
       try {
         const res = await fetchData(`/company/oneCompany/${user_id}`, "GET",  null, token)
@@ -35,6 +32,8 @@ const OneCompany = () => {
         console.log(error);
       }
     }
+
+    
 
     fetchCompany();
   }, [user_id, token])

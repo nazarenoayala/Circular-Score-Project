@@ -76,12 +76,12 @@ class CompanyController {
 
   editCompanyProfile = async (req, res) => {
 
-    const {user_id} = req.params;
-
-    const {company_name, sector_id, legal_form, active_years, company_size, gso, stakeholders, sustainability, ods_background} = req.body
-
+    
+    
     try {
+      const {user_id} = req.params;
 
+      const {company_name, sector_id, legal_form, active_years, company_size, gso, stakeholders, sustainability, ods_background} = req.body
 
       let uptResult = await companyDal.editCompanyProfile([user_id, company_name, sector_id, legal_form, active_years, company_size, gso, stakeholders, sustainability, ods_background]);
 
@@ -96,7 +96,24 @@ class CompanyController {
     }
   }
 
-    showOneCompany = async (req, res) => {
+  //controlador de todas las empresas.yas
+allCompanies = async (req, res) => {
+    const {id} = req.params;
+
+    try {
+      let companyResult = await companyDal.allCompanies([id]);
+      res.status(200).json({
+        message: 'Información de la empresa', companyResult})
+
+    } catch (error) {
+
+      console.log(error)
+      
+      res.status(500).json(error);
+    }
+  }
+
+  showOneCompany = async (req, res) => {
     
     try {
       const {user_id} = req.params;
@@ -113,7 +130,7 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
-
 }
+
 
 export default new CompanyController();

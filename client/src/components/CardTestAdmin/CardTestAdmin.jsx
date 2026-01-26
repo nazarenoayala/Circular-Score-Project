@@ -11,6 +11,10 @@ const CardTestAdmin = ({test}) => {
   const [isPublic, setIsPublic] = useState(test.is_public);
   const navigate = useNavigate();
 
+    //para separar el nº de ODS en una línea y el nombre del test en otra
+  const ODS = test.test_name.slice(0,6);
+  const testname = test.test_name.slice(8);
+
   const disableTest = async () => {
 
     try {
@@ -40,8 +44,13 @@ const CardTestAdmin = ({test}) => {
       <div className='image-title'>
         <img src={`${urlImage}/ODSimages/${test.test_image}`}alt="" />
         <div className='odsTitle'>
+<<<<<<< HEAD
           <h3>{test.test_name.split('·')[0]}</h3>
           <h3>{test.test_name.split('·')[1]}</h3>
+=======
+         <h3>{ODS}</h3>
+          <h3>{testname}</h3>
+>>>>>>> 85a39b9a9843f544f10056033096c2b66b56cab8
         </div>
       </div>
       <div className='buttonsAdminTest'>
