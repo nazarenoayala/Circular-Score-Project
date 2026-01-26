@@ -29,70 +29,9 @@ class TestController {
 
       let result = await testDal.selectOneTest(value);
 
-      res.status(200).json({message: 'Datos de test traidos con éxito', result});
+      res.status(200).json({message: 'El test se ha cargado de BD', result});
       
     } catch (error) {
-
-      console.log(error);
-
-      res.status(500).json(error);
-      
-    }
-
-  }
-
-  disableTest = async (req, res) => {
-
-    const {id} = req.params;
-    let values = [id];
-
-    try {
-
-      let result = await testDal.disableTest(values);
-
-      res.status(200).json({message: 'Test deshabilitado', result});
-      
-    } catch (error) {
-
-      console.log(error);
-      res.status(500).json(error);
-      
-    }
-
-  }
-
-  enableTest = async (req, res) => {
-
-    const {id} = req.params;
-    let value = [id];
-
-    try {
-
-      let result = await testDal.enableTest(value);
-
-      res.status(200).json({message: 'Test habilitado', result});
-      
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-
-
-  }
-
-  editTest = async (req, res) => {
-
-    const {test_name} = req.body;
-    let value = [test_name];
-
-    try {
-
-      let result = testDal.createTest(value);
-
-      res.status(200).json({message: 'test editado correctamente', result});
-      
-    } catch (error) {
-
       res.status(500).json(error);
       console.log(error);
     }

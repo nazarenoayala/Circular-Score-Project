@@ -87,6 +87,20 @@ class CompanyDal {
       throw error;
     }
   }
+
+  showOneCompany = async(user_id) => {
+    try {
+      let sql = 'SELECT * FROM company_data LEFT JOIN user ON company_data.user_id = user.user_id WHERE company_data.user_id = ?'
+
+      return await executeQuery(sql, [user_id]);
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+
 }
 
 

@@ -44,8 +44,10 @@ const CardTestAdmin = ({test}) => {
       <div className='image-title'>
         <img src={`${urlImage}/ODSimages/${test.test_image}`}alt="" />
         <div className='odsTitle'>
-         <h3>{ODS}</h3>
-          <h3>{testname}</h3>
+<<<<<<< HEAD
+          <h3>{test.test_name.split('·')[0]}</h3>
+          <h3>{test.test_name.split('·')[1]}</h3>
+>>>>>>>>> Temporary merge branch 2
         </div>
       </div>
       <div className='buttonsAdminTest'>

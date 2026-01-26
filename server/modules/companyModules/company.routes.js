@@ -26,4 +26,6 @@ routes.post('/registerCompany/:user_id', companyController.registerCompany);
  //probando ruta de todas las empresas.yas
  routes.get('/allCompanies', companyController.allCompanies)
 
+  routes.get('/oneCompany/:user_id', companyController.showOneCompany);
+
 export default routes;
