@@ -18,6 +18,7 @@ export const verifyActivateToken = (req, res, next) => {
             console.log("Error al validar.", err);
             res.status(401).json({message: "Token inválido o caducado."})
           }
+          console.log("Token validado.", result);
           next();
         });
       }

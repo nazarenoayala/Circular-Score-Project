@@ -48,7 +48,7 @@ export const FormUserLogin = () => {
       //navigate(`/companyProfile`)
       //TODO Esta pa cuando la vista esté disponible
       // const user_id = userByToken.data.userData.user_id;
-      // navigate(`/companyProfile/${user_id}`)
+      navigate(`/alltests`);
 
     } catch (error) {
       console.log(error);
