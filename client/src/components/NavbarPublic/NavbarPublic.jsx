@@ -3,13 +3,8 @@ import { MyButton } from '../../components/MyButton/MyButton';
 import { useEffect } from 'react';
 
 
-export const NavbarPublic = ({setShowPage, showPage}) => {
-
+export const NavbarPublic = ({setShowPage}) => {
   
-
-
-
-
 
   return (
     <div className='header-public'>

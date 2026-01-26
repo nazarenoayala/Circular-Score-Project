@@ -7,8 +7,14 @@
   justify-content: center;
   z-index: 50;
   text-align: center;
+
 }
 
+.modal-dialog{
+  display: flex;
+  justify-self: center;
+  justify-items: center;
+}
 
 .modal-content {
   background: white;

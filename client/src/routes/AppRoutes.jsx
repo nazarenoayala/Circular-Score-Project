@@ -7,6 +7,7 @@ import { PublicRoutes } from './PublicRoutes';
 //Páginas públicas
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
 const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
+const ActivateUser = lazy(()=> import('../components/PublicComponents/ActivateUser/ActivateUser.jsx'));
 const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.jsx"));
 
 //Páginas privadas usuario
@@ -46,7 +47,18 @@ export const AppRoutes = () => {
           {/* rutas públicas */}
           <Route element={<PublicRoutes />}>
             <Route element={<PublicLayout  setShowPage={setShowPage} showPage={showPage}/>}>
-            <Route path='/' element={<Home  setShowPage={setShowPage} showPage={showPage}/>} />
+              <Route path='/' element={<Home 
+                                          setShowPage={setShowPage} 
+                                          showPage={showPage}
+                                      />} 
+              />
+                <Route 
+                  path='activateUser/:token/:user_id' 
+                  element={<ActivateUser 
+                            setShowPage={setShowPage}
+                          />}
+                />
+              <Route/>
             </Route>
           </Route>
 
@@ -61,7 +73,7 @@ export const AppRoutes = () => {
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
               <Route path="/userODSGraphic" element={<UserODSGraphic />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
-              <Route path="/oneTestCompany/:id/oneQuestion/:id" element={<OneQuestion />} />
+              <Route path="/oneQuestion/:id" element={<OneQuestion />} />
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
@@ -72,7 +84,7 @@ export const AppRoutes = () => {
               <Route path='/createTest' element={<CreateTest />} />
               <Route path='/oneTest/:id' element={<OneTest />} />
               <Route path='/allCompanies' element={<AllCompanies />} />
-              <Route path='/oneCompany/:id' element={<OneCompany />} />
+              <Route path='/oneCompany/:user_id' element={<OneCompany />} />
               {/* <Route path='/dashboard' element={<Dashboard />} /> */}
               {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
               {/* <Route path='/graphic' element={<AdminGraphics />} /> */}

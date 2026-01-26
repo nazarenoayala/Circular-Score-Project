@@ -37,8 +37,9 @@ const sendActivationMail = async (userData) => {
   const {user_email, user_id} = userData;
   console.log("userEmail en el correo", user_email);
 
+  // He aprovechado para parametrizar la duración del generate token
   const activationToken = generateToken(user_id, "20m");
-  const activationLink = `${process.env.MAILER_HOST}/activateUser/${user_id}/${activationToken}`;
+  const activationLink = `${process.env.MAILER_ENDPOINT}/${activationToken}/${user_id}`;
   const subject = "Correo de confirmación de cuenta CircularScore";
   const text = "Usa el link facilitado para completar la activación de tu cuenta en Circular Score."
   let html = loadHtmlTemplate();
