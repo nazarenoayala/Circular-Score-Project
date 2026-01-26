@@ -142,7 +142,7 @@ class UserController {
   }
 
   // Hacemos update solo a la tabla user
-  updateUserProfile = async (req, res) => {
+  updateProfile = async (req, res) => {
     const {userData, companyData} = req.params;
 
     if(userData.length !== 0){
@@ -150,7 +150,7 @@ class UserController {
         const {name, last_name, phone_number, city_id , province_id, position, user_id} = userData;
         let values = [name, last_name, phone_number, city_id, province_id, position, user_id];
   
-        let uptResult = await userDal.editUser(values);
+        let uptResult = await userDal.updateUserProfile(values);
   
         res.status(200).json({
           message: "Actualizado correctamente",
@@ -166,9 +166,9 @@ class UserController {
     if(companyData.length !== 0){
       try {
         const {company_name, company_email, sector_id, company_type , legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background} = companyData;
-        let values = [company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background];
+        let values = [company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background, user_id];
   
-        let uptResult = await userDal.editUser(values);
+        let uptResult = await userDal.updateCompanyProfile(values);
   
         res.status(200).json({
           message: "Actualizado correctamente",
