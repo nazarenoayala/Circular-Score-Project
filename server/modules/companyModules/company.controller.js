@@ -184,24 +184,24 @@ locality = async (req, res) => {
     }
   };
 
-   showOneCompany = async (req, res) => {
-    
-    try {
-      const {user_id} = req.params;
+  //controlador de todas las empresas.yas
+allCompanies = async (req, res) => {
+    const {id} = req.params;
 
-      const companyResult = await companyDal.showOneCompany(user_id);
-      
+    try {
+      let companyResult = await companyDal.allCompanies([id]);
       res.status(200).json({
-        message: `Información obtenida del user_id ${user_id}`,
-        company: companyResult[0]
-      });
+        message: 'Información de la empresa', companyResult})
 
     } catch (error) {
+
       console.log(error)
+      
       res.status(500).json(error);
     }
   }
   }
+
 
 
 export default new CompanyController();

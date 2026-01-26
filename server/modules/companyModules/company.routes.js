@@ -23,6 +23,7 @@ routes.post('/registerCompany/:user_id', companyController.registerCompany);
  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile)
  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile);
 
- routes.get('/oneCompany/:user_id', companyController.showOneCompany);
+ //probando ruta de todas las empresas.yas
+ routes.get('/allCompanies', companyController.allCompanies)
 
 export default routes;
