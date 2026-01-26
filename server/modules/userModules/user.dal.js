@@ -77,8 +77,9 @@ class UserDal {
       
       let sql = `SELECT u.user_id, u.name, u.last_name, u.type, u.phone_number, 
                 u.province_id, u.city_id, u.user_email, u.position, c.company_name,
-                c.sector_id, c.company_type, c.legal_form, c.active_years, c.company_size, 
-                c.gso, c.client_segment, c.stakeholders, c.sustainability, c.ods_background
+                c.company_email, c.sector_id, c.company_type, c.legal_form, 
+                c.active_years, c.company_size, c.gso, c.client_segment, 
+                c.stakeholders, c.sustainability, c.ods_background
                 FROM user u
                 LEFT JOIN company_data c ON u.user_id = c.user_id
                 WHERE u.user_id = ?`
@@ -100,6 +101,7 @@ class UserDal {
 
       const companyData = {
         company_name: result[0].company_name,
+        company_email: result[0].company_email,
         sector_id: result[0].sector_id, 
         company_type: result[0].company_type, 
         legal_form: result[0].legal_form, 
