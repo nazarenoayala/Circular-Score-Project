@@ -11,7 +11,7 @@ const AdminTests = () => {
 
   return (
     
-    <Container>
+    <Container className='p-5'>
       <Row>
         {test.map((e) => {
           return (

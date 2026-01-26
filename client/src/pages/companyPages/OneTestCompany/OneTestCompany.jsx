@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { MyButton } from '../../../components/MyButton/MyButton';
+import { HistoricTestContainer } from '../../../components/HistoricTestContainer/HistoricTestContainer';
 import './oneTest.css';
 
 const urlImage = import.meta.env.VITE_IMAGES;
@@ -25,6 +26,7 @@ const OneTestCompany = () => {
           <MyButton
             text='Comenzar test'
             btnClass='btn-green'
+            onSubmit={() => navigate(`/oneQuestion/${id}`)}
           />
           <MyButton
             text='Volver atrás'
@@ -34,8 +36,8 @@ const OneTestCompany = () => {
         </div>
       </div>
       <h3>Test realizados</h3>
-      <div className='historicTest'>
-
+      <div className='historicTestContainer'>
+        <HistoricTestContainer id = {id}/>
       </div>
     </div>
   )

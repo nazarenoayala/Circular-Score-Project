@@ -43,7 +43,29 @@ class CompanyDal {
     }
   }
 
+//todas las empresas. esta consulta permite que cada objeto de empresa lleve los datos de la persona de contacto .yas
+ allCompanies = async() => {
+    try {
+     let sql = `
+      SELECT 
+        c.*, 
+        u.name, 
+        u.last_name, 
+        u.user_email, 
+        u.phone_number 
+      FROM company_data c
+      JOIN user u ON c.user_id = u.user_id
+      WHERE u.is_deleted = 0
+    `;
 
+      return await executeQuery(sql);
+
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
+
 
 export default new CompanyDal();
