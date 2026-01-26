@@ -92,6 +92,25 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
+
+  //controlador de todas las empresas.yas
+allCompanies = async (req, res) => {
+    const {id} = req.params;
+
+    try {
+      let companyResult = await companyDal.allCompanies([id]);
+      res.status(200).json({
+        message: 'Información de la empresa', companyResult})
+
+    } catch (error) {
+
+      console.log(error)
+      
+      res.status(500).json(error);
+    }
+  }
+
 }
+
 
 export default new CompanyController();

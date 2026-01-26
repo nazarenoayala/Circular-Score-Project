@@ -5,3 +5,10 @@
   margin-bottom: 2rem;
   color: #1a1a2e;
 }
+
+.card {
+width: 100%; 
+  max-width: 100%;
+  overflow: hidden;
+
+}
