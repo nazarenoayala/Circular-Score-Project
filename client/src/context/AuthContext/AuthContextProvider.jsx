@@ -19,8 +19,8 @@ export const AuthContextProvider = ({children}) => {
           // Habrá que añadir token en la petición
           let result = await fetchData('/user/userByToken', 'GET', null, tokenLS);
           setToken(tokenLS);
-          setUserData(result.userData);
-          setCompanyData(result.companyData);
+          setUserData(result.data.userData);
+          setCompanyData(result.data.companyData);
         } catch (error) {
           console.log(error);
         }
@@ -42,12 +42,14 @@ export const AuthContextProvider = ({children}) => {
 
   }, []);
 
+  console.log("resrasrasrasrsra", userData);
+
   const logout = () => {
     setUserData();
     setCompanyData();
     localStorage.removeItem("token");
   }
-
+  
   return (
     <>
       <AuthContext.Provider value={{
