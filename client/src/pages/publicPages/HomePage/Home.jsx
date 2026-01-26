@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './Home.css';
 import { FormUserRegister } from '../../../components/FormUserRegister/FormUserRegister';
 import { FormUserLogin } from '../../../components/FormUserLogin/FormUserLogin';
