@@ -15,7 +15,6 @@ export const verifyToken = (req, res, next) => {
       jwt.verify(token, process.env.SECRET_TOKEN_KEY,
         (err, result) => {
           if (err) {
-<<<<<<< HEAD
             console.log("error token", result);
             res.status(401).json({message: "No autorizado"})
           } else {
