@@ -12,6 +12,11 @@ const CardTest = ({test}) => {
   const {testRes} = test;
   const lastResult = parseInt(testRes);
 
+    //para separar el nº de ODS en una línea y el nombre del test en otra
+  const ODS = test.test_name.slice(0,6);
+  const testname = test.test_name.slice(8);
+
+
   let classProgress;
 
   if (lastResult >= 80) {
