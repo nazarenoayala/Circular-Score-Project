@@ -17,9 +17,6 @@ export const verifyToken = (req, res, next) => {
           if (err) {
 <<<<<<< HEAD
             console.log("error token", result);
-=======
-            console.log("error token", err);
->>>>>>> 85a39b9a9843f544f10056033096c2b66b56cab8
             res.status(401).json({message: "No autorizado"})
           } else {
             req.user_id = result.user_id;

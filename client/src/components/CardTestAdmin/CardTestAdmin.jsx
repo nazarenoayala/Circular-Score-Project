@@ -47,10 +47,7 @@ const CardTestAdmin = ({test}) => {
 <<<<<<< HEAD
           <h3>{test.test_name.split('·')[0]}</h3>
           <h3>{test.test_name.split('·')[1]}</h3>
-=======
-         <h3>{ODS}</h3>
-          <h3>{testname}</h3>
->>>>>>> 85a39b9a9843f544f10056033096c2b66b56cab8
+>>>>>>>>> Temporary merge branch 2
         </div>
       </div>
       <div className='buttonsAdminTest'>
