@@ -1,36 +1,38 @@
 import './NavbarPublic.css';
 import { MyButton } from '../../components/MyButton/MyButton';
+import { useEffect } from 'react';
 
-export const NavbarPublic = () => {
+
+export const NavbarPublic = ({setShowPage}) => {
+  
 
   return (
     <div className='header-public'>
       <div>
-        <img src="/src/assets/logo/logo.png" />
+        <img id='inicio' src="/src/assets/Images/logo/logo.png" />
       </div>
-
       <div className='buttons-cont'>
+        {/* Botones que redirigen de una sección a otra del home */}
         <MyButton
           text='Inicio'
-          /*  onSubmit={} */
+          onSubmit={() => document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' })}
           btnClass='btn-white'
         />
         <MyButton
           text='Características'
-          /*  onSubmit={} */
+          onSubmit={() => document.getElementById('caracteristicas').scrollIntoView({ behavior: 'smooth' })}
           btnClass='btn-white'
         />
         <MyButton
           text='Contacto'
-          /*     onSubmit={} */
+          onSubmit={() => document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })}
           btnClass='btn-white'
         />
         <MyButton
           text='Iniciar sesión'
-          /*   onSubmit={} */
+          onSubmit={() =>setShowPage('login')} 
           btnClass='btn-green'
         />
-
       </div>
     </div>
   )

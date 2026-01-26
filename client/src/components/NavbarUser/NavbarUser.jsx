@@ -1,30 +1,32 @@
 import React from 'react';
 import './NavbarUser.css';
+import { Link } from 'react-router';
 
 export const NavbarUser = () => {
+
   return (
     <div className="front-page">
       <section className="lateral-bar">
         <div>
           <img
-            src="/src/assets/logoblanco.png"
+            src="/src/assets/Images/Logo/logoblanco.png"
             alt=""
           ></img>
           <div className="container-logo">
-            <i className="fa-utility fa-semibold fa-house"></i>
-            <p>HOME</p>
+            <i className="fa-regular fa-house"></i>
+            <Link className='link' to={"/"} > HOME</Link>
           </div>
           <div className="container-logo">
-            <i className="fa-utility fa-semibold fa-briefcase"></i>
-            <p>Perfil de empresa</p>
+            <i className="fa-solid fa-business-time"></i>
+            <Link className='link' to={"/companyProfile/:id"} > Perfil de empresa</Link>
           </div>
           <div className="container-logo">
             <i className="fa-regular fa-file-lines"></i>
-            <p>Todos los tests</p>
+            <Link className='link' to={"/allTests"}>Todos los tests</Link>
           </div>
           <div className="container-logo">
             <i className="fa-regular fa-calendar"></i>
-            <p>Historial de tests</p>
+            <Link className='link' to={"/userTestRecord"}>Historial de tests</Link>
           </div>
 
           <div className="container-graphics">
@@ -34,16 +36,18 @@ export const NavbarUser = () => {
             >
               <summary>
                 <i className="fa-solid fa-chart-column"></i>
-                Datos analíticos
+                <p>Datos analíticos</p>
               </summary>
-              <option value="graphic">· Gráficos</option>
-              <option value="g-ODS">· Gráficos por ODS</option>
+              <div className='options-cont'>
+                <Link className='link' to={"/generalGraphic"}>· Gráficos</Link>
+                <Link className='link' to={"/userODSGraphic"}>· Gráficos por ODS</Link>
+              </div>
             </details>
           </div>
 
           <div className="container-logo">
             <i className="fa-solid fa-circle-notch"></i>
-            <p>IA Chat</p>
+            <Link className='link' to={"/IAChat"}>IA Chat</Link>
           </div>
         </div>
 

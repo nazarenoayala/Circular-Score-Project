@@ -1,0 +1,71 @@
+.card-test {
+
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #E5E7EA;
+  padding: 2rem;
+  border-radius: .5rem;
+  gap: 2rem;
+    height: 23rem;
+
+  .image-title {
+
+    display: flex;
+    gap: 1rem;
+
+    img {
+      width: 90px;
+    }
+
+    .odsTitle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .resultsBar {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    .progressBar {
+      height: 20px;
+      width: 100%;
+      border-radius: 2rem;
+      background-color: #E5E7EA;
+
+      .highResult {
+        border-radius: 2rem;
+        /* background-color: rgb(47, 255, 50); */
+        background-color: rgb(6, 147, 9);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .medResult {
+        border-radius: 2rem;
+        background-color: rgb(255, 224, 47);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        
+      }
+      
+      .lowResult {
+        border-radius: 2rem;
+        background-color: rgb(255, 47, 47);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+      }
+    }
+  }
+
+  .btnTest {
+    text-align: center;
+  }
+}

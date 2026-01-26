@@ -1,31 +1,52 @@
 import {compareString , hashString} from '../../utils/bcryptUtils.js'
 import {generateToken} from '../../utils/jwtUtils.js'
+import sendActivationMail from '../../utils/nodeMailer.js';
+import dotenv from 'dotenv'
 import userDal from './user.dal.js';
+
+dotenv.config();
 
 class UserController {
 
-  test = async (req, res) => {
 
+  // Controlador para traer la información de los test del user
+  showTestData = async(req, res) => {
+    const {user_id} = req.params;
+    console.log(user_id);
+    
     try {
-      res.status(200).json('Bien');
+      let utdResult = await userDal.showTestData([user_id])
+      
+      res.status(201).json({
+        message: `Datos de test de usuario ${user_id} obtenidos`,
+        utdResult
+      })
     } catch (error) {
-      res.status(500).json('Mal');
+      console.log();
+      res.status(500).json(error)
     }
-
   }
 
+  // Controlador de registro de usuario
   register = async (req, res) => {
+    
     try{
-      const {name, email, password} = req.body;
+      const {user_email, password} = req.body;
 
       //encriptar la password
       let hashedPass = await hashString(password, 10);
 
-      let values = [name, email, hashedPass]
+      let values = [user_email, hashedPass];
 
       let result = await userDal.register(values);
       
-      res.status(200).json({message: 'Datos insertados en BD', result});
+      // Enviamos correo de confirmación
+      const user_id = result.insertId;
+      const mailResult = await sendActivationMail({user_email: user_email, user_id: user_id});
+
+      const {token} = mailResult;
+
+      res.status(200).json({message: 'Datos insertados en BD', token: token});
 
     } catch (error){
       console.log(error);
@@ -33,14 +54,32 @@ class UserController {
     }
   }
 
-  login = async (req, res) => {
-    
-    const {email, password} = req.body;
+  activateUser = async (req, res) => {
+
+    const {user_id} = req.params;
 
     try {
-      //comprobamos la existencia del email
-      let result = await userDal.findUserByEmail(email);
+      
+      const ActivateResult = await userDal.activateUser(user_id);
 
+      res.status(201).json({message: "Usuario activado correctamente.", ActivateResult});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
+
+  // Login de usuario
+  login = async (req, res) => {
+    
+    const {user_email, password} = req.body;
+    console.log("user controller contenido de user_email", user_email);
+    
+    try {
+      //comprobamos la existencia del email
+      let result = await userDal.findUserByEmail(user_email);
+      console.log("resultado de la busqueda del email", result);
+      
       //si no hay user
       if(result.length === 0){
         res.status(401).json("Email no encontrado en DB");
@@ -52,11 +91,106 @@ class UserController {
           res.status(401).json({message: "Contraseña no coincide"});
         } else {
           //generamos un token
-          const token = generateToken(result[0].user_id);
-          console.log("Token generado correctamente");
-          res.status(200).json({message: "Login correcto", token});
+          const token = generateToken(result[0].user_id, "2d");
+          res.status(200).json({
+              message: "Login correcto",
+              token: token, 
+              user_id: result[0].user_id
+            });
         }
       }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
+
+  // Recuperamos la información del user usando el token
+  userByToken = async (req, res) => {
+    const {user_id} = req;
+    
+    try {
+      const userDataResult = await userDal.userByToken(user_id);
+
+      res.status(200).json({
+        userData: userDataResult.userData,
+        companyData: userDataResult.companyData,
+        message: 'User recuperado por token'
+      })
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  }
+
+  // Obtiene la info del user para alimentar el profile
+  showUserProfile = async (req, res) => {
+    const {user_id} = req.params;
+
+    try {
+      let userResult = await userDal.showUserProfile([user_id]);
+
+      res.status(200).json({
+        message: `Información obtenida del user_id ${user_id}`,
+        userResult
+      })
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+  // Hacemos update solo a la tabla user
+  updateUserProfile = async (req, res) => {
+    const {userData, companyData} = req.params;
+
+    if(userData.length !== 0){
+      try {
+        const {name, last_name, phone_number, city_id , province_id, position, user_id} = userData;
+        let values = [name, last_name, phone_number, city_id, province_id, position, user_id];
+  
+        let uptResult = await userDal.editUser(values);
+  
+        res.status(200).json({
+          message: "Actualizado correctamente",
+          uptResult
+        });
+        
+      } catch (error) {
+        console.log(error);
+        res.status(500).json(error)
+      }
+    }
+
+    if(companyData.length !== 0){
+      try {
+        const {company_name, company_email, sector_id, company_type , legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background} = companyData;
+        let values = [company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background];
+  
+        let uptResult = await userDal.editUser(values);
+  
+        res.status(200).json({
+          message: "Actualizado correctamente",
+          uptResult
+        });
+        
+      } catch (error) {
+        console.log(error);
+        res.status(500).json(error)
+      }
+    }
+  }
+
+  // Borrado lógico del usuario
+  banUser = async (req, res) => {
+    const {user_id} = req.params;
+    try {
+      let banResult = await userDal.banUser([user_id]);
+      res.status(200).json({
+        message: `Usuario con id ${user_id} baneado`,
+        banResult
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json(error)

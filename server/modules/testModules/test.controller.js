@@ -10,6 +10,7 @@ class TestController {
 
       res.status(200).json({message: 'Ruta ok', result});
 
+
     } catch (error) {
       
       res.status(500).json('No ok');
@@ -18,12 +19,11 @@ class TestController {
 
   }
 
-
   selectOneTest = async (req, res) => {
 
     const {id} = req.params;
 
-    let value = [id];
+    const value = [id];
 
     try {
 
