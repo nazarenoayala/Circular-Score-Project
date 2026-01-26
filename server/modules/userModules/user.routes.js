@@ -25,7 +25,7 @@ routes.put('/activateUser/:token/:user_id', verifyActivateToken , userController
 routes.post('/login', validateUserLogin(loginSchema), userController.login);
 
 // Ruta edición datos de usuario
-routes.post('/editUser', validateUserEdit(editSchema), userController.editUser);
+routes.put('/updateUserProfile', verifyToken, validateUserEdit(editSchema), userController.updateUserProfile);
 
 // Ruta baneo de usuario
 routes.put('/banUser/:user_id', userController.banUser);

@@ -42,8 +42,6 @@ export const AuthContextProvider = ({children}) => {
 
   }, []);
 
-  console.log("resrasrasrasrsra", userData);
-
   const logout = () => {
     setUserData();
     setCompanyData();
