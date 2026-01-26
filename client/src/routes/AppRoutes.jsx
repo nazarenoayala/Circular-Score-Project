@@ -73,7 +73,7 @@ export const AppRoutes = () => {
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
               <Route path="/userODSGraphic" element={<UserODSGraphic />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
-              <Route path="/oneTestCompany/:id/oneQuestion/:id" element={<OneQuestion />} />
+              <Route path="/oneQuestion/:id" element={<OneQuestion />} />
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
@@ -84,7 +84,7 @@ export const AppRoutes = () => {
               <Route path='/createTest' element={<CreateTest />} />
               <Route path='/oneTest/:id' element={<OneTest />} />
               <Route path='/allCompanies' element={<AllCompanies />} />
-              <Route path='/oneCompany/:id' element={<OneCompany />} />
+              <Route path='/oneCompany/:user_id' element={<OneCompany />} />
               {/* <Route path='/dashboard' element={<Dashboard />} /> */}
               {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
               {/* <Route path='/graphic' element={<AdminGraphics />} /> */}

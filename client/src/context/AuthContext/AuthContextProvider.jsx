@@ -32,6 +32,7 @@ export const AuthContextProvider = ({children}) => {
     const fetchTest = async () => {
 
       try {
+        // TODO: hay que añadirle el token a la petición
         let result = await fetchData('/test/allTest', 'GET', null, null);
         setTest(result.data.result);
       } catch (error) {

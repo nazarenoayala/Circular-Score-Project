@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useNavigate } from 'react-router'
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { fetchData } from "../../../../helpers/axiosHelper";
 
 const ActivateUser = ({setShowPage}) => {

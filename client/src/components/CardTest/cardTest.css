@@ -7,6 +7,7 @@
   padding: 2rem;
   border-radius: .5rem;
   gap: 2rem;
+    height: 23rem;
 
   .image-title {
 
@@ -34,6 +35,33 @@
       width: 100%;
       border-radius: 2rem;
       background-color: #E5E7EA;
+
+      .highResult {
+        border-radius: 2rem;
+        /* background-color: rgb(47, 255, 50); */
+        background-color: rgb(6, 147, 9);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .medResult {
+        border-radius: 2rem;
+        background-color: rgb(255, 224, 47);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        
+      }
+      
+      .lowResult {
+        border-radius: 2rem;
+        background-color: rgb(255, 47, 47);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+      }
     }
   }
 
