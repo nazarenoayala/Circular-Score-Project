@@ -15,6 +15,7 @@ routes.get('/companyProfilePage/:user_id', companyController.showCompanyProfile)
 //poner middleware validación inputs
  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile);
 
- routes.get('/oneCompany/:user_id', companyController.showOneCompany);
+ //probando ruta de todas las empresas.yas
+ routes.get('/allCompanies', companyController.allCompanies)
 
 export default routes;
