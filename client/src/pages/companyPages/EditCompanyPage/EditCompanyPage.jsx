@@ -6,6 +6,7 @@ import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
 import { fetchData } from '../../../../helpers/axiosHelper'
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { useNavigate } from 'react-router';
+import { id } from 'zod/v4/locales';
 
 import './EditCompany.css'
 
@@ -18,7 +19,9 @@ const initialValueCompany = {
   company_size:'',
   sustainability:'',
   ods_background:'',
-  gso:''
+  gso:'',
+  client_segment:[],
+  stakeholders:[]
 }
 
 const initialValueUser = {
@@ -39,6 +42,10 @@ const EditCompanyPage = () => {
   //Estado para user
   const [editUserData, setEditUserData] = useState(initialValueUser);
 
+  const [province, setProvince] = useState();
+  const [city, setCity] = useState();
+  const [valErrors, setValErrors] = useState('');
+
   //Cuando tenga los datos, los paso a estados locales
   useEffect(() =>{
     console.log("Datos de empresa:", companyData);
@@ -51,28 +58,54 @@ const EditCompanyPage = () => {
     }
   }, [companyData, userData]);
 
-  //funciones para control de inputs
-  const handleCompanyChange = (e) => {
-    const {name, value} = e.target;
-    //tengo q probar si funciona  
-    setEditCompanyData((prev) =>({
-      ...prev,
-      [name]: value
-    }))
-  }
+  //funciones para control de inputs. (uso la mismo control company para checkbox)
+  const handleCompanyChange = (e, id) => {
+    const {name, value, checked} = e.target;
+    if(name === 'client_segment' || name === 'stakeholders'){
+      if(checked){
+        //si se marca añado id al array
+        if (name === 'stakeholders') {
+          setEditCompanyData({
+            ...editCompanyData,
+            stakeholders: [...(editCompanyData.stakeholders || []), id]
+          })
+      }else if (name === 'client_segment') {
+        setEditCompanyData({
+          ...editCompanyData,
+          client_segment: [...(editCompanyData.client_segment || []), id]
+        })
+      }
+      }else{
+        if (name === 'client_segment'){
+          setEditCompanyData({
+            ...editCompanyData,
+            client_segment: editCompanyData.client_segment?.filter(elem => elem !== id)
+          });
+        }else if (name === 'stakeholders'){
+          setEditCompanyData({
+            ...editCompanyData,
+            stakeholders: editCompanyData.stakeholders?.filter(elem => elem !== id)
+          })
+        }
+      }
+    } else{
+      setEditCompanyData({...editCompanyData, [name]: value})
+    }
+}  
 
   const handleUserChange = (e) => {
-    const {name, value} = e.target;
-    //tengo q probar si funciona  
+    const {name, value} = e.target; 
     setEditUserData((prev) =>({
       ...prev,
       [name]: value
     }))
   }
 
-  //const handleCheckboxChange = () => {
-    
- // }
+ const handleLogOut = (e) => {
+  console.log(e);
+  logout(); //limpio los datos y LS
+  navigate('/'); 
+ }
 
   //funcion para guardar (enviar a la DB) 
   const sendDb = async (e) => {
@@ -106,7 +139,7 @@ const EditCompanyPage = () => {
     <main className='container mt-5 mb-5'>
       <header className='header-content mb-4'>
         <h1>Hola {editUserData.name}</h1>
-        <MyButton text="Cerrar Sesión" onSubmit={logout}/>
+        <MyButton text="Cerrar Sesión" onSubmit={handleLogOut}/>
       </header>
       {/* Card 1: Form empresa */}
       <section className='form-card mb-4'>
@@ -116,6 +149,9 @@ const EditCompanyPage = () => {
         <FormEditCompany
           editCompanyData={editCompanyData}
           handleCompanyChange={handleCompanyChange}
+          city={city}
+          province={province}
+          valErrors={valErrors}
         /> 
       </section>
 

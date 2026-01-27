@@ -16,3 +16,5 @@ export const question9 = [
     name:'Más de 250'
   },
 ]
+
+export const question9Length = question9.length;

@@ -33,7 +33,7 @@ export const NavbarPublic = ({ setShowPage, showPage }) => {
             onSubmit={() => setShowPage('login')}
             btnClass='btn-green'
           />
-          :
+            :
           <MyButton
             text='Registrarse'
             onSubmit={() => setShowPage('register')}

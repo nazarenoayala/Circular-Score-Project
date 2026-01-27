@@ -20,14 +20,14 @@ const transporter = nodemailer.createTransport({
 });
 
 // Pasamos el HTML a string, usando las librerías fs y path de node
-const loadHtmlTemplate = (html) => {
+const loadHtmlTemplate = () => {
   const filePath = path.join(
     __dirname,
     "public",
     "mail",
-    html = "Email.html"
+    "Email.html"
   );
-
+  
   return fs.readFileSync(filePath, "utf8");
 }
 
@@ -40,14 +40,15 @@ const sendActivationMail = async (userData) => {
     const activationToken = generateToken(user_id, "15m");
     const activationLink = `${process.env.MAILER_ACTIVATE}/${activationToken}/${user_id}`;
     const subject = "Correo de confirmación de cuenta CircularScore";
-    let html = loadHtmlTemplate(0);
+    let html = loadHtmlTemplate();
     // Cargamos en el html la iformación del usuario, y el link con parámetro dinámico con el id de usuario interpolado
     html = html
-               .replace("{{htmlText}}", "Usa el link facilitado para crear una nueva contraseña, caduca en 15 minutos.")
-               .replace("{{userEmail}}", user_email)
-               .replace("{{activationLink}}", activationLink)
-               .replace("{{linkText}}", "ACTIVA TU CUENTA AQUÍ");
+    .replace("{{htmlText}}", "Usa el link facilitado para crear activar la cuenta, caduca en 15 minutos.")
+    .replace("{{userEmail}}", user_email)
+    .replace("{{navigationLink}}", activationLink)
+    .replace("{{linkText}}", "ACTIVA TU CUENTA AQUÍ");
     
+    console.log(html);
     const info = await transporter.sendMail({
       to: user_email,
       subject,
@@ -58,7 +59,7 @@ const sendActivationMail = async (userData) => {
   } catch (error) {
     throw error;
   }
-
+  
 };
 
 export const resetPasswordMail = async (userData) => {
@@ -69,14 +70,15 @@ export const resetPasswordMail = async (userData) => {
     const resetPassToken = generateToken(user_id, "15m");
     const resetPassLink = `${process.env.MAILER_RESETPASS}/${resetPassToken}/${user_id}`;
     const subject = "Recupera la constraseña de tu cuenta de Circular Score";
-    let html = loadHtmlTemplate(1);
+    let html = loadHtmlTemplate();
     // Cargamos en el html la iformación del usuario, y el link con parámetro dinámico con el id de usuario interpolado
     html = html
-               .replace("{{htmlText}}", "Usa el link facilitado para crear una nueva contraseña, caduca en 15 minutos.")
-               .replace("{{userEmail}}", user_email)
-               .replace("{{navigationLink}}", resetPassLink)
-               .replace("{{linkText}}", "MODIFICA TU CONSTRASEÑA AQUÍ");
+    .replace("{{htmlText}}", "Usa el link facilitado para crear una nueva contraseña, caduca en 15 minutos.")
+    .replace("{{userEmail}}", user_email)
+    .replace("{{navigationLink}}", resetPassLink)
+    .replace("{{linkText}}", "MODIFICA TU CONSTRASEÑA AQUÍ");
     
+    console.log(html);
     console.log("ESTADO DEL HTML TRAS PROCESAR RESETPASSMAIL", html);
     const info = await transporter.sendMail({
       to: user_email,

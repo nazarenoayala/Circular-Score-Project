@@ -18,6 +18,7 @@ export const FormUserLogin = () => {
   const { setUserData, setCompanyData, setToken } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
 
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -48,8 +49,8 @@ export const FormUserLogin = () => {
       //TODO Supongamos que navega a company profile tras loguear, ya lo que decidamos
       //navigate(`/companyProfile`)
       //TODO Esta pa cuando la vista esté disponible
-      // const user_id = userByToken.data.userData.user_id;
-      navigate(`/alltests`);
+      const user_id = userByToken.data.userData.user_id;
+      navigate(`/companyRegister/${user_id}`);
 
     } catch (error) {
       console.log(error);
