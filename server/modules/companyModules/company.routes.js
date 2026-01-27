@@ -6,16 +6,13 @@ const routes = express.Router();
 
 //Registro de Empresa
 routes.post('/register/:user_id', verifyToken, companyController.registerCompany);
-routes.put('/registerUpdate', verifyToken, companyController.registerCompanyInUser);
+routes.put('/registerUpdate/:user_id', verifyToken, companyController.registerCompanyInUser);
 //pedir datos de localidades y provincias
 routes.get('/locality', verifyToken, companyController.locality);
 routes.get('/province', verifyToken, companyController.Province);
 // Prueba
 routes.get('/test', companyController.test);
 
-//falta insertar middleware validateToken
-//http://localhost:4000/company/registerCompany
-routes.post('/registerCompany/:user_id', verifyToken, companyController.registerCompany);
 
 /* routes.get('/companyProfilePage/:user_id', companyController.showCompanyProfile); */
 

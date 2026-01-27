@@ -14,7 +14,7 @@ const initialValue = {
 export const FormUserLogin = () => {
 
   const [userLogin, setUserLogin] = useState(initialValue);
-  const {setUserData, setCompanyData, setToken, userData} = useContext(AuthContext);
+  const {setUserData, setCompanyData, setToken} = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
 
 

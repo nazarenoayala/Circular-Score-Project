@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { FormCompanyRegister1 } from '../../../components/FormCompanyRegister/FormCompanyRegister1';
 import { FormCompanyRegister2 } from '../../../components/FormCompanyRegister/FormCompanyRegister2';
 import { FormCompanyRegister3 } from '../../../components/FormCompanyRegister/FormCompanyRegister3';
@@ -7,11 +7,10 @@ import { useNavigate } from 'react-router';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { companyRegisterSchema } from '../../../../schemas/companyRegister';
 import { ZodError } from 'zod';
-import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
- 
 const initialValues1 = {
          company_name: '',
+         company_email: '',
          legal_form: '',
          active_years: '',
          company_size: '',
@@ -41,10 +40,10 @@ const CompanyRegister = () => {
   const [valErrors, setValErrors] = useState('');
   const [fetchError, setFetchError] = useState('');
 
- const {token, userData} = useContext(AuthContext);
-  console.log('sssssssssssssss',token);  
-  console.log('sssssssssssssss',userData);  
-
+  const {token, userData} = useContext(AuthContext) 
+  console.log("LOG DEL TOKEN COMPANY REGISTER", token);
+  console.log("LOG DEL TOKEN COMPANY REGISTER", userData);
+  
   const navigate = useNavigate()
 
 //control de formulario, con inputs select/text y checkbox
@@ -78,7 +77,7 @@ const CompanyRegister = () => {
     const fetchDataGeo = async()=>{
       try{
         let res = await fetchData('/company/locality', 'GET', null, token);
-        setLocality(res.data)
+        setLocality(res.data);
         let res2 = await fetchData('/company/province', 'GET', null, token);
         setProvince(res2.data)
       }catch(error){
@@ -97,10 +96,12 @@ const CompanyRegister = () => {
       companyRegisterSchema.parse(newCompany1, newCompany2);
       console.log('Validación ok'); 
       //mandar datos al Back
-      const res = await fetchData('/company/register/:user_id', 'POST', newCompany1, token);
-      const res2 = await fetchData('/company/registerUpdate/:user_id', 'PUT', newCompany2, token);
+      const res = await fetchData(`/company/register/${userData?.user_id}`, 'POST', newCompany1, token);
       console.log(res);
-      console.log(res2);
+      if(res){
+        const res2 = await fetchData(`/company/registerUpdate/${userData?.user_id}`, 'PUT', newCompany2, token);
+        console.log(res2);
+      }
       navigate('/')
     }catch(error){
       if (error instanceof ZodError){

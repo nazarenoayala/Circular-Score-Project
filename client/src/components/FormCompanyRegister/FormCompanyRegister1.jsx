@@ -27,8 +27,23 @@ export const FormCompanyRegister1 = ({
             {valErrors?.company_name && (
               <p>{valErrors.company_name}</p>
             )}
+
+          <label htmlFor="">2. Correo electrónico de la empresa</label>
+          <input
+            type="text"
+            placeholder='Correo electrónico de la empresa'
+            value={newCompany1.company_email}
+            name='company_email'
+            onChange={handleChange} />
+
+            {valErrors?.company_email && (
+              <p>{valErrors.company_email}</p>
+            )}
+            {fetchError?.user_email && (
+              <p>{fetchError.user_email}</p>
+            )}
             
-          <label>2. Nombre de la persona de contacto</label>
+          <label>3. Nombre de la persona de contacto</label>
           <input
             type="text"
             placeholder='Nombre de la persona de contacto'
@@ -40,7 +55,7 @@ export const FormCompanyRegister1 = ({
               <p>{valErrors.contact_name}</p>
             )}
 
-          <label>3. Cargo de la persona de contacto</label>
+          <label>4. Cargo de la persona de contacto</label>
           <select
               value={newCompany2.position}
               name='position'
@@ -57,7 +72,7 @@ export const FormCompanyRegister1 = ({
               <p>{valErrors.position}</p>
             )}
 
-          <label>4. Teléfono de contacto</label>
+          <label>5. Teléfono de contacto</label>
           <input
             type="text"
             placeholder='Teléfono de contacto'
@@ -69,7 +84,7 @@ export const FormCompanyRegister1 = ({
               <p>{valErrors.phone_number}</p>
             )}
 
-          <label htmlFor="">5. Correo electrónico de contacto</label>
+          <label htmlFor="">6. Correo electrónico de contacto</label>
           <input
             type="text"
             placeholder='Correo electrónico de contacto'
