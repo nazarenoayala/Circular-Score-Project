@@ -7,11 +7,10 @@ import { useNavigate } from 'react-router';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { companyRegisterSchema } from '../../../../schemas/companyRegister';
 import { ZodError } from 'zod';
-/* import { useContext } from 'react';
-import {AuthContextProvider} from '../../../context/AuthContext/AuthContextProvider' */
-
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext/AuthContext';
+ 
 const initialValues1 = {
-         user_id: 17,
          company_name: '',
          legal_form: '',
          active_years: '',
@@ -25,7 +24,6 @@ const initialValues1 = {
          ods_background: '',
 };
 const initialValues2 = {
-          user_id: 17,
           contact_name: '',
           position: '',
           phone_number: '',
@@ -43,9 +41,10 @@ const CompanyRegister = () => {
   const [valErrors, setValErrors] = useState('');
   const [fetchError, setFetchError] = useState('');
 
-  /* const {token} = useContext(AuthContextProvider) */
-  
-  
+ const {token, userData} = useContext(AuthContext);
+  console.log('sssssssssssssss',token);  
+  console.log('sssssssssssssss',userData);  
+
   const navigate = useNavigate()
 
 //control de formulario, con inputs select/text y checkbox
@@ -78,9 +77,9 @@ const CompanyRegister = () => {
   useEffect(()=>{
     const fetchDataGeo = async()=>{
       try{
-        let res = await fetchData('/company/locality', 'GET', null);
+        let res = await fetchData('/company/locality', 'GET', null, token);
         setLocality(res.data)
-        let res2 = await fetchData('/company/province', 'GET', null);
+        let res2 = await fetchData('/company/province', 'GET', null, token);
         setProvince(res2.data)
       }catch(error){
         console.log(error);
@@ -88,8 +87,9 @@ const CompanyRegister = () => {
     }
     fetchDataGeo();
   },[])
-  
 
+
+// Mandamos datos al back, POST y PUT con Validaciones. 
   const onSubmit = async(e) =>{
     try{
       e.preventDefault()
@@ -97,8 +97,8 @@ const CompanyRegister = () => {
       companyRegisterSchema.parse(newCompany1, newCompany2);
       console.log('Validación ok'); 
       //mandar datos al Back
-      const res = await fetchData('/company/register', 'POST', newCompany1);
-      const res2 = await fetchData('/company/registerUpdate', 'PUT', newCompany2);
+      const res = await fetchData('/company/register/:user_id', 'POST', newCompany1, token);
+      const res2 = await fetchData('/company/registerUpdate/:user_id', 'PUT', newCompany2, token);
       console.log(res);
       console.log(res2);
       navigate('/')
@@ -115,8 +115,6 @@ const CompanyRegister = () => {
       console.log(error);
     }
   }
-  console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',newCompany1);
-  console.log('ttttttttttttttttttttttttttttttttttt',newCompany2);
   
   return (
     <>

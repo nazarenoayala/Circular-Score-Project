@@ -15,8 +15,10 @@ class CompanyController {
     console.log('BODY:', req.body);
 
     try {
+
+      const {user_id} = req.params;
       const {
-        user_id, 
+         
         company_name,
         sector_id,
         company_type,
@@ -24,8 +26,8 @@ class CompanyController {
         active_years,
         company_size,
         gso,
-/*      client_segment,
-        stakeholders, */
+        client_segment,
+        stakeholders, 
         sustainability,
         ods_background
       } = req.body;
@@ -39,8 +41,8 @@ class CompanyController {
         active_years,
         company_size,
         gso,
-/*         client_segment,
-        stakeholders, */
+        client_segment,
+        stakeholders, 
         sustainability,
         ods_background
       ]);
@@ -54,9 +56,9 @@ class CompanyController {
   registerCompanyInUser = async (req, res) => {
     console.log('BODYyyyyyyyyyyyy:', req.body);
     try {
-      /* const { user_id } = req.params; */
+      const { user_id } = req.params; 
 
-      const {contact_name, position, phone_number, user_email, city_id, province_id, user_id} = req.body
+      const {contact_name, position, phone_number, user_email, city_id, province_id} = req.body
       console.log(position);
       
 

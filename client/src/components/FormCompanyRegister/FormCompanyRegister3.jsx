@@ -12,7 +12,9 @@ export const FormCompanyRegister3 = ({
   province,
   valErrors
 }) => {
-  
+
+  const localityProvince = locality.filter(e => e.province_id === Number(newCompany2.province_id));
+
   return (
     <>  
       <div className="ppal">
@@ -39,24 +41,8 @@ export const FormCompanyRegister3 = ({
 
           <h2>4. Localización y ámbito geográfico</h2>
 
-          <label>11. Localización de la sede principal</label>
-          <select
-            value={newCompany2.city_id}
-            name="city_id"
-            onChange={handleChange}>
-            <option value='' disabled>Elige solo una opción</option>
-            {locality?.map((elem, idx)=>{
-              return(
-                <option key={idx} value={elem.city_id}>{elem.name}</option>
-              )
-            })}
-          </select>
-
-          {valErrors?.city_id && (
-              <p>{valErrors.city_id}</p>
-            )}
             
-          <label>12. Provincia de la sede principal</label>
+          <label>11. Provincia de la sede principal</label>
     <select
             value={newCompany2.province_id}
             name="province_id"
@@ -70,7 +56,24 @@ export const FormCompanyRegister3 = ({
           </select>
 
           {valErrors?.province_id && (
-              <p>{valErrors.province_id}</p>
+            <p>{valErrors.province_id}</p>
+          )}
+
+          <label>12. Localización de la sede principal</label>
+          <select
+            value={newCompany2.city_id}
+            name="city_id"
+            onChange={handleChange}>
+            <option value='' disabled>Elige solo una opción</option>
+            {localityProvince?.map((elem, idx)=>{
+              return(
+                <option key={idx} value={elem.city_id}>{elem.name}</option>
+              )
+            })}
+          </select>
+
+          {valErrors?.city_id && (
+              <p>{valErrors.city_id}</p>
             )}
 
           <label>13. Ámbito geográfico principal de operación</label>
