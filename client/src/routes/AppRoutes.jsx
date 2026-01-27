@@ -8,6 +8,7 @@ import { PublicRoutes } from './PublicRoutes';
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
 const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
 const ActivateUser = lazy(()=> import('../components/PublicComponents/ActivateUser/ActivateUser.jsx'));
+const ResetPassword = lazy(()=> import('../pages/publicPages/ResetPassword/ResetPassword.jsx'));
 const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.jsx"));
 
 //Páginas privadas usuario
@@ -60,6 +61,7 @@ export const AppRoutes = () => {
                           />}
                 />
               <Route/>
+              <Route path="resetPassword/:token/:user_id" element={<ResetPassword/>}/>
             </Route>
           </Route>
 

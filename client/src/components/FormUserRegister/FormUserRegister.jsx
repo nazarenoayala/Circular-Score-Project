@@ -26,12 +26,7 @@ export const FormUserRegister = ({ setShowPage }) => {
       registerSchema.parse(registerUser);
      
       // Lamamos al back para que intente el registro del user
-      const res = await fetchData('/user/register', 'POST', registerUser);
-      const {token} = res.data;
-
-      // Insertamos un item json con el token en local storage
-      localStorage.setItem('credentials', token);
-      console.log('FRONT, USER REGISTER FORM, RES Y TOKEN', res, token);
+      await fetchData('/user/register', 'POST', registerUser);
       setShowPage('modal');
       
     } catch (error) {
@@ -53,52 +48,57 @@ export const FormUserRegister = ({ setShowPage }) => {
   };
 
   return (
-    <Form className="register-container">
-      <h1>Regístrate</h1>
+    <>
+      <Form className="register-container">
+        <h1>Regístrate</h1>
 
-      <Form.Group className="mb-3">
-        <Form.Control
-          type="email"
-          placeholder="Email"
-          name="user_email"
-          value={registerUser.user_email}
-          onChange={handleChange}
-          required
-        />
-        {errorValidation?.user_email && (
-          <p className="error-alert">{errorValidation.user_email}</p>
-        )}
-      </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            name="user_email"
+            value={registerUser.user_email}
+            onChange={handleChange}
+            required
+          />
+          {errorValidation?.user_email && (
+            <p className="error-alert">{errorValidation.user_email}</p>
+          )}
+        </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Contraseña"
-          name="password"
-          value={registerUser.password}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Confirmar contraseña"
-          name="repPassword"
-          value={registerUser.repPassword}
-          onChange={handleChange}
-          required
-        />
-        {errorValidation?.repPassword && (
-          <p className=" error-alert">{errorValidation.repPassword}</p>
-        )}
-      </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Contraseña"
+            name="password"
+            value={registerUser.password}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Confirmar contraseña"
+            name="repPassword"
+            value={registerUser.repPassword}
+            onChange={handleChange}
+            required
+          />
+          {errorValidation?.repPassword && (
+            <p className=" error-alert">{errorValidation.repPassword}</p>
+          )}
+        </Form.Group>
 
-      <Form.Group>
-        <Button className="btn-green" onClick={onSubmit}>
-          Enviar
-        </Button>
-      </Form.Group>
-    </Form>
+        <Form.Group>
+          <Button className="btn-green" onClick={onSubmit}>
+            Enviar
+          </Button>
+        </Form.Group>
+      </Form>
+      <div className='reset-pass-link'>
+        <a className='rpl' onClick={()=>setShowPage('resPassword')}>¿Olvidó su contraseña?</a>
+      </div>
+    </>
   );
 };

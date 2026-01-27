@@ -203,9 +203,7 @@ allCompanies = async (req, res) => {
       res.status(500).json(error);
     }
   }
-  }
-
-  showOneCompany = async (req, res) => {
+showOneCompany = async (req, res) => {
     
     try {
       const {user_id} = req.params;
@@ -221,8 +219,23 @@ allCompanies = async (req, res) => {
       console.log(error)
       res.status(500).json(error);
     }
+ 
+  }
+ delLogicCompany = async(req, res) => {
+    const {user_id} = req.params;
+
+    try {
+      await companyDal.delLogicCompany(user_id);
+      res.status(204).json({message: "Empresa deshabilitada"});
+
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 
+  }
+
+  
 
 
 export default new CompanyController();

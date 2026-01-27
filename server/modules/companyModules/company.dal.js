@@ -99,6 +99,17 @@ class CompanyDal {
     }
   }
 
+  delLogicCompany = async(user_id) => {
+    try {
+      let sql = 'UPDATE user SET is_deleted = IF(is_deleted= 0, 1, 0) WHERE user_id = ?'
+
+      await executeQuery(sql, [user_id]);
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
 
 }

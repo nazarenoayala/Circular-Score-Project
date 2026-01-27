@@ -3,6 +3,7 @@ import { AuthContext } from '../../../context/AuthContext/AuthContext'
 import { useParams } from 'react-router'
 import { InfoOneCompany } from '../../../components/InfoOneCompany/InfoOneCompany'
 import { InfoRepresentante } from '../../../components/InfoRepresentante/InfoRepresentante'
+import {MyButton} from '../../../components/MyButton/MyButton'
 import { fetchData } from '../../../../helpers/axiosHelper'
 import './oneCompany.css'
 
@@ -10,13 +11,27 @@ const OneCompany = () => {
 
   const {user_id} = useParams(); 
 
+
   const [company, setCompany] = useState();
+  // const [disableButton, setDisableButton] = useState();
 
   
-  const { token } = useContext(AuthContext);
-  // const user_id = companyData.user_id;
+  const { token, companyData } = useContext(AuthContext);
 
 
+  // const delLogicCompany = async(user_id) => {
+  //   try {
+  //     let res = await fetchData(`/company/delLogicCompany/${user_id}`, "PUT", null, token);
+  //     console.log("copmanuyyyyy", res)
+
+  //     setCompany({...companyData.company, is_deleted: companyData.company.is_deleted === 0 ? 1 : 0 });
+      
+
+  //   } catch (error) {
+  //     console.log(error);
+      
+  //   }
+  // }
 
 
   useEffect(() => {
@@ -44,21 +59,30 @@ const OneCompany = () => {
    }
 
   return (
-    <div>
-      <div className='company_name '>
-        <h1>{company?.company.company_name}</h1>
-        <button>Deshabilitar</button>
+    <div className='p-5'>
+      <div className='company_name_div px-5'>
+        <h1 className='company_name fw-bold'>{company?.company.company_name}</h1>
+        <MyButton
+          text={company.company.is_deleted === 0 ? 'Deshabilitar' : 'Habilitar'}
+          btnClass='btn-red fw-bold px-4'
+          // onClick={()=>delLogicCompany(user_id)}
+        />
+        
       </div>
 
-      <h2>Información Representante</h2>
-      <InfoRepresentante
-        company={company}
-      />
+        <h2 className='mt-5 mb-4 fw-bold'>Información Representante</h2>
+      <div className='person_info'>
+        <InfoRepresentante
+          company={company}
+        />
+      </div>
 
-      <h2>Información Empresa</h2>
-      <InfoOneCompany
-        company={company}
-      />
+      <h2 className='mt-5 mb-4 fw-bold'>Información Empresa</h2>
+      <div className='company_info'>
+        <InfoOneCompany
+          company={company}
+        />
+      </div>
 
 
 
