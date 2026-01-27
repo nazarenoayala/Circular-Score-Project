@@ -19,6 +19,12 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+.form-card label {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
 .title-form {
     font-size: 1.2rem;
     font-weight: 600;
