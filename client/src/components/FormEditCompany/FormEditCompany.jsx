@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card, Col, Form, Row} from 'react-bootstrap'
+import { optional } from 'zod';
 
 const segmentClientOptions = [
     //lista de opciones con clave valor (uso texto q ya identificaba cada opción)
@@ -23,7 +24,14 @@ const stakeholderOptions = [
     {value: 10, label: 'Otros grupos de interés'}
 ];
 
-export const FormEditCompany = ({editCompanyData, handleCompanyChange}) => {
+export const FormEditCompany = ({  
+    editCompanyData, 
+    handleCompanyChange, 
+    province,
+    city,
+    valErrors
+
+}) => {
     
   return (
     <Card>
@@ -158,27 +166,9 @@ export const FormEditCompany = ({editCompanyData, handleCompanyChange}) => {
                     </Form.Select>
                 </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Ciudad</Form.Label>
-                    <Form.Select
-                        name='city_id'
-                        //lista desplegable de localidades
-                        value={editCompanyData?.ciudad_id || ""}
-                        onChange={handleCompanyChange}
-                        placeholder='Selecciona ciudad'
-                    >
-                        <option value="1">Barcelona</option>
-                        <option value="2">Madrid</option>                       
-                        <option value="3">Gijon</option>
-                        <option value="4">Bilbao</option>
-                        <option value="5">Coruña</option>
-                        <option value="6">Valencia (Europa)</option>
-                        <option value="7">Alicante</option>    
-                    </Form.Select>
-                </Form.Group>
 
                 <Form.Group>
-                    <Form.Label>Localidad de la sede</Form.Label>
+                    <Form.Label>Provincia</Form.Label>
                     <Form.Select
                         name='province_id'
                         //lista desplegable de localidades
@@ -186,16 +176,36 @@ export const FormEditCompany = ({editCompanyData, handleCompanyChange}) => {
                         onChange={handleCompanyChange}
                         placeholder='Selecciona provincia'
                     >    
-                        <option value="1">Barcelona</option>
-                        <option value="2">Madrid</option>                       
-                        <option value="3">Gijon</option>
-                        <option value="4">Bilbao</option>
-                        <option value="5">Coruña</option>
-                        <option value="6">Valencia (Europa)</option>
-                        <option value="7">Alicante</option>  
+                        {province?.map((elem) =>{
+                            return(
+                                <option key={elem.province_id} value={elem.province_id}>{elem.name}</option>
+                            )
+                        })}
                     </Form.Select>
+                        {valErrors?.province_id && (
+                            <p>{valErrors.province_id}</p>
+                        )}
                 </Form.Group>
                         
+                <Form.Group>
+                    <Form.Label>Ciudad</Form.Label>
+                    <Form.Select
+                        name='city_id'
+                        //lista desplegable de localidades
+                        value={editCompanyData?.city_id || ""}
+                        onChange={handleCompanyChange}
+                        placeholder='Selecciona ciudad'
+                    >
+                        {city?.map((elem)=>{
+                            return(
+                                <option key={elem.city_id} value={elem.city_id}>{elem.name}</option>
+                            )
+                        })}
+                    </Form.Select>
+                        {valErrors?.city_id && (
+                            <p>{valErrors.city_id}</p>
+                        )}
+                </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Estado de sostenibilidad y ODS</Form.Label>
@@ -219,8 +229,7 @@ export const FormEditCompany = ({editCompanyData, handleCompanyChange}) => {
                         {/* Check box lado izquierdo */}
                         <Col md={6}>
                         <div className='checkbox-group'>
-                    <Form.Label className='checkbox-title'>Clientes y grupos de interés</Form.Label>
-                    <div>
+                    <Form.Label className='checkbox-title'>Clientes y grupos de interés</Form.Label>                    
                         {segmentClientOptions.map((option) =>(
                     <Form.Check
                         type='checkbox'
@@ -228,20 +237,17 @@ export const FormEditCompany = ({editCompanyData, handleCompanyChange}) => {
                         key={option.value}
                         label={option.label}
                         value={option.value}
-                        id={option.value}
-                        onChange={handleCompanyChange}
+                        onChange={(e) => handleCompanyChange(e, option.value)}
                         checked={editCompanyData?.client_segment?.includes(option.value) || false}
                     />
-                    ))}
-                    </div>    
+                    ))}   
                     </div>
                         </Col>
 
                     {/* Check box lado derecho */}
                     <Col md={6}>
                     <div className='checkbox-group'>
-                    <Form.Label className='checkbox-title'>Principales grupos de interés</Form.Label>
-                    <div>
+                    <Form.Label className='checkbox-title'>Principales grupos de interés</Form.Label>              
                         {stakeholderOptions.map((option) =>(
                     <Form.Check
                         type='checkbox'
@@ -249,12 +255,10 @@ export const FormEditCompany = ({editCompanyData, handleCompanyChange}) => {
                         key={option.value}
                         label={option.label}
                         value={option.value}
-                        id={option.value}
-                        onChange={handleCompanyChange}
+                        onChange={(e) => handleCompanyChange(e, option.value)}
                         checked={editCompanyData?.stakeholders?.includes(option.value) || false}
                     />    
                     ))}
-                    </div>
                     </div>
                     </Col>
                     </Row>
