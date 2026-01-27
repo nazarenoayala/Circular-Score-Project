@@ -3,6 +3,7 @@ import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { NavbarUser } from '../../../components/NavbarUser/NavbarUser';
 import { FormEditCompany } from '../../../components/FormEditCompany/FormEditCompany';
 import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
+import { fetchData } from '../../../../helpers/axiosHelper'
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { useNavigate } from 'react-router';
 
@@ -28,6 +29,8 @@ const initialValueUser = {
 const EditCompanyPage = () => {
   //para usar boton volver y que redirija al perfil usuario useNavigate, podria usarlo en mybutton?
   const navigate = useNavigate();
+  //estado para mensaje que se guardaron los cambios con exito
+  const [message, setMessage] = useState("");
 
   const {companyData, userData, token, logout} = useContext(AuthContext)
 
@@ -38,6 +41,8 @@ const EditCompanyPage = () => {
 
   //Cuando tenga los datos, los paso a estados locales
   useEffect(() =>{
+    console.log("Datos de empresa:", companyData);
+    console.log("Datos de usuario:", userData);
     if (companyData) {
       setEditCompanyData(companyData);
     }
@@ -65,13 +70,35 @@ const EditCompanyPage = () => {
     }))
   }
 
-  //funcion para guardar (enviar a la DB) 
-  //const sendDb = async (e) => {
+  //const handleCheckboxChange = () => {
     
-   // e.preventDefault();
+ // }
+
+  //funcion para guardar (enviar a la DB) 
+  const sendDb = async (e) => {
+    e.preventDefault();
+    //Verifico que hay token
+    const tokenLS = localStorage.getItem("token")
+    try {
+      //creo objeto con toda la info
+      const updatedData = {
+        ...editCompanyData,
+        ...editUserData,
+      }
+      console.log('enviando datos al server', updatedData);
+
+      //Hago peticion PUT en user.routes.js la ruta pide eso
+      const result = await fetchData(`/user/updateProfile`, 'PUT', updatedData, tokenLS);
+      
+      if(result){
+        setMessage("Los cambios se guardaron con éxito")
+      }
+    } catch (error) {
+      console.log('Error al guardar en la DB', error);
+    }
     
 
-  //}
+  }
   
   return (
     
@@ -87,8 +114,8 @@ const EditCompanyPage = () => {
         {/* Formulario de empresa */}
         {/* paso por props datos y funcion a los hijos */}
         <FormEditCompany
-          data={editCompanyData} 
-          onChange={handleCompanyChange}
+          editCompanyData={editCompanyData}
+          handleCompanyChange={handleCompanyChange}
         /> 
       </section>
 
@@ -99,14 +126,15 @@ const EditCompanyPage = () => {
         <h2 className='title-form'>Perfil de usuario</h2>  
         {/* Formulario de usuario */}
         <FormEditUser
-          data={editUserData}
-          onChange={handleUserChange}
+          editUserData={editUserData}
+          handleUserChange={handleUserChange}
         />
       </section>  
 
       <footer className='btn-footer gap-3 mt-4'>
+        <p>{message}</p>
         <MyButton
-          //onSubmit={sendDb}
+          onSubmit={sendDb}
           text="Guardar"
         />
         <MyButton
