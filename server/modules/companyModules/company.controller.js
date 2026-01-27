@@ -12,20 +12,20 @@ class CompanyController {
   };
 
   registerCompany = async (req, res) => {
-    console.log('BODY:', req.body);
 
     try {
       const {
         user_id, 
         company_name,
+        company_email,
         sector_id,
         company_type,
         legal_form,
         active_years,
         company_size,
         gso,
-/*      client_segment,
-        stakeholders, */
+        client_segment,
+        stakeholders,
         sustainability,
         ods_background
       } = req.body;
@@ -33,14 +33,15 @@ class CompanyController {
       let result = await companyDal.registerCompany([
         user_id,
         company_name,
+        company_email,
         sector_id,
         company_type,
         legal_form,
         active_years,
         company_size,
         gso,
-/*         client_segment,
-        stakeholders, */
+        client_segment,
+        stakeholders,
         sustainability,
         ods_background
       ]);

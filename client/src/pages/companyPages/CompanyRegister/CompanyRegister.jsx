@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { FormCompanyRegister1 } from '../../../components/FormCompanyRegister/FormCompanyRegister1';
 import { FormCompanyRegister2 } from '../../../components/FormCompanyRegister/FormCompanyRegister2';
 import { FormCompanyRegister3 } from '../../../components/FormCompanyRegister/FormCompanyRegister3';
@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { companyRegisterSchema } from '../../../../schemas/companyRegister';
 import { ZodError } from 'zod';
-/* import { useContext } from 'react';
-import {AuthContextProvider} from '../../../context/AuthContext/AuthContextProvider' */
 
 const initialValues1 = {
          user_id: 17,
@@ -43,8 +41,8 @@ const CompanyRegister = () => {
   const [valErrors, setValErrors] = useState('');
   const [fetchError, setFetchError] = useState('');
 
-  /* const {token} = useContext(AuthContextProvider) */
   
+  console.log("LOG DEL TOKEN COMPANY REGISTER", token);
   
   const navigate = useNavigate()
 
