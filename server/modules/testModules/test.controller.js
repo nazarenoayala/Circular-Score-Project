@@ -38,6 +38,10 @@ class TestController {
 
   }
 
+  disableTest = async (req, res) => { res.send("ok") }
+  enableTest = async (req, res) => { res.send("ok") }
+  editTest = async (req, res) => { res.send("ok") }
+
 }
 
 export default new TestController();
