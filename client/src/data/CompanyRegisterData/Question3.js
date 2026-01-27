@@ -13,7 +13,7 @@ export const question3 = [
   },
   {
     id:4,
-    name: 'Recursos Humanos '
+    name: 'Recursos Humanos'
   },
   {
     id:5,
@@ -48,3 +48,5 @@ export const question3 = [
     name: 'Otro (Especificar)'
   }
 ]
+
+export const question3Length = question3.length;

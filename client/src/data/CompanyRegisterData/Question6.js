@@ -28,3 +28,5 @@ export const question6 = [
     name:'Administración pública / entidad pública '
   }
 ]
+
+export const question6Length = question6.length;

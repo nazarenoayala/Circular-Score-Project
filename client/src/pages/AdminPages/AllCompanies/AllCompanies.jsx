@@ -26,7 +26,6 @@ const AllCompanies = () => {
     setSearch(e.target.value);
   };
 
-  
   useEffect(() => {
     const fetchAllCompanies = async () => {
       try {
@@ -53,7 +52,6 @@ const AllCompanies = () => {
       const sameCategory = selectedCategory === '' || 
                               selectedCategory === 'Todas las categorías' || 
                               String(elem.sector_id) === selectedCategory;
-
       return sameName && sameCategory;
     });
     setFilteredCompanies(newArray);

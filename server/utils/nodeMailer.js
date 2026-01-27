@@ -25,9 +25,9 @@ const loadHtmlTemplate = () => {
     __dirname,
     "public",
     "mail",
-    "activationEmail.html"
+    "Email.html"
   );
-
+  
   return fs.readFileSync(filePath, "utf8");
 }
 
@@ -35,30 +35,61 @@ const loadHtmlTemplate = () => {
 const sendActivationMail = async (userData) => {
   
   const {user_email, user_id} = userData;
-  console.log("userEmail en el correo", user_email);
-
-  // He aprovechado para parametrizar la duración del generate token
-  const activationToken = generateToken(user_id, "20m");
-  const activationLink = `${process.env.MAILER_ENDPOINT}/${activationToken}/${user_id}`;
-  const subject = "Correo de confirmación de cuenta CircularScore";
-  const text = "Usa el link facilitado para completar la activación de tu cuenta en Circular Score."
-  let html = loadHtmlTemplate();
-  // Cargamos en el html la iformación del usuario, y el link con parámetro dinámico con el id de usuario interpolado
-  html = html
-             .replace("{{userEmail}}", user_email)
-             .replace("{{activationLink}}", activationLink);
+  try {
+    // He aprovechado para parametrizar la duración del generate token
+    const activationToken = generateToken(user_id, "15m");
+    const activationLink = `${process.env.MAILER_ACTIVATE}/${activationToken}/${user_id}`;
+    const subject = "Correo de confirmación de cuenta CircularScore";
+    let html = loadHtmlTemplate();
+    // Cargamos en el html la iformación del usuario, y el link con parámetro dinámico con el id de usuario interpolado
+    html = html
+    .replace("{{htmlText}}", "Usa el link facilitado para crear activar la cuenta, caduca en 15 minutos.")
+    .replace("{{userEmail}}", user_email)
+    .replace("{{navigationLink}}", activationLink)
+    .replace("{{linkText}}", "ACTIVA TU CUENTA AQUÍ");
+    
+    console.log(html);
+    const info = await transporter.sendMail({
+      to: user_email,
+      subject,
+      html
+    })
+    console.log("Correo de activación enviado.", info.messageId);
+    return {token: activationToken, info: info};
+  } catch (error) {
+    throw error;
+  }
   
-  console.log("ESTADO DEL HTML TRAS PROCESAR CON MAILER", html);
-  
-
-  const info = await transporter.sendMail({
-    to: user_email,
-    subject,
-    text,
-    html
-  })
-  console.log("Mensaje enviado con éxito", info.messageId);
-  return {token: activationToken, info: info};
 };
+
+export const resetPasswordMail = async (userData) => {
+  const {user_email, user_id} = userData;
+  console.log("ENTRAMOS AL RESET PASSWORD MAIL");
+  
+  try{
+    const resetPassToken = generateToken(user_id, "15m");
+    const resetPassLink = `${process.env.MAILER_RESETPASS}/${resetPassToken}/${user_id}`;
+    const subject = "Recupera la constraseña de tu cuenta de Circular Score";
+    let html = loadHtmlTemplate();
+    // Cargamos en el html la iformación del usuario, y el link con parámetro dinámico con el id de usuario interpolado
+    html = html
+    .replace("{{htmlText}}", "Usa el link facilitado para crear una nueva contraseña, caduca en 15 minutos.")
+    .replace("{{userEmail}}", user_email)
+    .replace("{{navigationLink}}", resetPassLink)
+    .replace("{{linkText}}", "MODIFICA TU CONSTRASEÑA AQUÍ");
+    
+    console.log(html);
+    console.log("ESTADO DEL HTML TRAS PROCESAR RESETPASSMAIL", html);
+    const info = await transporter.sendMail({
+      to: user_email,
+      subject,
+      html
+    })
+    console.log("Correo de recuperación de pass, enviado.", info.messageId);
+    return {token: resetPassToken, info: info};
+  }catch (error){
+    throw error;
+  }
+}
 
 export default sendActivationMail;

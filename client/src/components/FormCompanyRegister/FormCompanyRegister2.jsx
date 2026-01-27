@@ -6,9 +6,10 @@ import { question8 } from '../../data/CompanyRegisterData/Question8';
 import { question9 } from '../../data/CompanyRegisterData/Question9';
 
 export const FormCompanyRegister2 = ({
-  newCompany,
+  newCompany1,
   handleChange,
   setCurrentFormPage,
+  valErrors
 }) => {
   return (
     <>
@@ -19,7 +20,7 @@ export const FormCompanyRegister2 = ({
         <form action="" className="form">
           <label>6. Tipo de empresa</label>
           <select
-            value={newCompany.company_type}
+            value={newCompany1.company_type}
             name="company_type"
             onChange={handleChange}
           >
@@ -27,13 +28,17 @@ export const FormCompanyRegister2 = ({
               Elige una opción
             </option>
             {question6.map((elem) => {
-              return <option key={elem.id}>{elem.name}</option>;
+              return <option key={elem.id} value={elem.id}>{elem.name}</option>;
             })}
           </select>
 
+          {valErrors?.company_type && (
+              <p>{valErrors.company_type}</p>
+            )}
+
           <label>7. Forma jurídica</label>
           <select
-            value={newCompany.legal_form}
+            value={newCompany1.legal_form}
             name="legal_form"
             onChange={handleChange}
           >
@@ -41,36 +46,48 @@ export const FormCompanyRegister2 = ({
               Elige una opción
             </option>
             {question7.map((elem) => {
-              return <option key={elem.id}>{elem.name}</option>;
+              return <option key={elem.id} value={elem.id}>{elem.name}</option>;
             })}
           </select>
+
+          {valErrors?.legal_form && (
+              <p>{valErrors.legal_form}</p>
+            )}
           
           <label>8. Años en activo</label>
           <select
-            value={newCompany.active_years}
+            value={newCompany1.active_years}
             name="active_years"
             onChange={handleChange}
           >
             <option value="" disabled>Elige una opción</option>
             {question8.map((elem)=>{
               return(
-                <option key={elem.id}>{elem.name}</option>
+                <option key={elem.id} value={elem.id}>{elem.name}</option>
               )
             })}
           </select>
 
+          {valErrors?.active_years && (
+              <p>{valErrors.active_years}</p>
+            )}
+
           <label>9. Números de empleados</label>
           <select 
-            value={newCompany.company_size}
+            value={newCompany1.company_size}
             name="company_size"
             onChange={handleChange}>
               <option value='' disabled>Elige una opción</option>
               {question9.map((elem)=>{
                 return(
-                  <option key={elem.id}>{elem.name}</option>
+                  <option key={elem.id} value={elem.id}>{elem.name}</option>
                 )
               })}
           </select>
+
+          {valErrors?.company_size && (
+              <p>{valErrors.company_size}</p>
+            )}
            
           <div>
             <button onClick={() => setCurrentFormPage(1)}>Atrás</button>

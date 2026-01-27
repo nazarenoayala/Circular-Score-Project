@@ -72,3 +72,5 @@ export const question10 = [
     name:'Otro sector'
   },
 ]
+
+export const question10Length = question10.length;
