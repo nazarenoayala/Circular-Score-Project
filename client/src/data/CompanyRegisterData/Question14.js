@@ -16,3 +16,5 @@ export const question14 = [
     name:'Entidades del tercer sector'
   },
 ]
+
+export const question14Length = question14.length;

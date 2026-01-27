@@ -20,3 +20,5 @@ export const question8 = [
     name:'Más de 20 años'
   },
 ]
+
+export const question8Length = question8.length;

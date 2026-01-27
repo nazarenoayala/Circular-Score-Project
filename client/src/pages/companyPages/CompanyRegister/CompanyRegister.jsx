@@ -5,60 +5,75 @@ import { FormCompanyRegister3 } from '../../../components/FormCompanyRegister/Fo
 import { FormCompanyRegister4 } from '../../../components/FormCompanyRegister/FormCompanyRegister4';
 import { useNavigate } from 'react-router';
 import { fetchData } from '../../../../helpers/axiosHelper';
+import { companyRegisterSchema } from '../../../../schemas/companyRegister';
+import { ZodError } from 'zod';
+/* import { useContext } from 'react';
+import {AuthContextProvider} from '../../../context/AuthContext/AuthContextProvider' */
 
-const initialValues = {
-  company_name: '',
-  contact_name: '',
-  position: '',
-  position_other: '',
-  phone_number: '',
-  user_email: '',
-  company_type: '',
-  legal_form: '',
-  active_years: '',
-  company_size: '',
-  sector_name: '',
-  sector_name_other: '',
-  city_name: '',
-  province_name: '',
-  gso: '',
-  client_segment: [],
-  stakeholders: [],
-  sustainability: '',
-  ods_background: '',
+const initialValues1 = {
+         user_id: 17,
+         company_name: '',
+         legal_form: '',
+         active_years: '',
+         company_size: '',
+         sector_id: '',
+         gso: '',
+         company_type: '',
+         client_segment: [],
+         stakeholders: [],  
+         sustainability: '',
+         ods_background: '',
 };
+const initialValues2 = {
+          user_id: 17,
+          contact_name: '',
+          position: '',
+          phone_number: '',
+          user_email: '',
+          city_id: '',
+          province_id: '',
+  }
 
 const CompanyRegister = () => {
-  const [newCompany, setNewCompany] = useState(initialValues);
+  const [newCompany1, setNewCompany1] = useState(initialValues1);
+  const [newCompany2, setNewCompany2] = useState(initialValues2);
   const [currentFormPage, setCurrentFormPage] = useState(1);
   const [locality, setLocality] = useState();
   const [province, setProvince] = useState();
+  const [valErrors, setValErrors] = useState('');
+  const [fetchError, setFetchError] = useState('');
 
+  /* const {token} = useContext(AuthContextProvider) */
+  
+  
   const navigate = useNavigate()
+
 //control de formulario, con inputs select/text y checkbox
   const handleChange = (e, id) => {
+
+    const { name, value, checked } = e.target;
     console.log(e);
     
-    const { name, value, checked } = e.target;
     if(name === 'client_segment' || name === 'stakeholders'){
       if(checked){
         if(name === 'stakeholders'){
-          setNewCompany({...newCompany, stakeholders:[...newCompany.stakeholders, id]})
+          setNewCompany1({...newCompany1, stakeholders:[...newCompany1.stakeholders, id]})
         }else if(name === 'client_segment'){
-          setNewCompany({...newCompany, client_segment:[...newCompany.client_segment, id]})
+          setNewCompany1({...newCompany1, client_segment:[...newCompany1.client_segment, id]})
         }
       }else{
         if(name === 'client_segment'){
-          setNewCompany({...newCompany, client_segment:newCompany.client_segment.filter(elem=>elem !== id)})
+          setNewCompany1({...newCompany1, client_segment:newCompany1.client_segment?.filter(elem=>elem !== id)})
         }else if(name === 'stakeholders'){
-          setNewCompany({...newCompany, stakeholders:newCompany.stakeholders.filter(elem=>elem !== id)})    
+          setNewCompany1({...newCompany1, stakeholders:newCompany1.stakeholders?.filter(elem=>elem !== id)})    
         }
       }
     }else{
-      setNewCompany({ ...newCompany, [name]: value });
+      setNewCompany1({ ...newCompany1, [name]: value });
+      setNewCompany2({ ...newCompany2, [name]: value });
     }
   };
-console.log(newCompany);
+
 // pedir a base de datos localidades y provincias. 
   useEffect(()=>{
     const fetchDataGeo = async()=>{
@@ -73,40 +88,76 @@ console.log(newCompany);
     }
     fetchDataGeo();
   },[])
+  
 
+  const onSubmit = async(e) =>{
+    try{
+      e.preventDefault()
+      //Validación de datos  
+      companyRegisterSchema.parse(newCompany1, newCompany2);
+      console.log('Validación ok'); 
+      //mandar datos al Back
+      const res = await fetchData('/company/register', 'POST', newCompany1);
+      const res2 = await fetchData('/company/registerUpdate', 'PUT', newCompany2);
+      console.log(res);
+      console.log(res2);
+      navigate('/')
+    }catch(error){
+      if (error instanceof ZodError){
+        const fieldsErrors = {};
+        error.issues.forEach((elem)=>{
+          fieldsErrors[elem.path[0]] = elem.message;
+        });
+        setValErrors(fieldsErrors);
+      }else{
+        setFetchError('Hay un error')
+      }
+      console.log(error);
+    }
+  }
+  console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',newCompany1);
+  console.log('ttttttttttttttttttttttttttttttttttt',newCompany2);
+  
   return (
     <>
       <h1>Registro de Empresa</h1>
       {currentFormPage === 1 &&<FormCompanyRegister1
-        newCompany={newCompany}
+        newCompany1={newCompany1}
+        newCompany2={newCompany2}
         handleChange={handleChange}
         setCurrentFormPage={setCurrentFormPage}
         navigate={navigate}
+        valErrors={valErrors}
+        fetchError={fetchError}
       />}
       
       {currentFormPage === 2 && (
         <FormCompanyRegister2
-          newCompany={newCompany}
+          newCompany1={newCompany1}
           handleChange={handleChange}
           setCurrentFormPage={setCurrentFormPage}
+          valErrors={valErrors}
         />
       )}
       {currentFormPage === 3 && (
         <FormCompanyRegister3
-          newCompany={newCompany}
+          newCompany1={newCompany1}
+          newCompany2={newCompany2}
           handleChange={handleChange}
           setCurrentFormPage={setCurrentFormPage}
           locality={locality}
           province={province}
+          valErrors={valErrors}
         />
       )}
       {currentFormPage === 4 && (
         <FormCompanyRegister4
-          newCompany={newCompany}
+          newCompany1={newCompany1}
           handleChange={handleChange}
           setCurrentFormPage={setCurrentFormPage}
           navigate={navigate}
-          setNewCompany={setNewCompany}
+          onSubmit={onSubmit}
+          valErrors={valErrors}
         />
       )}
     </>

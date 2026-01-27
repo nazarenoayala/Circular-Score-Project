@@ -14,12 +14,13 @@ const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.js
 //Páginas privadas usuario
 import { UserLayout } from '../layouts/UserLayout.jsx';
 const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTestsPage.jsx"));
+const CompanyRegister = lazy(() => import("../pages/companyPages/CompanyRegister/CompanyRegister.jsx"));
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
 const UserODSGraphic = lazy(() => import('../pages/companyPages/UserODSGraphic/UserODSGraphic.jsx'));
 const OneTestCompany = lazy(() => import("../pages/companyPages/OneTestCompany/OneTestCompany.jsx"));
-const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx"));
+/* const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx")); */
 const UserTestRecord = lazy(() => import("../pages/companyPages/UserTestRecord/UserTestRecord.jsx"));
 
 //Páginas privadas administrador
@@ -70,12 +71,13 @@ export const AppRoutes = () => {
             {/* rutas de empresa */}
             <Route element={<UserLayout />}>
               <Route path="/allTests" element={<AllTestsPage />} />
+              <Route path="/companyRegister" element={<CompanyRegister />} />
               <Route path="/companyProfile/:id" element={<CompanyProfilePage />} />
               <Route path="/editCompany/:id" element={<EditCompanyPage />} />
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
               <Route path="/userODSGraphic" element={<UserODSGraphic />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
-              <Route path="/oneQuestion/:id" element={<OneQuestion />} />
+              {/* <Route path="/oneQuestion/:id" element={<OneQuestion />} /> */}
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
