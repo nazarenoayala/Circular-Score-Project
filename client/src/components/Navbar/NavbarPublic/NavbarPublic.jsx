@@ -1,6 +1,5 @@
 import './NavbarPublic.css';
 import { MyButton } from '../../MyButton/MyButton';
-import { useEffect } from 'react';
 
 
 export const NavbarPublic = ({setShowPage, showPage}) => {
