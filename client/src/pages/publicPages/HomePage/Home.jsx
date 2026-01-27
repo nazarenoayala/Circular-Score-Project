@@ -2,6 +2,7 @@ import './Home.css';
 import { FormUserRegister } from '../../../components/FormUserRegister/FormUserRegister';
 import { FormUserLogin } from '../../../components/FormUserLogin/FormUserLogin';
 import { FormModalRegister } from '../../../components/FormModalRegister/FormModalRegister';
+import { FormUserResPassword } from '../../../components/FormUserResPassword/FormUserResPassword';
 import { FormContact } from '../../../components/FormContact/FormContact';
 
 const Home = ({setShowPage, showPage}) => {
@@ -29,8 +30,11 @@ const Home = ({setShowPage, showPage}) => {
         {showPage === 'modal' && (
           <FormModalRegister setShowPage={setShowPage} />)}
 
-        {showPage === 'login' && (<FormUserLogin setShowPage={setShowPage} />
-        )}
+        {showPage === 'login' && (
+          <FormUserLogin setShowPage={setShowPage} />)}
+
+        {showPage === 'resPassword' && (
+          <FormUserResPassword setShowPage={setShowPage} />)}
       </section>
 
       <section>

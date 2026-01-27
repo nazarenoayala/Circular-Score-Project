@@ -7,7 +7,7 @@ dotenv.config();
 
 export const verifyActivateToken = (req, res, next) => {
   
-  const {token} = req.params;
+  const {token, user_id} = req.params;
   
    if (!token) {
     return res.status(401).json({message: "No autorizado"});
@@ -19,6 +19,7 @@ export const verifyActivateToken = (req, res, next) => {
             res.status(401).json({message: "Token inválido o caducado."})
           }
           console.log("Token validado.", result);
+          req.user_id = user_id;
           next();
         });
       }

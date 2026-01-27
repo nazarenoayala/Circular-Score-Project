@@ -11,7 +11,7 @@ import { verifyActivateToken } from '../../middlewares/verifyActivateToken.js';
 
 
 
-//TODO Hay que añadir el middleware de verifyToken cuando esté 100% correcto a todas las rutas
+//TODO Hay que añadir el middleware de verifyToken cuando esté 100% correcto a todas las rutas, y corregir la ruta dinámica quitando el user_id, ya que se puede extraer del req al pasar por el middleware 
 
 const routes = express.Router();
 
@@ -19,7 +19,13 @@ const routes = express.Router();
 routes.post('/register', validateUserRegister(registerSchema), userController.register);
 
 // Ruta de activación
-routes.put('/activateUser/:token/:user_id', verifyActivateToken , userController.activateUser)
+routes.put('/activateUser/:token/:user_id', verifyActivateToken , userController.activateUser);
+
+// Ruta de recuperación de password
+routes.post('/findResetPassword', userController.findResetPassword);
+
+// Ruta reestablecimiento de contraseña
+routes.post('/updatePassword/:token/:user_id', verifyActivateToken, userController.updatePassword);
 
 // Ruta de login de usuario
 routes.post('/login', validateUserLogin(loginSchema), userController.login);
@@ -28,7 +34,7 @@ routes.post('/login', validateUserLogin(loginSchema), userController.login);
 routes.put('/updateProfile', verifyToken, validateUserEdit(editSchema), userController.updateProfile);
 
 // Ruta baneo de usuario
-routes.put('/banUser/:user_id', userController.banUser);
+routes.put('/setUserLogicState/:user_id', verifyToken, userController.setUserState);
 
 // Rutas de obtención de datos del user
 // Obtener información de perfil de usuario
