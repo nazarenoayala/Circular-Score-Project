@@ -5,13 +5,12 @@ import { Outlet } from 'react-router';
 export const AdminLayout = () => {
   return (
     <div className='layoutAdminPublic'>
-      <header style={{ height: '100%' }}>
-        <NavbarAdmin />
-      </header>
-
-      <main>
-        <Outlet />
-      </main>
+        <header style={{ height: '100%' }}>
+          <NavbarAdmin />
+        </header>
+        <main>
+          <Outlet />
+        </main>
     </div>
   )
 }
