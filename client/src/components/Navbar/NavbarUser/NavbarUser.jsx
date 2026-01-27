@@ -1,4 +1,3 @@
-import React from 'react';
 import './NavbarUser.css';
 import { Link } from 'react-router';
 
@@ -10,7 +9,6 @@ export const NavbarUser = () => {
         <div>
           <img
             src="/src/assets/Images/Logo/logoblanco.png"
-            alt=""
           ></img>
           <div className="container-logo">
             <i className="fa-regular fa-house"></i>

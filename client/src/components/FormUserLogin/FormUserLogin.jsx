@@ -5,6 +5,7 @@ import { Button, Form } from "react-bootstrap"
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import { useContext } from 'react';
 import { fetchData } from '../../../helpers/axiosHelper';
+import { MyButton } from '../MyButton/MyButton';
 
 const initialValue = {
   user_email: '',
@@ -14,7 +15,7 @@ const initialValue = {
 export const FormUserLogin = () => {
 
   const [userLogin, setUserLogin] = useState(initialValue);
-  const {setUserData, setCompanyData, setToken} = useContext(AuthContext);
+  const { setUserData, setCompanyData, setToken } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
 
 
@@ -25,7 +26,7 @@ export const FormUserLogin = () => {
     setUserLogin({ ...userLogin, [name]: value });
   };
 
-   const onSubmit = async () => {
+  const onSubmit = async () => {
     //TODO Hace falta, validar los campos desde el front !!!!!
     try {
 
@@ -42,9 +43,9 @@ export const FormUserLogin = () => {
       setUserData(userByToken.data.userData);
       setCompanyData(userByToken.data.companyData);
       setToken(token);
-      
+
       // Si todo es correcto, mandamos al usuario a su perfil
-      
+
       //TODO Supongamos que navega a company profile tras loguear, ya lo que decidamos
       //navigate(`/companyProfile`)
       //TODO Esta pa cuando la vista esté disponible
@@ -79,12 +80,17 @@ export const FormUserLogin = () => {
         />
       </Form.Group>
       <Form.Group className='gap-2 d-flex justify-content-center'>
-        <Button className="btn-green" onClick={onSubmit}>
-        Enviar
-      </Button>
-      <Button className="btn-green"
-        onClick={()=>navigate('/')}
-      >Cancelar</Button>
+
+        <MyButton
+          btnClass={"btn-green"}
+          onSubmit={onSubmit}
+          text={"Enviar"}
+        />
+        <MyButton
+          btnClass={"btn-red"}
+          onSubmit={() => navigate('/')}
+          text={"Cancelar"}
+        />
       </Form.Group>
     </Form>
   );
