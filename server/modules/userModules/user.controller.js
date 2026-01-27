@@ -1,6 +1,7 @@
 import {compareString , hashString} from '../../utils/bcryptUtils.js'
 import {generateToken} from '../../utils/jwtUtils.js'
 import sendActivationMail from '../../utils/nodeMailer.js';
+import { resetPasswordMail } from '../../utils/nodeMailer.js';
 import dotenv from 'dotenv'
 import userDal from './user.dal.js';
 
@@ -42,11 +43,9 @@ class UserController {
       
       // Enviamos correo de confirmación
       const user_id = result.insertId;
-      const mailResult = await sendActivationMail({user_email: user_email, user_id: user_id});
+      await sendActivationMail({user_email: user_email, user_id: user_id});
 
-      const {token} = mailResult;
-
-      res.status(200).json({message: 'Datos insertados en BD', token: token});
+      res.status(200).json({message: 'Datos insertados en BD'});
 
     } catch (error){
       console.log(error);
@@ -69,16 +68,58 @@ class UserController {
     }
   }
 
+  findResetPassword = async (req, res) => {
+
+    const {user_email} = req.body;
+    
+    try {
+      
+      const result = await userDal.findResetPassword(user_email);
+      
+      let message = "Email no encontrado";
+      if(res.length !== 0){
+        message = "Correo de recuperación enviado";
+        // Enviamos correo de restauración de contraseña
+        const mailResult = await resetPasswordMail({user_email: user_email, user_id: result[0].user_id});
+      }
+      res.status(201).json({message: message});
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+  updatePassword = async (req, res) => {
+
+    const {password} = req.body;
+    const {user_id} = req;
+
+    try {
+      
+      // Hasheamos la nueva contraseña
+      let hashedPass = await hashString(password, 10);
+
+      let values = [hashedPass, user_id]
+
+      // Mandamos el hash y el user id al dal para hacer el update
+      await userDal.updatePassword(values);
+      
+      res.status(200).json({message: "Contraseña actualizada."});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
   // Login de usuario
   login = async (req, res) => {
     
     const {user_email, password} = req.body;
-    console.log("user controller contenido de user_email", user_email);
     
     try {
       //comprobamos la existencia del email
       let result = await userDal.findUserByEmail(user_email);
-      console.log("resultado de la busqueda del email", result);
       
       //si no hay user
       if(result.length === 0){
@@ -165,10 +206,11 @@ class UserController {
 
     if(companyData.length !== 0){
       try {
+        const {user_id} = userData;
         const {company_name, company_email, sector_id, company_type , legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background} = companyData;
-        let values = [company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background, user_id];
+        let values = [company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, sustainability, ods_background, user_id];
   
-        let uptResult = await userDal.updateCompanyProfile(values);
+        let uptResult = await userDal.updateCompanyProfile(values, {client_segment: client_segment, stakeholders: stakeholders});
   
         res.status(200).json({
           message: "Actualizado correctamente",
@@ -183,12 +225,15 @@ class UserController {
   }
 
   // Borrado lógico del usuario
-  banUser = async (req, res) => {
-    const {user_id} = req.params;
+  setUserState = async (req, res) => {
+
+    // Si el setting es 0 activa el usuario, si es 1 lo desactiva
+
+    const {setting, user_id} = req.params;
     try {
-      let banResult = await userDal.banUser([user_id]);
+      let banResult = await userDal.banUser(setting, user_id);
       res.status(200).json({
-        message: `Usuario con id ${user_id} baneado`,
+        message: `Usuario con id ${user_id} ${setting === 0 ? "Activado" : "Desactivado"}`,
         banResult
       });
     } catch (error) {

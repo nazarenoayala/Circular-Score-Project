@@ -37,7 +37,7 @@ export const FormUserLogin = () => {
 
       // Guardamos en local storage el token del user
       localStorage.setItem('credentials', token);
-      
+
       setUserData(userByToken.data.userData);
       setCompanyData(userByToken.data.companyData);
       setToken(token);
