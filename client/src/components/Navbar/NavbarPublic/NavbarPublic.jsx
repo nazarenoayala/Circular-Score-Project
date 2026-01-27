@@ -1,5 +1,5 @@
 import './NavbarPublic.css';
-import { MyButton } from '../../components/MyButton/MyButton';
+import { MyButton } from '../../MyButton/MyButton';
 import { useEffect } from 'react';
 
 

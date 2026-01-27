@@ -1,4 +1,3 @@
-import React from 'react'
 import './NavbarAdmin.css';
 import { Link } from 'react-router';
 
@@ -34,10 +33,7 @@ export const NavbarAdmin = () => {
           </div>
 
           <div className="container-graphics">
-            <details
-              name=""
-              id=""
-            >
+            <details>
               <summary>
                 <i className="fa-solid fa-chart-column"></i>
                 <p>Datos analíticos</p>

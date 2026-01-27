@@ -1,4 +1,31 @@
-.layoutAdminPublic {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
+.layoutAdminPublic>* {
+  min-width: 20rem;
+}
+
+@media (width >=601px) {
+  .layoutAdminPublic {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 1rem;
+  }
+
+  .mobile {
+    display: none;
+  }
+}
+
+@media (width <=600px) {
+  .layoutAdminPublic {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+
+    main {
+      padding-top: 6.5rem;
+    }
+  }
+
+  .desktop {
+    display: none;
+  }
 }
