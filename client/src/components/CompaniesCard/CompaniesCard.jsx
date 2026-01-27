@@ -18,6 +18,7 @@ export const CompaniesCard = ({
   //guarda los tests de cada empresa
   const [testsRealizados, setTestsRealizados] = useState([]);
 
+ 
 
   const handleInfo = async () => {
     // Si ya está abierta la información, la cierra . Si no, guarda su id.
@@ -45,6 +46,13 @@ export const CompaniesCard = ({
       console.log(error);
     }
   };
+
+
+  
+
+
+
+
 
   return (
     <div className="card mb-3 py-3">
