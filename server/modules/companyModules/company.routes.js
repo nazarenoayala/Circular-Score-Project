@@ -3,6 +3,7 @@ import companyController from './company.controller.js';
 
 const routes = express.Router();
 
+
 // Prueba
 routes.get('/test', companyController.test);
 

@@ -133,6 +133,7 @@ allCompanies = async (req, res) => {
 
   delLogicCompany = async(req, res) => {
     const {user_id} = req.params;
+     
 
     try {
       await companyDal.delLogicCompany(user_id);

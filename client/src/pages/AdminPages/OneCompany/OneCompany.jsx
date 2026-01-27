@@ -16,22 +16,22 @@ const OneCompany = () => {
   // const [disableButton, setDisableButton] = useState();
 
   
-  const { token, companyData } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
 
-  // const delLogicCompany = async(user_id) => {
-  //   try {
-  //     let res = await fetchData(`/company/delLogicCompany/${user_id}`, "PUT", null, token);
-  //     console.log("copmanuyyyyy", res)
+  const delLogicCompany = async(user_id) => {
+    try {
+      let res = await fetchData(`/company/delLogicCompany/${user_id}`, "PUT", null, token);
+      console.log("copmanuyyyyy", res)
 
-  //     setCompany({...companyData.company, is_deleted: companyData.company.is_deleted === 0 ? 1 : 0 });
+      setCompany(prev => ({...prev, company: { ...prev.company, is_deleted: prev.company.is_deleted === 0 ? 1 : 0 }}));
       
 
-  //   } catch (error) {
-  //     console.log(error);
+    } catch (error) {
+      console.log(error);
       
-  //   }
-  // }
+    }
+  }
 
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const OneCompany = () => {
         <MyButton
           text={company.company.is_deleted === 0 ? 'Deshabilitar' : 'Habilitar'}
           btnClass='btn-red fw-bold px-4'
-          // onClick={()=>delLogicCompany(user_id)}
+          onClick={()=>delLogicCompany(user_id)}
         />
         
       </div>
