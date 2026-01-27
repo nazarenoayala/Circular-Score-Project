@@ -12,14 +12,16 @@ export const FormCompanyRegister3 = ({
   province,
   valErrors
 }) => {
-  
+
+  const localityProvince = locality.filter(e => e.province_id === Number(newCompany2.province_id));
+
   return (
     <>  
       <div className="ppal">
         <form action="" className="form">
           <h2>3. Sector de actividad</h2>
 
-          <label>10. Sector principal de la empresa</label>
+          <label>11. Sector principal de la empresa</label>
           <select
             value={newCompany1.sector_id}
             name="sector_id"
@@ -39,22 +41,6 @@ export const FormCompanyRegister3 = ({
 
           <h2>4. Localización y ámbito geográfico</h2>
 
-          <label>11. Localización de la sede principal</label>
-          <select
-            value={newCompany2.city_id}
-            name="city_id"
-            onChange={handleChange}>
-            <option value='' disabled>Elige solo una opción</option>
-            {locality?.map((elem, idx)=>{
-              return(
-                <option key={idx} value={elem.city_id}>{elem.name}</option>
-              )
-            })}
-          </select>
-
-          {valErrors?.city_id && (
-              <p>{valErrors.city_id}</p>
-            )}
             
           <label>12. Provincia de la sede principal</label>
     <select
@@ -70,10 +56,27 @@ export const FormCompanyRegister3 = ({
           </select>
 
           {valErrors?.province_id && (
-              <p>{valErrors.province_id}</p>
+            <p>{valErrors.province_id}</p>
+          )}
+
+          <label>13. Localización de la sede principal</label>
+          <select
+            value={newCompany2.city_id}
+            name="city_id"
+            onChange={handleChange}>
+            <option value='' disabled>Elige solo una opción</option>
+            {localityProvince?.map((elem, idx)=>{
+              return(
+                <option key={idx} value={elem.city_id}>{elem.name}</option>
+              )
+            })}
+          </select>
+
+          {valErrors?.city_id && (
+              <p>{valErrors.city_id}</p>
             )}
 
-          <label>13. Ámbito geográfico principal de operación</label>
+          <label>14. Ámbito geográfico principal de operación</label>
           <select
             value={newCompany1.gso}
             name="gso"

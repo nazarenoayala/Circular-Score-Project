@@ -1,9 +1,10 @@
 import './NavbarPublic.css';
-import { MyButton } from '../../components/MyButton/MyButton.jsx';
+import { MyButton } from '../../MyButton/MyButton';
+import { useEffect } from 'react';
 
 
-export const NavbarPublic = ({ setShowPage, showPage }) => {
-
+export const NavbarPublic = ({setShowPage, showPage}) => {
+  
 
   return (
     <div className='header-public'>
@@ -27,16 +28,16 @@ export const NavbarPublic = ({ setShowPage, showPage }) => {
           onSubmit={() => document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })}
           btnClass='btn-white'
         />
-        {showPage === "register" ?
+        {showPage === "register" ? 
           <MyButton
             text='Iniciar sesión'
-            onSubmit={() => setShowPage('login')}
+            onSubmit={() =>setShowPage('login')} 
             btnClass='btn-green'
           />
-            :
+          :
           <MyButton
             text='Registrarse'
-            onSubmit={() => setShowPage('register')}
+            onSubmit={() =>setShowPage('register')} 
             btnClass='btn-green'
           />
         }

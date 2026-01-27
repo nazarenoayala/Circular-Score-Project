@@ -13,7 +13,7 @@
   }
 
   section {
-    padding: 3rem;
+    padding: 2rem;
   }
 
   .card-unique {
@@ -33,6 +33,21 @@
       border-radius: 2rem;
       padding-bottom: 1rem;
     }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.5s;
+      box-shadow: 0 0 10px rgb(0, 109, 65);
+    }
+  }
+
+  .collab {
+    margin-left: -50px;
+    margin-right: -50px;
+    height: 20rem;
+    background-image: url("/src/assets/Images/forHome/lineBg.svg");
+    background-size: cover;
+    background-position: center;
   }
 
   .logos {
@@ -45,18 +60,31 @@
     }
   }
 
-  .logos2 {
+  .recon {
+    padding-top: 3rem;
+    margin-left: -50px;
+    margin-right: -50px;
+    height: 30rem;
+    background-image: url("/src/assets/Images/forHome/lineBg2.svg");
+    background-size: cover;
+    background-position: bottom;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
 
-    .santander {
-      width: 13rem;
-    }
+    .logos2 {
+      display: flex;     
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-evenly;
+      gap: 2rem;
 
-    img {
-      height: 5rem;      
+      .santander {
+        width: 13rem;
+      }
+
+      img {
+        height: 5rem;
+      }
     }
   }
 
@@ -80,4 +108,60 @@
     justify-content: center;
     align-items: center;
   }
+
+  .section-5 {
+    display: flex;
+    justify-content: center;
+
+    .col1 {
+      min-width: 30rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mini-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      img {
+        height: 5rem;
+      }
+    }
+
+    .graphic {
+      display: flex;
+      justify-content: center;
+
+      img {
+        max-width: 40rem;
+        min-width: 35rem;
+      }
+    }
+  }
+
+  .section-6 {
+    color: white;
+    margin-left: -50px;
+    margin-right: -50px;
+    background-color: rgb(16, 40, 48);
+    background-image:
+      repeating-linear-gradient(120deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(60deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+      linear-gradient(60deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1)),
+      linear-gradient(120deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1));
+    background-size: 70px 120px;
+
+    img {
+      max-width: 30rem;
+    }
+
+    .col2 {
+      padding-right: 2rem;
+      min-width: 30rem;
+      line-height: 2.2rem;
+    }
+  }
+
 }
