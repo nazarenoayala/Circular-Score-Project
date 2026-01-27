@@ -10,7 +10,6 @@ export const FormModalRegister = ({ setShowPage }) => {
   const onSubmit = async () => {
     try {
       setShowPage('login');
-      // ENVIAR DATOS AL BACK
     } catch (error) {
       console.log(error);
     }

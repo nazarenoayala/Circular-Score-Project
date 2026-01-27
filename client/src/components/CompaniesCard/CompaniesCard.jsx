@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { MyButton } from '../MyButton/MyButton';
 import './CompaniesCard.css';
-import { useNavigate } from 'react-router';
 import { fetchData } from '../../../helpers/axiosHelper'
 
 
@@ -13,12 +12,11 @@ export const CompaniesCard = ({
   userData, //contiene los datos del admin desde el context
 }) => {
 
-  const navigate = useNavigate();
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!", userData);
+  
 
   //guarda los tests de cada empresa
   const [testsRealizados, setTestsRealizados] = useState([]);
-
- 
 
   const handleInfo = async () => {
     // Si ya está abierta la información, la cierra . Si no, guarda su id.
@@ -46,13 +44,28 @@ export const CompaniesCard = ({
       console.log(error);
     }
   };
-
-
+  
+  console.log("USER DATA EN EL !!!!!!!!!!!!!!!!!!", userData[0]);
   
 
+  const onSubmit = async (isDeleted) => {
 
-
-
+      try {
+        if(isDeleted){
+          
+          const activateRes = await fetchData(`/user/setUserActivation/${0}/${userData[0].user_id}`,'PUT', null, token);
+          console.log(activateRes);
+          
+        } else {
+          
+          const desactivateRes = await fetchData(`/user/setUserActivation/${1}/${userData[0].user_id}`,'PUT', null, token);
+          console.log(desactivateRes);
+        }
+        
+      } catch (error) {
+        console.log(error);
+      }
+  }
 
   return (
     <div className="card mb-3 py-3">
@@ -60,11 +73,22 @@ export const CompaniesCard = ({
         <h3>{allCompanies.company_name}</h3>
 
         <div className="d-flex gap-2">
-          <MyButton
-            text="Gestionar Empresa"
-            btnClass="btn-green"
-            onSubmit={() => navigate(`/editCompanyProfile/${allCompanies.user_id}`)}
-          />
+
+          <p>Estado del usuario: {userData[0].is_deleted ? "DESACTIVADO" : "ACTIVADO"}</p>
+          {/* Dependiendo de userData.is_deleted */}
+          {userData[0].is_deleted ? 
+            <MyButton
+              text="Activar Empresa"
+              btnClass="btn-green"
+              onSubmit={onSubmit}
+            />
+            :
+            <MyButton
+              text="Desactivar Empresa"
+              btnClass="btn-red"
+              onSubmit={onSubmit}
+            />
+          }
 
           <MyButton
             text={

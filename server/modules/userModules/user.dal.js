@@ -58,6 +58,32 @@ class UserDal {
     }
   }
 
+  findResetPassword = async (userEmail) => {
+    try {
+      
+      // Busca el usuario por email para comprobar si existe antes de ofrecer un reset para la password
+      let sql = 'SELECT user_id FROM user WHERE user_email = ? AND is_deleted = 0 AND is_confirmed = 1'
+      let result = await executeQuery(sql, [userEmail]);
+      return result;
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  updatePassword = async (values) => {
+    try {
+      
+      let sql = 'UPDATE user SET password = ? WHERE user_id = ?'
+      let result = await executeQuery(sql, values);
+
+      return result;
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
   //Metodo para buscar el email del user en la base de datos, para validar las credenciales en el login
 
@@ -65,6 +91,7 @@ class UserDal {
     try{
       let sql = 'SELECT user_id, password FROM user WHERE user_email = ? AND is_deleted = 0 AND is_confirmed = 1'
       let result = await executeQuery(sql, [user_email]);
+      
       return result;
     } catch (error) {
       throw error;
@@ -76,7 +103,7 @@ class UserDal {
     try {
       
       let sql = `SELECT u.user_id, u.name, u.last_name, u.type, u.phone_number, 
-                u.province_id, u.city_id, u.user_email, u.position, c.company_name,
+                u.province_id, u.city_id, u.user_email, u.position, u.is_deleted, c.company_name,
                 c.company_email, c.sector_id, c.company_type, c.legal_form, 
                 c.active_years, c.company_size, c.gso, c.client_segment, 
                 c.stakeholders, c.sustainability, c.ods_background
@@ -96,7 +123,8 @@ class UserDal {
         phone_number: result[0].phone_number,
         province_id: result[0].province_id,
         city_id: result[0].city_id,
-        position: result[0].position
+        position: result[0].position,
+        is_deleted: result[0].is_deleted
       }
 
       const companyData = {
@@ -135,21 +163,36 @@ class UserDal {
 
   //Método para actualizar la info del usuario de la tabla "user"
 
-  editUser = async (user_id) => {
+  updateUserProfile = async (values) => {
 
     try {
       let sql = 'UPDATE user SET name=?, last_name=?, phone_number=?, city_id=?, province_id=?, position=? WHERE user_id=?'
-      await executeQuery(sql, user_id);
+      await executeQuery(sql, values);
     } catch (error) {
       throw error;
     }
   }
 
-  banUser = async (user_id) => {
+  updateCompanyProfile = async (values) => {
+    
+    try {
+      let sql = 'UPDATE company_data SET company_name=?, company_email=?, sector_id=?, company_type=? , legal_form=?, active_years=?, company_size=?, gso=?, sustainability=?, ods_background=? WHERE user_id=?'
+      await executeQuery(sql, values);
+      if(client_segment || stakeholders){
+        //TODO Hay que hacer una consulta a parte para los client_segment y los stakeholders, no tengo claro como lo vamos a hacer por que aquí quizá lo lógico sea borrar el anterior registro completo de ambos e insertar de nuevo desde 0.
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  setUserState = async (setting, user_id) => {
+
+    // Setea el is_deleted del registro del usuario en 0 o en 1.
 
     try {
-      let sql = 'UPDATE user SET is_deleted = 1 where user_id = ?'
-      await executeQuery(sql, user_id);
+      let sql = 'UPDATE user SET is_deleted = ? where user_id = ?'
+      await executeQuery(sql, [setting, user_id]);
     } catch (error) {
       throw error;
     }

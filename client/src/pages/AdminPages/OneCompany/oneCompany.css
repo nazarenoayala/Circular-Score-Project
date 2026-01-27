@@ -1,4 +1,37 @@
-.company_name {
-  display: flex;
-  
+:root {
+  --border: 1px solid grey;
+  --background-color: #fff;
+  --border-radius: 0.5rem;
+  --padding-block-name: 2rem;
+  --padding-block: 1.5rem;
+  --font-size-name: 3.2rem;
 }
+
+.company_name_div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: var(--padding-block-name);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+}
+
+.company_name {
+  font-size: var(--font-size-name);
+}
+
+.person_info {
+  padding: var(--padding-block);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+}
+
+.company_info {
+  padding: var(--padding-block);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+}
+

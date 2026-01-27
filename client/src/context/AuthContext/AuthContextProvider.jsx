@@ -19,18 +19,19 @@ export const AuthContextProvider = ({children}) => {
           // Habrá que añadir token en la petición
           let result = await fetchData('/user/userByToken', 'GET', null, tokenLS);
           setToken(tokenLS);
+          
           setUserData(result.data.userData);
           setCompanyData(result.data.companyData);
         } catch (error) {
           console.log(error);
         }
-  
+        
       }
       fetchUserData();
     }
-
+    
     const fetchTest = async () => {
-
+      
       try {
         // TODO: hay que añadirle el token a la petición
         let result = await fetchData('/test/allTest', 'GET', null, null);
@@ -40,9 +41,9 @@ export const AuthContextProvider = ({children}) => {
       }
     }
     fetchTest();
-
+    
   }, []);
-
+  
   const logout = () => {
     setUserData();
     setCompanyData();

@@ -15,13 +15,12 @@ export const verifyToken = (req, res, next) => {
       jwt.verify(token, process.env.SECRET_TOKEN_KEY,
         (err, result) => {
           if (err) {
-            console.log("error token", err);
+            console.log("error token", result);
             res.status(401).json({message: "No autorizado"})
           } else {
             req.user_id = result.user_id;
             next();
           }
-
         })
     }
 }
