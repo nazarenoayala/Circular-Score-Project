@@ -58,8 +58,24 @@
     font-weight: 700;
     font-size: 1rem;
     color: #475569;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     display: block;
     text-transform: uppercase;
 }
 
+.checkbox-group .form-check {
+    margin-bottom: 10px;
+    min-height: 1.5rem;
+}
+
+.checkbox-group .form-check-input {
+    border: 1px solid #CBD5E1;
+    cursor: pointer;
+}
+
+.checkbox-group .form-check-label {
+    margin-top: 0 !important;
+    padding-left: 5px;
+    color: #475569;
+    cursor: pointer;
+}
