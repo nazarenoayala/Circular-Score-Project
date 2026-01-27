@@ -11,6 +11,7 @@ import { ZodError } from 'zod';
 import {AuthContextProvider} from '../../../context/AuthContext/AuthContextProvider' */
 
 const initialValues1 = {
+         user_id: 17,
          company_name: '',
          legal_form: '',
          active_years: '',
@@ -24,6 +25,7 @@ const initialValues1 = {
          ods_background: '',
 };
 const initialValues2 = {
+          user_id: 17,
           contact_name: '',
           position: '',
           phone_number: '',
