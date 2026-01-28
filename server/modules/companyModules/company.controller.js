@@ -208,7 +208,19 @@ class CompanyController {
     }
  
   }
-}
+ delLogicCompany = async(req, res) => {
+    const {user_id} = req.params;
+
+    try {
+      await companyDal.delLogicCompany(user_id);
+      res.status(200).json({message: "Empresa deshabilitada"});
+
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+
+  }
 
 
 
