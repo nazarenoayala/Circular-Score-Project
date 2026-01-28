@@ -21,3 +21,5 @@ export const question16 = [
   },
 
 ]
+
+export const question16Length = question16.length;

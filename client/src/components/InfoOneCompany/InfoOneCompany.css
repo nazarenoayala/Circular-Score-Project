@@ -1,0 +1,13 @@
+:root {
+  --font-size: 1.3rem;
+  --line-height: 2rem;
+}
+
+.company_information span{
+  font-weight: bold;
+}
+
+.company_information h3 {
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}

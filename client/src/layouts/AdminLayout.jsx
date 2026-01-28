@@ -1,15 +1,25 @@
 import './layout.css';
-import { NavbarAdmin } from '../components/NavbarAdmin/NavbarAdmin';
+import { NavbarAdmin } from '../components/Navbar/NavbarAdmin/NavbarAdmin';
 import { Outlet } from 'react-router';
+import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
+import { NavbarOffcanvasAdmin } from '../components/Navbar/NavbarOffcanvasAdmin/NavbarOffcanvasAdmin';
 
 export const AdminLayout = () => {
   return (
     <div className='layoutAdminPublic'>
-      <header style={{ height: '100%' }}>
-        <NavbarAdmin />
-      </header>
+      <header>
+        <div className='desktop'>
+          {/* lateral bar  */}
+          <NavbarAdmin />
+        </div>
+        <div className='mobile'>
+          {/*  offcanvas */}
+          <NavbarOffcanvasAdmin />
+        </div>
+        </header>
 
       <main>
+        <NavbarHeaderGeneral />
         <Outlet />
       </main>
     </div>

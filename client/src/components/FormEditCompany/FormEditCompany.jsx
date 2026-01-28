@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card, Col, Form, Row} from 'react-bootstrap'
+import { optional } from 'zod';
 
 const segmentClientOptions = [
     //lista de opciones con clave valor (uso texto q ya identificaba cada opción)
@@ -23,7 +24,14 @@ const stakeholderOptions = [
     {value: 10, label: 'Otros grupos de interés'}
 ];
 
-export const FormEditCompany = () => {
+export const FormEditCompany = ({  
+    editCompanyData, 
+    handleCompanyChange, 
+    province,
+    city,
+    valErrors
+
+}) => {
     
   return (
     <Card>
@@ -34,20 +42,9 @@ export const FormEditCompany = () => {
                     <Form.Label>Nombre de la empresa</Form.Label>
                     <Form.Control
                         name='company_name'
-                        // value={}
-                        // onChange={}
+                        value={editCompanyData?.company_name || ""}
+                        onChange={handleCompanyChange}
                         placeholder='Introduce nombre de la empresa'
-                    >    
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Nombre de la persona de contacto</Form.Label>
-                    <Form.Control
-                        name='name'
-                        // value={}
-                        // onChange={}
-                        placeholder='Introduce nombre de la persona de contacto'
                     >    
                     </Form.Control>
                 </Form.Group>
@@ -55,31 +52,31 @@ export const FormEditCompany = () => {
                  <Form.Group>
                     <Form.Label>Correo electrónico</Form.Label>
                     <Form.Control
-                        name='user_email'
-                        // value={}
-                        // onChange={}
+                        name='company_email'
+                        value={editCompanyData.company_email || ""}
+                        onChange={handleCompanyChange}
                         placeholder='Introduce email de contacto'
                     >    
                     </Form.Control>
                         </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Teléfono</Form.Label>
+                 <Form.Group>
+                    <Form.Label>Teléfono de contacto empresa</Form.Label>
                     <Form.Control
-                        name='phone_number'                       
-                        // value={} 
-                        // onChange={}
-                        placeholder='Introduce telefono de contacto'
+                        name='phone_number'
+                        value={editCompanyData.phone_number || ""}
+                        onChange={handleCompanyChange}
+                        placeholder='Introduce teléfono de contacto'
                     >    
                     </Form.Control>
-                </Form.Group>
+                        </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Tipo de empresa</Form.Label>
                     <Form.Select
-                        name='company_type'
-                        // value={}
-                        // onChange={}
+                        name='legal_form'
+                        value={editCompanyData?.legal_form || ""}
+                        onChange={handleCompanyChange}
                                            
                     >
                         <option value="1">Autónomo/a</option>
@@ -96,8 +93,8 @@ export const FormEditCompany = () => {
                     <Form.Label>Años en activo</Form.Label>
                     <Form.Select
                         name='active_years'
-                        // value={}
-                        // onChange={}
+                        value={editCompanyData?.active_years || ""}
+                        onChange={handleCompanyChange}
                                              
                     >
                         <option value="1">Menos de 2 años</option>
@@ -112,8 +109,8 @@ export const FormEditCompany = () => {
                     <Form.Label>Nº de empleados</Form.Label>
                     <Form.Select
                         name='company_size'
-                        // value={}
-                        // onChange={}                     
+                        value={editCompanyData?.company_size || ""}
+                        onChange={handleCompanyChange}                     
                     >
                         <option value="1">1-9</option>
                         <option value="2">10-49</option>                       
@@ -126,8 +123,8 @@ export const FormEditCompany = () => {
                     <Form.Label>Sector</Form.Label>
                     <Form.Select
                         name='sector_id'
-                        // value={}
-                        // onChange={}                     
+                        value={editCompanyData?.sector_id || ""}
+                        onChange={handleCompanyChange}                     
                     >
                         <option value="1">Agricultura, ganadería y pesca</option>
                         <option value="2">Industria alimentaria</option>
@@ -156,8 +153,8 @@ export const FormEditCompany = () => {
                     <Form.Label>Ámbito geográfico principal de operación</Form.Label>
                     <Form.Select
                         name='gso'
-                        // value={}
-                        // onChange={}                     
+                        value={editCompanyData?.gso || ""}
+                        onChange={handleCompanyChange}                     
                     >
                         <option value="1">Local (municipio)</option>
                         <option value="2">Comarcal</option>                       
@@ -169,24 +166,53 @@ export const FormEditCompany = () => {
                     </Form.Select>
                 </Form.Group>
 
+
                 <Form.Group>
-                    <Form.Label>Localidad de la sede</Form.Label>
-                    <Form.Control
+                    <Form.Label>Provincia</Form.Label>
+                    <Form.Select
                         name='province_id'
                         //lista desplegable de localidades
-                        // value={}
-                        // onChange={}
+                        value={editCompanyData?.province_id || ""}
+                        onChange={handleCompanyChange}
+                        placeholder='Selecciona provincia'
                     >    
-                    </Form.Control>
+                        {province?.map((elem) =>{
+                            return(
+                                <option key={elem.province_id} value={elem.province_id}>{elem.name}</option>
+                            )
+                        })}
+                    </Form.Select>
+                        {valErrors?.province_id && (
+                            <p>{valErrors.province_id}</p>
+                        )}
                 </Form.Group>
                         
+                <Form.Group>
+                    <Form.Label>Ciudad</Form.Label>
+                    <Form.Select
+                        name='city_id'
+                        //lista desplegable de localidades
+                        value={editCompanyData?.city_id || ""}
+                        onChange={handleCompanyChange}
+                        placeholder='Selecciona ciudad'
+                    >
+                        {city?.map((elem)=>{
+                            return(
+                                <option key={elem.city_id} value={elem.city_id}>{elem.name}</option>
+                            )
+                        })}
+                    </Form.Select>
+                        {valErrors?.city_id && (
+                            <p>{valErrors.city_id}</p>
+                        )}
+                </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Estado de sostenibilidad y ODS</Form.Label>
                     <Form.Select
                         name='ods_background'
-                        // value={}
-                        // onChange={}
+                        value={editCompanyData?.ods_background || ""}
+                        onChange={handleCompanyChange}
                         >    
                         <option value="1">Si, formalizada y en vigor</option>    
                         <option value="2">Si, informal o parcial</option>    
@@ -203,8 +229,7 @@ export const FormEditCompany = () => {
                         {/* Check box lado izquierdo */}
                         <Col md={6}>
                         <div className='checkbox-group'>
-                    <Form.Label className='checkbox-title'>Clientes y grupos de interés</Form.Label>
-                    <div>
+                    <Form.Label className='checkbox-title'>Clientes y grupos de interés</Form.Label>                    
                         {segmentClientOptions.map((option) =>(
                     <Form.Check
                         type='checkbox'
@@ -212,19 +237,17 @@ export const FormEditCompany = () => {
                         key={option.value}
                         label={option.label}
                         value={option.value}
-                        id={option.value}
-                        
+                        onChange={(e) => handleCompanyChange(e, option.value)}
+                        checked={editCompanyData?.client_segment?.includes(option.value) || false}
                     />
-                    ))}
-                    </div>    
+                    ))}   
                     </div>
                         </Col>
 
                     {/* Check box lado derecho */}
                     <Col md={6}>
                     <div className='checkbox-group'>
-                    <Form.Label className='checkbox-title'>Principales grupos de interés</Form.Label>
-                    <div>
+                    <Form.Label className='checkbox-title'>Principales grupos de interés</Form.Label>              
                         {stakeholderOptions.map((option) =>(
                     <Form.Check
                         type='checkbox'
@@ -232,11 +255,10 @@ export const FormEditCompany = () => {
                         key={option.value}
                         label={option.label}
                         value={option.value}
-                        id={option.value}
-                         
+                        onChange={(e) => handleCompanyChange(e, option.value)}
+                        checked={editCompanyData?.stakeholders?.includes(option.value) || false}
                     />    
                     ))}
-                    </div>
                     </div>
                     </Col>
                     </Row>

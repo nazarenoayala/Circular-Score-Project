@@ -7,10 +7,10 @@ const routes = express.Router();
 routes.get('/allTest', testController.selectAllTest);
 
 // Ruta para deshabilitar test:
-routes.put('/disableTest/:id', testController.disableTest);
+//routes.put('/disableTest/:id', testController.disableTest);
 
 // Ruta para habilitar Test:
-routes.put('/enableTest/:id', testController.enableTest)
+//routes.put('/enableTest/:id', testController.enableTest)
 
 export default routes;
 

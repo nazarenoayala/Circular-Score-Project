@@ -8,11 +8,13 @@ import { PublicRoutes } from './PublicRoutes';
 import { PublicLayout } from '../layouts/PublicLayout.jsx';
 const Home = lazy(() => import("../pages/publicPages/HomePage/Home.jsx"));
 const ActivateUser = lazy(()=> import('../components/PublicComponents/ActivateUser/ActivateUser.jsx'));
+const ResetPassword = lazy(()=> import('../pages/publicPages/ResetPassword/ResetPassword.jsx'));
 const ErrorPage = lazy(() => import("../pages/publicPages/ErrorPage/ErrorPage.jsx"));
 
 //Páginas privadas usuario
 import { UserLayout } from '../layouts/UserLayout.jsx';
 const AllTestsPage = lazy(() => import("../pages/companyPages/AllTestsPage/AllTestsPage.jsx"));
+const CompanyRegister = lazy(() => import("../pages/companyPages/CompanyRegister/CompanyRegister.jsx"));
 const CompanyProfilePage = lazy(() => import("../pages/companyPages/CompanyProfilePage/CompanyProfilePage"));
 const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage/EditCompanyPage"));
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
@@ -57,8 +59,13 @@ export const AppRoutes = () => {
                   element={<ActivateUser 
                             setShowPage={setShowPage}
                           />}
-                />
+              />
               <Route/>
+              <Route 
+                path="resetPassword/:token/:user_id" 
+                  element={<ResetPassword
+                            setShowPage={setShowPage}
+                          />}/>
             </Route>
           </Route>
 
@@ -68,6 +75,7 @@ export const AppRoutes = () => {
             {/* rutas de empresa */}
             <Route element={<UserLayout />}>
               <Route path="/allTests" element={<AllTestsPage />} />
+              <Route path="/companyRegister/:user_id" element={<CompanyRegister />} />
               <Route path="/companyProfile/:id" element={<CompanyProfilePage />} />
               <Route path="/editCompany/:id" element={<EditCompanyPage />} />
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />

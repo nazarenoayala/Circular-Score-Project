@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  /* CSS */
+    .mail-body{
+      display: flex;
+      justify-items: center;
+    }
+    .activation-email {
+      text-align: center;
+      background-color: #FAFCFE;
+      border: 2px solid rgba(100, 100, 100, 0.427);
+      border-radius: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      margin-left: 3rem;
+      margin-right: 3rem;
+      width: 40rem;
+      height: 20rem;
+    }
+    .mail-header {
+      text-align: center;
+      background-color: #1C2534;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+    .mail-logo {
+      width: 60%;
+    }
+    .mail-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    .main-bott {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      text-align: center;
+    }
+    .mail-link {
+      text-decoration: none;
+      border: 2px solid rgba(100, 100, 100, 0.427);
+      border-radius: 1rem;
+      padding: 0.5rem;
+      background-color: #00D47E;
+    }
+    .link-span {
+      color: whitesmoke;
+      font-weight: bold;
+    }
+  </style>
+  <title>Correo de Circular Score</title>
+</head>
+<body class="mail-body">
+  <div class="activation-email">
+    <header class="mail-header">
+        <img 
+          class="mail-logo" 
+          src="https://www.imagehost.at/image/p7dH7"
+        >
+    </header>
+    
+    <main class="mail-main">
+      <p>
+        {{htmlText}}
+      </p>
+      <p>
+        Te has registrado con el siguiente correo: {{userEmail}}
+      </p>
+      <div class="main-bott">
+        <a
+          class="mail-link"
+          href="{{navigationLink}}"
+        >
+          <span class="link-span">{{linkText}}</span>
+        </a>
+      </div>
+    </main>
+    
+    <footer>
+      
+    </footer>
+  </div>
+</body>
+</html>

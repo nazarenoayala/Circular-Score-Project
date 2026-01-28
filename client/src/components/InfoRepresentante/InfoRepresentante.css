@@ -1,0 +1,13 @@
+:root {
+  --font-size: 1.3rem;
+  --line-height: 2rem;
+}
+
+.contact_info span{
+  font-weight: bold;
+}
+
+.contact_info h3 {
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}

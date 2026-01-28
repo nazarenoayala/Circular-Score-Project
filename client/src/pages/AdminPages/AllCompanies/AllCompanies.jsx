@@ -26,7 +26,6 @@ const AllCompanies = () => {
     setSearch(e.target.value);
   };
 
-  
   useEffect(() => {
     const fetchAllCompanies = async () => {
       try {
@@ -53,14 +52,13 @@ const AllCompanies = () => {
       const sameCategory = selectedCategory === '' || 
                               selectedCategory === 'Todas las categorías' || 
                               String(elem.sector_id) === selectedCategory;
-
       return sameName && sameCategory;
     });
     setFilteredCompanies(newArray);
   };
 
   const reset = () =>{
-    //setFilteredCompanies([]);
+   setSearch("")
     setSelectedCategory("")
   }
    
@@ -71,7 +69,7 @@ const AllCompanies = () => {
       <div className="card py-2 ">
         <h2 className="header">EMPRESAS REGISTRADAS</h2>
       </div>
-      <div className="search">
+      <div className="search ">
         <form onSubmit={searchCompany} action="">
           <input
             type="text"
