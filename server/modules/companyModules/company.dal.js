@@ -1,4 +1,4 @@
-import executeQuery from "../../config/db.js";
+import executeQuery, {dbPool} from "../../config/db.js";
 
 class CompanyDal {
 
@@ -6,11 +6,16 @@ class CompanyDal {
   registerCompany = async (values) => {
 
     console.log(values);
+
+    // Como son varias consultas para esta operación, vamos usar una transacción
+    const connection = await dbPool.getConnection();
     
     try{
-
       //Saco el id de la primera posición del array
       const user_id = values[0];
+
+      // Inicializamos la transaction
+      await connection.beginTransaction();
       
       // Modificamos el valor de los 2 campos que deben tener el user_id directamente reemplazando posiciones del array
       let realValues = [...values];
@@ -18,7 +23,7 @@ class CompanyDal {
 
       // Traemos client_segment y stakeholders, pero no podemos meter eso en esta consulta, así que lo insertamos con el user_id en ambos campos
       let sql = 'INSERT INTO company_data (user_id, company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)'
-      let result = await executeQuery(sql, realValues);
+      let result = await connection.query(sql, realValues);
 
       // Preparamos las 2 consultas que insertaran los datos de los selectores multiples a las tablas correspondientes
       let ccg = values[9] // client_segment
@@ -46,12 +51,19 @@ class CompanyDal {
       let sqlccg = `INSERT INTO company_client_group VALUES ${ccgValues}`;
       let sqlcs = `INSERT INTO company_stakeholder VALUES ${csValues}`;
 
-      let resultCcg = await executeQuery(sqlccg, ccgValues);
-      let resultCs = await executeQuery(sqlcs, csValues);
+      let resultCcg = await connection.query(sqlccg, ccgValues);
+      let resultCs = await connection.query(sqlcs, csValues);
       
+      await connection.commit();
       return {result, resultCcg, resultCs}
     }catch(error){
+      connection.rollback();
       throw error
+    } finally {
+      // Si la conexión existe la liberamos
+      if(connection){
+        connection.release();
+      }
     }
   }
 
@@ -65,6 +77,7 @@ class CompanyDal {
     }
   }
   //pedir datos de localidades y provincias
+
   locality = async() => {
     try{
       let sql = 'SELECT * FROM city';
@@ -75,6 +88,7 @@ class CompanyDal {
       throw error;
     }
   }
+
   Province = async() => {
     try{
       let sql = 'SELECT * FROM province';
@@ -85,7 +99,6 @@ class CompanyDal {
       throw error;
     }
   }
-
 
   showCompanyProfile = async(user_id) => {
     try {
@@ -109,8 +122,8 @@ class CompanyDal {
     }
   }
 
-//todas las empresas. esta consulta permite que cada objeto de empresa lleve los datos de la persona de contacto .yas
- allCompanies = async() => {
+  //todas las empresas. esta consulta permite que cada objeto de empresa lleve los datos de la persona de contacto .yas
+  allCompanies = async() => {
     try {
      let sql = `
       SELECT 
@@ -119,10 +132,10 @@ class CompanyDal {
         u.last_name, 
         u.user_email, 
         u.phone_number 
-      FROM company_data c
-      JOIN user u ON c.user_id = u.user_id
-      WHERE u.is_deleted = 0
-    `;
+        FROM company_data c
+        JOIN user u ON c.user_id = u.user_id
+        WHERE u.is_deleted = 0
+      `;
 
       return await executeQuery(sql);
 
@@ -141,20 +154,6 @@ class CompanyDal {
       throw error;
     }
   }
-
-  delLogicCompany = async(user_id) => {
-    try {
-      let sql = 'UPDATE user SET is_deleted = IF(is_deleted= 0, 1, 0) WHERE user_id = ?'
-
-      await executeQuery(sql, [user_id]);
-
-    } catch (error) {
-      throw error;
-    }
-  }
-
-
-
 }
 
 export default new CompanyDal();
