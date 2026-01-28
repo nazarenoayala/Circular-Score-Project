@@ -4,12 +4,10 @@ import { FormUserLogin } from '../../../components/FormUserLogin/FormUserLogin';
 import { FormModalRegister } from '../../../components/FormModalRegister/FormModalRegister';
 import { FormUserResPassword } from '../../../components/FormUserResPassword/FormUserResPassword';
 import { FormContact } from '../../../components/FormContact/FormContact';
+import { Col, Row } from 'react-bootstrap';
+import { MyButton } from '../../../components/MyButton/MyButton';
 
-const Home = ({setShowPage, showPage}) => {
-
-
-
-
+const Home = ({ setShowPage, showPage }) => {
   return (
     <div className="homepage">
       <section className='section1'>
@@ -65,15 +63,64 @@ const Home = ({setShowPage, showPage}) => {
         </div>
       </section>
 
-      <section>
+      <section className='collab'>
         <h2>Entidades colaboradoras</h2>
+        
         <div className="logos">
           <img src="/src/assets/Images/forHome/logocatedra.png" alt="" />
           <img src="/src/assets/Images/forHome/logogeneralitat.png" alt="" />
         </div>
       </section>
 
-      <section>
+      <section className='section-5'>
+        <Row>
+          <Col className='col1'>
+            <h2>Diseña e implementa estrategias que permitan un crecimiento sostenible.</h2>
+            <p>No importa en qué punto de tu camino hacia la sostenibilidad te encuentres; las soluciones tecnológicas de CircularScore basadas en
+              Inteligencia Artificial pueden ayudarte a conseguir tus objetivos.</p>
+            <div className='mini-section'>
+              <img src="/src/assets/Images/forHome/icon-3-2.svg" />
+              <p>Aumentar la eficacia.</p>
+            </div>
+            <div className='mini-section'>
+              <img src="/src/assets/Images/forHome/icon-1.svg" />
+              <p>Mejorar los márgenes y los ingresos.</p>
+            </div>
+            <div className='mini-section'>
+              <img src="/src/assets/Images/forHome/icon-3-2.svg" />
+              <p>Generar confianza en la marca.</p>
+            </div>
+          </Col>
+          <Col className='graphic'>
+            <img src="/src/assets/Images/forHome/graphic.png" />
+          </Col>
+        </Row>
+      </section>
+
+      <section className='section-6'>
+        <Row>
+          <Col>
+            <img src="/src/assets/Images/forHome/rueda2030.png" />
+          </Col>
+          <Col className='col2'>
+            <h2>CircularScore supervisa y administra el impacto medioambiental de la organización</h2>
+            <div className='text-start pt-4'>
+              <p>→ Liderar el progreso hacia cero emisiones netas</p>
+              <p>→ Respaldar el desarrollo de nuevas tecnologías</p>
+              <p>→ Seguimiento de la contribución de la agenda 2030</p>
+              <p>→ Información basada en inteligencia artificial</p>
+              <p>→ Modelos de cálculo para las categorías de emisiones de Ámbitos 1, 2 y múltiples Ámbitos 3.</p>
+            </div>
+            <MyButton
+              btnClass={"btn-green"}
+              text={"Pruébalo"}
+              onSubmit={() => document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' })}
+            />
+          </Col>
+        </Row>
+      </section>
+
+      <section className='recon'>
         <h2 className='pb-4'>Premios y reconocimientos</h2>
         <div className='logos2'>
           <img src="/src/assets/Images/forHome/santander.png" className='santander' />

@@ -44,3 +44,5 @@ export const question7 = [
     name:'Otra forma jurídica'
   },
 ]
+
+export const question7Length = question7.length;

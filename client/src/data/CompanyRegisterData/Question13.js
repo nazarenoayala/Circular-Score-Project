@@ -24,3 +24,5 @@ export const question13 = [
     name:'Internacional (fuera de Europa)'
   },
 ]
+
+export const question13Length = question13.length;
