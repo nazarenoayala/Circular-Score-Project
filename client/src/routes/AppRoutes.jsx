@@ -61,7 +61,11 @@ export const AppRoutes = () => {
                           />}
                 />
               <Route/>
-              <Route path="resetPassword/:token/:user_id" element={<ResetPassword/>}/>
+              <Route 
+                path="resetPassword/:token/:user_id" 
+                  element={<ResetPassword
+                            setShowPage={setShowPage}
+                          />}/>
             </Route>
           </Route>
 

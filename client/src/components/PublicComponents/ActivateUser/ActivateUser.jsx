@@ -24,7 +24,7 @@ const ActivateUser = ({setShowPage}) => {
         }
       }
       fetchActivationData();
-
+      navigate('/');
     } else {
         navigate('/');
         console.log('Link incorrecto o no autorizado.');
