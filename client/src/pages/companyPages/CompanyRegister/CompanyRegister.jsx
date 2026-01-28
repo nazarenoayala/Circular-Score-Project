@@ -9,6 +9,7 @@ import { fetchData } from '../../../../helpers/axiosHelper';
 import { companyRegisterSchema } from '../../../../schemas/companyRegister';
 import { ZodError } from 'zod';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
+
 const initialValues1 = {
          company_name: '',
          company_email: '',
@@ -42,8 +43,6 @@ const CompanyRegister = () => {
   const [fetchError, setFetchError] = useState('');
 
   const {token, userData} = useContext(AuthContext) 
-  console.log(token);
-  console.log(userData);
   
   const navigate = useNavigate()
 
@@ -71,6 +70,8 @@ const CompanyRegister = () => {
       setNewCompany1({ ...newCompany1, [name]: value });
       setNewCompany2({ ...newCompany2, [name]: value });
     }
+    console.log("INFO COMPANY1",newCompany1);
+    console.log("INFO COMPANY2",newCompany2);
   };
 
 // pedir a base de datos localidades y provincias. 
@@ -103,7 +104,7 @@ const CompanyRegister = () => {
         const res2 = await fetchData(`/company/registerUpdate/${userData?.user_id}`, 'PUT', newCompany2, token);
         console.log(res2);
       }
-      navigate('/')
+      navigate('/allTest');
     }catch(error){
       if (error instanceof ZodError){
         const fieldsErrors = {};
