@@ -1,6 +1,5 @@
 import React from 'react'
 import {Card, Col, Form, Row} from 'react-bootstrap'
-import { optional } from 'zod';
 
 const segmentClientOptions = [
     //lista de opciones con clave valor (uso texto q ya identificaba cada opción)
@@ -32,6 +31,8 @@ export const FormEditCompany = ({
     valErrors
 
 }) => {
+    //funcion para filtrar ciudades correspondientes a la provincia seleccionada
+    const localityProvince = city?.filter(e => Number(e.province_id) === Number(editCompanyData.province_id)) || [];
     
   return (
     <Card>
@@ -196,7 +197,7 @@ export const FormEditCompany = ({
                         onChange={handleCompanyChange}
                         placeholder='Selecciona ciudad'
                     >
-                        {city?.map((elem)=>{
+                        {localityProvince?.map((elem)=>{
                             return(
                                 <option key={elem.city_id} value={elem.city_id}>{elem.name}</option>
                             )

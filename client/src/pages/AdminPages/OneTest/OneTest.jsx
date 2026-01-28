@@ -47,7 +47,12 @@ const OneTest = () => {
               <h3>{uniqueTest.test_name.split('·')[1]}</h3>
             </div>
           </div>
-          <div className='button'>
+          <div className='button d-flex gap-2'>
+            <MyButton
+              text={"Atrás"}
+              btnClass={"btn-red"}
+              onSubmit={() => navigate('/tests')}
+            />
             <MyButton
               text={"Editar test"}
               btnClass={"btn-green"}
