@@ -1,7 +1,11 @@
+import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
+import { NavbarUser } from '../components/NavbarUser/NavbarUser';
 import './layout.css';
 import { NavbarOffcanvasUser } from '../components/Navbar/NavbarOffcanvasUser/NavbarOffcanvasUser.jsx';
 import { NavbarUser } from '../components/Navbar/NavbarUser/NavbarUser';
 import { Outlet } from 'react-router';
+
+
 
 export const UserLayout = () => {
   return (
@@ -17,6 +21,7 @@ export const UserLayout = () => {
         </div>
       </header>
       <main>
+         <NavbarHeaderGeneral />
         <Outlet />
       </main>
     </div>
