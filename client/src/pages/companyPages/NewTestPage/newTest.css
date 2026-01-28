@@ -1,0 +1,47 @@
+.oneQuestionPages {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  .progress-bar {
+    
+    .progress-bar-container {
+
+      height: 20px;
+      border-radius: 2rem;
+      width: 70%;
+      
+      .progress-bar-result {
+
+        background-color: #2C9947;
+
+      }
+    }
+  }
+
+  .test-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    img {
+      width: 100px;
+      border-radius: 2rem;
+    }
+  }
+
+  .questionsContainer {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-class {
+
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+}

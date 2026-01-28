@@ -28,7 +28,5 @@ routes.get('/allCompanies', companyController.allCompanies)
 //http://localhost:4000/company/oneCompany/user_id
 routes.get('/oneCompany/:user_id', companyController.showOneCompany);
 
-routes.put('/delLogicCompany/:user_id', companyController.delLogicCompany);
-
 
 export default routes;
