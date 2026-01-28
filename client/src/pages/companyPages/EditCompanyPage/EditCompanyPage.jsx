@@ -47,14 +47,16 @@ const EditCompanyPage = () => {
 
   //Cuando tenga los datos, los paso a estados locales
   useEffect(() =>{
-    console.log("Datos de empresa:", companyData);
-    console.log("Datos de usuario:", userData);
-    if (companyData) {
-      setEditCompanyData(companyData);
+
+    const setData = () => {
+      if (companyData) {
+        setEditCompanyData(companyData);
+      }
+      if (userData) {
+        setEditUserData(userData);
+      }
     }
-    if (userData) {
-      setEditUserData(userData);
-    }
+    setData();
   }, [companyData, userData]);
 
   //funciones para control de inputs. (uso la mismo control company para checkbox)
@@ -110,26 +112,25 @@ const EditCompanyPage = () => {
   const sendDb = async (e) => {
     e.preventDefault();
     //Verifico que hay token
-    const tokenLS = localStorage.getItem("token")
-    try {
-      //creo objeto con toda la info
-      const updatedData = {
-        ...editCompanyData,
-        ...editUserData,
+    if(token){
+      try {
+        //creo objeto con toda la info
+        const updatedData = {
+          ...editCompanyData,
+          ...editUserData,
+        }
+        console.log('enviando datos al server', updatedData);
+        
+        //Hago peticion PUT en user.routes.js la ruta pide eso
+        const result = await fetchData(`/user/updateProfile`, 'PUT', updatedData, token);
+        
+        if(result){
+          setMessage("Los cambios se guardaron con éxito")
+        }
+      } catch (error) {
+        console.log('Error al guardar en la DB', error);
       }
-      console.log('enviando datos al server', updatedData);
-
-      //Hago peticion PUT en user.routes.js la ruta pide eso
-      const result = await fetchData(`/user/updateProfile`, 'PUT', updatedData, tokenLS);
-      
-      if(result){
-        setMessage("Los cambios se guardaron con éxito")
-      }
-    } catch (error) {
-      console.log('Error al guardar en la DB', error);
     }
-    
-
   }
   
   return (

@@ -41,8 +41,6 @@ const CompanyRegister = () => {
   const [fetchError, setFetchError] = useState('');
 
   const {token, userData} = useContext(AuthContext) 
-  console.log("LOG DEL TOKEN COMPANY REGISTER", token);
-  console.log("LOG DEL TOKEN COMPANY REGISTER", userData);
   
   const navigate = useNavigate()
 
