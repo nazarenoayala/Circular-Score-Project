@@ -21,6 +21,7 @@ class CompanyDal {
       let realValues = [...values];
       realValues.splice(9, 2, user_id, user_id);
 
+
       // Traemos client_segment y stakeholders, pero no podemos meter eso en esta consulta, así que lo insertamos con el user_id en ambos campos
       let sql = 'INSERT INTO company_data (user_id, company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)'
       let result = await connection.query(sql, realValues);
@@ -48,13 +49,13 @@ class CompanyDal {
         }
       }
 
+      await connection.commit();
+
       let sqlccg = `INSERT INTO company_client_group VALUES ${ccgValues}`;
       let sqlcs = `INSERT INTO company_stakeholder VALUES ${csValues}`;
-
+      
       let resultCcg = await connection.query(sqlccg, ccgValues);
       let resultCs = await connection.query(sqlcs, csValues);
-      
-      await connection.commit();
       return {result, resultCcg, resultCs}
     }catch(error){
       connection.rollback();
@@ -135,7 +136,7 @@ class CompanyDal {
         FROM company_data c
         JOIN user u ON c.user_id = u.user_id
         WHERE u.is_deleted = 0
-      `;
+       `;
 
       return await executeQuery(sql);
 
