@@ -1,6 +1,9 @@
+import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
 import { NavbarUser } from '../components/NavbarUser/NavbarUser';
 import './layout.css';
 import { Outlet } from 'react-router';
+
+
 
 export const UserLayout = () => {
   return (
@@ -9,6 +12,7 @@ export const UserLayout = () => {
         <NavbarUser/>
       </header>
       <main>
+         <NavbarHeaderGeneral />
         <Outlet />
       </main>
     </div>

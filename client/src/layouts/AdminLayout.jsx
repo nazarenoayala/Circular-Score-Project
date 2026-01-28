@@ -1,6 +1,7 @@
 import './layout.css';
 import { NavbarAdmin } from '../components/NavbarAdmin/NavbarAdmin';
 import { Outlet } from 'react-router';
+import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
 
 export const AdminLayout = () => {
   return (
@@ -10,6 +11,7 @@ export const AdminLayout = () => {
       </header>
 
       <main>
+        <NavbarHeaderGeneral />
         <Outlet />
       </main>
     </div>

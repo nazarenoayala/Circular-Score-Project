@@ -35,3 +35,15 @@
     background-color: rgb(143, 36, 46) !important;
   }
 }
+
+.btn-blue-circle {
+ background-color: rgb(68, 126, 247) !important;
+  
+  border: none !important;
+  border-radius: 50% !important;
+ 
+&:hover {
+    background-color: rgb(38, 75, 151) !important;
+  }
+}
+
