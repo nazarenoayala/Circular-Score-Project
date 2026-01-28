@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import '../../../components/FormCompanyRegister/formCompanyRegister.css'
 import { FormCompanyRegister1 } from '../../../components/FormCompanyRegister/FormCompanyRegister1';
 import { FormCompanyRegister2 } from '../../../components/FormCompanyRegister/FormCompanyRegister2';
 import { FormCompanyRegister3 } from '../../../components/FormCompanyRegister/FormCompanyRegister3';
@@ -41,6 +42,8 @@ const CompanyRegister = () => {
   const [fetchError, setFetchError] = useState('');
 
   const {token, userData} = useContext(AuthContext) 
+  console.log(token);
+  console.log(userData);
   
   const navigate = useNavigate()
 
@@ -116,48 +119,54 @@ const CompanyRegister = () => {
   }
   
   return (
-    <>
-      <h1>Registro de Empresa</h1>
-      {currentFormPage === 1 &&<FormCompanyRegister1
-        newCompany1={newCompany1}
-        newCompany2={newCompany2}
-        handleChange={handleChange}
-        setCurrentFormPage={setCurrentFormPage}
-        navigate={navigate}
-        valErrors={valErrors}
-        fetchError={fetchError}
-      />}
-      
-      {currentFormPage === 2 && (
-        <FormCompanyRegister2
-          newCompany1={newCompany1}
-          handleChange={handleChange}
-          setCurrentFormPage={setCurrentFormPage}
-          valErrors={valErrors}
-        />
-      )}
-      {currentFormPage === 3 && (
-        <FormCompanyRegister3
-          newCompany1={newCompany1}
-          newCompany2={newCompany2}
-          handleChange={handleChange}
-          setCurrentFormPage={setCurrentFormPage}
-          locality={locality}
-          province={province}
-          valErrors={valErrors}
-        />
-      )}
-      {currentFormPage === 4 && (
-        <FormCompanyRegister4
-          newCompany1={newCompany1}
-          handleChange={handleChange}
-          setCurrentFormPage={setCurrentFormPage}
-          navigate={navigate}
-          onSubmit={onSubmit}
-          valErrors={valErrors}
-        />
-      )}
-    </>
+    <div className='register-profile-container'>
+      <main className='container mt-5 mb-5'>
+        <header className='header-content mb-4'>
+          <h1 className='title-form'>Registro de Empresa</h1>
+        </header>
+        <section>
+          {currentFormPage === 1 &&<FormCompanyRegister1
+            newCompany1={newCompany1}
+            newCompany2={newCompany2}
+            handleChange={handleChange}
+            setCurrentFormPage={setCurrentFormPage}
+            navigate={navigate}
+            valErrors={valErrors}
+            fetchError={fetchError}
+          />}
+          
+          {currentFormPage === 2 && (
+            <FormCompanyRegister2
+              newCompany1={newCompany1}
+              handleChange={handleChange}
+              setCurrentFormPage={setCurrentFormPage}
+              valErrors={valErrors}
+            />
+          )}
+          {currentFormPage === 3 && (
+            <FormCompanyRegister3
+              newCompany1={newCompany1}
+              newCompany2={newCompany2}
+              handleChange={handleChange}
+              setCurrentFormPage={setCurrentFormPage}
+              locality={locality}
+              province={province}
+              valErrors={valErrors}
+            />
+          )}
+          {currentFormPage === 4 && (
+            <FormCompanyRegister4
+              newCompany1={newCompany1}
+              handleChange={handleChange}
+              setCurrentFormPage={setCurrentFormPage}
+              navigate={navigate}
+              onSubmit={onSubmit}
+              valErrors={valErrors}
+            />
+          )}
+        </section>
+      </main>
+    </div>
   );
 };
 

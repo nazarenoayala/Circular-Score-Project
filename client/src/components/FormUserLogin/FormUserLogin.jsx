@@ -51,7 +51,6 @@ export const FormUserLogin = () => {
       //TODO Esta pa cuando la vista esté disponible
       const user_id = userByToken.data.userData.user_id;
       navigate(`/companyRegister/${user_id}`);
-
     } catch (error) {
       console.log(error);
     }

@@ -5,6 +5,7 @@ import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { HistoricTestContainer } from '../../../components/HistoricTestContainer/HistoricTestContainer';
 import './oneTest.css';
+import { fetchData } from '../../../../helpers/axiosHelper';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
@@ -17,6 +18,22 @@ const OneTestCompany = () => {
   const navigate = useNavigate()
   const oneTest = test.filter((e) => e.test_id == id);
 
+  const startTest = async () => {
+
+    try {
+      // todo: hay que meter token
+      let result = await fetchData(`/answerSet/newAnswerSet/${id}`, 'POST', null, null);
+      console.log(result);
+
+      navigate(`/newTest/${id}/answerSet/${result.data.result.insertId}`);
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+
+  }
+
   return (
     <div className='oneTest'>
       <div className='newTest'>
@@ -24,9 +41,9 @@ const OneTestCompany = () => {
         <img src={`${urlImage}/ODSimages/${oneTest[0].test_image}`} alt="" />
         <div className='btnOneTest'>
           <MyButton
-            text='Comenzar test'
+            text='Nuevo test'
             btnClass='btn-green'
-            onSubmit={() => navigate(`/oneQuestion/${id}`)}
+            onSubmit={startTest}
           />
           <MyButton
             text='Volver atrás'
