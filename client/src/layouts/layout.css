@@ -5,8 +5,11 @@
 @media (width >=601px) {
   .layoutAdminPublic {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 1rem;
+    grid-template-columns: 16rem auto;
+  }
+
+  main {
+    padding-left: 3rem;
   }
 
   .mobile {
@@ -17,11 +20,10 @@
 @media (width <=600px) {
   .layoutAdminPublic {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 1rem;
+    grid-template-rows: 2rem auto;
 
     main {
-      padding-top: 6.5rem;
+      padding-top: 6rem;
     }
   }
 

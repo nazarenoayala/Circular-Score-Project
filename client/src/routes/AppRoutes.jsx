@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
@@ -25,7 +26,6 @@ const UserTestRecord = lazy(() => import("../pages/companyPages/UserTestRecord/U
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
-import { useState } from 'react';
 const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
 const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
 const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
