@@ -64,8 +64,12 @@ export const companyRegisterSchema = z.object({
 /*   city_id: intFromInput({max:question3Length}),
   province_id: intFromInput({max:question3Length}), */
   gso: intFromInput({max:question13Length}),
-/*   client_segement: intFromInput({max:question14Length}),
-  stakeholders: intFromInput({max:question15Length}), */
+  client_segment: z.
+                    array(z.number())
+                    .min(1, 'Debe seleccionar al menos una opción'),
+  stakeholders:  z.
+                    array(z.number())
+                    .min(1, 'Debe seleccionar al menos una opción'), 
   sustainability: intFromInput({max:question16Length}),
   ods_background:  intFromInput({max: question17Length})  
 })  
