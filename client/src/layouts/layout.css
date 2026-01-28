@@ -2,6 +2,14 @@
   min-width: 20rem;
 }
 
+.layoutAdminPublic {
+  height: 100dvh;
+}
+
+.layoutAdminPublic main {
+  background-color: rgb(250, 252, 254);
+}
+
 @media (width >=601px) {
   .layoutAdminPublic {
     display: grid;
@@ -9,6 +17,9 @@
   }
 
   main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
     padding-left: 3rem;
   }
 
