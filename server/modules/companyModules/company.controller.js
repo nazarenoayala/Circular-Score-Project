@@ -220,7 +220,7 @@ class CompanyController {
     }
   }
 
-  }
+
 
 
   allTestCompaniesData = async(req, res) => {
@@ -236,7 +236,7 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
-
 }
+
 
 export default new CompanyController();
