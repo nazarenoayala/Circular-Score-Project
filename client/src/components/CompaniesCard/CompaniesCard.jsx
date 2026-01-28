@@ -72,7 +72,7 @@ export const CompaniesCard = ({
           </Link>
         </Accordion.Header>
         <Accordion.Body className="bg-body-secondary">
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between lh-lg">
             <div>
               <ul>
                 <li>
