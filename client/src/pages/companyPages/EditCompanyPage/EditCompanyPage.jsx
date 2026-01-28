@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
-import { NavbarUser } from '../../../components/NavbarUser/NavbarUser';
 import { FormEditCompany } from '../../../components/FormEditCompany/FormEditCompany';
 import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
 import { fetchData } from '../../../../helpers/axiosHelper'

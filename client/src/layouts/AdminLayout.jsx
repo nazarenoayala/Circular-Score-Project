@@ -16,7 +16,7 @@ export const AdminLayout = () => {
           {/*  offcanvas */}
           <NavbarOffcanvasAdmin />
         </div>
-        </header>
+      </header>
 
       <main>
         <NavbarHeaderGeneral />
