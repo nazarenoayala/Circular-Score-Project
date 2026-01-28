@@ -20,7 +20,7 @@ const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
 const UserODSGraphic = lazy(() => import('../pages/companyPages/UserODSGraphic/UserODSGraphic.jsx'));
 const OneTestCompany = lazy(() => import("../pages/companyPages/OneTestCompany/OneTestCompany.jsx"));
-/* const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx")); */
+const NewTest = lazy(() => import("../pages/companyPages/NewTestPage/NewTest.jsx"));
 const UserTestRecord = lazy(() => import("../pages/companyPages/UserTestRecord/UserTestRecord.jsx"));
 
 //Páginas privadas administrador
@@ -81,7 +81,7 @@ export const AppRoutes = () => {
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
               <Route path="/userODSGraphic" element={<UserODSGraphic />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
-              {/* <Route path="/oneQuestion/:id" element={<OneQuestion />} /> */}
+              <Route path="/newTest/:id/answerSet/:answer_set_id" element={<NewTest />} />
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
