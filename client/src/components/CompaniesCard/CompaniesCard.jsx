@@ -8,14 +8,13 @@ import Accordion from 'react-bootstrap/Accordion';
 export const CompaniesCard = ({
   allCompanies, //contiene los datos del admin desde el context
   token,
-  setShowInfo,
-  showInfo,
-  userData,
 }) => {
+
+
   //guarda los tests de cada empresa
   const [testsRealizados, setTestsRealizados] = useState([]);
 
-  const handleInfo = async () => {
+  const handleAccordion = async () => {
    
     try {
       //  ruta  que llama a userDal.showTestData para pedir los tests
@@ -26,10 +25,14 @@ export const CompaniesCard = ({
         token,
       );
 
-      console.log(res);
+      console.log(res)
+     
+      
       //la Api devuelve una lista de tests en utdResult.
       //el tamaño del array es el nºtotal de test realizado, si no hay test el array está vacío y su length 0.
       setTestsRealizados(res.data.utdResult || []);
+     
+      
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +65,7 @@ export const CompaniesCard = ({
   return (
     <Accordion>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>
+        <Accordion.Header onClick={handleAccordion}>
           <Link
             to={`/oneCompany/${allCompanies.user_id}`}
             className="text-success myLink"
@@ -72,7 +75,7 @@ export const CompaniesCard = ({
           </Link>
         </Accordion.Header>
         <Accordion.Body className="bg-body-secondary">
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between lh-lg">
             <div>
               <ul>
                 <li>
@@ -95,7 +98,7 @@ export const CompaniesCard = ({
                 <MyButton
                   text={'Habilitar'}
                   btnClass="btn-green"
-                  onSubmit={onSubmit(allCompanies.is_deleted)}
+                  onSubmit={() => onSubmit(allCompanies.is_deleted)}
                 />
               ) : (
                 <MyButton
