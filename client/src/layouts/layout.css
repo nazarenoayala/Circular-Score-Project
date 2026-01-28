@@ -2,7 +2,6 @@
   min-width: 20rem;
 }
 
-
 @media (width >=601px) {
   .layoutAdminPublic {
     display: grid;
@@ -10,8 +9,8 @@
   }
 
   main {
-      padding-left: 3rem;
-    }
+    padding-left: 3rem;
+  }
 
   .mobile {
     display: none;
