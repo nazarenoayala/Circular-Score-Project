@@ -3,14 +3,18 @@
   flex-direction: column;
   gap: 3rem;
 
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+
   .progress-bar {
-    
+
     .progress-bar-container {
 
       height: 20px;
       border-radius: 2rem;
       width: 70%;
-      
+
       .progress-bar-result {
 
         background-color: #2C9947;
