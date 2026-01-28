@@ -232,7 +232,7 @@ showOneCompany = async (req, res) => {
 
     try {
       await companyDal.delLogicCompany(user_id);
-      res.status(204).json({message: "Empresa deshabilitada"});
+      res.status(200).json({message: "Empresa deshabilitada"});
 
     } catch (error) {
       res.status(500).json(error);

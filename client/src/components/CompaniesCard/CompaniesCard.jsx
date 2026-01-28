@@ -57,20 +57,21 @@ const handleManage = () => {
 
 
   const onSubmit = async (isDeleted) => {
+
     try {
-      if (isDeleted) {
+      if (isDeleted === 1) {
         const activateRes = await fetchData(
-          `/user/setUserLogicState/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${allCompanies.user_id}`,
           'PUT',
-          setting,
+          null,
           token,
         );
         console.log(activateRes);
       } else {
         const desactivateRes = await fetchData(
-          `/user/setUserLogicState/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${allCompanies.user_id}`,
           'PUT',
-          setting,
+          null,
           token,
         );
         console.log(desactivateRes);
@@ -109,25 +110,16 @@ const handleManage = () => {
   {openManage === allCompanies.user_id && (
     <div className="d-flex justify-content-center align-items-center bg-light mt-3 border-top py-3 gap-4">
         <p className="mb-0">
-        <strong>Estado actual:</strong>{' '}
-        <span className={allCompanies.is_deleted ? "text-danger" : "text-success"}>
-          {allCompanies.is_deleted ? 'DESACTIVADO' : 'ACTIVADO'}
-        </span>
+       Estado actual : <strong>{allCompanies.is_deleted ? 'DESACTIVADO' : 'ACTIVADO'}</strong>
       </p>
 
-      {allCompanies.is_deleted ? (
+       
         <MyButton
-          text="Activar Empresa"
-          btnClass="btn-green"
-           onSubmit={() => (onSubmit)} 
+          text= {allCompanies.is_deleted ? "Activar Empresa" : "Desactivar Empresa"}
+          btnClass= {allCompanies.is_deleted ? "btn-green" :"btn-red"}
+           onSubmit={() => (onSubmit(allCompanies.is_deleted ))} 
         />
-      ) : (
-        <MyButton
-          text="Desactivar Empresa"
-          btnClass="btn-red"
-           onSubmit={() => (onSubmit)} 
-        />
-      )}
+      
     </div>
   )}
       {/* Se muestra si el id de la empresa es igual al estado */}

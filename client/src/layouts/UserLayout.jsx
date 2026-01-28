@@ -1,5 +1,4 @@
 import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
-import { NavbarUser } from '../components/NavbarUser/NavbarUser';
 import './layout.css';
 import { NavbarOffcanvasUser } from '../components/Navbar/NavbarOffcanvasUser/NavbarOffcanvasUser.jsx';
 import { NavbarUser } from '../components/Navbar/NavbarUser/NavbarUser';
