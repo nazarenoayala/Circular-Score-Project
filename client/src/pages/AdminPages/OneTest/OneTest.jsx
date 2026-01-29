@@ -73,9 +73,9 @@ const OneTest = () => {
                 className='mytab'
               >
                 <div className='companies'>
-                  {AllTestsCompanies?.map((elem) => {
+                  {AllTestsCompanies?.map((elem, idx) => {
                     return (
-                      <div className="company-box" key={elem.company_id}>
+                      <div className="company-box" key={idx}>
                         <div>
                           <Link to={`/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
                           <h5> {elem.sector_name} </h5>
