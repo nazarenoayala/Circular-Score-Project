@@ -43,19 +43,19 @@ export const HistoricTestContainer = ({ id }) => {
             {test.completed ?
               <p className='NC'>{parseInt(test.result_total) + '%'}</p>
               :
-              <p className='text-danger NC'>No completado</p>}
-            {test.completed ?
-              <MyButton
-                btnClass='btn-blue NCbutton'
-                text='Detalles'
-                onSubmit={() => navigate('/userTestRecord')}
-              />
-              :
-              <MyButton
-                btnClass='btn-green NCbutton'
-                text='Continuar'
-              />
-            }
+              <p className='text-danger NC'>No completado</p>} 
+              {test.completed ?
+                <MyButton
+                  btnClass='btn-blue NCbutton'
+                  text='Detalles'
+                  onSubmit={() => navigate('/userTestRecord')}
+                />
+                :
+                <MyButton
+                  btnClass='btn-green NCbutton'
+                  text='Continuar'
+                />
+              }
           </div>
         )
       })}
