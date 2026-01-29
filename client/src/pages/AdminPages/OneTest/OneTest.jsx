@@ -77,7 +77,7 @@ const OneTest = () => {
                     return (
                       <div className="company-box" key={elem.company_id}>
                         <div>
-                          <Link to={`/company/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
+                          <Link to={`/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
                           <h5> {elem.sector_name} </h5>
                         </div>
                         <div className='text-end'>
