@@ -2,7 +2,7 @@ import './layout.css';
 import { Outlet } from 'react-router';
 
 import { NavbarPublic } from '../components/Navbar/NavbarPublic/NavbarPublic';
-import { FooterPublic } from '../components/FooterPublic/FooterPublic';
+import { FooterPublic } from '../components/Footers/FooterPublic/FooterPublic';
 
 export const PublicLayout = ({ setShowPage, showPage }) => {
 

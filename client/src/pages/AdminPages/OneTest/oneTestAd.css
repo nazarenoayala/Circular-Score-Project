@@ -3,7 +3,7 @@
   min-height: 100dvh;
 
   .ot-cont {
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 3rem;

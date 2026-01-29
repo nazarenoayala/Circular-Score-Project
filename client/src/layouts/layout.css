@@ -35,6 +35,11 @@
     }
   }
 
+  .mobile {
+    position: relative;
+    z-index: 1000;
+  }
+
   .desktop {
     display: none;
   }
