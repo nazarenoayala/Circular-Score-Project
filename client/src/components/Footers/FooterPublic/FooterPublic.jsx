@@ -1,4 +1,4 @@
-import { MyButton } from '../MyButton/MyButton';
+import { MyButton } from '../../MyButton/MyButton';
 import './FooterPublic.css';
 
 export const FooterPublic = () => {

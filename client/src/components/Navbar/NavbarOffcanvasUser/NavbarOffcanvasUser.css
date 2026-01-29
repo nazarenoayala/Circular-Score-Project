@@ -4,9 +4,11 @@
   padding: 1rem;
   color: white;
   min-height: 5rem;
+  display: flex;
+  justify-content: space-between;
 
   position: fixed;
-  width: 100%; 
+  width: 100%;
 
   img {
     width: 12rem;
