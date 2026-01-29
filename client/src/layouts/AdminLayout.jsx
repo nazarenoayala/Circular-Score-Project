@@ -1,7 +1,7 @@
 import './layout.css';
-import { NavbarAdmin } from '../components/Navbar/NavbarAdmin/NavbarAdmin';
 import { Outlet } from 'react-router';
-import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
+import { NavbarAdmin } from '../components/Navbar/NavbarAdmin/NavbarAdmin';
+import { NavbarHeaderGeneral } from '../components/Navbar/NavbarHeaderGeneral/NavbarHeaderGeneral';
 import { NavbarOffcanvasAdmin } from '../components/Navbar/NavbarOffcanvasAdmin/NavbarOffcanvasAdmin';
 
 export const AdminLayout = () => {
@@ -16,7 +16,7 @@ export const AdminLayout = () => {
           {/*  offcanvas */}
           <NavbarOffcanvasAdmin />
         </div>
-        </header>
+      </header>
 
       <main>
         <NavbarHeaderGeneral />

@@ -156,6 +156,58 @@ class CompanyDal {
       throw error;
     }
   }
+
+  delLogicCompany = async(user_id) => {
+    try {
+      let sql = 'UPDATE user SET is_deleted = IF(is_deleted= 0, 1, 0) WHERE user_id = ?'
+
+      await executeQuery(sql, [user_id]);
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  //Trae los datos de cada vez que se realizó un test, qué empresa lo hizo, su sector, la fecha y la puntuación
+  allTestCompaniesData = async(test_id) => {
+    try {
+      let sql = `
+      SELECT 
+        company_data.company_name,
+        company_data.user_id,
+        sector.sector_name,
+        answer_set.test_id,
+        answer_set.test_date,
+        answer_set.answer_set_id,
+        SUM(answer.user_answer) AS total_score
+      FROM company_data
+      JOIN sector
+        ON company_data.sector_id = sector.sector_id
+      JOIN answer_set
+        ON company_data.user_id = answer_set.user_id
+      JOIN answer
+        ON answer_set.answer_set_id = answer.answer_set_id
+        AND answer_set.test_id = answer.test_id
+      WHERE answer_set.test_id = ?
+      GROUP BY 
+        company_data.company_name,
+        sector.sector_name,
+        answer_set.test_date,
+        answer_set.answer_set_id
+      ORDER BY 
+        answer_set.test_date
+      `;
+      return await executeQuery(sql, [test_id]);
+    } 
+    catch (error) {
+      throw error;
+    }
+  }
+
+
+
+
 }
 
 export default new CompanyDal();
