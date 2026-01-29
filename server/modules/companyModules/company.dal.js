@@ -79,15 +79,18 @@ class CompanyDal {
     const ccg = multiSelects[0] // client_segment
     const cs = multiSelects[1] // stakeholders
 
+    
     try {
-
+      
       await connection.beginTransaction();
-
-      let sql = 'UPDATE company_data SET company_name=?, company_email, sector_id=?, company_type, legal_form=?, active_years=?, company_size=?, gso=?, client_segment=?, stakeholders=?, sustainability=?, ods_background=? WHERE user_id=?'
-
+      
+      let sql = 'UPDATE company_data SET company_name=?, company_email=?, sector_id=?, company_type=?, legal_form=?, active_years=?, company_size=?, gso=?, client_segment=?, stakeholders=?, sustainability=?, ods_background=? WHERE user_id=?'
+      
       let result = await connection.query(sql, values);
-      const multisId = values[0];
-
+      
+      // Sacamos el user_id de los values, sabemos que está en la última posición para los select multiples
+      const multisId = values.at(-1);
+      
       let ccgValues = "";
       let csValues = "";
 
@@ -177,10 +180,11 @@ class CompanyDal {
         u.name, 
         u.last_name, 
         u.user_email, 
-        u.phone_number 
+        u.phone_number,
+        u.is_deleted
         FROM company_data c
         JOIN user u ON c.user_id = u.user_id
-        WHERE u.is_deleted = 0
+        WHERE u.is_confirmed = 1
        `;
 
       return await executeQuery(sql);

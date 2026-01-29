@@ -72,7 +72,7 @@ class CompanyController {
   editCompany = async (req, res) => {
     try {
       
-      let {user_id} = req.params;
+      let {user_id} = req;
       user_id = parseInt(user_id);
 
       const {
@@ -91,7 +91,6 @@ class CompanyController {
       } = req.body;
 
       let result = await companyDal.editCompany([
-        user_id,
         company_name,
         company_email,
         sector_id,
@@ -103,7 +102,8 @@ class CompanyController {
         user_id,
         user_id,
         sustainability,
-        ods_background
+        ods_background,
+        user_id
       ], 
       [
         client_segment,
