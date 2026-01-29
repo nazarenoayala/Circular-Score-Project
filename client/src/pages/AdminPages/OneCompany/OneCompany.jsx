@@ -34,11 +34,11 @@ const OneCompany = () => {
   
 
   
-   const delLogicCompany = async () => {
-      console.log(user_id)
-      console.log(token)
+   const delLogicCompany = async (user_id) => {
+    
+  
      try {
-       let res = await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
+       let res = await fetchData(`/company/delLogicCompany/${user_id}`, "PUT", null, token);
        console.log("copmanuyyyyy", res)
     
 
@@ -61,7 +61,7 @@ const OneCompany = () => {
         <MyButton
           text='Deshabilitar'
           btnClass='btn-red fw-bold px-4'
-          onSubmit={delLogicCompany}
+          onSubmit={()=>delLogicCompany(user_id)}
         />
         
       </div>

@@ -34,7 +34,7 @@ routes.post('/login', validateUserLogin(loginSchema), userController.login);
 routes.put('/updateProfile', verifyToken, validateUserEdit(editSchema), userController.updateProfile);
 
 // Ruta baneo de usuario
-routes.put('/setUserLogicState/:user_id', verifyToken, userController.setUserState);
+routes.put('/setUserLogicState/:setting/:user_id', verifyToken, userController.setUserState);
 
 // Rutas de obtención de datos del user
 // Obtener información de perfil de usuario
