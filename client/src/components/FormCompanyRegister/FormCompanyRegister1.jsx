@@ -94,10 +94,12 @@ export const FormCompanyRegister1 = ({
                     <MyButton
                        onSubmit={()=>navigate('/')}
                        text='Cancelar'
-                       className='btn-red'/>
+                       className='btn-red'
+                       btnClass='btn-red'/>
                     <MyButton 
                       onSubmit={()=>setCurrentFormPage(2)}
-                      text='Siguiente'/>
+                      text='Siguiente'
+                      btnClass='btn-green'/>
                   </div>
               </form>
                        </section>
