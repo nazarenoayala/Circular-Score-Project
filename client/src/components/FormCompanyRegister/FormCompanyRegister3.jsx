@@ -27,6 +27,7 @@ export const FormCompanyRegister3 = ({
             <select
               value={newCompany1.sector_id}
               name="sector_id"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -49,6 +50,7 @@ export const FormCompanyRegister3 = ({
             <select
               value={newCompany2.province_id}
               name="province_id"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -69,6 +71,7 @@ export const FormCompanyRegister3 = ({
             <select
               value={newCompany2.city_id}
               name="city_id"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -84,7 +87,11 @@ export const FormCompanyRegister3 = ({
             </select>
             {valErrors?.city_id && <p className="red">{valErrors.city_id}</p>}
             <label>14. Ámbito geográfico principal de operación</label>
-            <select value={newCompany1.gso} name="gso" onChange={handleChange}>
+            <select 
+            value={newCompany1.gso} 
+            name="gso" 
+            className='myinput'
+            onChange={handleChange}>
               <option value="" disabled>
                 Elegir una opción
               </option>
@@ -97,11 +104,16 @@ export const FormCompanyRegister3 = ({
               })}
             </select>
             {valErrors?.gso && <p className="red">{valErrors.gso}</p>}
-            <div className="btn">
-              <MyButton onSubmit={() => setCurrentFormPage(2)} text="Atrás" />
+            <div className="btnform">
+              <MyButton
+                onSubmit={() => setCurrentFormPage(2)}
+                text={"Atrás"}
+                btnClass={'btn-red'}
+              />
               <MyButton
                 onSubmit={() => setCurrentFormPage(4)}
-                text="Siguiente"
+                text={"Siguiente"}
+                btnClass={'btn-green'}
               />
             </div>
           </form>

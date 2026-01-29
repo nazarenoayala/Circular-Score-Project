@@ -1,12 +1,11 @@
 .navTop {
   background-color: rgb(28, 37, 52);
-  padding-inline: 2rem;
-  padding: 1rem;
+  padding-inline: 3rem;
+  padding-top: 1rem;
   color: white;
   min-height: 5rem;
   display: flex;
-  justify-content: space-between;
-
+  justify-content: space-around;
   position: fixed;
   width: 100%;
 

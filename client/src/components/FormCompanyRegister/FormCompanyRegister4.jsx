@@ -62,7 +62,7 @@ export const FormCompanyRegister4 = ({
                 </div>
               </div>
             </div>
-             {valErrors?.stakeholders && <p className="red">{valErrors.stakeholders}</p>}
+            {valErrors?.stakeholders && <p className="red">{valErrors.stakeholders}</p>}
             <h3>6. Sostenibilidad y ODS (preguntas puente)</h3>
             <label>
               {' '}
@@ -72,6 +72,7 @@ export const FormCompanyRegister4 = ({
             <select
               value={newCompany1.sustainability}
               name="sustainability"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -91,6 +92,7 @@ export const FormCompanyRegister4 = ({
             <select
               value={newCompany1.ods_background}
               name="ods_background"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -106,9 +108,17 @@ export const FormCompanyRegister4 = ({
             </select>
             {valErrors?.ods_background && <p className="red">{valErrors.ods_background}</p>}
 
-            <div className="btn">
-              <MyButton onSubmit={() => setCurrentFormPage(3)} text="Atrás" />
-              <MyButton onSubmit={onSubmit} text="Enviar" />
+            <div className="btnform">
+              <MyButton
+                onSubmit={() => setCurrentFormPage(3)}
+                text={"Atrás"}
+                btnClass={'btn-red'}
+              />
+              <MyButton
+                onSubmit={onSubmit}
+                text={"Enviar"}
+                btnClass={'btn-green'}
+              />
             </div>
           </form>
         </section>
