@@ -30,7 +30,7 @@ const AllCompanies = () => {
     const fetchAllCompanies = async () => {
       try {
         let res = await fetchData('/company/allCompanies', 'GET', null, token);
-        console.log(res);
+        console.log("RES DELK FETCH DE COMPANY DATA",res);
         setAllCompanies(res.data.companyResult);
         setFilteredCompanies(res.data.companyResult);
       } catch (error) {
