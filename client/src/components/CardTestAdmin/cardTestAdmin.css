@@ -6,7 +6,9 @@
   padding: 2rem;
   border-radius: .5rem;
   gap: 2rem;
-    height: 15rem;
+  align-items: center;
+  justify-content: center;
+  height: 18rem;
 
   .image-title {
 

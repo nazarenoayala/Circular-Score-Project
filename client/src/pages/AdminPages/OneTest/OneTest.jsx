@@ -50,7 +50,7 @@ const OneTest = () => {
           <div className='button d-flex gap-2'>
             <MyButton
               text={"Atrás"}
-              btnClass={"btn-red"}
+              btnClass={"btn-blue"}
               onSubmit={() => navigate('/tests')}
             />
             <MyButton

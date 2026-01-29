@@ -10,13 +10,13 @@
 
   .historyTestCard {
     background-color: white;
-    display: flex;  
-    flex-wrap: wrap;
+    display: flex;
     justify-content: space-around;
     gap: 0.5rem;
     align-items: center;
     border-radius: .5rem;
     padding: .5rem;
+    min-width: 10rem;
 
     p {
       margin: 0;
@@ -24,4 +24,11 @@
     }
   }
 
+
+  @media (width < 1050px) {
+    .historyTestCard {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

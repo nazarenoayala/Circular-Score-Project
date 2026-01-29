@@ -1,7 +1,7 @@
 .questionContainer {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 80%;
   align-items: center;
   gap: 2rem;
 
@@ -16,7 +16,6 @@
     gap: 1rem;
 
     .groupCheckIndividual {
-
       display: flex;
       justify-content: start;
       gap: 1rem;
