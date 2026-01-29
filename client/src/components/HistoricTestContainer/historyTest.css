@@ -22,6 +22,15 @@
       margin: 0;
       padding: 0;
     }
+
+    .NC {
+      width: 7rem;
+      text-align: center;
+    }
+
+    .NCbutton {
+      width: 6rem;
+    }
   }
 
 
