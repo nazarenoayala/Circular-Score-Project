@@ -208,11 +208,15 @@ locality = async (req, res) => {
 
   showOneCompany = async (req, res) => {
     
+    console.log("hola");
+    
     try {
       const {user_id} = req.params;
+      
 
       const companyResult = await companyDal.showOneCompany(user_id);
       
+      console.log(companyResult)
       res.status(200).json({
         message: `Información obtenida del user_id ${user_id}`,
         company: companyResult[0]

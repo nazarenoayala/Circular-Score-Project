@@ -231,7 +231,7 @@ class UserController {
 
     const {setting, user_id} = req.params;
     try {
-      let banResult = await userDal.banUser(setting, user_id);
+      let banResult = await userDal.setUserState(setting, user_id);
       res.status(200).json({
         message: `Usuario con id ${user_id} ${setting === 0 ? "Activado" : "Desactivado"}`,
         banResult

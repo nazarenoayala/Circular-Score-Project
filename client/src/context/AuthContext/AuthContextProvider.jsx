@@ -29,6 +29,7 @@ export const AuthContextProvider = ({children}) => {
       }
       fetchUserData();
     }
+    console.log(token);
     
     const fetchTest = async () => {
       
