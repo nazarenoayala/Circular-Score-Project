@@ -31,6 +31,7 @@ const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.js
 const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
 const AllCompanies = lazy(()=>import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
 const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
+const EditTest = lazy(()=>import('../pages/AdminPages/EditTest/EditTest.jsx'));
 const Dashboard = lazy(()=> import('../pages/AdminPages/Dashboard/Dashboard.jsx'));
 const Record = lazy(()=> import ('../pages/AdminPages/AdminTestsRecord/AdminTestsRecord.jsx'));
 const AdminGraphics = lazy(()=> import ('../pages/AdminPages/AdminGraphics/AdminGraphics.jsx'));
@@ -93,6 +94,7 @@ export const AppRoutes = () => {
               <Route path='/oneTest/:id' element={<OneTest />} />
               <Route path='/allCompanies' element={<AllCompanies />} />
               <Route path='/oneCompany/:user_id' element={<OneCompany />} />
+              <Route path='/editTest' element={<EditTest />} />
               {/* <Route path='/dashboard' element={<Dashboard />} /> */}
               {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
               {/* <Route path='/graphic' element={<AdminGraphics />} /> */}

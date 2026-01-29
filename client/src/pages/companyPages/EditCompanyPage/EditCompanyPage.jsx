@@ -5,7 +5,6 @@ import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
 import { fetchData } from '../../../../helpers/axiosHelper'
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { useNavigate } from 'react-router';
-import { id } from 'zod/v4/locales';
 
 import './EditCompany.css'
 
@@ -19,6 +18,9 @@ const initialValueCompany = {
   sustainability:'',
   ods_background:'',
   gso:'',
+  legal_form:'',
+  city_id:'',
+  province_id:'',
   client_segment:[],
   stakeholders:[]
 }
@@ -41,13 +43,12 @@ const EditCompanyPage = () => {
   //Estado para user
   const [editUserData, setEditUserData] = useState(initialValueUser);
 
-  const [province, setProvince] = useState();
-  const [city, setCity] = useState();
+  const [province, setProvince] = useState([]);
+  const [locality, setLocality] = useState([]);
   const [valErrors, setValErrors] = useState('');
 
   //Cuando tenga los datos, los paso a estados locales
   useEffect(() =>{
-
     const setData = () => {
       if (companyData) {
         setEditCompanyData(companyData);
@@ -108,6 +109,25 @@ const EditCompanyPage = () => {
   navigate('/'); 
  }
 
+  //Pido a DB datos de localidades y provincias
+    useEffect(()=>{
+      const fetchDataGeo = async()=>{
+        if(!token)
+          return; //si no hay token que no hace nada
+        try {
+          let res = await fetchData('/company/locality', 'GET', null, token);
+          
+          setLocality(res.data);
+          let res2 = await fetchData('/company/province', 'GET', null, token);
+          setProvince(res2.data)
+        } catch (error) {
+          console.log(error);
+          
+        }
+      } 
+      fetchDataGeo();
+    }, [token])
+
   //funcion para guardar (enviar a la DB) 
   const sendDb = async (e) => {
     e.preventDefault();
@@ -117,9 +137,9 @@ const EditCompanyPage = () => {
         //creo objeto con toda la info
         const updatedData = {
           ...editCompanyData,
-          ...editUserData,
+          ...editUserData,  
         }
-        console.log('enviando datos al server', updatedData);
+        console.log('enviando datos al server!!!!!!', updatedData);
         
         //Hago peticion PUT en user.routes.js la ruta pide eso
         const result = await fetchData(`/user/updateProfile`, 'PUT', updatedData, token);
@@ -128,18 +148,15 @@ const EditCompanyPage = () => {
           setMessage("Los cambios se guardaron con éxito")
         }
       } catch (error) {
-        console.log('Error al guardar en la DB', error);
+        console.log('Error al guardar en la DB', error);     
       }
     }
   }
-  
   return (
     
     <div className='edit-profile-container'>
     <main className='container mt-5 mb-5'>
       <header className='header-content mb-4'>
-        <h1>Hola {editUserData.name}</h1>
-        <MyButton text="Cerrar Sesión" onSubmit={handleLogOut}/>
       </header>
       {/* Card 1: Form empresa */}
       <section className='form-card mb-4'>
@@ -149,7 +166,7 @@ const EditCompanyPage = () => {
         <FormEditCompany
           editCompanyData={editCompanyData}
           handleCompanyChange={handleCompanyChange}
-          city={city}
+          city={locality}
           province={province}
           valErrors={valErrors}
         /> 

@@ -212,6 +212,10 @@ class CompanyController {
     }
  
   }
+
+
+
+
  delLogicCompany = async(req, res) => {
     const {user_id} = req.params;
 
@@ -224,8 +228,9 @@ class CompanyController {
     }
   }
 
-  
-  
+  }
+
+
   allTestCompaniesData = async(req, res) => {
     try {    
       const { test_id } = req.params;           
@@ -239,9 +244,7 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
-  
+
 }
-
-
 
 export default new CompanyController();
