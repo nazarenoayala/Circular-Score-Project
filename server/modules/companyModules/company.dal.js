@@ -71,8 +71,27 @@ class CompanyDal {
       throw error;
     }
   }
-  //pedir datos de localidades y provincias
 
+  editCompany = async (values) => {
+    try {
+      
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  editCompanyInUser = async (values) => {
+    try {
+      let sql = 'UPDATE user SET name = ?, position = ?, phone_number = ?, user_email = ?, city_id = ?, province_id = ? WHERE user_id = ? AND is_deleted = 0 AND is_confirmed = 1';
+      let result = await executeQuery(sql, values);
+
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  //pedir datos de localidades y provincias
   locality = async() => {
     try{
       let sql = 'SELECT * FROM city';

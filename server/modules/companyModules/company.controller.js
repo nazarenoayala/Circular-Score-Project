@@ -64,18 +64,88 @@ class CompanyController {
     try {
       const { user_id } = req.params; 
 
-      const {contact_name, position, phone_number, user_email, city_id, province_id} = req.body
-      console.log(position);
+      const {
+              contact_name, position, 
+              phone_number, user_email, 
+              city_id, province_id} = req.body
       
-      let result = await companyDal.registerCompanyInUser([
-      contact_name, position, phone_number, user_email, city_id, province_id, user_id
-      ]);
+      let result = await companyDal.registerCompanyInUser([ contact_name, position, phone_number, user_email, city_id, province_id, user_id]);
+
       res.status(200).json({message: 'register ok', result});
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
     }
   };
+
+  editCompany = async (req, res) => {
+    console.log('eeeeeeeeeeeeeeeeeeeeeeee', req.body);
+
+    try {
+      let {user_id} = req.params;
+      user_id = parseInt(user_id);
+      
+      const {
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        client_segment,
+        stakeholders,
+        sustainability,
+        ods_background
+      } = req.body;
+
+      let uptResult = await companyDal.editCompany([
+        user_id,
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        client_segment,
+        stakeholders,
+        sustainability,
+        ods_background
+      ]);
+
+      res.status(200).json({
+        message: "Actualizado correctamente",
+        uptResult
+      })
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  };
+
+  editCompanyInUser = async (req, res) => {
+    try {
+      const {user_id} = req.params;
+
+      const {
+              contact_name, position,
+              phone_number, user_email,
+              city_id, province_id
+            } = req.body;
+      
+      let result = await companyDal.editCompanyInUser([contact_name, position,phone_number, user_email, city_id, province_id ]);
+
+      res.status(200).json({mnessage: 'register ok', result});
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
 
   locality = async (req, res) => {
     try {
@@ -129,53 +199,6 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
-
-  editCompanyProfile = async (req, res) => {
-    console.log('eeeeeeeeeeeeeeeeeeeeeeee', req.body);
-
-    try {
-      const {user_id} = req.params;
-      const {
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background
-      } = req.body;
-
-      let uptResult = await companyDal.editCompany([
-        user_id,
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background
-      ]);
-
-      res.status(200).json({
-        message: "Actualizado correctamente",
-        uptResult
-      })
-
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  };
 
   //controlador de todas las empresas.yas
   allCompanies = async (req, res) => {
