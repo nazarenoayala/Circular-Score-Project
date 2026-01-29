@@ -120,8 +120,8 @@ const CompanyRegister = () => {
   
   return (
     <div className='register-profile-container'>
-      <main className='container mt-5 mb-5'>
-        <header className='header-content mb-4'>
+      <main className='container'>
+        <header className='header-content'>
           <h1 className='title-form'>Registro de Empresa</h1>
         </header>
         <section>
