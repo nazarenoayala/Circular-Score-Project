@@ -197,8 +197,6 @@ class UserDal {
       throw error;
     }
   }
-
-  
 }
 
 export default new UserDal();

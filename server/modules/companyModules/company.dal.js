@@ -157,6 +157,17 @@ class CompanyDal {
     }
   }
 
+  delLogicCompany = async(user_id) => {
+    try {
+      let sql = 'UPDATE user SET is_deleted = IF(is_deleted= 0, 1, 0) WHERE user_id = ?'
+
+      await executeQuery(sql, [user_id]);
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
   //Trae los datos de cada vez que se realizó un test, qué empresa lo hizo, su sector, la fecha y la puntuación
   allTestCompaniesData = async(test_id) => {

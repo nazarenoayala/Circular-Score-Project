@@ -174,7 +174,7 @@ class CompanyController {
   };
 
   //controlador de todas las empresas.yas
-    allCompanies = async (req, res) => {
+  allCompanies = async (req, res) => {
     const {id} = req.params;
 
     try {
@@ -190,18 +190,13 @@ class CompanyController {
     }
   }
 
-  
   showOneCompany = async (req, res) => {
-    
-    console.log("hola");
     
     try {
       const {user_id} = req.params;
-      
 
       const companyResult = await companyDal.showOneCompany(user_id);
       
-      console.log(companyResult)
       res.status(200).json({
         message: `Información obtenida del user_id ${user_id}`,
         company: companyResult[0]
@@ -214,7 +209,42 @@ class CompanyController {
  
   }
 
-}
+
+
+
+  delLogicCompany = async(req, res) => {
+    const {user_id} = req.params;
+
+    try {
+      await companyDal.delLogicCompany(user_id);
+      res.status(200).json({message: "Empresa deshabilitada"});
+
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+
+ allTestCompaniesData = async(req, res) => {
+    try {    
+      const { test_id } = req.params;           
+      const result = await companyDal.allTestCompaniesData(test_id);    
+      res.status(200).json({
+        message: "REQ SUCCES",
+        result
+      })
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+
+
+  }
+
+
+ 
+
 
 
 
