@@ -3,13 +3,6 @@ import { generateToken } from '../../utils/jwtUtils.js';
 
 
 class CompanyController {
-  test = async (req, res) => {
-    try {
-      res.status(200).json('Bien');
-    } catch (error) {
-      res.status(500).json('Mal');
-    }
-  };
 
   registerCompany = async (req, res) => {
     

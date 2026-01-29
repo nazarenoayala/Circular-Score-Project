@@ -46,9 +46,16 @@ class TestDal {
     } catch (error) {
       throw error;
     }
-
   }
 
+  createTest = async(values) =>{
+    try {
+      let sql = 'INSERT INTO test (test_name) VALUES (?)'
+      let result = executeQuery(sql, values);
+    } catch (error) {
+      throw error
+    }
+  }
 }
 
 export default new TestDal();

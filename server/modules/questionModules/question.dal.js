@@ -15,10 +15,16 @@ class QuestionDal {
     } catch (error) {
       throw error;
     }
-
   }
 
-
+  createQuestion = async(values)=>{
+    try {
+      let sql = 'INSERT INTO question (premium) VALUES (?)'
+      let result = await executeQuery(sql, values)
+    } catch (error) {
+      throw error
+    }
+  }
 }
 
 export default new QuestionDal();

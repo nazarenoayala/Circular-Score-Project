@@ -117,6 +117,8 @@ const CompanyRegister = () => {
       console.log(error);
     }
   }
+
+  
   
   return (
     <div className='register-profile-container'>

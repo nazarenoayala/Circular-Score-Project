@@ -16,7 +16,6 @@ class TestController {
       res.status(500).json('No ok');
       console.log(error);
     }
-
   }
 
   disableTest = async (req, res) => {
@@ -54,8 +53,19 @@ class TestController {
       console.log(error);
       res.status(500).json(error);
     }
+  }
 
-
+  createTest = async(req, res)=>{
+    console.log(req.body);
+    
+    const {test_name} = req.body
+    try {
+      let result = await testDal.createTest([test_name]);
+      res.status(200).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
   }
 
 

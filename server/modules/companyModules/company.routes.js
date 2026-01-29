@@ -11,7 +11,7 @@ routes.put('/registerUpdate/:user_id', verifyToken, companyController.registerCo
 routes.get('/locality', verifyToken, companyController.locality);
 routes.get('/province', verifyToken, companyController.Province);
 // Prueba
-routes.get('/test', companyController.test);
+
 
 
 /* routes.get('/companyProfilePage/:user_id', companyController.showCompanyProfile); */

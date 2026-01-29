@@ -6,6 +6,10 @@ const routes = express.Router();
 // Ruta para seleccionar todos los test:
 routes.get('/allTest', testController.selectAllTest);
 
+//Ruta de creacion de Test desde Admin
+
+routes.post('/createTest', testController.createTest)
+
 // Ruta para deshabilitar test:
 //routes.put('/disableTest/:id', testController.disableTest);
 
