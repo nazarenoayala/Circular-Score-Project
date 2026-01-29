@@ -235,6 +235,10 @@ class CompanyController {
     }
  
   }
+
+
+
+
  delLogicCompany = async(req, res) => {
     const {user_id} = req.params;
 
@@ -247,9 +251,13 @@ class CompanyController {
     }
   }
 
+<<<<<<< HEAD
   
   
   allTestCompaniesData = async(req, res) => {
+=======
+ allTestCompaniesData = async(req, res) => {
+>>>>>>> a998ee850db5f859174b8ef24a005da89cee48bc
     try {    
       const { test_id } = req.params;           
       const result = await companyDal.allTestCompaniesData(test_id);    
@@ -262,8 +270,21 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
+<<<<<<< HEAD
   
 }
+=======
+
+
+
+  }
+
+
+ 
+
+
+
+>>>>>>> a998ee850db5f859174b8ef24a005da89cee48bc
 
 
 

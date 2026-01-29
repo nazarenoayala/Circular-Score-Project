@@ -17,9 +17,14 @@ routes.get('/test', companyController.test);
 /* routes.get('/companyProfilePage/:user_id', companyController.showCompanyProfile); */
 
 //poner middleware validación inputs
+<<<<<<< HEAD
 // Rutas de edición de user/company
  routes.put('/editCompany/:user_id', verifyToken, companyController.editCompany)
  routes.put('/editCompanyInUser/:user_id', verifyToken, companyController.editCompanyInUser);
+=======
+/*  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile) */
+ routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile);
+>>>>>>> a998ee850db5f859174b8ef24a005da89cee48bc
 
 
 //probando ruta de todas las empresas.yas
@@ -27,6 +32,8 @@ routes.get('/allCompanies', companyController.allCompanies);
 
 //http://localhost:4000/company/oneCompany/user_id
 routes.get('/oneCompany/:user_id', companyController.showOneCompany);
+
+routes.put('/delLogicCompany/:user_id', companyController.delLogicCompany);
 
 
 //Datos de cada vez que se hizo un test, qué empresa, su sector, fecha y la puntuación del mismo

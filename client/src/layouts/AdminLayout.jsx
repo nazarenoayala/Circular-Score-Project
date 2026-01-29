@@ -1,8 +1,9 @@
 import './layout.css';
-import { NavbarAdmin } from '../components/Navbar/NavbarAdmin/NavbarAdmin';
 import { Outlet } from 'react-router';
-import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
+import { NavbarAdmin } from '../components/Navbar/NavbarAdmin/NavbarAdmin';
+import { NavbarHeaderGeneral } from '../components/Navbar/NavbarHeaderGeneral/NavbarHeaderGeneral';
 import { NavbarOffcanvasAdmin } from '../components/Navbar/NavbarOffcanvasAdmin/NavbarOffcanvasAdmin';
+import { FooterMobile } from '../components/Footers/FooterMobile/FooterMobile';
 
 export const AdminLayout = () => {
   return (
@@ -21,6 +22,9 @@ export const AdminLayout = () => {
       <main>
         <NavbarHeaderGeneral />
         <Outlet />
+        <div className="mobile">
+          <FooterMobile />
+        </div>
       </main>
     </div>
   )
