@@ -10,16 +10,10 @@ routes.put('/registerUpdate/:user_id', verifyToken, companyController.registerCo
 //pedir datos de localidades y provincias
 routes.get('/locality', verifyToken, companyController.locality);
 routes.get('/province', verifyToken, companyController.Province);
-// Prueba
-routes.get('/test', companyController.test);
-
-
-/* routes.get('/companyProfilePage/:user_id', companyController.showCompanyProfile); */
 
 //poner middleware validación inputs
-/*  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile) */
- routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile);
-
+ routes.put('/editCompany/:user_id', verifyToken, companyController.editCompany);
+ routes.put('/editCompanyInUser/:user_id', verifyToken, companyController.editCompanyInUser);
 
 //probando ruta de todas las empresas.yas
 routes.get('/allCompanies', companyController.allCompanies);
