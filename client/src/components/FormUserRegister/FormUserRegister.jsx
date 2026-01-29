@@ -4,6 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import registerSchema from '../../../schemas/userRegister';
 import { ZodError } from 'zod';
 import { fetchData } from '../../../helpers/axiosHelper';
+import { MyButton } from '../MyButton/MyButton';
 
 const initialValue = {
   user_email: '',
@@ -14,7 +15,7 @@ const initialValue = {
 export const FormUserRegister = ({ setShowPage }) => {
   const [registerUser, setRegisterUser] = useState(initialValue);
   const [errorValidation, setErrorValidation] = useState();
- 
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,23 +25,23 @@ export const FormUserRegister = ({ setShowPage }) => {
   const onSubmit = async () => {
     try {
       registerSchema.parse(registerUser);
-     
+
       // Lamamos al back para que intente el registro del user
       await fetchData('/user/register', 'POST', registerUser);
       setShowPage('modal');
-      
+
     } catch (error) {
       if (error instanceof ZodError) {
-        
+
         //objecto que guarda todos los errores
         const ErrorObject = {};
 
         error.issues.forEach((elem) => {
-        ErrorObject[elem.path[0]] = elem.message;
+          ErrorObject[elem.path[0]] = elem.message;
         });
-      console.log(ErrorObject);
+        console.log(ErrorObject);
 
-       setErrorValidation(ErrorObject);
+        setErrorValidation(ErrorObject);
       } else {
         console.log('otro error', error);
       }
@@ -91,13 +92,15 @@ export const FormUserRegister = ({ setShowPage }) => {
         </Form.Group>
 
         <Form.Group>
-          <Button className="btn-green" onClick={onSubmit}>
-            Enviar
-          </Button>
+          <MyButton
+            btnClass={"btn-green"}
+            onSubmit={onSubmit}
+            text={"Enviar"}
+          />
         </Form.Group>
       </Form>
       <div className='reset-pass-link'>
-        <a className='rpl' onClick={()=>setShowPage('resPassword')}>¿Olvidó su contraseña?</a>
+        <a className='rpl' onClick={() => setShowPage('resPassword')}>¿Olvidó su contraseña?</a>
       </div>
     </>
   );

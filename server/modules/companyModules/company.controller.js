@@ -12,20 +12,21 @@ class CompanyController {
   };
 
   registerCompany = async (req, res) => {
-    console.log('BODY:', req.body);
-
+    
     try {
+
+      const {user_id} = req.params;
       const {
-        user_id, 
         company_name,
+        company_email,
         sector_id,
         company_type,
         legal_form,
         active_years,
         company_size,
         gso,
-/*      client_segment,
-        stakeholders, */
+        client_segment,
+        stakeholders,
         sustainability,
         ods_background
       } = req.body;
@@ -33,14 +34,15 @@ class CompanyController {
       let result = await companyDal.registerCompany([
         user_id,
         company_name,
+        company_email,
         sector_id,
         company_type,
         legal_form,
         active_years,
         company_size,
         gso,
-/*         client_segment,
-        stakeholders, */
+        client_segment,
+        stakeholders,
         sustainability,
         ods_background
       ]);
@@ -51,12 +53,13 @@ class CompanyController {
       res.status(500).json(error);
     }
   };
+
   registerCompanyInUser = async (req, res) => {
     console.log('BODYyyyyyyyyyyyy:', req.body);
     try {
-      /* const { user_id } = req.params; */
+      const { user_id } = req.params; 
 
-      const {contact_name, position, phone_number, user_email, city_id, province_id, user_id} = req.body
+      const {contact_name, position, phone_number, user_email, city_id, province_id} = req.body
       console.log(position);
       
 
@@ -70,14 +73,7 @@ class CompanyController {
     }
   };
 
-  // editCompany = async (req, res) => {
-  //    try {
-  //      const {company_name, company_type}
-  //    } catch (error) {
-
-  //    }
-  // }
-locality = async (req, res) => {
+  locality = async (req, res) => {
     try {
       let result = await companyDal.locality();
       res.status(200).json(result);
@@ -86,68 +82,31 @@ locality = async (req, res) => {
       res.status(500).json(error);
     }
   };
+
   Province = async (req, res) => {
     try {
       let result = await companyDal.Province();
       res.status(200).json(result);
     } catch (error) {
       console.log(error);
-      res.status(500).json(error);}}
+      res.status(500).json(error);
+    }
+  }
 
-      showCompanyProfile = async (req, res) => {
-        const { user_id } = req.params;
+  showCompanyProfile = async (req, res) => {
+    const { user_id } = req.params;
 
-        try {
-          let companyResult = await companyDal.showCompanyProfile([user_id]);
-          res.status(200).json({
-            message: `Información obtenida del user_id ${user_id}`,
-            companyResult,
-          });
-        } catch (error) {
-          console.log(error);
-          res.status(500).json(error);
-        }
-      };
-
-      editCompanyProfile = async (req, res) => {
-        const { user_id } = req.params;
-
-        const {
-          company_name,
-          sector_id,
-          legal_form,
-          active_years,
-          company_size,
-          gso,
-          stakeholders,
-          sustainability,
-          ods_background,
-        } = req.body;
-
-        try {
-          let uptResult = await companyDal.editCompanyProfile([
-            user_id,
-            company_name,
-            sector_id,
-            legal_form,
-            active_years,
-            company_size,
-            gso,
-            stakeholders,
-            sustainability,
-            ods_background,
-          ]);
-
-          res.status(200).json({
-            message: 'Actualizado correctamente',
-            uptResult,
-          });
-        } catch (error) {
-          console.log(error);
-          res.status(500).json(error);
-        }
-      };
-
+    try {
+      let companyResult = await companyDal.showCompanyProfile([user_id]);
+      res.status(200).json({
+        message: `Información obtenida del user_id ${user_id}`,
+        companyResult,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  };
 
   showCompanyProfile = async (req, res) => {
     
@@ -168,21 +127,46 @@ locality = async (req, res) => {
   }
 
   editCompanyProfile = async (req, res) => {
+    console.log('eeeeeeeeeeeeeeeeeeeeeeee', req.body);
 
-    
-    
     try {
       const {user_id} = req.params;
+      const {
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        client_segment,
+        stakeholders,
+        sustainability,
+        ods_background
+      } = req.body;
 
-      const {company_name, sector_id, legal_form, active_years, company_size, gso, stakeholders, sustainability, ods_background} = req.body
-
-      let uptResult = await companyDal.editCompanyProfile([user_id, company_name, sector_id, legal_form, active_years, company_size, gso, stakeholders, sustainability, ods_background]);
+      let uptResult = await companyDal.editCompany([
+        user_id,
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        client_segment,
+        stakeholders,
+        sustainability,
+        ods_background
+      ]);
 
       res.status(200).json({
         message: "Actualizado correctamente",
         uptResult
       })
-
+      
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -190,7 +174,7 @@ locality = async (req, res) => {
   };
 
   //controlador de todas las empresas.yas
-  allCompanies = async (req, res) => {
+    allCompanies = async (req, res) => {
     const {id} = req.params;
 
     try {
@@ -206,6 +190,7 @@ locality = async (req, res) => {
     }
   }
 
+  
   showOneCompany = async (req, res) => {
     
     console.log("hola");

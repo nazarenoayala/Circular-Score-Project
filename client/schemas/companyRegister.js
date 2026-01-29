@@ -38,6 +38,11 @@ export const companyRegisterSchema = z.object({
   company_name: z.string()
               .min(2, 'El nombre debe contener al menos 2 caracteres')
               .max(100, 'El nombre debe de contener como máximo 100 caracteres'),
+  
+  company_email:  z.string()
+            .min(1, 'El email es obligatorio')
+            .email('Debes introducir un email válido'),
+
   contact_name: z.string()
                      .min(2, 'El nombre debe contener al menos 2 caracteres')
                      .max(50, 'El nombre debe contener como máximo 50 caracteres')
@@ -59,8 +64,12 @@ export const companyRegisterSchema = z.object({
 /*   city_id: intFromInput({max:question3Length}),
   province_id: intFromInput({max:question3Length}), */
   gso: intFromInput({max:question13Length}),
-/*   client_segement: intFromInput({max:question14Length}),
-  stakeholders: intFromInput({max:question15Length}), */
+  client_segment: z.
+                    array(z.number())
+                    .min(1, 'Debe seleccionar al menos una opción'),
+  stakeholders:  z.
+                    array(z.number())
+                    .min(1, 'Debe seleccionar al menos una opción'), 
   sustainability: intFromInput({max:question16Length}),
   ods_background:  intFromInput({max: question17Length})  
 })  

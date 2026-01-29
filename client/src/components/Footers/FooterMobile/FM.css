@@ -1,0 +1,23 @@
+.footMob {
+  background-color: rgb(28, 37, 52);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  margin-left: -50px;
+
+  .logos {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+  }
+
+  .words {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+  }
+}

@@ -1,31 +1,32 @@
-import {useContext} from 'react'
-import { AuthContext } from '../../../context/AuthContext/AuthContext'
-import {Container, Row, Col} from 'react-bootstrap';
+import './AdminTests.css';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext/AuthContext';
+import { Container } from 'react-bootstrap';
 import CardTestAdmin from '../../../components/CardTestAdmin/CardTestAdmin';
 
 const AdminTests = () => {
-
-  const {test} = useContext(AuthContext);
+  const { test } = useContext(AuthContext);
 
   console.log(test);
 
   return (
-    
-    <Container className='p-5'>
-      <Row>
+    <Container
+      className='AdmintestsContainer'>
+      <div>
         {test.map((e) => {
           return (
-            <Col className='col-lg-6 mb-3' key={e.test_id}>
-                <CardTestAdmin
-                  test = {e}
-                />
-            </Col>
+            <div
+              className='cardTest'
+              key={e.test_id}>
+              <CardTestAdmin
+                test={e}
+              />
+            </div>
           )
         })}
-      </Row>
+      </div>
     </Container>
-    
   )
 }
 
-export default AdminTests
+export default AdminTests;

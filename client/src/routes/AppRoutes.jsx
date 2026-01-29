@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
@@ -20,17 +21,17 @@ const EditCompanyPage = lazy(() => import("../pages/companyPages/EditCompanyPage
 const GeneralGraphicPage = lazy(() => import("../pages/companyPages/GeneralGraphicPage/GeneralGraphicPage"));
 const UserODSGraphic = lazy(() => import('../pages/companyPages/UserODSGraphic/UserODSGraphic.jsx'));
 const OneTestCompany = lazy(() => import("../pages/companyPages/OneTestCompany/OneTestCompany.jsx"));
-/* const OneQuestion = lazy(() => import("../pages/companyPages/OneQuestionPage/OneQuestion.jsx")); */
+const NewTest = lazy(() => import("../pages/companyPages/NewTestPage/NewTest.jsx"));
 const UserTestRecord = lazy(() => import("../pages/companyPages/UserTestRecord/UserTestRecord.jsx"));
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
-import { useState } from 'react';
 const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
 const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
 const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
 const AllCompanies = lazy(()=>import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
 const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
+const EditTest = lazy(()=>import('../pages/AdminPages/EditTest/EditTest.jsx'));
 const Dashboard = lazy(()=> import('../pages/AdminPages/Dashboard/Dashboard.jsx'));
 const Record = lazy(()=> import ('../pages/AdminPages/AdminTestsRecord/AdminTestsRecord.jsx'));
 const AdminGraphics = lazy(()=> import ('../pages/AdminPages/AdminGraphics/AdminGraphics.jsx'));
@@ -59,9 +60,13 @@ export const AppRoutes = () => {
                   element={<ActivateUser 
                             setShowPage={setShowPage}
                           />}
-                />
+              />
               <Route/>
-              <Route path="resetPassword/:token/:user_id" element={<ResetPassword/>}/>
+              <Route 
+                path="resetPassword/:token/:user_id" 
+                  element={<ResetPassword
+                            setShowPage={setShowPage}
+                          />}/>
             </Route>
           </Route>
 
@@ -71,13 +76,13 @@ export const AppRoutes = () => {
             {/* rutas de empresa */}
             <Route element={<UserLayout />}>
               <Route path="/allTests" element={<AllTestsPage />} />
-              <Route path="/companyRegister" element={<CompanyRegister />} />
+              <Route path="/companyRegister/:user_id" element={<CompanyRegister />} />
               <Route path="/companyProfile/:id" element={<CompanyProfilePage />} />
               <Route path="/editCompany/:id" element={<EditCompanyPage />} />
               <Route path="/generalGraphic" element={<GeneralGraphicPage />} />
               <Route path="/userODSGraphic" element={<UserODSGraphic />} />
               <Route path='/oneTestCompany/:id' element={<OneTestCompany />} />
-              {/* <Route path="/oneQuestion/:id" element={<OneQuestion />} /> */}
+              <Route path="/newTest/:id/answerSet/:answer_set_id" element={<NewTest />} />
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
@@ -89,6 +94,7 @@ export const AppRoutes = () => {
               <Route path='/oneTest/:id' element={<OneTest />} />
               <Route path='/allCompanies' element={<AllCompanies />} />
               <Route path='/oneCompany/:user_id' element={<OneCompany />} />
+              <Route path='/editTest' element={<EditTest />} />
               {/* <Route path='/dashboard' element={<Dashboard />} /> */}
               {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
               {/* <Route path='/graphic' element={<AdminGraphics />} /> */}

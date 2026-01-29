@@ -1,0 +1,7 @@
+.navgen {
+  background-color: rgb(250, 252, 254);
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
