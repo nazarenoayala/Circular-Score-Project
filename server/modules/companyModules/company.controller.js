@@ -57,10 +57,10 @@ class CompanyController {
     try {
       const { user_id } = req.params; 
 
-      const {contact_name, position, phone_number, city_id, province_id} = req.body;
+      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
 
       let result = await companyDal.registerCompanyInUser([
-      contact_name, position, phone_number, city_id, province_id, user_id
+      contact_name, last_name, position, phone_number, city_id, province_id, user_id
       ]);
       res.status(200).json({message: 'register ok', result});
     } catch (error) {

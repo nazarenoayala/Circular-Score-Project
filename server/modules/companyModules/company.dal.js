@@ -22,7 +22,7 @@ class CompanyDal {
       let sql = 'INSERT INTO company_data (user_id, company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
       
       let result = await connection.query(sql, values);
-      const multisId = values[0];
+      const multisId = values[0]; //Extraemos el id de la primera posición del array
       
       // Preparamos las 2 consultas que insertaran los datos de los selectores multiples a las tablas correspondientes
       
@@ -72,12 +72,53 @@ class CompanyDal {
     }
   }
 
-  editCompany = async (values) => {
+  editCompany = async (values, multiSelects) => {
+
+    const connection = await dbPool.getConnection();
+
+    const ccg = multiSelects[0] // client_segment
+    const cs = multiSelects[1] // stakeholders
+
     try {
+
+      await connection.beginTransaction();
+
       let sql = 'UPDATE company_data SET company_name=?, company_email, sector_id=?, company_type, legal_form=?, active_years=?, company_size=?, gso=?, client_segment=?, stakeholders=?, sustainability=?, ods_background=? WHERE user_id=?'
 
-      await executeQuery(sql, values);
+      let result = await connection.query(sql, values);
+      const multisId = values[0];
 
+      let ccgValues = "";
+      let csValues = "";
+
+      for(let i = 0; i < ccg.length ; i++) {
+          ccgValues = ccgValues + "(" + multisId + "," + ccg[i] + ")";
+          if(i < ccg.length - 1){
+            ccgValues = ccgValues + ","
+          }
+        }
+      for(let i = 0; i < cs.length ; i++) {
+        csValues = csValues + "(" + multisId + "," + cs[i] + ")";
+        if(i < cs.length - 1){
+          csValues = csValues + ","
+        }
+      }
+
+      // Para actualizar vamos a borrar los datos que hubiese en estas tablas, hará mas sencillas las cosas
+      let sqlccg = `DELETE FROM company_client_group WHERE user_id = ${multisId}`
+      let sqlcs = `DELETE FROM company_stakeholder WHERE user_id = ${multisId}`
+      await connection.query(sqlccg, ccgValues);
+      await connection.query(sqlcs, csValues);
+
+      // Una vez limpia la tabla insertamos los valores actualizados
+      sqlccg = `INSERT INTO company_client_group VALUES ${ccgValues}`;
+      sqlcs = `INSERT INTO company_stakeholder VALUES ${csValues}`;
+      
+      let resultCcg = await connection.query(sqlccg, ccgValues);
+      let resultCs = await connection.query(sqlcs, csValues);
+
+      await connection.commit();
+      return {result, resultCcg, resultCs}
     } catch (error) {
       throw error;
     }
@@ -85,7 +126,7 @@ class CompanyDal {
 
   editCompanyInUser = async (values) => {
     try {
-      let sql = 'UPDATE user SET name = ?, position = ?, phone_number = ?, city_id, province_id = ? WHERE user_id = ?';
+      let sql = 'UPDATE user SET name = ?, last_name = ?, position = ?, phone_number = ?, city_id, province_id = ? WHERE user_id = ?';
       let result = await executeQuery(sql, values);
       return result;
     } catch (error) {
