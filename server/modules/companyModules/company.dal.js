@@ -64,15 +64,36 @@ class CompanyDal {
 
   registerCompanyInUser = async (values) => {
     try{
-      let sql = 'UPDATE user SET name = ?, position = ?, phone_number = ?, user_email = ?, city_id = ?, province_id = ? WHERE user_id = ?'
+      let sql = 'UPDATE user SET name = ?, position = ?, phone_number = ?, city_id = ?, province_id = ? WHERE user_id = ?'
       let result = await executeQuery(sql, values);
       return result;
     }catch(error){
       throw error;
     }
   }
-  //pedir datos de localidades y provincias
 
+  editCompany = async (values) => {
+    try {
+      let sql = 'UPDATE company_data SET company_name=?, company_email, sector_id=?, company_type, legal_form=?, active_years=?, company_size=?, gso=?, client_segment=?, stakeholders=?, sustainability=?, ods_background=? WHERE user_id=?'
+
+      await executeQuery(sql, values);
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  editCompanyInUser = async (values) => {
+    try {
+      let sql = 'UPDATE user SET name = ?, position = ?, phone_number = ?, city_id, province_id = ? WHERE user_id = ?';
+      let result = await executeQuery(sql, values);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  //pedir datos de localidades y provincias
   locality = async() => {
     try{
       let sql = 'SELECT * FROM city';
@@ -100,17 +121,6 @@ class CompanyDal {
       let sql = 'SELECT * FROM company_data WHERE user_id=?'
 
       return await executeQuery(sql, [user_id]);
-
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  editCompanyProfile = async (values) => {
-    try {
-      let sql = 'UPDATE company_data SET company_name=?, sector_id=?, legal_form=?, active_years=?, company_size=?, gso=?, stakeholders=?, sustainability=?, ods_background=? WHERE user_id=?'
-
-      await executeQuery(sql, values);
 
     } catch (error) {
       throw error;
@@ -197,10 +207,6 @@ class CompanyDal {
       throw error;
     }
   }
-
-
-
-
 }
 
 export default new CompanyDal();

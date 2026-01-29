@@ -3,13 +3,6 @@ import { generateToken } from '../../utils/jwtUtils.js';
 
 
 class CompanyController {
-  test = async (req, res) => {
-    try {
-      res.status(200).json('Bien');
-    } catch (error) {
-      res.status(500).json('Mal');
-    }
-  };
 
   registerCompany = async (req, res) => {
     
@@ -64,11 +57,10 @@ class CompanyController {
     try {
       const { user_id } = req.params; 
 
-      const {contact_name, position, phone_number, user_email, city_id, province_id} = req.body
-      console.log(position);
-      
+      const {contact_name, position, phone_number, city_id, province_id} = req.body;
+
       let result = await companyDal.registerCompanyInUser([
-      contact_name, position, phone_number, user_email, city_id, province_id, user_id
+      contact_name, position, phone_number, city_id, province_id, user_id
       ]);
       res.status(200).json({message: 'register ok', result});
     } catch (error) {
@@ -76,6 +68,70 @@ class CompanyController {
       res.status(500).json(error);
     }
   };
+
+  editCompany = async (req, res) => {
+    try {
+      
+      let {user_id} = req.params;
+      user_id = parseInt(user_id);
+
+      const {
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        client_segment,
+        stakeholders,
+        sustainability,
+        ods_background
+      } = req.body;
+
+      let result = await companyDal.editCompany([
+        user_id,
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        user_id,
+        user_id,
+        sustainability,
+        ods_background
+      ], 
+      [
+        client_segment,
+        stakeholders
+      ]);
+
+      res.status(200).json({message:'update ok', result});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+  editCompanyInUser = async (req, res) => {
+    try {
+      const {user_id} = req.params;
+
+      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
+      
+      let result = await companyDal.editCompanyInUser([contact_name, last_name, position, phone_number, city_id, province_id, user_id]);
+
+      res.status(200).json({message: 'update ok', result});
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
 
   locality = async (req, res) => {
     try {
@@ -228,10 +284,7 @@ class CompanyController {
     }
   }
 
-  }
-
-
-  allTestCompaniesData = async(req, res) => {
+ allTestCompaniesData = async(req, res) => {
     try {    
       const { test_id } = req.params;           
       const result = await companyDal.allTestCompaniesData(test_id);    
@@ -244,7 +297,7 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
-
+  
 }
 
 export default new CompanyController();

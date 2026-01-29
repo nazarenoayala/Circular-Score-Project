@@ -104,7 +104,7 @@ const CompanyRegister = () => {
         const res2 = await fetchData(`/company/registerUpdate/${userData?.user_id}`, 'PUT', newCompany2, token);
         console.log(res2);
       }
-      navigate('/allTest');
+      navigate('/allTests');
     }catch(error){
       if (error instanceof ZodError){
         const fieldsErrors = {};
