@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { MyButton } from '../../../components/MyButton/MyButton';
+import { question10 } from '../../../data/CompanyRegisterData/Question10';
 import './profile.css';
 import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
@@ -14,7 +15,7 @@ import { sectors } from '../../../data/CompanyRegisterData/sectors';
 const CompanyProfilePage = () => {
   const navigate = useNavigate();
   const { id, token } = useParams();
-  const { companyData, userData, test } = useContext(AuthContext);
+  const { companyData, userData, test } = useContext(AuthContext);""
   console.log(companyData, userData, test);
   console.log(useContext(AuthContext));
 
@@ -41,6 +42,23 @@ const CompanyProfilePage = () => {
   const sectorId = company?.company?.sector_id;
   const sectorName = sectors.find(s => s.id === sectorId)?.name;
 
+  const {userData, companyData} = useContext(AuthContext);
+
+  useEffect(() => {
+      const fetchAllTestsCompanies = async () => {
+        try {
+          let result = await fetchData(`/company/allCompaniesData/${id}`, 'GET', null, token);
+          setAllTestsCompanies(result.data.result)
+          console.log(result, "AAAAAAAAAAAA");
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchAllTestsCompanies();
+  }, []);
+  
+  console.log(AllTestsCompanies);
+  
   return (
     <div className='profileContainer'>
       <div className="profile">
@@ -70,8 +88,23 @@ const CompanyProfilePage = () => {
           <div className='testdata'>
             <img src="/src/assets/react.svg" alt="" />
             <div className="name">
-              <p>ODS</p>
-              <p>Nombre del test</p>
+              <div className='companies'>
+                  {AllTestsCompanies?.map((elem, idx) => {
+                    return (
+                      <div className="company-box" key={idx}>
+                        <div>
+                          <Link to={`/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
+                          <h5> {elem.sector_name} </h5>
+                        </div>
+                        <div className='text-end'>
+                          {/* para revertir la fecha de YYYY-MM-DD a DD-MM-YYYY */}
+                          <h5> {elem.test_date.split('-').reverse().join('-')} </h5>
+                          <h5>Resultado: {elem.total_score} </h5>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
             </div>
           </div>
           <div className="button">

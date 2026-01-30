@@ -1,7 +1,8 @@
 import './FormUserLogin.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router'
-import { Button, Form } from "react-bootstrap"
+import { useNavigate } from 'react-router';
+import { Button, Form } from "react-bootstrap";
+import { ZodError } from 'zod';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import { useContext } from 'react';
 import { fetchData } from '../../../helpers/axiosHelper';
@@ -14,10 +15,9 @@ const initialValue = {
 
 export const FormUserLogin = () => {
 
-  const [userLogin, setUserLogin] = useState(initialValue);
   const { setUserData, setCompanyData, setToken } = useContext(AuthContext);
-  const [errorMsg, setErrorMsg] = useState('');
-
+  const [userLogin, setUserLogin] = useState(initialValue);
+  const [errorValidation, setErrorValidation] = useState();
 
   const navigate = useNavigate();
 
@@ -52,14 +52,17 @@ export const FormUserLogin = () => {
       const user_id = userByToken.data.userData.user_id;
       navigate(`/companyRegister/${user_id}`);
     } catch (error) {
-      console.log(error);
+        setErrorValidation(error?.response?.data);
+        console.log(error);
     }
   }
 
   return (
-
     <Form className="login-container">
       <h1>Login</h1>
+      {errorValidation && (
+        <p className="error-alert">{errorValidation}</p>
+      )}
       <Form.Group className="mb-3">
         <Form.Control
           type="email"
@@ -68,6 +71,9 @@ export const FormUserLogin = () => {
           value={userLogin.user_email}
           onChange={handleChange}
         />
+      {errorValidation?.user_email && (
+        <p className="error-alert">{errorValidation.user_email}</p>
+      )}
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Control
@@ -77,7 +83,11 @@ export const FormUserLogin = () => {
           value={userLogin.password}
           onChange={handleChange}
         />
+        {errorValidation?.password && (
+          <p className="error-alert">{errorValidation.password}</p>
+        )}
       </Form.Group>
+
       <Form.Group className='gap-2 d-flex justify-content-center'>
 
         <MyButton
