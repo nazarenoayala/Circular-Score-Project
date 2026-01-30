@@ -8,7 +8,7 @@ class CompanyController {
     
     try {
 
-      let {user_id} = req.params;
+      let {user_id} = req;
       user_id = parseInt(user_id);
       
       const {
@@ -186,53 +186,6 @@ class CompanyController {
     }
   }
 
-  editCompanyProfile = async (req, res) => {
-    console.log('eeeeeeeeeeeeeeeeeeeeeeee', req.body);
-
-    try {
-      const {user_id} = req.params;
-      const {
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background
-      } = req.body;
-
-      let uptResult = await companyDal.editCompany([
-        user_id,
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background
-      ]);
-
-      res.status(200).json({
-        message: "Actualizado correctamente",
-        uptResult
-      })
-
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  };
-
   //controlador de todas las empresas.yas
   allCompanies = async (req, res) => {
     const {id} = req.params;
@@ -269,8 +222,7 @@ class CompanyController {
  
   }
 
-
- allTestCompaniesData = async(req, res) => {
+  allTestCompaniesData = async(req, res) => {
     try {    
       const { test_id } = req.params;           
       const result = await companyDal.allTestCompaniesData(test_id);    

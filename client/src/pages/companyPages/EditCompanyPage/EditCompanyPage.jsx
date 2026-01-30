@@ -10,7 +10,7 @@ import './EditCompany.css'
 
 const initialValueCompany = {
   company_name: '',
-  user_email: '',
+  company_email: '',
   sector_id: '',
   company_type: '',
   active_years: '',
@@ -36,7 +36,9 @@ const EditCompanyPage = () => {
   //estado para mensaje que se guardaron los cambios con exito
   const [message, setMessage] = useState("");
 
-  const { companyData, userData, token, logout } = useContext(AuthContext)
+  const { companyData, userData, token, logout } = useContext(AuthContext);
+  console.log("LOG EN EL FRONT DE COMPANY DATA", companyData);
+  
 
   //Estado para empresa
   const [editCompanyData, setEditCompanyData] = useState(initialValueCompany);

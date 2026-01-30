@@ -33,7 +33,8 @@ export const FormEditCompany = ({
 }) => {
     //funcion para filtrar ciudades correspondientes a la provincia seleccionada
     const localityProvince = city?.filter(e => Number(e.province_id) === Number(editCompanyData.province_id)) || [];
-
+    console.log("COMPANY USER DATA", editCompanyData);
+    
     return (
         <Card>
             <Card.Body>
@@ -240,7 +241,7 @@ export const FormEditCompany = ({
                                     label={option.label}
                                     value={option.value}
                                     onChange={(e) => handleCompanyChange(e, option.value)}
-                                    checked={editCompanyData?.client_segment?.includes(option.value) || false}
+                                    checked={editCompanyData?.client_segment.value?.some(seg => seg.value === option.value) || false}
                                 />
                             ))}
                         </div>
@@ -260,7 +261,7 @@ export const FormEditCompany = ({
                                     label={option.label}
                                     value={option.value}
                                     onChange={(e) => handleCompanyChange(e, option.value)}
-                                    checked={editCompanyData?.stakeholders?.includes(option.value) || false}
+                                    checked={editCompanyData?.stakeholders.value?.some(stk => stk.value === option.value) || false}
                                 />
                             ))}
                         </div>
