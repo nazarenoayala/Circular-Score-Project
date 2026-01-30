@@ -10,8 +10,8 @@ import './oneCompany.css'
 const OneCompany = () => {
 
   const {user_id} = useParams(); 
-  const [company, setCompany] = useState();
   const { token } = useContext(AuthContext);
+  const [company, setCompany] = useState();
 
   
   useEffect(() => {
