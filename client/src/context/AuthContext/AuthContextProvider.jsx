@@ -12,7 +12,6 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
 
     const tokenLS = localStorage.getItem("credentials");
-    console.log(tokenLS);
 
     if (tokenLS) {
       const fetchUserData = async () => {

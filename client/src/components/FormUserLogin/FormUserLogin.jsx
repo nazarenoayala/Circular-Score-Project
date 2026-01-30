@@ -26,7 +26,6 @@ export const FormUserLogin = () => {
   };
 
   const onSubmit = async () => {
-    //TODO Hace falta, validar los campos desde el front !!!!!
     try {
 
       // Fetch para mandar el input del usuario a autenticación
