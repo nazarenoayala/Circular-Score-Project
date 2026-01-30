@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import './NavbarUser.css';
 import { Link } from 'react-router';
+import { AuthContext } from '../../../context/AuthContext/AuthContext';
 
 export const NavbarUser = () => {
+  const { userData } = useContext(AuthContext);
+  console.log(userData);
 
   return (
     <div className="front-page">
@@ -16,7 +20,7 @@ export const NavbarUser = () => {
           </div>
           <div className="container-logo">
             <i className="fa-solid fa-business-time"></i>
-            <Link className='link' to={"/companyProfile/:id"} > Perfil de empresa</Link>
+            <Link className='link' to={`/companyProfile/${userData?.user_id}`} > Perfil de empresa</Link>
           </div>
           <div className="container-logo">
             <i className="fa-regular fa-file-lines"></i>
