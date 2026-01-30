@@ -123,13 +123,13 @@ class UserController {
       
       //si no hay user
       if(result.length === 0){
-        res.status(401).json("Email no encontrado en DB");
+        res.status(401).json("Usuario no autorizado");
       } else {
 
         let match = await compareString(password, result[0].password);
 
         if(!match){
-          res.status(401).json({message: "Contraseña no coincide"});
+          res.status(401).json("Usuario no autorizado");
         } else {
           //generamos un token
           const token = generateToken(result[0].user_id, "2d");
@@ -231,7 +231,7 @@ class UserController {
 
     const {setting, user_id} = req.params;
     try {
-      let banResult = await userDal.banUser(setting, user_id);
+      let banResult = await userDal.setUserState(setting, user_id);
       res.status(200).json({
         message: `Usuario con id ${user_id} ${setting === 0 ? "Activado" : "Desactivado"}`,
         banResult

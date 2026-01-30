@@ -1,13 +1,13 @@
-import React, { useEffect , useState } from 'react';
-import {useNavigate} from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { fetchData } from '../../../helpers/axiosHelper';
 import { MyButton } from '../MyButton/MyButton';
 import './historyTest.css';
 
-export const HistoricTestContainer = ({id}) => {
+export const HistoricTestContainer = ({ id }) => {
 
   const [history, setHistory] = useState();
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const HistoricTestContainer = ({id}) => {
         let result = await fetchData(`/statistics/oneTestHistory/${id}`, 'GET', null, null);
         console.log(result);
         setHistory(result.data.result);
-        
+
       } catch (error) {
         console.log(error);
       }
@@ -29,28 +29,33 @@ export const HistoricTestContainer = ({id}) => {
 
     fetchOneTestHistory();
 
-  },[]);
+  }, []);
 
   return (
     <div className='historyTestList'>
       {history?.map((test, id) => {
         return (
           <div className='historyTestCard' key={id}>
-            <p>{test.test_date ? test.test_date : 'No hay tests' }</p>
+            {/* para darle la vuelta a la fecha */}
+            <p>{test.test_date ? test.test_date.split('-').reverse().join('-') : 'No hay tests'}</p>
             <p>-</p>
             <p>PUNTUACIÓN: {test.completed && test.result}</p>
-            <p>{test.completed ? parseInt(test.result_total) : 'NC'} </p>
-            {test.completed ? <MyButton
-              btnClass='btn-green'
-              text='Detalles'
-              onSubmit={() => navigate('/userTestRecord')}
-            />
-            :
-            <MyButton
-              btnClass='btn-green'
-              text='Continuar'
-            />
-            }
+            {test.completed ?
+              <p className='NC'>{parseInt(test.result_total) + '%'}</p>
+              :
+              <p className='text-danger NC'>No completado</p>} 
+              {test.completed ?
+                <MyButton
+                  btnClass='btn-blue NCbutton'
+                  text='Detalles'
+                  onSubmit={() => navigate('/userTestRecord')}
+                />
+                :
+                <MyButton
+                  btnClass='btn-green NCbutton'
+                  text='Continuar'
+                />
+              }
           </div>
         )
       })}

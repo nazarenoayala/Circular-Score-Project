@@ -9,8 +9,6 @@ import { editSchema } from '../../schemas/userEdit.js';
 import { verifyToken } from '../../middlewares/verifyToken.js';
 import { verifyActivateToken } from '../../middlewares/verifyActivateToken.js';
 
-
-
 //TODO Hay que añadir el middleware de verifyToken cuando esté 100% correcto a todas las rutas, y corregir la ruta dinámica quitando el user_id, ya que se puede extraer del req al pasar por el middleware 
 
 const routes = express.Router();
@@ -34,7 +32,7 @@ routes.post('/login', validateUserLogin(loginSchema), userController.login);
 routes.put('/updateProfile', verifyToken, validateUserEdit(editSchema), userController.updateProfile);
 
 // Ruta baneo de usuario
-routes.put('/setUserLogicState/:user_id', verifyToken, userController.setUserState);
+routes.put('/setUserLogicState/:setting/:user_id', verifyToken, userController.setUserState);
 
 // Rutas de obtención de datos del user
 // Obtener información de perfil de usuario

@@ -9,6 +9,7 @@ const AllTestsPage = () => {
 
   // Nos traemos del AuthContext los datos de los test
   const { test } = useContext(AuthContext);
+  
   // Añadimos los tests a un Estado
   const [allTest, setAllTest] = useState(test);
   // Flag para que se cargue el hijo cuando se haya ejecutado el useEffect y así se le pasa la última actualización del Estado
@@ -22,7 +23,6 @@ const AllTestsPage = () => {
 
         // todo: AÑADIR EL TOKEN A LA PETICIÓN SINO NO PODEMOS RESCATAR EL USER_ID
         let result = await fetchData('/statistics/allRecentResults', 'GET', null, null);
-        console.log(result);
 
         const updateAllTest = allTest.map((test, index) => ({
           ...test,

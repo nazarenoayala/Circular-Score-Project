@@ -3,19 +3,12 @@ import { generateToken } from '../../utils/jwtUtils.js';
 
 
 class CompanyController {
-  test = async (req, res) => {
-    try {
-      res.status(200).json('Bien');
-    } catch (error) {
-      res.status(500).json('Mal');
-    }
-  };
 
   registerCompany = async (req, res) => {
     
     try {
 
-      let {user_id} = req.params;
+      let {user_id} = req;
       user_id = parseInt(user_id);
       
       const {
@@ -64,6 +57,7 @@ class CompanyController {
     try {
       const { user_id } = req.params; 
 
+<<<<<<< HEAD
       const {
               contact_name, position, 
               phone_number, user_email, 
@@ -71,6 +65,13 @@ class CompanyController {
       
       let result = await companyDal.registerCompanyInUser([ contact_name, position, phone_number, user_email, city_id, province_id, user_id]);
 
+=======
+      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
+
+      let result = await companyDal.registerCompanyInUser([
+      contact_name, last_name, position, phone_number, city_id, province_id, user_id
+      ]);
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
       res.status(200).json({message: 'register ok', result});
     } catch (error) {
       console.log(error);
@@ -79,12 +80,20 @@ class CompanyController {
   };
 
   editCompany = async (req, res) => {
+<<<<<<< HEAD
     console.log('eeeeeeeeeeeeeeeeeeeeeeee', req.body);
 
     try {
       let {user_id} = req.params;
       user_id = parseInt(user_id);
       
+=======
+    try {
+      
+      let {user_id} = req;
+      user_id = parseInt(user_id);
+
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
       const {
         company_name,
         company_email,
@@ -100,8 +109,12 @@ class CompanyController {
         ods_background
       } = req.body;
 
+<<<<<<< HEAD
       let uptResult = await companyDal.editCompany([
         user_id,
+=======
+      let result = await companyDal.editCompany([
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
         company_name,
         company_email,
         sector_id,
@@ -110,6 +123,7 @@ class CompanyController {
         active_years,
         company_size,
         gso,
+<<<<<<< HEAD
         client_segment,
         stakeholders,
         sustainability,
@@ -121,16 +135,35 @@ class CompanyController {
         uptResult
       })
 
+=======
+        user_id,
+        user_id,
+        sustainability,
+        ods_background,
+        user_id
+      ], 
+      [
+        client_segment,
+        stakeholders
+      ]);
+
+      res.status(200).json({message:'update ok', result});
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
     }
+<<<<<<< HEAD
   };
+=======
+  }
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
 
   editCompanyInUser = async (req, res) => {
     try {
       const {user_id} = req.params;
 
+<<<<<<< HEAD
       const {
               contact_name, position,
               phone_number, user_email,
@@ -140,6 +173,13 @@ class CompanyController {
       let result = await companyDal.editCompanyInUser([contact_name, position,phone_number, user_email, city_id, province_id ]);
 
       res.status(200).json({mnessage: 'register ok', result});
+=======
+      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
+      
+      let result = await companyDal.editCompanyInUser([contact_name, last_name, position, phone_number, city_id, province_id, user_id]);
+
+      res.status(200).json({message: 'update ok', result});
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
 
     } catch (error) {
       console.log(error);
@@ -236,6 +276,7 @@ class CompanyController {
  
   }
 
+<<<<<<< HEAD
 
 
 
@@ -258,6 +299,9 @@ class CompanyController {
 =======
  allTestCompaniesData = async(req, res) => {
 >>>>>>> a998ee850db5f859174b8ef24a005da89cee48bc
+=======
+  allTestCompaniesData = async(req, res) => {
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
     try {    
       const { test_id } = req.params;           
       const result = await companyDal.allTestCompaniesData(test_id);    
@@ -270,6 +314,7 @@ class CompanyController {
       res.status(500).json(error);
     }
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
   
 }
@@ -289,3 +334,9 @@ class CompanyController {
 
 
 export default new CompanyController();
+=======
+  
+}
+
+export default new CompanyController();
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021

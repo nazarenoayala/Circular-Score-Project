@@ -9,6 +9,8 @@ export const CompaniesCard = ({
   allCompanies, //contiene los datos del admin desde el context
   token,
 }) => {
+  console.log(allCompanies);
+  
 
   //guarda los tests de cada empresa
   const [testsRealizados, setTestsRealizados] = useState([]);
@@ -24,8 +26,6 @@ export const CompaniesCard = ({
         token,
       );
 
-      console.log(res)
-
       //la Api devuelve una lista de tests en utdResult.
       //el tamaño del array es el nºtotal de test realizado, si no hay test el array está vacío y su length 0.
       setTestsRealizados(res.data.utdResult || []);
@@ -36,10 +36,11 @@ export const CompaniesCard = ({
   };
 
   const onSubmit = async (isDeleted) => {
+    
     try {
       if (isDeleted === 1) {
         const activateRes = await fetchData(
-          `/company/delLogicCompany/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${0}/${allCompanies.user_id}`,
           'PUT',
           null,
           token,
@@ -47,7 +48,7 @@ export const CompaniesCard = ({
         console.log(activateRes);
       } else {
         const desactivateRes = await fetchData(
-          `/company/delLogicCompany/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${1}/${allCompanies.user_id}`,
           'PUT',
           null,
           token,
@@ -91,7 +92,7 @@ export const CompaniesCard = ({
             </div>
 
             <div className="info2">
-              {allCompanies.is_deleted === 0 ? (
+              {allCompanies.is_deleted === 1 ? (
                 <MyButton
                   text={'Habilitar'}
                   btnClass="btn-green"

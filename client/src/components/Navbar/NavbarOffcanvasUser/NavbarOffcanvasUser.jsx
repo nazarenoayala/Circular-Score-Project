@@ -1,14 +1,15 @@
 import './NavbarOffcanvasUser.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router';
 import { MyButton } from '../../MyButton/MyButton';
 import { Offcanvas } from 'react-bootstrap';
+import { AuthContext } from '../../../context/AuthContext/AuthContext';
 
 const NavTop = ({ ...props }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const { userData } = useContext(AuthContext);
   return (
     <div className='navTop'>
       <img src="/src/assets/Images/Logo/logoblanco.png"></img>
@@ -39,7 +40,7 @@ const NavTop = ({ ...props }) => {
             </div>
             <div className="offcontainer-logo">
               <i className="fa-solid fa-business-time"></i>
-              <Link className='off-link' to={"/companyProfile/:id"} > Perfil de empresa</Link>
+              <Link className='off-link' to={`/companyProfile/${userData?.user_id}`} > Perfil de empresa</Link>
             </div>
             <div className="offcontainer-logo">
               <i className="fa-regular fa-file-lines"></i>

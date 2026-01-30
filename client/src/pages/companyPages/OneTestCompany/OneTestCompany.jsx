@@ -23,7 +23,6 @@ const OneTestCompany = () => {
     try {
       // todo: hay que meter token
       let result = await fetchData(`/answerSet/newAnswerSet/${id}`, 'POST', null, null);
-      console.log(result);
 
       navigate(`/newTest/${id}/answerSet/${result.data.result.insertId}`);
       
@@ -54,6 +53,7 @@ const OneTestCompany = () => {
       </div>
       <h3 className='p-3'>Tests realizados</h3>
       <div className='historicTestContainer'>
+        
         <HistoricTestContainer id = {id}/>
       </div>
     </div>

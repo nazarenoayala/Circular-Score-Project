@@ -33,6 +33,8 @@ const NewTest = () => {
 
         let result = await fetchData(`/question/getQuestions/${id}`, 'GET', null, null);
         setQuestions(result.data.result);
+        console.log(result.data.result);
+        
         setLoading(false);
 
       } catch (error) {
