@@ -23,7 +23,6 @@ const OneTestCompany = () => {
     try {
       // todo: hay que meter token
       let result = await fetchData(`/answerSet/newAnswerSet/${id}`, 'POST', null, null);
-      console.log(result);
 
       navigate(`/newTest/${id}/answerSet/${result.data.result.insertId}`);
       

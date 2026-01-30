@@ -9,10 +9,7 @@ class CompanyDal {
     // Como son varias consultas para esta operación, vamos usar una transacción
     const connection = await dbPool.getConnection();
 
-    // Y los 2 arrays de los selectores multiples
-    const ccg = multiSelects[0] // client_segment
-    const cs = multiSelects[1] // stakeholders
-
+    
     try{
       
       // Inicializamos la transaction
@@ -22,27 +19,25 @@ class CompanyDal {
       let sql = 'INSERT INTO company_data (user_id, company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
       
       let result = await connection.query(sql, values);
-      const multisId = values[0]; //Extraemos el id de la primera posición del array
       
       // Preparamos las 2 consultas que insertaran los datos de los selectores multiples a las tablas correspondientes
       
-      let ccgValues = "";
-      let csValues = "";
+      // Mapeo para convertir a cadena string los values para el insert
+      // Saco los 2 arrays de los selectores multiples
+      const ccg = multiSelects[0] // client_segment
+      const cs = multiSelects[1] // stakeholders
       
-      // Con estos bucles convertimos el nº de posiciones del array, en VALUES() para el insert en la tabla
-        for(let i = 0; i < ccg.length ; i++) {
-          ccgValues = ccgValues + "(" + multisId + "," + ccg[i] + ")";
-          if(i < ccg.length - 1){
-            ccgValues = ccgValues + ","
-          }
-        }
-        for(let i = 0; i < cs.length ; i++) {
-          csValues = csValues + "(" + multisId + "," + cs[i] + ")";
-          if(i < cs.length - 1){
-            csValues = csValues + ","
-          } 
-        }
-        
+      const concatSqlValues = (arr, id) => {
+        let string;
+        string = arr.map((elem) => `(${id},${elem})`).join(',');
+        return string;
+      }
+      console.log(values);
+      
+      const multisId = values[0]; //Extraemos el id de la primera posición del array
+      let ccgValues = concatSqlValues(ccg, multisId);
+      let csValues = concatSqlValues(cs, multisId);
+
       let sqlccg = `INSERT INTO company_client_group VALUES ${ccgValues}`;
       let sqlcs = `INSERT INTO company_stakeholder VALUES ${csValues}`;
       

@@ -15,9 +15,7 @@ import { sectors } from '../../../data/CompanyRegisterData/sectors';
 const CompanyProfilePage = () => {
   const navigate = useNavigate();
   const { id, token } = useParams();
-  const { companyData, userData, test } = useContext(AuthContext);""
-  console.log(companyData, userData, test);
-  console.log(useContext(AuthContext));
+  const { companyData, userData, test } = useContext(AuthContext);
 
   const [company, setCompany] = useState();
   /* Traer  */
@@ -34,15 +32,11 @@ const CompanyProfilePage = () => {
         console.log(error);
       }
     }
-
-    fetchCompany();
   }, [id, token])
 
   /* Encontrar el nombre del sector partiendo  */
   const sectorId = company?.company?.sector_id;
   const sectorName = sectors.find(s => s.id === sectorId)?.name;
-
-  const {userData, companyData} = useContext(AuthContext);
 
   useEffect(() => {
       const fetchAllTestsCompanies = async () => {
