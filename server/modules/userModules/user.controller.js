@@ -229,11 +229,11 @@ class UserController {
 
     // Si el setting es 0 activa el usuario, si es 1 lo desactiva
 
-    const {setting, user_id} = req.params;
+    const {user_id} = req.params;
     try {
-      let banResult = await userDal.setUserState(setting, user_id);
+      let banResult = await userDal.setUserState(user_id);
       res.status(200).json({
-        message: `Usuario con id ${user_id} ${setting === 0 ? "Activado" : "Desactivado"}`,
+        message: `Usuario con id ${user_id} ${banResult === 0 ? "Activado" : "Desactivado"}`,
         banResult
       });
     } catch (error) {

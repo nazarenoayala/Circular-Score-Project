@@ -139,7 +139,7 @@ class CompanyDal {
         u.phone_number 
         FROM company_data c
         JOIN user u ON c.user_id = u.user_id
-        WHERE u.is_deleted = 0
+        WHERE u.is_confirmed = 1
        `;
 
       return await executeQuery(sql);
@@ -160,16 +160,6 @@ class CompanyDal {
     }
   }
 
-  delLogicCompany = async(user_id) => {
-    try {
-      let sql = 'UPDATE user SET is_deleted = IF(is_deleted= 0, 1, 0) WHERE user_id = ?'
-
-      await executeQuery(sql, [user_id]);
-
-    } catch (error) {
-      throw error;
-    }
-  }
 
 
   //Trae los datos de cada vez que se realizó un test, qué empresa lo hizo, su sector, la fecha y la puntuación

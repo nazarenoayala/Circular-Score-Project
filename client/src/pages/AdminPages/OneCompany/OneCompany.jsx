@@ -12,6 +12,7 @@ const OneCompany = () => {
   const {user_id} = useParams(); 
   const [company, setCompany] = useState();
   const { token } = useContext(AuthContext);
+  const [isDeleted, setIsDeleted] = useState();
 
   
   useEffect(() => {
@@ -23,6 +24,8 @@ const OneCompany = () => {
         
         console.log("REsssss", res)
         setCompany(res.data)
+        setIsDeleted(res.data.company.is_deleted);
+        
         
       } catch (error) {
         console.log(error);
@@ -34,15 +37,14 @@ const OneCompany = () => {
   
 
   
-   const delLogicCompany = async (user_id) => {
+  const delLogicCompany = async (user_id) => {
     
+    console.log("comapanyyyy", company);
   
-     try {
-       let res = await fetchData(`/company/delLogicCompany/${user_id}`, "PUT", null, token);
-       console.log("copmanuyyyyy", res)
-    
-
-       setCompany(company.filter(elem=>elem.user_id !== user_id));      
+      try {
+        let res = await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
+        console.log("copmanuyyyyy", res);
+        setIsDeleted(prev => (prev === 0 ? 1 : 0));
 
      } catch (error) {
        console.log(error);
@@ -58,11 +60,20 @@ const OneCompany = () => {
     <div className='p-5'>
       <div className='company_name_div px-5'>
         <h1 className='company_name fw-bold'>{company?.company.company_name}</h1>
+        
+        {isDeleted === 0 ? (
         <MyButton
-          text='Deshabilitar'
+          text={"Deshabilitar"}
           btnClass='btn-red fw-bold px-4'
           onSubmit={()=>delLogicCompany(user_id)}
         />
+        ) : (
+          <MyButton
+          text={"Habilitar"}
+          btnClass='btn-red fw-bold px-4'
+          onSubmit={()=>delLogicCompany(user_id)}
+        />
+        )}
         
       </div>
 

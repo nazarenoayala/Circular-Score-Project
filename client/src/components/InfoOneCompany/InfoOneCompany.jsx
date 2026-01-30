@@ -7,7 +7,7 @@ export const InfoOneCompany = ({company}) => {
 
     <div className="company_information">
         <h3><span>Teléfono:</span> {company?.company.phone_number}</h3>
-        <h3><span>Email:</span> {company?.company.email}</h3>
+        <h3><span>Email:</span> {company?.company.company_email}</h3>
         <h3><span>Dirección:</span> {company?.company.city_id}, {company?.company.province_id}</h3>
         <h3><span>Sector:</span> {company?.company.sector_id}</h3>
         <h3><span>Años en Activo:</span> {company?.company.active_years}</h3>
