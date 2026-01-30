@@ -40,7 +40,7 @@ class CompanyDal {
           csValues = csValues + "(" + multisId + "," + cs[i] + ")";
           if(i < cs.length - 1){
             csValues = csValues + ","
-          }
+          } 
         }
         
       let sqlccg = `INSERT INTO company_client_group VALUES ${ccgValues}`;
