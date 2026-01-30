@@ -23,9 +23,11 @@ class QuestionClass {
     console.log(req.body);
     
     const {id} = req.params
-    const {premium} = req.body;
+
+    const {question_text, premium} = req.body;
+    
     try {
-      let result = await questionDal.createQuestion([premium])
+      let result = await questionDal.createQuestion([question_text,premium])
       res.status(200).json(result)
     } catch (error) {
       console.log(error);

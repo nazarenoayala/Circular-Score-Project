@@ -50,7 +50,7 @@ class TestDal {
 
   createTest = async(values) =>{
     try {
-      let sql = 'INSERT INTO test (test_name) VALUES (?)'
+      let sql = 'INSERT INTO test (test_name, test_image, is_public) VALUES (?,?,?)'
       let result = executeQuery(sql, values);
     } catch (error) {
       throw error

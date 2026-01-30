@@ -94,7 +94,7 @@ const CompanyRegister = () => {
     try{
       e.preventDefault()
       //Validación de datos  
-      companyRegisterSchema.parse(newCompany1, newCompany2);
+      companyRegisterSchema.parse({... newCompany1, ...newCompany2});
       console.log('Validación ok'); 
       //mandar datos al Back
       const res = await fetchData(`/company/register/${userData?.user_id}`, 'POST', newCompany1, token);
@@ -105,6 +105,8 @@ const CompanyRegister = () => {
       }
       navigate('/')
     }catch(error){
+      console.log(error);
+      
       if (error instanceof ZodError){
         const fieldsErrors = {};
         error.issues.forEach((elem)=>{
@@ -118,8 +120,6 @@ const CompanyRegister = () => {
     }
   }
 
-  
-  
   return (
     <div className='register-profile-container'>
       <main className='container mt-5 mb-5'>

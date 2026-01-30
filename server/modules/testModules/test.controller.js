@@ -58,9 +58,9 @@ class TestController {
   createTest = async(req, res)=>{
     console.log(req.body);
     
-    const {test_name} = req.body
+    const {test_name, test_image, is_public} = req.body
     try {
-      let result = await testDal.createTest([test_name]);
+      let result = await testDal.createTest([test_name, test_image, is_public]);
       res.status(200).json(result);
     } catch (error) {
       console.log(error);

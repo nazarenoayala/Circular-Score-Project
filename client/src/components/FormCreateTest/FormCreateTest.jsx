@@ -3,45 +3,54 @@ import './formCreateTest.css';
 import { MyButton } from '../MyButton/MyButton';
 
 
-export const FormCreateTest = ({newTest, handleChange, handleChange2, question, questions,addQuestion, valErrors, onSubmit}) => {
+export const FormCreateTest = ({newTest, handleChange, handleChange2, question, questions,setQuestions,addQuestion, valErrors, onSubmit, message, message2}) => {
+
+  const deleteQuestion = (idx) => {
+    const newArray = questions.filter((e,i) => i !== idx)
+    setQuestions(newArray)
+  }
+
   return (
     <>
       <main className="create-main">
         <section className="create-section">
           <form className="form-card">
-            <label htmlFor="">Título</label>
-            <input 
-                type="text" 
-                placeholder="Título"
-                name='test_name'
-                value={newTest?.test_name}
-                onChange={handleChange} />
 
-                 {valErrors?.test_name && (
-                    <p className='red'>{valErrors.test_name}</p>
-                  )}
+            <div className='question-row'>
+              <div>
+                <label htmlFor="">Título del Test</label>
+                <input
+                    type="text"
+                    placeholder="Título del Test"
+                    name='test_name'
+                    value={newTest?.test_name}
+                    onChange={handleChange} />
+              </div>
 
-            <label>Categoría*</label>
-              <input 
-                /* className="question-input" */ 
-                placeholder='Categoría'
-                type="text"
-                name='category'
-                value={newTest?.category}
-                onChange={handleChange} />
 
-                 {valErrors?.category && (
-                    <p className='red'>{valErrors.category}</p>
-                  )}
+                  <div className='premium-wrapper'>
+                    <label htmlFor="" >Test Premiun</label>
+                    <input
+                      className="premium-checkbox"
+                      type="checkbox"
+                      checked={newTest.is_public}
+                      name="is_public"
+                      onChange={handleChange}/>
+                  </div>
+                </div>
 
-            <label htmlFor='imagen'>
+                      {valErrors?.test_name && (
+                         <p className='red'>{valErrors.test_name}</p>
+                       )}
+
+            <label htmlFor='image'>
                 <MyButton
-                    text='Subir Imagen'/>
+                    text='Subir Imagen del Test'/>
             </label>
               <input 
                 className="question-input" 
                 type="file"
-                id='imagen'
+                id='image'
                 name='test_image'
                 accept='image/*'
                 hidden
@@ -58,43 +67,51 @@ export const FormCreateTest = ({newTest, handleChange, handleChange2, question, 
                     value={question?.question_text}
                     onChange={handleChange2}
                   />
-
-                   {valErrors?.question_text && (
-                    <p className='red'>{valErrors.question_text}</p>
-                  )}
-
               </div>
+
+
                 <div className='premium-wrapper'>
-                  <label htmlFor="" >Premiun</label>
+                  <label htmlFor="" >Pregunta Premiun</label>
                   <input
                     className="premium-checkbox"
                     type="checkbox"
                     checked={question?.premium}
                     name="premium"
-                    onChange={handleChange2}
-                          />   
+                    onChange={handleChange2}/>   
                 </div>
               </div>
+
+              <p className='red'>{message}</p>
+
               <div className='mb-4'>
                 <MyButton
                 text="Añadir pregunta"
                 onSubmit={addQuestion}/>
               </div>
+
               <h3>Preguntas del nuevo Test</h3>
               <div>
                 <div className='question-test'>
                   {questions.map((elem, idx)=>{
                     return(
                       <div key={idx} className='question-div'>
-                          <p>{elem.question_text}</p>
-                        <div className='premium-basic'>
-                          {elem.premium === true &&<p className='premium'>Premium</p>}
-                          {elem.premium === false &&<p className='basic'>Básica</p>}
+                          <p>{idx + 1}. {elem.question_text}</p>
+                        <div className='d-flex gap-3'>
+                          <div className='mt-4'>
+                            <MyButton onSubmit={()=>deleteQuestion(idx)} btnClass='btn-red' text='Eliminar'/>
+                          </div>
+                          <div className='premium-basic'>
+                            {elem.premium === 1 &&<p className='premium'>Premium</p>}
+                            {elem.premium === 0 &&<p className='basic'>Básica</p>}
+                          </div>
                         </div>
                       </div>
                     )
                   })}
                 </div>
+
+                <p className='red'>{message2}</p>
+                
               <div className='btnOnsubmit '>
                 <MyButton 
                   text="Enviar"
@@ -102,7 +119,8 @@ export const FormCreateTest = ({newTest, handleChange, handleChange2, question, 
                   onSubmit={onSubmit} />
                 <MyButton 
                   text="Cancelar"
-                  btnClass='btn-red'/>
+                  btnClass='btn-red'
+                  />
               </div>
             </div>
           </form>

@@ -19,7 +19,7 @@ class QuestionDal {
 
   createQuestion = async(values)=>{
     try {
-      let sql = 'INSERT INTO question (premium) VALUES (?)'
+      let sql = 'INSERT INTO question (question_text, premium) VALUES (?,?)'
       let result = await executeQuery(sql, values)
     } catch (error) {
       throw error

@@ -10,8 +10,7 @@ import { question9Length } from '../src/data/CompanyRegisterData/Question9';
 import { question10Length } from '../src/data/CompanyRegisterData/Question10';
 import { question16Length } from '../src/data/CompanyRegisterData/Question16';
 import { question13Length } from '../src/data/CompanyRegisterData/Question13';
-/* import { question14Length } from '../src/data/CompanyRegisterData/Question14';
-import { question15Length } from '../src/data/CompanyRegisterData/Question15'; */
+
 
 const intFromInput = ({max, min = 1, message = "Valor inválido" }) =>
   z
@@ -61,8 +60,8 @@ export const companyRegisterSchema = z.object({
   active_years: intFromInput({max:question8Length}), 
   company_size: intFromInput({max:question9Length}),
   sector_id: intFromInput({max:question10Length}),
-/*   city_id: intFromInput({max:question3Length}),
-  province_id: intFromInput({max:question3Length}), */
+  city_id: intFromInput({max: 8117}),
+  province_id: intFromInput({max: 53}),
   gso: intFromInput({max:question13Length}),
   client_segment: z.
                     array(z.number())
