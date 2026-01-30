@@ -37,8 +37,6 @@ const EditCompanyPage = () => {
   const [message, setMessage] = useState("");
 
   const { companyData, userData, token, logout } = useContext(AuthContext);
-  console.log("LOG EN EL FRONT DE COMPANY DATA", companyData);
-  
 
   //Estado para empresa
   const [editCompanyData, setEditCompanyData] = useState(initialValueCompany);
@@ -164,6 +162,8 @@ const EditCompanyPage = () => {
         {/* paso por props datos y funcion a los hijos */}
         <FormEditCompany
           editCompanyData={editCompanyData}
+          provinceDataId={editUserData.province_id}
+          cityDataId={editUserData.city_id}
           handleCompanyChange={handleCompanyChange}
           city={locality}
           province={province}
