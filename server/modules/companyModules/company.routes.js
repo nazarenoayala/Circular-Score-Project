@@ -21,8 +21,6 @@ routes.get('/allCompanies', companyController.allCompanies);
 //http://localhost:4000/company/oneCompany/user_id
 routes.get('/oneCompany/:user_id', companyController.showOneCompany);
 
-routes.put('/delLogicCompany/:setting/:user_id', companyController.delLogicCompany);
-
 
 //Datos de cada vez que se hizo un test, qué empresa, su sector, fecha y la puntuación del mismo
 routes.get('/allCompaniesData/:test_id', companyController.allTestCompaniesData);
