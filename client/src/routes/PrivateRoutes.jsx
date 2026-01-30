@@ -1,9 +1,13 @@
-import { Outlet } from 'react-router';
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
 
+export const PrivateRoutes = ({userData, requiredType}) => {
 
-
-export const PrivateRoutes = () => {
+  const navigate = useNavigate();
   
+  useEffect(()=> {
+    if(userData?.type !== requiredType) navigate("/");
+  },[userData]);
 
   return (
     <>
@@ -11,4 +15,3 @@ export const PrivateRoutes = () => {
     </>
   );
 };
-

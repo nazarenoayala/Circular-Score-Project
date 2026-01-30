@@ -71,4 +71,4 @@ export const companyRegisterSchema = z.object({
                     .min(1, 'Debe seleccionar al menos una opción'), 
   sustainability: intFromInput({max:question16Length}),
   ods_background:  intFromInput({max: question17Length})  
-})  
+});

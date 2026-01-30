@@ -2,10 +2,15 @@ import nodemailer from "nodemailer";
 import dotenv from 'dotenv';
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { generateToken } from "./jwtUtils.js";
 
 dotenv.config();
-const __dirname = path.resolve();
+//const __dirname = path.resolve();
+
+// Ruta absoluta para la imagen
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Create a transporter using Ethereal test credentials.
 // For production, replace with your actual SMTP server details.
@@ -21,15 +26,26 @@ const transporter = nodemailer.createTransport({
 
 // Pasamos el HTML a string, usando las librerías fs y path de node
 const loadHtmlTemplate = () => {
-  const filePath = path.join(
-    __dirname,
-    "public",
-    "mail",
-    "Email.html"
-  );
-  
+    const filePath = path.join(__dirname,
+      '..',
+      "public",
+      "mail",
+      "Email.html"
+      )
   return fs.readFileSync(filePath, "utf8");
 }
+
+// Incrustamos el logo como attachment para poder cargarlo en el correo
+const generatAtachment = () => [{
+  filename: 'logoblanco.png',
+  path: path.join(__dirname,
+     '..',
+      "public",
+       "images",
+       "logo",
+       "logoblanco.png"), // Ruta de la imagen
+  cid: 'logo-circular' // Mismo nombre que en el src=cid: dentro de img en html
+}];
 
 // Exporto la funcionalidad para poder usarla en el controlador
 const sendActivationMail = async (userData) => {
@@ -52,7 +68,8 @@ const sendActivationMail = async (userData) => {
     const info = await transporter.sendMail({
       to: user_email,
       subject,
-      html
+      html,
+      attachments: generatAtachment()
     })
     console.log("Correo de activación enviado.", info.messageId);
     return {token: activationToken, info: info};
@@ -83,7 +100,8 @@ export const resetPasswordMail = async (userData) => {
     const info = await transporter.sendMail({
       to: user_email,
       subject,
-      html
+      html,
+      attachments: generatAtachment()
     })
     console.log("Correo de recuperación de pass, enviado.", info.messageId);
     return {token: resetPassToken, info: info};

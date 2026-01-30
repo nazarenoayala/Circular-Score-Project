@@ -1,0 +1,18 @@
+.AdmintestsContainer>div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (width < 1400px) {
+  .AdmintestsContainer>div {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (width < 1100px) {
+  .AdmintestsContainer>div {
+    grid-template-columns: 1fr;
+  }
+}

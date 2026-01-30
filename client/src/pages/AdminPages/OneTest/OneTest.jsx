@@ -50,7 +50,7 @@ const OneTest = () => {
           <div className='button d-flex gap-2'>
             <MyButton
               text={"Atrás"}
-              btnClass={"btn-red"}
+              btnClass={"btn-blue"}
               onSubmit={() => navigate('/tests')}
             />
             <MyButton
@@ -73,11 +73,11 @@ const OneTest = () => {
                 className='mytab'
               >
                 <div className='companies'>
-                  {AllTestsCompanies?.map((elem) => {
+                  {AllTestsCompanies?.map((elem, idx) => {
                     return (
-                      <div className="company-box" key={elem.company_id}>
+                      <div className="company-box" key={idx}>
                         <div>
-                          <Link to={`/company/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
+                          <Link to={`/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
                           <h5> {elem.sector_name} </h5>
                         </div>
                         <div className='text-end'>

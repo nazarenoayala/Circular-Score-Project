@@ -22,6 +22,7 @@ export const FormCompanyRegister2 = ({
             <select
               value={newCompany1.company_type}
               name="company_type"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -42,6 +43,7 @@ export const FormCompanyRegister2 = ({
             <select
               value={newCompany1.legal_form}
               name="legal_form"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -63,6 +65,7 @@ export const FormCompanyRegister2 = ({
             <select
               value={newCompany1.active_years}
               name="active_years"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -83,6 +86,7 @@ export const FormCompanyRegister2 = ({
             <select
               value={newCompany1.company_size}
               name="company_size"
+              className='myinput'
               onChange={handleChange}
             >
               <option value="" disabled>
@@ -100,12 +104,21 @@ export const FormCompanyRegister2 = ({
               <p className="red">{valErrors.company_size}</p>
             )}
 
-            <div className="btn">
-              <MyButton onSubmit={() => setCurrentFormPage(1)} text="Atrás" />
+            <div className="btnform">
+              <MyButton
+                onSubmit={() => setCurrentFormPage(1)}
+                text="Atrás"
+                btnClass={'btn-red'}
+              />
               <MyButton
                 onSubmit={() => setCurrentFormPage(3)}
+<<<<<<< HEAD
                 text="Siguiente"
                 btnClass='btn-green'
+=======
+                text={"Siguiente"}
+                btnClass={'btn-green'}
+>>>>>>> 5325f10db118954a0b96be9e20848965724407c0
               />
             </div>
           </form>

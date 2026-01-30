@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import {useNavigate} from 'react-router';
+import { useNavigate } from 'react-router';
 import { MyButton } from '../MyButton/MyButton';
 import { fetchData } from '../../../helpers/axiosHelper';
 import './cardTestAdmin.css';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
-const CardTestAdmin = ({test}) => {
+const CardTestAdmin = ({ test }) => {
 
   const [isPublic, setIsPublic] = useState(test.is_public);
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const CardTestAdmin = ({test}) => {
   return (
     <div className='card-test'>
       <div className='image-title'>
-        <img src={`${urlImage}/ODSimages/${test.test_image}`}alt="" />
+        <img src={`${urlImage}/ODSimages/${test.test_image}`} alt="" />
         <div className='odsTitle'>
           <h3>{test.test_name.split('·')[0]}</h3>
           <h3>{test.test_name.split('·')[1]}</h3>
@@ -49,28 +49,28 @@ const CardTestAdmin = ({test}) => {
       </div>
       <div className='buttonsAdminTest'>
         <MyButton
-          text = 'Ver info'
+          text='Ver info'
           btnClass='btn-green'
           onSubmit={() => navigate(`/oneTest/${test.test_id}`)}
-          />
+        />
         <MyButton
-          text = 'Editar'
+          text='Editar'
           btnClass='btn-green'
           onSubmit={() => navigate('/createTest')}
         />
         {
-        isPublic === 1 ?
-        <MyButton
-          text = 'Deshabilitar'
-          btnClass='btn-red'
-          onSubmit={disableTest}
-        />
-          :
-        <MyButton
-          text = 'Habilitar'
-          btnClass='btn-blue'
-          onSubmit={enableTest}
-        />
+          isPublic === 1 ?
+            <MyButton
+              text='Deshabilitar'
+              btnClass='btn-red'
+              onSubmit={disableTest}
+            />
+            :
+            <MyButton
+              text='Habilitar'
+              btnClass='btn-blue'
+              onSubmit={enableTest}
+            />
         }
       </div>
     </div>

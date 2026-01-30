@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { MyButton } from '../MyButton/MyButton';
 import './CompaniesCard.css';
+import { useState } from 'react';
+import { MyButton } from '../MyButton/MyButton';
 import { fetchData } from '../../../helpers/axiosHelper';
 import { Link } from 'react-router';
 import Accordion from 'react-bootstrap/Accordion';
@@ -9,13 +9,14 @@ export const CompaniesCard = ({
   allCompanies, //contiene los datos del admin desde el context
   token,
 }) => {
-
+  console.log(allCompanies);
+  
 
   //guarda los tests de cada empresa
   const [testsRealizados, setTestsRealizados] = useState([]);
 
   const handleAccordion = async () => {
-   
+
     try {
       //  ruta  que llama a userDal.showTestData para pedir los tests
       let res = await fetchData(
@@ -25,24 +26,21 @@ export const CompaniesCard = ({
         token,
       );
 
-      console.log(res)
-     
-      
       //la Api devuelve una lista de tests en utdResult.
       //el tamaño del array es el nºtotal de test realizado, si no hay test el array está vacío y su length 0.
       setTestsRealizados(res.data.utdResult || []);
-     
-      
+
     } catch (error) {
       console.log(error);
     }
   };
 
   const onSubmit = async (isDeleted) => {
+    
     try {
       if (isDeleted === 1) {
         const activateRes = await fetchData(
-          `/company/delLogicCompany/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${0}/${allCompanies.user_id}`,
           'PUT',
           null,
           token,
@@ -50,7 +48,7 @@ export const CompaniesCard = ({
         console.log(activateRes);
       } else {
         const desactivateRes = await fetchData(
-          `/company/delLogicCompany/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${1}/${allCompanies.user_id}`,
           'PUT',
           null,
           token,
@@ -63,7 +61,7 @@ export const CompaniesCard = ({
   };
 
   return (
-    <Accordion>
+    <Accordion className='accordCC'>
       <Accordion.Item eventKey="0">
         <Accordion.Header onClick={handleAccordion}>
           <Link
@@ -75,8 +73,8 @@ export const CompaniesCard = ({
           </Link>
         </Accordion.Header>
         <Accordion.Body className="bg-body-secondary">
-          <div className="d-flex justify-content-between lh-lg">
-            <div>
+          <div className="info">
+            <div className='info1'>
               <ul>
                 <li>
                   <strong>Persona de contacto:</strong> {allCompanies.name}
@@ -93,8 +91,8 @@ export const CompaniesCard = ({
               </ul>
             </div>
 
-            <div className="card-accordion">
-              {allCompanies.is_deleted === 0 ? (
+            <div className="info2">
+              {allCompanies.is_deleted === 1 ? (
                 <MyButton
                   text={'Habilitar'}
                   btnClass="btn-green"
