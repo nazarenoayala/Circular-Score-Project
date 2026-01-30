@@ -8,7 +8,7 @@ const registerSchema = z.object({
   //           .regex(/^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, 'El nombre no puede contener ni números ni carácteres especiales'),
   user_email: z.string()
             .min(1, 'El email es obligatorio')
-            .user_email('Debes introducir un email válido'),
+            .email('Debes introducir un email válido'),
   password: z.string()
                 .min(8, 'La contraseña debe tener mínimo, 8 carácteres')
                 .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/, 'La contraseña debe tener al menos una mayúscula, un carácter especial y un número'),

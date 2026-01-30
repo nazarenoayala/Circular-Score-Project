@@ -15,7 +15,7 @@ import { sectors } from '../../../data/CompanyRegisterData/sectors';
 const CompanyProfilePage = () => {
   const navigate = useNavigate();
   const { id, token } = useParams();
-  const { companyData, userData, test } = useContext(AuthContext);
+  const { companyData, userData, test } = useContext(AuthContext);""
   console.log(companyData, userData, test);
   console.log(useContext(AuthContext));
 
