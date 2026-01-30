@@ -1,20 +1,46 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { question10 } from '../../../data/CompanyRegisterData/Question10';
 import './profile.css';
+import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
-import { useNavigate } from 'react-router';
 import { fetchData } from '../../../../helpers/axiosHelper';
+import { sectors } from '../../../data/CompanyRegisterData/sectors';
 
-const urlImage = import.meta.env.VITE_IMAGES;
+//CUENTA
+//1@1.com
+//123aA!456
+
 
 const CompanyProfilePage = () => {
-
-  // Array de los test del user
-  const {test, token} = useContext(AuthContext);
-  const [AllTestsCompanies, setAllTestsCompanies] = useState();
-  const id = "allTests";
   const navigate = useNavigate();
+  const { id, token } = useParams();
+  const { companyData, userData, test } = useContext(AuthContext);
+  console.log(companyData, userData, test);
+  console.log(useContext(AuthContext));
+
+  const [company, setCompany] = useState();
+  /* Traer  */
+  useEffect(() => {
+    const fetchCompany = async () => {
+
+      try {
+        const res = await fetchData(`/company/oneCompany/${id}`, "GET", null, token)
+
+        console.log("REsssss", res)
+        setCompany(res.data)
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchCompany();
+  }, [id, token])
+
+  /* Encontrar el nombre del sector partiendo  */
+  const sectorId = company?.company?.sector_id;
+  const sectorName = sectors.find(s => s.id === sectorId)?.name;
 
   const {userData, companyData} = useContext(AuthContext);
 
@@ -37,12 +63,13 @@ const CompanyProfilePage = () => {
     <div className='profileContainer'>
       <div className="profile">
         <div className='data'>
-          <h3 className='pb-3'>{companyData?.company_name}</h3>
-          <p>Sector: {question10?.find((elem)=> elem.id === companyData?.sector_id)?.name}</p>
-          <p>Persona de contacto: {userData?.name} {userData?.last_name}</p>
-          <p>Email: {companyData?.company_email}</p>
-          <p>Teléfono: {userData?.phone_number}</p>
+          <h3 className='pb-3'> {company?.company.company_name} </h3>
+          <p> <strong>Sector:</strong> {sectorName} </p>
+          <p><strong>Persona de contacto:</strong> {userData?.name + ' ' + userData?.last_name} </p>
+          <p><strong>Teléfono:</strong> {userData?.phone_number} </p>
+          <p><strong>Email:</strong> {company?.company.company_email} </p>
         </div>
+        {/* FALTA */}
         <div className="ranking">
           <div>
             <h4>Ranking</h4>
@@ -84,6 +111,7 @@ const CompanyProfilePage = () => {
             <MyButton
               text={'Detalles'}
               btnClass={'btn-white'}
+              onSubmit={() => navigate(`/editCompany/${id}`)}
             />
           </div>
           <div className="progressbar">
