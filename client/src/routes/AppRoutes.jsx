@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useContext } from 'react'
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { PrivateRoutes } from './PrivateRoutes';
@@ -26,6 +26,7 @@ const UserTestRecord = lazy(() => import("../pages/companyPages/UserTestRecord/U
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
+import { AuthContext } from '../context/AuthContext/AuthContext.js';
 const AdminTests = lazy(()=>import('../pages/AdminPages/AdminTests/AdminTests.jsx'));
 const CreateTest = lazy(()=>import('../pages/AdminPages/CreateTest/CreateTest.jsx'));
 const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
@@ -41,7 +42,8 @@ const AdminODSGraphics = lazy(()=> import ('../pages/AdminPages/AdminODSGraphic/
 export const AppRoutes = () => {
 
     const [showPage, setShowPage] = useState('register');
-
+    const {userData} = useContext(AuthContext);
+    
   return (
     <BrowserRouter>
       <Suspense fallback={<h1>Cargando...</h1>}>
@@ -51,8 +53,8 @@ export const AppRoutes = () => {
           <Route element={<PublicRoutes />}>
             <Route element={<PublicLayout  setShowPage={setShowPage} showPage={showPage}/>}>
               <Route path='/' element={<Home 
-                                          setShowPage={setShowPage} 
-                                          showPage={showPage}
+                                        setShowPage={setShowPage} 
+                                        showPage={showPage}
                                       />} 
               />
                 <Route 
@@ -60,18 +62,21 @@ export const AppRoutes = () => {
                   element={<ActivateUser 
                             setShowPage={setShowPage}
                           />}
-              />
+                />
               <Route/>
               <Route 
                 path="resetPassword/:token/:user_id" 
-                  element={<ResetPassword
-                            setShowPage={setShowPage}
-                          />}/>
+                element={<ResetPassword
+                          setShowPage={setShowPage}
+                        />}/>
             </Route>
           </Route>
 
           {/* rutas privadas*/}
-          <Route element={<PrivateRoutes />}>
+          <Route element={<PrivateRoutes  
+                            userData={userData}
+                            requiredType={2}
+                         />}>
 
             {/* rutas de empresa */}
             <Route element={<UserLayout />}>
@@ -86,7 +91,13 @@ export const AppRoutes = () => {
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
             </Route>
+          </Route>
 
+          <Route element={<PrivateRoutes  
+                            userData={userData}
+                            requiredType={1}
+                          />}>
+          
             {/* rutas de Admin */}
             <Route element={<AdminLayout />}>
               <Route path='/tests' element={<AdminTests />} />

@@ -103,7 +103,7 @@ class UserDal {
     try {
       
       let sql = `SELECT u.user_id, u.name, u.last_name, u.type, u.phone_number, 
-                u.province_id, u.city_id, u.user_email, u.position, u.is_deleted, c.company_name,
+                u.province_id, u.city_id, u.user_email, u.position, u.is_deleted, c.user_id, c.company_name,
                 c.company_email, c.sector_id, c.company_type, c.legal_form, 
                 c.active_years, c.company_size, c.gso, c.client_segment, 
                 c.stakeholders, c.sustainability, c.ods_background
@@ -128,6 +128,7 @@ class UserDal {
       }
 
       const companyData = {
+        user_id: result[0].user_id,
         company_name: result[0].company_name,
         company_email: result[0].company_email,
         sector_id: result[0].sector_id, 

@@ -1,8 +1,7 @@
 import './FormUserLogin.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Button, Form } from "react-bootstrap";
-import { ZodError } from 'zod';
+import { Form } from "react-bootstrap";
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import { useContext } from 'react';
 import { fetchData } from '../../../helpers/axiosHelper';
@@ -42,15 +41,23 @@ export const FormUserLogin = () => {
 
       setUserData(userByToken.data.userData);
       setCompanyData(userByToken.data.companyData);
+      
       setToken(token);
 
       // Si todo es correcto, mandamos al usuario a su perfil
-
-      //TODO Supongamos que navega a company profile tras loguear, ya lo que decidamos
-      //navigate(`/companyProfile`)
-      //TODO Esta pa cuando la vista esté disponible
       const user_id = userByToken.data.userData.user_id;
-      navigate(`/companyRegister/${user_id}`);
+
+      // Si es tipo admin, navega a test, si no depende de la condición del user
+      if(userByToken.data.userData.type === 1){
+        navigate('tests');
+      } else {
+        // Si hay empresa registrada, a allTests, si no a registrar empresa.
+        if(userByToken.data.companyData.user_id !== null){
+          navigate(`allTests`);
+        } else {
+          navigate(`companyRegister/${user_id}`);
+        }
+      }
     } catch (error) {
         setErrorValidation(error?.response?.data);
         console.log(error);
