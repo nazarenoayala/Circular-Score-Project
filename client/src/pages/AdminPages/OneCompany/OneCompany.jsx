@@ -1,58 +1,54 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/AuthContext/AuthContext'
 import { useParams } from 'react-router'
 import { InfoOneCompany } from '../../../components/InfoOneCompany/InfoOneCompany'
 import { InfoRepresentante } from '../../../components/InfoRepresentante/InfoRepresentante'
-import {MyButton} from '../../../components/MyButton/MyButton'
+import { MyButton } from '../../../components/MyButton/MyButton'
 import { fetchData } from '../../../../helpers/axiosHelper'
 import './oneCompany.css'
 
 const OneCompany = () => {
 
   const {user_id} = useParams(); 
-
-
   const [company, setCompany] = useState();
-  // const [disableButton, setDisableButton] = useState();
+  const { token } = useContext(AuthContext);
 
   
-  const { token, companyData } = useContext(AuthContext);
-
-
-  // const delLogicCompany = async(user_id) => {
-  //   try {
-  //     let res = await fetchData(`/company/delLogicCompany/${user_id}`, "PUT", null, token);
-  //     console.log("copmanuyyyyy", res)
-
-  //     setCompany({...companyData.company, is_deleted: companyData.company.is_deleted === 0 ? 1 : 0 });
-      
-
-  //   } catch (error) {
-  //     console.log(error);
-      
-  //   }
-  // }
-
-
   useEffect(() => {
     const fetchCompany = async () => {
+      console.log(user_id)
       
       try {
         const res = await fetchData(`/company/oneCompany/${user_id}`, "GET",  null, token)
-
-        console.log("REsssss", res.data)
+        
+        console.log("REsssss", res)
         setCompany(res.data)
-
+        
       } catch (error) {
         console.log(error);
       }
     }
-
-    
-
+  
     fetchCompany();
   }, [user_id, token])
+  
 
+  
+   const delLogicCompany = async (user_id) => {
+    
+  
+     try {
+       let res = await fetchData(`/company/delLogicCompany/${user_id}`, "PUT", null, token);
+       console.log("copmanuyyyyy", res)
+    
+
+       setCompany(company.filter(elem=>elem.user_id !== user_id));      
+
+     } catch (error) {
+       console.log(error);
+      
+     }
+   }
 
    if (!company) {
      return <p>Cargando información de la empresa...</p>;
@@ -63,9 +59,9 @@ const OneCompany = () => {
       <div className='company_name_div px-5'>
         <h1 className='company_name fw-bold'>{company?.company.company_name}</h1>
         <MyButton
-          text={company.company.is_deleted === 0 ? 'Deshabilitar' : 'Habilitar'}
+          text='Deshabilitar'
           btnClass='btn-red fw-bold px-4'
-          // onClick={()=>delLogicCompany(user_id)}
+          onSubmit={()=>delLogicCompany(user_id)}
         />
         
       </div>

@@ -272,7 +272,7 @@ class CompanyController {
 
 
 
- delLogicCompany = async(req, res) => {
+  delLogicCompany = async(req, res) => {
     const {user_id} = req.params;
 
     try {
