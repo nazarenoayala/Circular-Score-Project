@@ -9,8 +9,6 @@ import { editSchema } from '../../schemas/userEdit.js';
 import { verifyToken } from '../../middlewares/verifyToken.js';
 import { verifyActivateToken } from '../../middlewares/verifyActivateToken.js';
 
-
-
 //TODO Hay que añadir el middleware de verifyToken cuando esté 100% correcto a todas las rutas, y corregir la ruta dinámica quitando el user_id, ya que se puede extraer del req al pasar por el middleware 
 
 const routes = express.Router();
