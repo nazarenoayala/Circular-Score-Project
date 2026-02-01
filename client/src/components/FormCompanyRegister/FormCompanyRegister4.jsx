@@ -108,26 +108,17 @@ export const FormCompanyRegister4 = ({
             </select>
             {valErrors?.ods_background && <p className="red">{valErrors.ods_background}</p>}
 
-<<<<<<< HEAD
-            <div className="btn">
-              <MyButton onSubmit={() => setCurrentFormPage(3)} text="Atrás" />
-              <MyButton 
-                onSubmit={onSubmit} 
-                text="Enviar"
-                btnClass='btn-green' />
-=======
             <div className="btnform">
               <MyButton
                 onSubmit={() => setCurrentFormPage(3)}
-                text={"Atrás"}
-                btnClass={'btn-red'}
+                text="Atrás"
+                btnClass='btn-red'
               />
               <MyButton
                 onSubmit={onSubmit}
-                text={"Enviar"}
-                btnClass={'btn-green'}
+                text="Enviar"
+                btnClass='btn-green'
               />
->>>>>>> 5325f10db118954a0b96be9e20848965724407c0
             </div>
           </form>
         </section>

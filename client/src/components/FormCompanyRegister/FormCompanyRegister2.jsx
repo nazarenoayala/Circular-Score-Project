@@ -112,13 +112,8 @@ export const FormCompanyRegister2 = ({
               />
               <MyButton
                 onSubmit={() => setCurrentFormPage(3)}
-<<<<<<< HEAD
                 text="Siguiente"
                 btnClass='btn-green'
-=======
-                text={"Siguiente"}
-                btnClass={'btn-green'}
->>>>>>> 5325f10db118954a0b96be9e20848965724407c0
               />
             </div>
           </form>

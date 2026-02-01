@@ -20,19 +20,21 @@ const initialValues2 = {
 
 const CreateTest = () => {
   const [newTest, setNewTest] = useState(initialValues);
+  const [testImage, setTestImage] = useState();
   const [question, setQuestion] = useState(initialValues2)
   const [questions, setQuestions] = useState([]);
   const [valErrors, setValErrors] = useState([]);
   const [message, setMessage] = useState('');
-  const [message2, setMessage2] = useState('');
-  const {token, test} = useContext(AuthContext);
+  const {token} = useContext(AuthContext);
+  console.log(token);
+  
 
   // control de los inputs 
 
    const handleChange = (e) =>{
      const {name, value, type, checked} = e.target
-      if(type === 'image'){
-        setNewTest({...newTest, image: e.target.files[0].name})
+      if(type === 'file'){
+        setTestImage(e.target.files[0])
       }else {
         setNewTest({...newTest, [name]: type === 'checkbox' ? checked ? 1 : 0 : value}); 
       }
@@ -55,16 +57,22 @@ const CreateTest = () => {
     }  
     //Envio de datos el Back
     
-    const onSubmit = async () =>{
+    const onSubmit = async (e) =>{
+      e.preventDefault()
          try { 
         //validación de los campos
-        createTestSchema.parse({...newTest, ...question});
-        console.log('validación ok');
+        createTestSchema.parse(newTest);
+        //Preparacion de datos para la Imagen
+        
+        const formData = new FormData();
+        formData.append('newTest', JSON.stringify(newTest));
+        formData.append('img', testImage)
+
         //mandar datos al Back
-        const res = await fetchData(`/test/createTest`, 'POST', newTest, token);
-        console.log(res);
-        if(res){
-          const res2 = await fetchData(`/question/createQuestion/${test.test_id}`, 'POST', questions, token);
+        const res = await fetchData(`/test/createTest`, 'POST', formData, token);
+       
+        if(res?.data?.test_id){
+          const res2 = await fetchData(`/question/createQuestion/${res.data.test_id}`, 'POST', questions, token);
           console.log(res2);
         }
           setNewTest(initialValues);
@@ -78,7 +86,6 @@ const CreateTest = () => {
             fieldErrors[elem.path[0]] = elem.message
           });
           setValErrors(fieldErrors)
-          setMessage2('Debe de introducir al menos 1 pregunta')
         }else{
           console.log(error);
         }
@@ -106,7 +113,7 @@ const CreateTest = () => {
             valErrors={valErrors}
             setQuestions={setQuestions}
             message={message}
-            message2={message2}/>
+            />
         </main>
       </div>
     </>

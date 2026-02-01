@@ -3,7 +3,7 @@ import executeQuery from "../../config/db.js";
 class TestDal {
 
   selectAllTest = async () => {
-
+    
     try {
 
       // A futuro cambiar is_deleted a 0;
@@ -49,9 +49,12 @@ class TestDal {
   }
 
   createTest = async(values) =>{
+    
     try {
+      //consulta con el insert en la tabla test 
       let sql = 'INSERT INTO test (test_name, test_image, is_public) VALUES (?,?,?)'
-      let result = executeQuery(sql, values);
+      let result = await executeQuery(sql, values);
+      return result
     } catch (error) {
       throw error
     }

@@ -3,7 +3,7 @@ import './formCreateTest.css';
 import { MyButton } from '../MyButton/MyButton';
 
 
-export const FormCreateTest = ({newTest, handleChange, handleChange2, question, questions,setQuestions,addQuestion, valErrors, onSubmit, message, message2}) => {
+export const FormCreateTest = ({newTest, handleChange, handleChange2, question, questions,setQuestions,addQuestion, valErrors, onSubmit, message}) => {
 
   const deleteQuestion = (idx) => {
     const newArray = questions.filter((e,i) => i !== idx)
@@ -44,8 +44,8 @@ export const FormCreateTest = ({newTest, handleChange, handleChange2, question, 
                        )}
 
             <label htmlFor='image'>
-                <MyButton
-                    text='Subir Imagen del Test'/>
+                <img src="../../../assets/images/Logo
+                /logo.png" alt="" />
             </label>
               <input 
                 className="question-input" 
@@ -75,7 +75,7 @@ export const FormCreateTest = ({newTest, handleChange, handleChange2, question, 
                   <input
                     className="premium-checkbox"
                     type="checkbox"
-                    checked={question?.premium}
+                    checked={question?.premium === 1}
                     name="premium"
                     onChange={handleChange2}/>   
                 </div>
@@ -110,7 +110,6 @@ export const FormCreateTest = ({newTest, handleChange, handleChange2, question, 
                   })}
                 </div>
 
-                <p className='red'>{message2}</p>
                 
               <div className='btnOnsubmit '>
                 <MyButton 
