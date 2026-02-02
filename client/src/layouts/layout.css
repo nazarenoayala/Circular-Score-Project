@@ -2,11 +2,22 @@
   min-width: 20rem;
 }
 
-@media (width >=601px) {
+.layoutAdminPublic {
+  height: 100dvh;
+}
+
+.layoutAdminPublic main {
+  background-color: rgb(250, 252, 254);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-left: 3rem;
+}
+
+@media (width >=821px) {
   .layoutAdminPublic {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 1rem;
+    grid-template-columns: 16rem auto;
   }
 
   .mobile {
@@ -14,15 +25,19 @@
   }
 }
 
-@media (width <=600px) {
+@media (width <=820px) {
   .layoutAdminPublic {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 1rem;
+    grid-template-rows: 2rem auto;
 
     main {
-      padding-top: 6.5rem;
+      padding-top: 6rem;
     }
+  }
+
+  .mobile {
+    position: relative;
+    z-index: 1000;
   }
 
   .desktop {

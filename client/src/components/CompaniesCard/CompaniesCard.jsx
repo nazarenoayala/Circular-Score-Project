@@ -1,40 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { MyButton } from '../MyButton/MyButton';
 import './CompaniesCard.css';
+import { useState } from 'react';
+import { MyButton } from '../MyButton/MyButton';
 import { fetchData } from '../../../helpers/axiosHelper';
+import { Link } from 'react-router';
+import Accordion from 'react-bootstrap/Accordion';
 
 export const CompaniesCard = ({
   allCompanies, //contiene los datos del admin desde el context
   token,
-  setShowInfo,
-  showInfo,
-  userData,
 }) => {
+  console.log(allCompanies);
   
 
   //guarda los tests de cada empresa
   const [testsRealizados, setTestsRealizados] = useState([]);
 
- 
-const [openManage, setOpenManage] = useState(null);
-
- //  controlar el desplegable de gestión
-const handleManage = () => {
- 
-  if (openManage === allCompanies.user_id) {
-    setOpenManage(null);
-  } else {
-    setOpenManage(allCompanies.user_id);
-  }
-};
-
-  const handleInfo = async () => {
-    // Si ya está abierta la información, la cierra . Si no, guarda su id.
-    if (showInfo === allCompanies.user_id) {
-      setShowInfo(null);
-    } else {
-      setShowInfo(allCompanies.user_id);
-    }
+  const handleAccordion = async () => {
 
     try {
       //  ruta  que llama a userDal.showTestData para pedir los tests
@@ -45,32 +26,31 @@ const handleManage = () => {
         token,
       );
 
-      console.log(res);
       //la Api devuelve una lista de tests en utdResult.
       //el tamaño del array es el nºtotal de test realizado, si no hay test el array está vacío y su length 0.
       setTestsRealizados(res.data.utdResult || []);
+
     } catch (error) {
       console.log(error);
     }
   };
 
-
-
   const onSubmit = async (isDeleted) => {
+    
     try {
-      if (isDeleted) {
+      if (isDeleted === 1) {
         const activateRes = await fetchData(
-          `/user/setUserLogicState/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${0}/${allCompanies.user_id}`,
           'PUT',
-          setting,
+          null,
           token,
         );
         console.log(activateRes);
       } else {
         const desactivateRes = await fetchData(
-          `/user/setUserLogicState/${allCompanies.user_id}`,
+          `/company/delLogicCompany/${1}/${allCompanies.user_id}`,
           'PUT',
-          setting,
+          null,
           token,
         );
         console.log(desactivateRes);
@@ -81,71 +61,55 @@ const handleManage = () => {
   };
 
   return (
-    <div className="card mb-3 py-3 ">
-      <div className="d-flex justify-content-between align-items-center">
-        <h5>{allCompanies.company_name}</h5>
+    <Accordion className='accordCC'>
+      <Accordion.Item eventKey="0">
+        <Accordion.Header onClick={handleAccordion}>
+          <Link
+            to={`/oneCompany/${allCompanies.user_id}`}
+            className="text-success myLink"
+          >
+            {' '}
+            <h5> {allCompanies.company_name} </h5>
+          </Link>
+        </Accordion.Header>
+        <Accordion.Body className="bg-body-secondary">
+          <div className="info">
+            <div className='info1'>
+              <ul>
+                <li>
+                  <strong>Persona de contacto:</strong> {allCompanies.name}
+                </li>
+                <li>
+                  <strong>Teléfono:</strong> {allCompanies.phone_number}
+                </li>
+                <li>
+                  <strong>Email:</strong> {allCompanies.user_email}
+                </li>
+                <li>
+                  <strong>Categoría:</strong> {allCompanies.sector_id}
+                </li>
+              </ul>
+            </div>
 
-     
-         <div className="d-flex gap-2">
-    
-      <MyButton
-        text={openManage === allCompanies.user_id ? 'Cerrar gestión' : 'Gestionar empresa'}
-        btnClass="btn-green"
-        onSubmit={handleManage}
-      />
-
-      <MyButton
-        text={
-          showInfo === allCompanies.user_id
-            ? 'Cerrar información'
-            : 'Ver información'
-        }
-        btnClass="btn-white"
-        onSubmit={handleInfo}
-      />
-    </div>
-
-
-  {openManage === allCompanies.user_id && (
-    <div className="d-flex justify-content-center align-items-center bg-light mt-3 border-top py-3 gap-4">
-        <p className="mb-0">
-        <strong>Estado actual:</strong>{' '}
-        <span className={allCompanies.is_deleted ? "text-danger" : "text-success"}>
-          {allCompanies.is_deleted ? 'DESACTIVADO' : 'ACTIVADO'}
-        </span>
-      </p>
-
-      {allCompanies.is_deleted ? (
-        <MyButton
-          text="Activar Empresa"
-          btnClass="btn-green"
-           onSubmit={() => (onSubmit)} 
-        />
-      ) : (
-        <MyButton
-          text="Desactivar Empresa"
-          btnClass="btn-red"
-           onSubmit={() => (onSubmit)} 
-        />
-      )}
-    </div>
-  )}
-      {/* Se muestra si el id de la empresa es igual al estado */}
-      {showInfo === allCompanies.user_id && (
-        <div className="d-flex justify-content-around align-items-center bg-body-secondary mt-3 border-top pt-3 flex-wrap">
-          <div>
-            <ul>
-             <li><strong>Persona de contacto:</strong> {allCompanies.name}</li>
-             <li><strong>Teléfono:</strong> {allCompanies.phone_number}</li>
-            <li><strong>Email:</strong> {allCompanies.user_email}</li>
-            <li><strong>Categoría:</strong> {allCompanies.sector_id}</li>
-            </ul>
+            <div className="info2">
+              {allCompanies.is_deleted === 1 ? (
+                <MyButton
+                  text={'Habilitar'}
+                  btnClass="btn-green"
+                  onSubmit={() => onSubmit(allCompanies.is_deleted)}
+                />
+              ) : (
+                <MyButton
+                  text={'Deshabilitar'}
+                  btnClass="btn-red"
+                  onSubmit={() => onSubmit(allCompanies.is_deleted)}
+                />
+              )}
+              <strong>Tests Realizados: {testsRealizados.length} </strong>
+            </div>
           </div>
-          <div>
-            <strong>Tests Realizados: {testsRealizados.length} </strong>
-          </div>
-        </div>
-      )}
-    </div>
-  </div>
-  )}
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  );
+};

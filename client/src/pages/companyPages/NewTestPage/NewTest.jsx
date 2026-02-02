@@ -1,5 +1,5 @@
-import React, { useContext, useEffect , useState} from 'react';
-import {useNavigate, useParams} from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { QuestionCard } from '../../../components/questionCard/QuestionCard';
@@ -53,8 +53,10 @@ const NewTest = () => {
         
         let result = await fetchData(`/question/getQuestions/${id}`, 'GET', null, null);
         setQuestions(result.data.result);
-        setLoading(false);
+        console.log(result.data.result);
         
+        setLoading(false);
+
       } catch (error) {
         console.log(error);
       }
@@ -88,7 +90,7 @@ const NewTest = () => {
       let result = await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);
       console.log(result);
       navigate(`/oneTestCompany/${id}`);
-      
+
     } catch (error) {
       console.log(error);
     }
@@ -181,7 +183,7 @@ const NewTest = () => {
   return (
     <div className='oneQuestionPages'>
       <div className='progress-bar'>
-        <h2>7 %</h2>
+        <h4>7 %</h4>
         <div className='progress-bar-container'>
           <div className='progress-bar-result'>
           </div>
@@ -214,7 +216,7 @@ const NewTest = () => {
           onSubmit={() => setIndex(index + 1)}
         />}
 
-        {index < questions?.length -1 ? <MyButton
+        {index < questions?.length - 1 ? <MyButton
           text='Volver atrás (guardar)'
           btnClass='btn-blue'
           onSubmit={saveQuestions}

@@ -18,7 +18,6 @@ const ActivateUser = ({setShowPage}) => {
           const activateResult = await fetchData(`/user/activateUser/${token}/${user_id}`, 'PUT', null);
           console.log('resultado de la acivación de la cuenta', activateResult);
           setShowPage('login');
-          //navigate('/');
         } catch (error) {
           console.log(error);
         }

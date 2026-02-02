@@ -4,7 +4,7 @@ export const loginSchema = z.object({
   
   email: z.string()
             .min(1, 'El email es obligatorio')
-            .email('Debes introducir un email válido'),
+            .user_email('Debes introducir un email válido'),
   password: z.string()
                 .min(8, 'La contraseña debe tener mínimo, 8 carácteres')
                 .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/, 'La contraseña debe tener al menos una mayúscula, un carácter especial y un número'),

@@ -1,7 +1,8 @@
+import './AllTests.css';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import CardTest from '../../../components/CardTest/CardTest';
-import { Container , Row , Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { fetchData } from '../../../../helpers/axiosHelper';
 
 const AllTestsPage = () => {
@@ -29,8 +30,8 @@ const AllTestsPage = () => {
 
         setAllTest(updateAllTest);
         setReady(true);
-        
-        
+
+
       } catch (error) {
         console.log(error);
       }
@@ -39,21 +40,21 @@ const AllTestsPage = () => {
 
     fetchResults()
 
-  },[])
+  }, [])
 
   return (
-    <Container className='p-5'>
-      {ready && <Row>
-            {allTest.map((elem) => {
-              return (
-                <Col key={elem.test_id} className='col-6 mb-3'>
-                    <CardTest
-                      test = {elem}
-                    />
-                </Col>
-              )
-            })}
-      </Row>}
+    <Container className='userTests'>
+      {ready && <div>
+        {allTest.map((elem) => {
+          return (
+            <div key={elem.test_id} className='cardTest'>
+              <CardTest
+                test={elem}
+              />
+            </div>
+          )
+        })}
+      </div>}
     </Container>
   )
 }

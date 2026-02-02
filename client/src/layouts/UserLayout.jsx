@@ -1,8 +1,9 @@
-import { NavbarHeaderGeneral } from '../components/NavbarHeaderGeneral/NavbarHeaderGeneral';
 import './layout.css';
+import { Outlet } from 'react-router';
+import { NavbarHeaderGeneral } from '../components/Navbar/NavbarHeaderGeneral/NavbarHeaderGeneral';
 import { NavbarOffcanvasUser } from '../components/Navbar/NavbarOffcanvasUser/NavbarOffcanvasUser.jsx';
 import { NavbarUser } from '../components/Navbar/NavbarUser/NavbarUser';
-import { Outlet } from 'react-router';
+import { FooterMobile } from '../components/Footers/FooterMobile/FooterMobile.jsx';
 
 
 
@@ -20,8 +21,11 @@ export const UserLayout = () => {
         </div>
       </header>
       <main>
-         <NavbarHeaderGeneral />
+        <NavbarHeaderGeneral />
         <Outlet />
+        <div className="mobile">
+        <FooterMobile/>
+        </div>
       </main>
     </div>
   )

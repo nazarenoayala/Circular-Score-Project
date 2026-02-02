@@ -33,7 +33,7 @@ const OneTestCompany = () => {
   }
   
   return (
-    <div className='oneTest'>
+    <div className='oneTest text-'>
       <div className='newTest'>
         <h2>{oneTest[0].test_name}</h2>
         <img src={`${urlImage}/ODSimages/${oneTest[0].test_image}`} alt="" />
@@ -50,8 +50,9 @@ const OneTestCompany = () => {
           />
         </div>
       </div>
-      <h3>Test realizados</h3>
+      <h3 className='p-3'>Tests realizados</h3>
       <div className='historicTestContainer'>
+        
         <HistoricTestContainer id = {id}/>
       </div>
     </div>

@@ -1,0 +1,13 @@
+.navgen {
+  background-color: rgb(250, 252, 254);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (width <=820px) {
+  .navgen {
+    justify-content: space-evenly;
+  }
+}

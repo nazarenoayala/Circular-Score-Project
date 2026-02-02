@@ -3,19 +3,14 @@ import { generateToken } from '../../utils/jwtUtils.js';
 
 
 class CompanyController {
-  test = async (req, res) => {
-    try {
-      res.status(200).json('Bien');
-    } catch (error) {
-      res.status(500).json('Mal');
-    }
-  };
 
   registerCompany = async (req, res) => {
     
     try {
 
-      const {user_id} = req.params;
+      let {user_id} = req;
+      user_id = parseInt(user_id);
+      
       const {
         company_name,
         company_email,
@@ -41,10 +36,14 @@ class CompanyController {
         active_years,
         company_size,
         gso,
-        client_segment,
-        stakeholders,
+        user_id,
+        user_id,
         sustainability,
         ods_background
+      ], 
+      [
+        client_segment,
+        stakeholders
       ]);
 
       res.status(200).json({message:'register ok', result});
@@ -55,16 +54,13 @@ class CompanyController {
   };
 
   registerCompanyInUser = async (req, res) => {
-    console.log('BODYyyyyyyyyyyyy:', req.body);
     try {
       const { user_id } = req.params; 
 
-      const {contact_name, position, phone_number, user_email, city_id, province_id} = req.body
-      console.log(position);
-      
+      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
 
-      let result = await companyDal.registerCompany([
-      contact_name, position, phone_number, user_email, city_id, province_id, user_id
+      let result = await companyDal.registerCompanyInUser([
+      contact_name, last_name, position, phone_number, city_id, province_id, user_id
       ]);
       res.status(200).json({message: 'register ok', result});
     } catch (error) {
@@ -72,6 +68,70 @@ class CompanyController {
       res.status(500).json(error);
     }
   };
+
+  editCompany = async (req, res) => {
+    try {
+      
+      let {user_id} = req;
+      user_id = parseInt(user_id);
+
+      const {
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        client_segment,
+        stakeholders,
+        sustainability,
+        ods_background
+      } = req.body;
+
+      let result = await companyDal.editCompany([
+        company_name,
+        company_email,
+        sector_id,
+        company_type,
+        legal_form,
+        active_years,
+        company_size,
+        gso,
+        user_id,
+        user_id,
+        sustainability,
+        ods_background,
+        user_id
+      ], 
+      [
+        client_segment,
+        stakeholders
+      ]);
+
+      res.status(200).json({message:'update ok', result});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+  editCompanyInUser = async (req, res) => {
+    try {
+      const {user_id} = req.params;
+
+      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
+      
+      let result = await companyDal.editCompanyInUser([contact_name, last_name, position, phone_number, city_id, province_id, user_id]);
+
+      res.status(200).json({message: 'update ok', result});
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
 
   locality = async (req, res) => {
     try {
@@ -126,53 +186,6 @@ class CompanyController {
     }
   }
 
-  editCompanyProfile = async (req, res) => {
-    console.log('eeeeeeeeeeeeeeeeeeeeeeee', req.body);
-
-    try {
-      const {user_id} = req.params;
-      const {
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background
-      } = req.body;
-
-      let uptResult = await companyDal.editCompany([
-        user_id,
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background
-      ]);
-
-      res.status(200).json({
-        message: "Actualizado correctamente",
-        uptResult
-      })
-      
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  };
-
   //controlador de todas las empresas.yas
   allCompanies = async (req, res) => {
     const {id} = req.params;
@@ -208,8 +221,21 @@ class CompanyController {
     }
  
   }
+
+  allTestCompaniesData = async(req, res) => {
+    try {    
+      const { test_id } = req.params;           
+      const result = await companyDal.allTestCompaniesData(test_id);    
+      res.status(200).json({
+        message: "REQ SUCCES",
+        result
+      })
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+  
 }
-
-
 
 export default new CompanyController();
