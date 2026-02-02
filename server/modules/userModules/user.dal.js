@@ -209,13 +209,13 @@ class UserDal {
     }
   }
 
-  setUserState = async (setting, user_id) => {
+  setUserState = async (user_id) => {
 
     // Setea el is_deleted del registro del usuario en 0 o en 1.
     
     try {
-      let sql = 'UPDATE user SET is_deleted = ? where user_id = ?'
-      await executeQuery(sql, [setting, user_id]);
+      let sql = 'UPDATE user SET is_deleted = IF(is_deleted= 0, 1, 0) where user_id = ?'
+      await executeQuery(sql, [user_id]);
     } catch (error) {
       throw error;
     }

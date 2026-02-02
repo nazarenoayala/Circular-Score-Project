@@ -191,7 +191,18 @@ class CompanyDal {
 
   showOneCompany = async(user_id) => {
     try {
-      let sql = 'SELECT * FROM company_data LEFT JOIN user ON company_data.user_id = user.user_id WHERE company_data.user_id = ?'
+      let sql = `
+      SELECT
+      cd.*,
+      u.*,
+      c.name AS city_name,
+      p.name AS province_name
+      FROM company_data cd
+      LEFT JOIN user u ON cd.user_id = u.user_id
+      LEFT JOIN city c ON u.city_id = c.city_id
+      LEFT JOIN province p ON u.province_id = p.province_id
+      WHERE cd.user_id = ?
+      `;
 
       return await executeQuery(sql, [user_id]);
 
