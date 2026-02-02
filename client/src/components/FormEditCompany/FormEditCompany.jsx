@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Col, Form, Row } from 'react-bootstrap'
+import { Card, Form } from 'react-bootstrap'
 
 const segmentClientOptions = [
     //lista de opciones con clave valor (uso texto q ya identificaba cada opción)
