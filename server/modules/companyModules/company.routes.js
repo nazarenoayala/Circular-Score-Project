@@ -12,8 +12,14 @@ routes.get('/locality', verifyToken, companyController.locality);
 routes.get('/province', verifyToken, companyController.Province);
 
 //poner middleware validación inputs
- routes.put('/editCompany/:user_id', verifyToken, companyController.editCompany);
+
+// Rutas de edición de user/company
+ routes.put('/editCompany/:user_id', verifyToken, companyController.editCompany)
  routes.put('/editCompanyInUser/:user_id', verifyToken, companyController.editCompanyInUser);
+/*  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile) */
+
+ routes.put('/editCompany', verifyToken, companyController.editCompany);
+ routes.put('/editCompanyInUser', verifyToken, companyController.editCompanyInUser);
 
 //probando ruta de todas las empresas.yas
 routes.get('/allCompanies', companyController.allCompanies);

@@ -9,4 +9,3 @@ crypto.randomBytes(128, (err, buf) => {
   console.log("The random data is: "
     + buf.toString('hex'));
 });
-

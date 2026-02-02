@@ -15,7 +15,6 @@ class QuestionDal {
     } catch (error) {
       throw error;
     }
-
   }
 
 

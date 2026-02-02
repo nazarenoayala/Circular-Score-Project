@@ -25,7 +25,7 @@ const initialValues1 = {
   ods_background: '',
 };
 const initialValues2 = {
-  contact_name: '',
+  name: '',
   position: '',
   phone_number: '',
   user_email: '',
@@ -95,8 +95,8 @@ const CompanyRegister = () => {
     try {
       e.preventDefault()
       //Validación de datos  
-      companyRegisterSchema.parse(newCompany1, newCompany2);
-      console.log('Validación ok');
+      companyRegisterSchema.parse({... newCompany1, ...newCompany2});
+      console.log('Validación ok'); 
       //mandar datos al Back
       const res = await fetchData(`/company/register/${userData?.user_id}`, 'POST', newCompany1, token);
       console.log(res);
