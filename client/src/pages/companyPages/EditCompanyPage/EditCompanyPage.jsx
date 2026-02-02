@@ -6,28 +6,29 @@ import { fetchData } from '../../../../helpers/axiosHelper'
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { useNavigate } from 'react-router';
 
-import './EditCompany.css'
+import './EditCompany.css';
 
 const initialValueCompany = {
-  company_name:'',
-  user_email:'',
-  sector_id:'',
-  company_type:'',
-  active_years:'',
-  company_size:'',
-  sustainability:'',
-  ods_background:'',
-  gso:'',
-  legal_form:'',
-  city_id:'',
-  province_id:'',
-  client_segment:[],
-  stakeholders:[]
+  company_name: '',
+  company_email: '',
+  sector_id: '',
+  company_type: '',
+  active_years: '',
+  company_size: '',
+  sustainability: '',
+  ods_background: '',
+  gso: '',
+  legal_form: '',
+  city_id: '',
+  province_id: '',
+  client_segment: [],
+  stakeholders: []
 }
 
 const initialValueUser = {
-  name:'',
-  phone_number:''
+  name: '',
+  last_name: '',
+  phone_number: ''
 }
 
 const EditCompanyPage = () => {
@@ -36,7 +37,7 @@ const EditCompanyPage = () => {
   //estado para mensaje que se guardaron los cambios con exito
   const [message, setMessage] = useState("");
 
-  const {companyData, userData, token, logout} = useContext(AuthContext)
+  const { companyData, userData, token, logout } = useContext(AuthContext);
 
   //Estado para empresa
   const [editCompanyData, setEditCompanyData] = useState(initialValueCompany);
@@ -136,10 +137,12 @@ const EditCompanyPage = () => {
         console.log('enviando datos al server!!!!!!', updatedData);
         
         //Hago peticion PUT en user.routes.js la ruta pide eso
-        const result = await fetchData(`/user/updateProfile`, 'PUT', updatedData, token);
-        
-        if(result){
-          setMessage("Los cambios se guardaron con éxito")
+        const result = await fetchData(`/company/editCompany`, 'PUT', updatedData, token);
+
+        const resultUser = await fetchData('/company/editCompanyInUser', 'PUT', updatedData, token);
+
+        if (result || resultUser) {
+          setMessage("Los cambios se guardaron con éxito");
         }
       } catch (error) {
         console.log('Error al guardar en la DB', error);     
@@ -159,6 +162,8 @@ const EditCompanyPage = () => {
         {/* paso por props datos y funcion a los hijos */}
         <FormEditCompany
           editCompanyData={editCompanyData}
+          provinceDataId={editUserData.province_id}
+          cityDataId={editUserData.city_id}
           handleCompanyChange={handleCompanyChange}
           city={locality}
           province={province}

@@ -3,10 +3,10 @@ import { Card, Form } from 'react-bootstrap'
 
 const segmentClientOptions = [
     //lista de opciones con clave valor (uso texto q ya identificaba cada opción)
-    { value: 'b2b', label: 'Empresas (B2B)' },
-    { value: 'b2c', label: 'Consumidor final (B2C)' },
-    { value: 'b2g', label: 'Administraciones públicas (B2G)' },
-    { value: 'third_sector', label: 'Endidades del tercer sector' }
+    { value: 1, label: 'Empresas (B2B)' },
+    { value: 2, label: 'Consumidor final (B2C)' },
+    { value: 3, label: 'Administraciones públicas (B2G)' },
+    { value: 4, label: 'Endidades del tercer sector' }
 ];
 
 const stakeholderOptions = [
@@ -25,6 +25,8 @@ const stakeholderOptions = [
 
 export const FormEditCompany = ({
     editCompanyData,
+    provinceDataId,
+    cityDataId,
     handleCompanyChange,
     province,
     city,
@@ -32,7 +34,8 @@ export const FormEditCompany = ({
 
 }) => {
     //funcion para filtrar ciudades correspondientes a la provincia seleccionada
-    const localityProvince = city?.filter(e => Number(e.province_id) === Number(editCompanyData.province_id)) || [];
+    const localityProvince = city?.filter(e => Number(e.province_id) === Number(provinceDataId)) || [];
+    console.log("EDIT COMPANY DATA ARRAYAS", editCompanyData);
 
     return (
         <Card>
@@ -173,7 +176,7 @@ export const FormEditCompany = ({
                         <Form.Select
                             name='province_id'
                             //lista desplegable de localidades
-                            value={editCompanyData?.province_id || ""}
+                            value={provinceDataId || ""}
                             onChange={handleCompanyChange}
                             placeholder='Selecciona provincia'
                         >
@@ -193,7 +196,7 @@ export const FormEditCompany = ({
                         <Form.Select
                             name='city_id'
                             //lista desplegable de localidades
-                            value={editCompanyData?.city_id || ""}
+                            value={cityDataId || ""}
                             onChange={handleCompanyChange}
                             placeholder='Selecciona ciudad'
                         >
@@ -240,7 +243,7 @@ export const FormEditCompany = ({
                                     label={option.label}
                                     value={option.value}
                                     onChange={(e) => handleCompanyChange(e, option.value)}
-                                    checked={editCompanyData?.client_segment?.includes(option.value) || false}
+                                    checked={editCompanyData?.client_segment?.some(seg => seg === option.value) || false}
                                 />
                             ))}
                         </div>
@@ -260,7 +263,7 @@ export const FormEditCompany = ({
                                     label={option.label}
                                     value={option.value}
                                     onChange={(e) => handleCompanyChange(e, option.value)}
-                                    checked={editCompanyData?.stakeholders?.includes(option.value) || false}
+                                    checked={editCompanyData?.stakeholders.some(stk => stk === option.value) || false}
                                 />
                             ))}
                         </div>

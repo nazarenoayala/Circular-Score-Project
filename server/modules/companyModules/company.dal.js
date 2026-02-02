@@ -9,10 +9,7 @@ class CompanyDal {
     // Como son varias consultas para esta operación, vamos usar una transacción
     const connection = await dbPool.getConnection();
 
-    // Y los 2 arrays de los selectores multiples
-    const ccg = multiSelects[0] // client_segment
-    const cs = multiSelects[1] // stakeholders
-
+    
     try{
       
       // Inicializamos la transaction
@@ -22,27 +19,25 @@ class CompanyDal {
       let sql = 'INSERT INTO company_data (user_id, company_name, company_email, sector_id, company_type, legal_form, active_years, company_size, gso, client_segment, stakeholders, sustainability, ods_background ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
       
       let result = await connection.query(sql, values);
-      const multisId = values[0]; //Extraemos el id de la primera posición del array
       
       // Preparamos las 2 consultas que insertaran los datos de los selectores multiples a las tablas correspondientes
       
-      let ccgValues = "";
-      let csValues = "";
+      // Mapeo para convertir a cadena string los values para el insert
+      // Saco los 2 arrays de los selectores multiples
+      const ccg = multiSelects[0] // client_segment
+      const cs = multiSelects[1] // stakeholders
       
-      // Con estos bucles convertimos el nº de posiciones del array, en VALUES() para el insert en la tabla
-        for(let i = 0; i < ccg.length ; i++) {
-          ccgValues = ccgValues + "(" + multisId + "," + ccg[i] + ")";
-          if(i < ccg.length - 1){
-            ccgValues = ccgValues + ","
-          }
-        }
-        for(let i = 0; i < cs.length ; i++) {
-          csValues = csValues + "(" + multisId + "," + cs[i] + ")";
-          if(i < cs.length - 1){
-            csValues = csValues + ","
-          }
-        }
-        
+      const concatSqlValues = (arr, id) => {
+        let string;
+        string = arr.map((elem) => `(${id},${elem})`).join(',');
+        return string;
+      }
+      console.log(values);
+      
+      const multisId = values[0]; //Extraemos el id de la primera posición del array
+      let ccgValues = concatSqlValues(ccg, multisId);
+      let csValues = concatSqlValues(cs, multisId);
+
       let sqlccg = `INSERT INTO company_client_group VALUES ${ccgValues}`;
       let sqlcs = `INSERT INTO company_stakeholder VALUES ${csValues}`;
       
@@ -72,14 +67,15 @@ class CompanyDal {
     }
   }
 
+<<<<<<< HEAD
+  editCompany = async (values) => {
+    try {
+      
+=======
   editCompany = async (values, multiSelects) => {
 
     const connection = await dbPool.getConnection();
 
-    const ccg = multiSelects[0] // client_segment
-    const cs = multiSelects[1] // stakeholders
-
-    
     try {
       
       await connection.beginTransaction();
@@ -89,27 +85,24 @@ class CompanyDal {
       let result = await connection.query(sql, values);
       
       // Sacamos el user_id de los values, sabemos que está en la última posición para los select multiples
-      const multisId = values.at(-1);
+      const ccg = multiSelects[0] // client_segment
+      const cs = multiSelects[1] // stakeholders
       
-      let ccgValues = "";
-      let csValues = "";
-
-      for(let i = 0; i < ccg.length ; i++) {
-          ccgValues = ccgValues + "(" + multisId + "," + ccg[i] + ")";
-          if(i < ccg.length - 1){
-            ccgValues = ccgValues + ","
-          }
-        }
-      for(let i = 0; i < cs.length ; i++) {
-        csValues = csValues + "(" + multisId + "," + cs[i] + ")";
-        if(i < cs.length - 1){
-          csValues = csValues + ","
-        }
+      const concatSqlValues = (arr, id) => {
+        let string;
+        string = arr.map((elem) => `(${id},${elem})`).join(',');
+        return string;
       }
+      
+      const multisId = values.at(-1);
+
+      let ccgValues = concatSqlValues(ccg, multisId);
+      let csValues = concatSqlValues(cs, multisId);
 
       // Para actualizar vamos a borrar los datos que hubiese en estas tablas, hará mas sencillas las cosas
-      let sqlccg = `DELETE FROM company_client_group WHERE user_id = ${multisId}`
-      let sqlcs = `DELETE FROM company_stakeholder WHERE user_id = ${multisId}`
+      let sqlccg = `DELETE FROM company_client_group WHERE user_id = ${multisId}`;
+      let sqlcs = `DELETE FROM company_stakeholder WHERE user_id = ${multisId}`;
+
       await connection.query(sqlccg, ccgValues);
       await connection.query(sqlcs, csValues);
 
@@ -122,6 +115,7 @@ class CompanyDal {
 
       await connection.commit();
       return {result, resultCcg, resultCs}
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
     } catch (error) {
       throw error;
     }
@@ -131,6 +125,7 @@ class CompanyDal {
     try {
       let sql = 'UPDATE user SET name = ?, last_name = ?, position = ?, phone_number = ?, city_id, province_id = ? WHERE user_id = ?';
       let result = await executeQuery(sql, values);
+>>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
       return result;
     } catch (error) {
       throw error;
@@ -196,7 +191,18 @@ class CompanyDal {
 
   showOneCompany = async(user_id) => {
     try {
-      let sql = 'SELECT * FROM company_data LEFT JOIN user ON company_data.user_id = user.user_id WHERE company_data.user_id = ?'
+      let sql = `
+      SELECT
+      cd.*,
+      u.*,
+      c.name AS city_name,
+      p.name AS province_name
+      FROM company_data cd
+      LEFT JOIN user u ON cd.user_id = u.user_id
+      LEFT JOIN city c ON u.city_id = c.city_id
+      LEFT JOIN province p ON u.province_id = p.province_id
+      WHERE cd.user_id = ?
+      `;
 
       return await executeQuery(sql, [user_id]);
 
