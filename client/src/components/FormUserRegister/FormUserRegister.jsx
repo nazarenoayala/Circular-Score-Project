@@ -27,8 +27,8 @@ export const FormUserRegister = ({ setShowPage }) => {
       registerSchema.parse(registerUser);
 
       // Lamamos al back para que intente el registro del user
-      await fetchData('/user/register', 'POST', registerUser);
       setShowPage('modal');
+      await fetchData('/user/register', 'POST', registerUser);
 
     } catch (error) {
       if (error instanceof ZodError) {
