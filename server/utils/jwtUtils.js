@@ -8,4 +8,4 @@ export const generateToken = (id, expiration) => {
   let payload = {user_id: id}
 
   return jwt.sign(payload, process.env.SECRET_TOKEN_KEY, {expiresIn:`${expiration}`});
-}
+};

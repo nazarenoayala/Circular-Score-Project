@@ -45,7 +45,7 @@ export const question3 = [
   },
   {
     id:12,
-    name: 'Otro (Especificar)'
+    name: 'Otro'
   }
 ]
 

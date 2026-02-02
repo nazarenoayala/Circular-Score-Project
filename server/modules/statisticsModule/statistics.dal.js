@@ -22,7 +22,6 @@ class StatisticsDal {
     try {
 
       let result = await executeQuery(sql.historicOneTest, values);
-
       return result;
       
     } catch (error) {

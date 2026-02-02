@@ -1,4 +1,4 @@
-import executeQuery from "../../config/db.js";
+import executeQuery, {dbPool} from "../../config/db.js";
 
 class UserDal {
 
@@ -99,22 +99,41 @@ class UserDal {
   }
 
   userByToken = async (user_id) => {
-
+    
+    const connection  = await dbPool.getConnection();
+    
     try {
       
+      await connection.beginTransaction();
+
       let sql = `SELECT u.user_id, u.name, u.last_name, u.type, u.phone_number, 
                 u.province_id, u.city_id, u.user_email, u.position, u.is_deleted, c.company_name,
                 c.company_email, c.sector_id, c.company_type, c.legal_form, 
-                c.active_years, c.company_size, c.gso, c.client_segment, 
-                c.stakeholders, c.sustainability, c.ods_background
+                c.active_years, c.company_size, c.gso, c.sustainability, c.ods_background
                 FROM user u
                 LEFT JOIN company_data c ON u.user_id = c.user_id
                 WHERE u.user_id = ?`
 
+      // Consulta principal
       let values = [user_id];
+      let [result] = await connection.query(sql, values);
 
-      let result = await executeQuery(sql, values);
-
+      // Consultas secundarias
+      sql = `SELECT client_group_id FROM company_client_group WHERE user_id = ?`
+      let [ccgResult] = await connection.query(sql, values);
+      
+      sql = `SELECT stakeholder_id FROM company_stakeholder WHERE user_id = ?`
+      let [csResult] = await connection.query(sql, values);
+      
+      // Ejecutamos la pool de consultas
+      await connection.commit();
+      
+      // Pasamos los result a arrays.
+      let ccgResultArr = [];
+      let csResultArr = [];
+      ccgResult.map((elem)=>{ccgResultArr.push(elem.client_group_id)});
+      csResult.map((elem)=>{csResultArr.push(elem.stakeholder_id)});
+      
       const userData = {
         user_id: result[0].user_id,
         name: result[0].name,
@@ -136,15 +155,19 @@ class UserDal {
         active_years: result[0].active_years, 
         company_size: result[0].company_size, 
         gso: result[0].gso, 
-        client_segment: result[0].client_segment, 
-        stakeholders: result[0].stakeholders, 
-        sustainability: result[0].sustainability, 
+        client_segment: ccgResultArr,
+        stakeholders: csResultArr,
+        sustainability: result[0].sustainability,
         ods_background: result[0].ods_background
       }
 
       return {userData, companyData};
     } catch (error) {
       throw error;
+    } finally {
+      if(connection) {
+        connection.release();
+      }
     }
   }
 
@@ -189,7 +212,7 @@ class UserDal {
   setUserState = async (user_id) => {
 
     // Setea el is_deleted del registro del usuario en 0 o en 1.
-
+    
     try {
       let sql = 'UPDATE user SET is_deleted = IF(is_deleted= 0, 1, 0) where user_id = ?'
       await executeQuery(sql, [user_id]);

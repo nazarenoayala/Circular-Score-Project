@@ -17,9 +17,7 @@ class QuestionClass {
       res.status(500).json('mal')
       console.log(error);
     }
-
   } 
-
 
 }
 

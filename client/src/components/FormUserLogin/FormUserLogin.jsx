@@ -1,7 +1,7 @@
 import './FormUserLogin.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router'
-import { Button, Form } from "react-bootstrap"
+import { useNavigate } from 'react-router';
+import { Form } from "react-bootstrap";
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import { useContext } from 'react';
 import { fetchData } from '../../../helpers/axiosHelper';
@@ -14,10 +14,9 @@ const initialValue = {
 
 export const FormUserLogin = () => {
 
-  const [userLogin, setUserLogin] = useState(initialValue);
   const { setUserData, setCompanyData, setToken } = useContext(AuthContext);
-  const [errorMsg, setErrorMsg] = useState('');
-
+  const [userLogin, setUserLogin] = useState(initialValue);
+  const [errorValidation, setErrorValidation] = useState();
 
   const navigate = useNavigate();
 
@@ -27,7 +26,6 @@ export const FormUserLogin = () => {
   };
 
   const onSubmit = async () => {
-    //TODO Hace falta, validar los campos desde el front !!!!!
     try {
 
       // Fetch para mandar el input del usuario a autenticación
@@ -42,24 +40,37 @@ export const FormUserLogin = () => {
 
       setUserData(userByToken.data.userData);
       setCompanyData(userByToken.data.companyData);
+      
       setToken(token);
 
-      // Si todo es correcto, mandamos al usuario a su perfil
-
-      //TODO Supongamos que navega a company profile tras loguear, ya lo que decidamos
-      //navigate(`/companyProfile`)
-      //TODO Esta pa cuando la vista esté disponible
+      // Cogemos el user_id para usarlo en navigate
       const user_id = userByToken.data.userData.user_id;
-      navigate(`/companyRegister/${user_id}`);
+
+      console.log("QUE PASA CON EL NAVIGATE COLEGA",userByToken);
+
+      // Si es tipo admin, navega a test, si no depende de la condición del user
+      if(userByToken.data.userData.type === 1){
+        navigate('tests');
+      } else {
+        // Si hay empresa registrada, a allTests, si no a registrar empresa.
+        if(userByToken.data.companyData.company_name !== null){
+          navigate(`/allTests`);
+        } else {
+          navigate(`companyRegister/${user_id}`);
+        }
+      }
     } catch (error) {
-      console.log(error);
+        setErrorValidation(error?.response?.data);
+        console.log(error);
     }
   }
 
   return (
-
     <Form className="login-container">
       <h1>Login</h1>
+      {errorValidation && (
+        <p className="error-alert">{errorValidation}</p>
+      )}
       <Form.Group className="mb-3">
         <Form.Control
           type="email"
@@ -68,6 +79,9 @@ export const FormUserLogin = () => {
           value={userLogin.user_email}
           onChange={handleChange}
         />
+      {errorValidation?.user_email && (
+        <p className="error-alert">{errorValidation.user_email}</p>
+      )}
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Control
@@ -77,7 +91,11 @@ export const FormUserLogin = () => {
           value={userLogin.password}
           onChange={handleChange}
         />
+        {errorValidation?.password && (
+          <p className="error-alert">{errorValidation.password}</p>
+        )}
       </Form.Group>
+
       <Form.Group className='gap-2 d-flex justify-content-center'>
 
         <MyButton
