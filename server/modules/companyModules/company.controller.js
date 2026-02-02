@@ -57,10 +57,10 @@ class CompanyController {
     try {
       const { user_id } = req.params; 
 
-      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
+      const {name, last_name, position, phone_number, city_id, province_id} = req.body;
 
       let result = await companyDal.registerCompanyInUser([
-      contact_name, last_name, position, phone_number, city_id, province_id, user_id
+      name, last_name, position, phone_number, city_id, province_id, user_id
       ]);
       res.status(200).json({message: 'register ok', result});
     } catch (error) {
@@ -72,8 +72,7 @@ class CompanyController {
   editCompany = async (req, res) => {
     try {
       
-      let {user_id} = req;
-      user_id = parseInt(user_id);
+      const {user_id} = req;
 
       const {
         company_name,
@@ -119,11 +118,11 @@ class CompanyController {
 
   editCompanyInUser = async (req, res) => {
     try {
-      const {user_id} = req.params;
-
-      const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
+      const {user_id} = req;
       
-      let result = await companyDal.editCompanyInUser([contact_name, last_name, position, phone_number, city_id, province_id, user_id]);
+      const {name, last_name, position, phone_number, city_id, province_id} = req.body;
+      
+      let result = await companyDal.editCompanyInUser([name, last_name, position, phone_number, city_id, province_id, user_id]);
 
       res.status(200).json({message: 'update ok', result});
 

@@ -6,7 +6,7 @@ import { fetchData } from '../../../../helpers/axiosHelper'
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { useNavigate } from 'react-router';
 
-import './EditCompany.css'
+import './EditCompany.css';
 
 const initialValueCompany = {
   company_name: '',
@@ -27,6 +27,7 @@ const initialValueCompany = {
 
 const initialValueUser = {
   name: '',
+  last_name: '',
   phone_number: ''
 }
 
@@ -37,8 +38,6 @@ const EditCompanyPage = () => {
   const [message, setMessage] = useState("");
 
   const { companyData, userData, token, logout } = useContext(AuthContext);
-  console.log("LOG EN EL FRONT DE COMPANY DATA", companyData);
-  
 
   //Estado para empresa
   const [editCompanyData, setEditCompanyData] = useState(initialValueCompany);
@@ -144,10 +143,12 @@ const EditCompanyPage = () => {
         console.log('enviando datos al server!!!!!!', updatedData);
 
         //Hago peticion PUT en user.routes.js la ruta pide eso
-        const result = await fetchData(`/user/updateProfile`, 'PUT', updatedData, token);
+        const result = await fetchData(`/company/editCompany`, 'PUT', updatedData, token);
 
-        if (result) {
-          setMessage("Los cambios se guardaron con éxito")
+        const resultUser = await fetchData('/company/editCompanyInUser', 'PUT', updatedData, token);
+
+        if (result || resultUser) {
+          setMessage("Los cambios se guardaron con éxito");
         }
       } catch (error) {
         console.log('Error al guardar en la DB', error);
@@ -164,6 +165,8 @@ const EditCompanyPage = () => {
         {/* paso por props datos y funcion a los hijos */}
         <FormEditCompany
           editCompanyData={editCompanyData}
+          provinceDataId={editUserData.province_id}
+          cityDataId={editUserData.city_id}
           handleCompanyChange={handleCompanyChange}
           city={locality}
           province={province}
