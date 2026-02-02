@@ -57,19 +57,10 @@ class CompanyController {
     try {
       const { user_id } = req.params; 
 
-<<<<<<< HEAD
-      const {
-              contact_name, position, 
-              phone_number, user_email, 
-              city_id, province_id} = req.body
-      
-      let result = await companyDal.registerCompanyInUser([ contact_name, position, phone_number, user_email, city_id, province_id, user_id]);
-
-=======
       const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
 
       let result = await companyDal.registerCompanyInUser([
-      contact_name, last_name, position, phone_number, city_id, province_id, user_id
+      name, last_name, position, phone_number, city_id, province_id, user_id
       ]);
 >>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
       res.status(200).json({message: 'register ok', result});
@@ -90,8 +81,7 @@ class CompanyController {
 =======
     try {
       
-      let {user_id} = req;
-      user_id = parseInt(user_id);
+      const {user_id} = req;
 
 >>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
       const {
@@ -163,20 +153,9 @@ class CompanyController {
     try {
       const {user_id} = req.params;
 
-<<<<<<< HEAD
-      const {
-              contact_name, position,
-              phone_number, user_email,
-              city_id, province_id
-            } = req.body;
-      
-      let result = await companyDal.editCompanyInUser([contact_name, position,phone_number, user_email, city_id, province_id ]);
-
-      res.status(200).json({mnessage: 'register ok', result});
-=======
       const {contact_name, last_name, position, phone_number, city_id, province_id} = req.body;
       
-      let result = await companyDal.editCompanyInUser([contact_name, last_name, position, phone_number, city_id, province_id, user_id]);
+      let result = await companyDal.editCompanyInUser([name, last_name, position, phone_number, city_id, province_id, user_id]);
 
       res.status(200).json({message: 'update ok', result});
 >>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021

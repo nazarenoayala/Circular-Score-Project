@@ -25,7 +25,7 @@ const initialValues1 = {
   ods_background: '',
 };
 const initialValues2 = {
-  contact_name: '',
+  name: '',
   position: '',
   phone_number: '',
   user_email: '',

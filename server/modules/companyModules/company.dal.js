@@ -76,10 +76,6 @@ class CompanyDal {
 
     const connection = await dbPool.getConnection();
 
-    const ccg = multiSelects[0] // client_segment
-    const cs = multiSelects[1] // stakeholders
-
-    
     try {
       
       await connection.beginTransaction();
@@ -89,27 +85,24 @@ class CompanyDal {
       let result = await connection.query(sql, values);
       
       // Sacamos el user_id de los values, sabemos que está en la última posición para los select multiples
-      const multisId = values.at(-1);
+      const ccg = multiSelects[0] // client_segment
+      const cs = multiSelects[1] // stakeholders
       
-      let ccgValues = "";
-      let csValues = "";
-
-      for(let i = 0; i < ccg.length ; i++) {
-          ccgValues = ccgValues + "(" + multisId + "," + ccg[i] + ")";
-          if(i < ccg.length - 1){
-            ccgValues = ccgValues + ","
-          }
-        }
-      for(let i = 0; i < cs.length ; i++) {
-        csValues = csValues + "(" + multisId + "," + cs[i] + ")";
-        if(i < cs.length - 1){
-          csValues = csValues + ","
-        }
+      const concatSqlValues = (arr, id) => {
+        let string;
+        string = arr.map((elem) => `(${id},${elem})`).join(',');
+        return string;
       }
+      
+      const multisId = values.at(-1);
+
+      let ccgValues = concatSqlValues(ccg, multisId);
+      let csValues = concatSqlValues(cs, multisId);
 
       // Para actualizar vamos a borrar los datos que hubiese en estas tablas, hará mas sencillas las cosas
-      let sqlccg = `DELETE FROM company_client_group WHERE user_id = ${multisId}`
-      let sqlcs = `DELETE FROM company_stakeholder WHERE user_id = ${multisId}`
+      let sqlccg = `DELETE FROM company_client_group WHERE user_id = ${multisId}`;
+      let sqlcs = `DELETE FROM company_stakeholder WHERE user_id = ${multisId}`;
+
       await connection.query(sqlccg, ccgValues);
       await connection.query(sqlcs, csValues);
 
@@ -130,11 +123,6 @@ class CompanyDal {
 
   editCompanyInUser = async (values) => {
     try {
-<<<<<<< HEAD
-      let sql = 'UPDATE user SET name = ?, position = ?, phone_number = ?, user_email = ?, city_id = ?, province_id = ? WHERE user_id = ? AND is_deleted = 0 AND is_confirmed = 1';
-      let result = await executeQuery(sql, values);
-
-=======
       let sql = 'UPDATE user SET name = ?, last_name = ?, position = ?, phone_number = ?, city_id, province_id = ? WHERE user_id = ?';
       let result = await executeQuery(sql, values);
 >>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
