@@ -1,9 +1,9 @@
-import executeQuery from "../../config/db.js";
+import executeQuery, { dbPool } from "../../config/db.js";
 
 class TestDal {
 
   selectAllTest = async () => {
-
+    
     try {
 
       // A futuro cambiar is_deleted a 0;
@@ -47,6 +47,42 @@ class TestDal {
       throw error;
     }
   }
+
+  createTest = async(values1, values2) =>{
+    const questions = values2;
+    const connection = await dbPool.getConnection()
+    try {
+      await connection.beginTransaction();
+      //Inserción de Test; 
+      let sql = 'INSERT INTO test (test_name, test_image, is_public) VALUES (?,?,?)'
+      let result = await connection.query(sql, values1);
+      console.log(result);
+
+      //rescato el test_id recien creado en la insercio
+      const testId = result[0].insertId
+
+      //2ª Insercion de las preguntas 
+      let questionId = 0; 
+
+        for(const question of questions){
+        const {question_text, premium} = question;
+        let sql = 'INSERT INTO question (test_id, question_id, question_text, premium) VALUES (?,?,?,?)'
+        questionId++;
+        let values = [testId, questionId, question_text, premium];
+        await connection.query(sql, values);
+      }
+      //confirma el guardado en la base de datos 
+      await connection.commit();
+      return questionId;
+    } catch (error) {
+      connection.rollback();
+      throw error;
+    }finally{
+      if(connection){
+        connection.release(); 
+      }
+    }
+    }
 }
 
 export default new TestDal();

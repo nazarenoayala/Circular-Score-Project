@@ -16,7 +16,6 @@ class TestController {
       res.status(500).json('No ok');
       console.log(error);
     }
-
   }
 
   disableTest = async (req, res) => {
@@ -53,6 +52,28 @@ class TestController {
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
+    }
+  }
+
+  createTest = async(req, res)=>{
+    
+    try {
+      //como hemos enviado un formData porque cabe la posibilidad 
+      //de que se envie imagen, tenemos que hacer el destructuring
+      // con parse y el nombre que pusimos en formData
+      const {test_name, is_public} = JSON.parse(req.body.newTest);
+      const questions = JSON.parse(req.body.questions);
+      let values1 = [test_name, null, is_public];
+      let values2 = questions;
+      //si viene imagen cambio en los values
+      if(req.file){
+        values1 = [test_name, req.file.filename,is_public]
+      }
+      let result = await testDal.createTest(values1, values2);
+      res.status(200).json({message: 'create Test ok',result});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
     }
   }
 }

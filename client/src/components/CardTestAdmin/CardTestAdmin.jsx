@@ -11,6 +11,9 @@ const CardTestAdmin = ({ test }) => {
   const [isPublic, setIsPublic] = useState(test.is_public);
   const navigate = useNavigate();
 
+    //para separar el nº de ODS en una línea y el nombre del test en otra
+
+
   const disableTest = async () => {
 
     try {

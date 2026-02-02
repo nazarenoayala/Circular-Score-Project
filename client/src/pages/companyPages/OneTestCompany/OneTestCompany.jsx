@@ -1,38 +1,37 @@
-
 import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { HistoricTestContainer } from '../../../components/HistoricTestContainer/HistoricTestContainer';
-import './oneTest.css';
 import { fetchData } from '../../../../helpers/axiosHelper';
+import './oneTest.css';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const OneTestCompany = () => {
 
   // Nos traemos el array de los test
-  const { test } = useContext(AuthContext);
+  const { test , token } = useContext(AuthContext);
   // Usamos el useParams para rescatar el id del parámetro dinámico para no tener que volver a hacer la llamada a la base de datos
   const { id } = useParams();
-  const navigate = useNavigate()
-  const oneTest = test.filter((e) => e.test_id == id);
+  const navigate = useNavigate();
+  const oneTest = test.filter((e) => e.test_id == id); 
 
-  const startTest = async () => {
+  const createNewAnswerSet = async () => {
 
     try {
-      // todo: hay que meter token
-      let result = await fetchData(`/answerSet/newAnswerSet/${id}`, 'POST', null, null);
 
-      navigate(`/newTest/${id}/answerSet/${result.data.result.insertId}`);
+      let result = await fetchData(`/answerSet/newAnswerSet/${id}`, 'POST', null, token);
+      console.log(result);
+
+      navigate(`/newTest/${id}`);
       
     } catch (error) {
       console.log(error);
     }
 
-
   }
-
+  
   return (
     <div className='oneTest text-'>
       <div className='newTest'>
@@ -42,7 +41,7 @@ const OneTestCompany = () => {
           <MyButton
             text='Nuevo test'
             btnClass='btn-green'
-            onSubmit={startTest}
+            onSubmit={createNewAnswerSet}
           />
           <MyButton
             text='Volver atrás'
