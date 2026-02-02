@@ -227,8 +227,6 @@ class UserController {
   // Borrado lógico del usuario
   setUserState = async (req, res) => {
 
-    // Si el setting es 0 activa el usuario, si es 1 lo desactiva
-
     const {user_id} = req.params;
     try {
       let banResult = await userDal.setUserState(user_id);
