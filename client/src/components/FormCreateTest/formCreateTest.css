@@ -1,0 +1,146 @@
+.create-test-container {
+  background-color: var(--bg);
+  min-height: 100vh;
+  margin-left: 20px;
+  width: calc(100% - 20px)
+}
+
+
+.create-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-form {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #475569;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-inline-start: 13rem;
+}
+.create-section{
+  width: 70%;
+}
+
+.form-card{
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 2.5rem;
+  border: 1px solid #EDF2F7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: .9rem;
+
+  input, select{
+    border-radius: 8px;
+    width: 90%;
+    padding: .5rem;
+    margin-inline-start: 1rem;
+  }
+}
+
+.question-header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+
+.question-row{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap:8px;
+  margin-bottom: 12px;
+  label{
+    padding: .8rem;
+  }
+}
+ 
+.question-input{
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.premium-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.4rem;
+}
+
+.premium-checkbox{
+  width: 24px;
+  height: 24px;
+}
+
+.btnOnsubmit{
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+  padding: 3rem;
+}
+
+.question-test{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2rem;
+  gap: 1.5rem;
+}
+
+.question-div{
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border: 1px solid #EDF2F7;
+  border-radius: 20px;
+  padding: 1.2rem;
+  align-items: center;
+  .premium{
+    color: rgb(180, 162, 66);
+  }
+  .basic{
+    color: rgb(194, 37, 37);
+  }
+}
+
+.premium-basic{
+  background-color:rgb(202, 202, 202);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #EDF2F7;
+  border-radius: 20px;
+  padding: 1rem;
+  min-width: 80px;
+  text-align: center;
+  p{
+   margin-block-start: .5rem;
+  }
+}
+
+.red{
+  color: red;
+}
+
+.icon{
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  margin-inline: 2rem;
+}
+  

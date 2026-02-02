@@ -16,7 +16,7 @@ export const fetchData = async (url, method, data = null, token = null) => {
     data,
     headers
   }
-console.log(config.url);
+
 
   const res = await axios(config);
 

@@ -103,8 +103,8 @@ export const FormCompanyRegister1 = ({
                 btnClass={'btn-red'} />
               <MyButton
                 onSubmit={() => setCurrentFormPage(2)}
-                text={'Siguiente'}
-                btnClass={'btn-green'} />
+                text='Siguiente'
+                btnClass='btn-green' />
             </div>
           </form>
         </section>
