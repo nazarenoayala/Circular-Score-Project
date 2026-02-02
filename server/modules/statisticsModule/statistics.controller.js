@@ -4,10 +4,8 @@ class StatisticsController {
 
   getAllRecentResults = async (req, res) => {
 
-    // Aquí rescatamos el id del token
-    // const {id} = req;
-    // const values = [id];
-    const values = [2];
+    const {user_id} = req;
+    const values = [user_id];
 
     try {
 
@@ -23,15 +21,12 @@ class StatisticsController {
   getHistoricFromOneTest = async (req, res) => {
 
     const {test_id} = req.params;
-    // rescatamos del token el id de usuario
-    // const {id} = req
-    const id = 2
-    const values = [id, test_id];
+    const {user_id} = req
+    const values = [user_id, test_id];
 
     try {
 
       let result = await statisticsDal.getHistoricFromOneTest(values);
-
       res.status(200).json({message: 'Historico de un test', result});
       
     } catch (error) {

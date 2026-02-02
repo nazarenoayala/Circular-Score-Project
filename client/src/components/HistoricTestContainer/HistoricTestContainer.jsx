@@ -1,11 +1,13 @@
-import React, { useEffect , useState } from 'react';
+import React, { useContext, useEffect , useState } from 'react';
 import {useNavigate} from 'react-router';
 import { fetchData } from '../../../helpers/axiosHelper';
 import { MyButton } from '../MyButton/MyButton';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 import './historyTest.css';
 
 export const HistoricTestContainer = ({id}) => {
 
+  const {token} = useContext(AuthContext);
   const [history, setHistory] = useState();
   
   const navigate = useNavigate();
@@ -16,8 +18,7 @@ export const HistoricTestContainer = ({id}) => {
 
       try {
 
-        // todo: a futuro hay que meter token a esta petición para rescatar el id de company/usuario
-        let result = await fetchData(`/statistics/oneTestHistory/${id}`, 'GET', null, null);
+        let result = await fetchData(`/statistics/oneTestHistory/${id}`, 'GET', null, token);
         console.log(result);
         setHistory(result.data.result);
         
@@ -33,9 +34,9 @@ export const HistoricTestContainer = ({id}) => {
 
   return (
     <div className='historyTestList'>
-      {history?.map((test, id) => {
+      {history?.map((test, i) => {
         return (
-          <div className='historyTestCard' key={id}>
+          <div className='historyTestCard' key={i}>
             <p>{test.test_date ? test.test_date : 'No hay tests' }</p>
             <p>-</p>
             <p>PUNTUACIÓN: {test.completed && test.result}</p>
@@ -49,6 +50,7 @@ export const HistoricTestContainer = ({id}) => {
             <MyButton
               btnClass='btn-green'
               text='Continuar'
+              onSubmit={() => navigate(`/newTest/${id}`)}
             />
             }
           </div>
