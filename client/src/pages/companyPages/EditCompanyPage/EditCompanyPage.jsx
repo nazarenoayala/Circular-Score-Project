@@ -142,7 +142,7 @@ const EditCompanyPage = () => {
         console.log('enviando datos al server!!!!!!', updatedData);
 
         //Hago peticion PUT en user.routes.js la ruta pide eso
-        const result = await fetchData(`/user/updateProfile`, 'PUT', updatedData, token);
+        const result = await fetchData(`/user/update`, 'PUT', updatedData, token);
 
         if (result) {
           setMessage("Los cambios se guardaron con éxito")
