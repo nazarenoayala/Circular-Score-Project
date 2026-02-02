@@ -56,8 +56,6 @@ class TestController {
   }
 
   createTest = async(req, res)=>{
-    console.log(req.body.newTest);
-    console.log(req.body.questions);
     
     try {
       //como hemos enviado un formData porque cabe la posibilidad 

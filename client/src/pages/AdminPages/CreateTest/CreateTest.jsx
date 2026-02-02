@@ -29,7 +29,6 @@ const CreateTest = () => {
   const [valErrors, setValErrors] = useState([]);
   const [message, setMessage] = useState('');
   const { token } = useContext(AuthContext);
-  console.log(token);
 
   // control de los inputs
 
@@ -111,7 +110,6 @@ const CreateTest = () => {
       }
       }
 
-      console.log(questions);
       
       return (
         <>
