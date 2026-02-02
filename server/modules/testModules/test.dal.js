@@ -7,7 +7,7 @@ class TestDal {
     try {
 
       // A futuro cambiar is_deleted a 0;
-      let sql = 'SELECT * FROM test;'
+      let sql = 'SELECT * FROM test WHERE is_public = 1';
 
       let result = await executeQuery(sql);
 
@@ -23,7 +23,7 @@ class TestDal {
 
     try {
 
-      let sql = 'UPDATE test SET is_public = 0 WHERE test_id = ?;';
+      let sql = 'UPDATE test SET is_public = 0 WHERE test_id = ? AND is_public = 1';
 
       let result = executeQuery(sql, values);
       return result;
@@ -46,9 +46,7 @@ class TestDal {
     } catch (error) {
       throw error;
     }
-
   }
-
 }
 
 export default new TestDal();
