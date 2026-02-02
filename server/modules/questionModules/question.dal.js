@@ -17,15 +17,7 @@ class QuestionDal {
     }
   }
 
-  createQuestion = async(values)=>{
-    //hacemos la consulta con la insercion en la tabla question
-    try {
-      let sql = 'INSERT INTO question (test_id, question_text, premium) VALUES (?,?,?)'
-      let result = await executeQuery(sql, values)
-    } catch (error) {
-      throw error
-    }
-  }
+
 }
 
 export default new QuestionDal();

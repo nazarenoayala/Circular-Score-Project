@@ -86,63 +86,58 @@ const CreateTest = () => {
       }
       //Preparacion de datos para la Imagen
 
-      const formData = new FormData();
-      formData.append('newTest', JSON.stringify(newTest));
-      formData.append('img', testImage);
-
+      const newFormData = new FormData();
+      newFormData.append('newTest', JSON.stringify(newTest));
+      newFormData.append('questions', JSON.stringify(questions))
+      newFormData.append('img', testImage);
+      
       //mandar datos al Back
-      const res = await fetchData(`/test/createTest`, 'POST', formData, token);
-      //una vez se haya creado el test y conocemos su id 
-      //mandamos el array de preguntas 
-      if (res?.data?.test_id) {
-        const res2 = await fetchData(
-          `/question/createQuestion/${res.data.test_id}`,
-          'POST',
-          JSON.stringify(questions),
-          token,
-        );
-        console.log(res2);
+      const res = await fetchData(`/test/createTest`, 'POST', newFormData, token);
+        console.log(res);
         setMessage('');
+        setNewTest(initialValues);
+        setQuestions([]);
+        setValErrors('');
+      } catch (error) {
+        if (error instanceof ZodError) {
+          const fieldErrors = {};
+          error.issues.forEach((elem) => {
+            fieldErrors[elem.path[0]] = elem.message;
+          });
+          setValErrors(fieldErrors);
+        } else {
+          console.log(error);
+        }
       }
-      setNewTest(initialValues);
-      setQuestions([]);
-      setValErrors('');
-    } catch (error) {
-      if (error instanceof ZodError) {
-        const fieldErrors = {};
-        error.issues.forEach((elem) => {
-          fieldErrors[elem.path[0]] = elem.message;
-        });
-        setValErrors(fieldErrors);
-      } else {
-        console.log(error);
       }
-    }
-  };
 
-  return (
-    <>
-      <div className="create-test-container">
-        <main>
-          <header>
-            <h1 className="title-form">Creación de test</h1>
-          </header>
-          <FormCreateTest
-            newTest={newTest}
-            handleChange={handleChange}
-            handleChange2={handleChange2}
-            questions={questions}
-            question={question}
-            onSubmit={onSubmit}
-            addQuestion={addQuestion}
-            valErrors={valErrors}
-            setQuestions={setQuestions}
-            message={message}
-          />
-        </main>
-      </div>
-    </>
-  );
-};
+      console.log(questions);
+      
+      return (
+        <>
+          <div className="create-test-container">
+            <main>
+              <header>
+                <h1 className="title-form">Creación de test</h1>
+              </header>
+              <FormCreateTest
+                newTest={newTest}
+                handleChange={handleChange}
+                handleChange2={handleChange2}
+                questions={questions}
+                question={question}
+                onSubmit={onSubmit}
+                addQuestion={addQuestion}
+                valErrors={valErrors}
+                setQuestions={setQuestions}
+                message={message}
+              />
+            </main>
+          </div>
+        </>
+      );
+    };
+  
+
 
 export default CreateTest;
