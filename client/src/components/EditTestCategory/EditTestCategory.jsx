@@ -3,10 +3,9 @@ import { Card, Form } from 'react-bootstrap'
 
 export const EditTestCategory = ({categories, testName, selectedCategory, handleTitleChange, handleCategoryChange}) => {
   return (
-    <Card>
-        <Card.Body>
             <Form>
             {/* Seccion edicion titulo / categoría */}
+            <div className='section-edit'>
             <Form.Group>
                 <Form.Label>Título/ categoría del test</Form.Label>
                 <Form.Control
@@ -16,8 +15,7 @@ export const EditTestCategory = ({categories, testName, selectedCategory, handle
                 >                    
                 </Form.Control>
             </Form.Group>
+            </div>
             </Form>
-        </Card.Body>
-    </Card>
   )
 }

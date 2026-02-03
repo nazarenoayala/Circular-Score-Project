@@ -14,27 +14,28 @@ export const EditTestQuestion = ({questions, handleQuestionChange, addQuestion})
     }
 
   return (
-    <Card>
-        <CardBody>
             <Form>
             {/* Seccion edicion preguntas (añadir y modificar) */}
+            <div className='section-edit'>
             <Form.Group>
                 <Form.Label>Preguntas del test</Form.Label>
                 {/* map de preguntas */}
+                <div className='mb-4'>
                 {questions?.map((preg, idx) =>(
-                    <div key={idx}>
+                    <div key={idx} className='question-divider'>
                         <Form.Control type="text" 
                                value={preg.text || ""}
                                onChange={(e) => handleQuestionChange(idx, e.target.value)} 
                         />
                     </div>
                 ))}                
-
+                </div>
             <hr />
 
             {/* Sección para añadir nueva pregunta */}
             <div>
                 <Form.Label>Nueva pregunta</Form.Label>
+                <div className='new-questions'>
                     <Form.Control
                         type='text'
                         value={newQuestion}
@@ -46,11 +47,10 @@ export const EditTestQuestion = ({questions, handleQuestionChange, addQuestion})
                     onSubmit={protectClean}
                     text="Añadir pregunta"
                 />
-            </div>
-
-            </Form.Group>
+                </div>
+               </div>
+             </Form.Group>
+             </div>
             </Form>
-            </CardBody>
-    </Card>
   )
 }
