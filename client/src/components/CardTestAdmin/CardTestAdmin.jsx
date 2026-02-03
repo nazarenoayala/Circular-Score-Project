@@ -39,8 +39,8 @@ const CardTestAdmin = ({ test }) => {
   }
 
   return (
-    <div className='card-test'>
-      <div className='image-title'>
+    <div className='card-test px-4'>
+      <div className='image-title pt-2 px-2'>
         <img src={`${urlImage}/ODSimages/${test.test_image}`} alt="" />
         <div className='odsTitle'>
           <h3>{test.test_name.split('·')[0]}</h3>
@@ -50,25 +50,25 @@ const CardTestAdmin = ({ test }) => {
       <div className='buttonsAdminTest'>
         <MyButton
           text='Ver info'
-          btnClass='btn-green'
+          btnClass='btn-green py-2 px-2'
           onSubmit={() => navigate(`/oneTest/${test.test_id}`)}
         />
         <MyButton
           text='Editar'
-          btnClass='btn-green'
+          btnClass='btn-green py-2 px-2'
           onSubmit={() => navigate('/createTest')}
         />
         {
           isPublic === 1 ?
             <MyButton
               text='Deshabilitar'
-              btnClass='btn-red'
+              btnClass='btn-red py-2 px-2'
               onSubmit={disableTest}
             />
             :
             <MyButton
               text='Habilitar'
-              btnClass='btn-blue'
+              btnClass='btn-blue py-2 px-2'
               onSubmit={enableTest}
             />
         }

@@ -1,34 +1,60 @@
+:root {
+  --card-background-color: white;
+  --card-border: 1px solid #E5E7EA;
+  --card-border-radius: .5rem;
+  --card-gap: 2rem;
+  --card-height: 18rem;
+
+  --image-gap: 1rem;
+  --image-width: 90px;
+
+  --font-size: clamp(1.3rem, 5vw, 1.3rem);
+
+  --title-width: 12rem;
+
+  --buttons-gap: 1rem;
+}
+
 .card-test {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border: 1px solid #E5E7EA;
-  padding: 2rem;
-  border-radius: .5rem;
-  gap: 2rem;
+  background-color:var(--card-background-color);
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  gap: var(--card-gap);
   align-items: center;
   justify-content: center;
-  height: 18rem;
+  align-content: center;
+  height: var(--card-height);
+
+
 
   .image-title {
 
     display: flex;
-    gap: 1rem;
+    gap: var(--image-gap);
+
+    h3 {
+      font-size: var(--font-size);
+    
+    }
+
 
     img {
-      width: 90px;
+      width: var(--image-width);
     }
 
     .odsTitle {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: var(--title-width);
     }
   }
 
   .buttonsAdminTest {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: var(--buttons-gap);
   }
 }
