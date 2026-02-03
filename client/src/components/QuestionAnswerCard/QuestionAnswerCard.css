@@ -1,0 +1,31 @@
+.questionContainer {
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--bg);
+    min-height: 100vh;
+    margin-left: 20px;
+    width: calc(100% - 20px);
+
+  }
+
+  .groupCheck {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: start;
+    gap: 1rem;
+
+    .groupCheckIndividual {
+
+      display: flex;
+      justify-content: start;
+      gap: 1rem;
+
+      p {
+        inline-size: 1rem;
+      }
+    }
+
+  }
+
+  
+

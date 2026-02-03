@@ -102,6 +102,18 @@ class AnswerDal {
        
   }
 
+  //ruta que trae las respuestas guardadas de las preguntas ya hechas
+  savedAnswers = async(answer_set_id) => {
+    try {
+      let sql = `SELECT question_id, user_answer FROM answer WHERE answer_set_id = ?`;
+
+      return await executeQuery(sql, [answer_set_id])
+      
+    }catch (error) {
+    throw error ;
+  } 
+}
+
 }
 
 export default new AnswerDal();

@@ -15,6 +15,7 @@ const OneCompany = () => {
   const [isDeleted, setIsDeleted] = useState();
 
   
+  //Mostrar toda la información nada más cargar la página
   useEffect(() => {
     const fetchCompany = async () => {
       console.log(user_id)
@@ -36,10 +37,10 @@ const OneCompany = () => {
   }, [user_id, token])
   
 
-  
+  //Botón deshabilitar/habilitar empresa
   const delLogicCompany = async (user_id) => {
     
-    console.log("comapanyyyy", company);
+    console.log("company", company);
   
       try {
         let res = await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
@@ -51,6 +52,8 @@ const OneCompany = () => {
       
      }
    }
+
+   //Mientras se carga la información necesaria mostramos este mensaje
 
    if (!company) {
      return <p>Cargando información de la empresa...</p>;
@@ -64,7 +67,7 @@ const OneCompany = () => {
         {isDeleted === 0 ? (
         <MyButton
           text={"Deshabilitar"}
-          btnClass='btn-red fw-bold px-4'
+          btnClass='btn-red button fw-bold px-4'
           onSubmit={()=>delLogicCompany(user_id)}
         />
         ) : (

@@ -23,6 +23,22 @@ class AnswerController {
 
   }
 
+  savedAnswers = async (req, res) => {
+    const {answer_set_id} = req.params;
+
+    try {
+      
+      let result = await answerDal.savedAnswers(answer_set_id);
+      
+      res.status(200).json({result});
+      
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+      
+    }
+  }
+
 }
 
 export default new AnswerController();

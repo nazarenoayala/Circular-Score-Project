@@ -1,19 +1,24 @@
 import './CompaniesCard.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MyButton } from '../MyButton/MyButton';
 import { fetchData } from '../../../helpers/axiosHelper';
-import { Link } from 'react-router';
+import { Link ,useParams } from 'react-router';
 import Accordion from 'react-bootstrap/Accordion';
+
 
 export const CompaniesCard = ({
   allCompanies, //contiene los datos del admin desde el context
   token,
 }) => {
-  console.log(allCompanies);
-  
 
+  //estado para manejar el borrado lógico de las empresas
+  const [isDeleted, setIsDeleted] = useState(allCompanies.is_deleted);
+
+  const {user_id} = useParams();
+  
   //guarda los tests de cada empresa
   const [testsRealizados, setTestsRealizados] = useState([]);
+  
 
   const handleAccordion = async () => {
 
@@ -35,30 +40,24 @@ export const CompaniesCard = ({
     }
   };
 
-  const onSubmit = async (isDeleted) => {
-    
-    try {
-      if (isDeleted === 1) {
-        const activateRes = await fetchData(
-          `/company/delLogicCompany/${0}/${allCompanies.user_id}`,
-          'PUT',
-          null,
-          token,
-        );
-        console.log(activateRes);
-      } else {
-        const desactivateRes = await fetchData(
-          `/company/delLogicCompany/${1}/${allCompanies.user_id}`,
-          'PUT',
-          null,
-          token,
-        );
-        console.log(desactivateRes);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+  const delLogicCompany = async (user_id) => {
+   
+    console.log("comapanyyyy", allCompanies);
+ 
+      try {
+        let res = await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
+        console.log("copmanuyyyyy", res);
+        setIsDeleted(prev => (prev === 0 ? 1 : 0));
+ 
+     } catch (error) {
+       console.log(error);
+     
+     }
+   };
+ 
+
+
 
   return (
     <Accordion className='accordCC'>
@@ -76,35 +75,26 @@ export const CompaniesCard = ({
           <div className="info">
             <div className='info1'>
               <ul>
-                <li>
-                  <strong>Persona de contacto:</strong> {allCompanies.name}
-                </li>
-                <li>
-                  <strong>Teléfono:</strong> {allCompanies.phone_number}
-                </li>
-                <li>
-                  <strong>Email:</strong> {allCompanies.user_email}
-                </li>
-                <li>
-                  <strong>Categoría:</strong> {allCompanies.sector_id}
-                </li>
+                <li><strong>Persona de contacto:</strong> {allCompanies.name}</li>
+                <li><strong>Teléfono:</strong> {allCompanies.phone_number}</li>
+                <li><strong>Email:</strong> {allCompanies.user_email}</li>
               </ul>
             </div>
 
             <div className="info2">
-              {allCompanies.is_deleted === 1 ? (
-                <MyButton
-                  text={'Habilitar'}
-                  btnClass="btn-green"
-                  onSubmit={() => onSubmit(allCompanies.is_deleted)}
-                />
-              ) : (
-                <MyButton
-                  text={'Deshabilitar'}
-                  btnClass="btn-red"
-                  onSubmit={() => onSubmit(allCompanies.is_deleted)}
-                />
-              )}
+                {isDeleted === 0 ? (
+                  <MyButton
+                    text={"Deshabilitar"}
+                    btnClass='btn-red fw-bold px-4'
+                    onSubmit={()=>delLogicCompany(allCompanies.user_id)}
+                  />
+                  ) : (
+                    <MyButton
+                    text={"Habilitar"}
+                    btnClass='btn-red fw-bold px-4'
+                    onSubmit={()=>delLogicCompany(allCompanies.user_id)}
+                  />
+                  )}
               <strong>Tests Realizados: {testsRealizados.length} </strong>
             </div>
           </div>

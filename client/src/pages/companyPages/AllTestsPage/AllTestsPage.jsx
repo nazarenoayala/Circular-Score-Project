@@ -45,7 +45,7 @@ const AllTestsPage = () => {
   return (
     <Container className='userTests'>
       {ready && <div>
-        {allTest.map((elem) => {
+        {allTest?.map((elem) => {
           return (
             <div key={elem.test_id} className='cardTest'>
               <CardTest
