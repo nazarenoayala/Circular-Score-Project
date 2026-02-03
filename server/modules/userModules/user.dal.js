@@ -146,9 +146,6 @@ class UserDal {
         is_deleted: result[0].is_deleted
       }
 
-      console.log("USER ID VIENE VACIO EN EL OBJETO??", result[0]);
-      
-
       const companyData = {
         company_name: result[0].company_name,
         company_email: result[0].company_email,
