@@ -3,6 +3,8 @@ import './formCompanyRegister.css';
 import { question10 } from '../../data/CompanyRegisterData/Question10';
 import { question13 } from '../../data/CompanyRegisterData/Question13';
 import { MyButton } from '../MyButton/MyButton';
+import { ZodError } from 'zod';
+import { companyRegisterSchema3 } from '../../../schemas/companyRegister';
 
 export const FormCompanyRegister3 = ({
   newCompany1,
@@ -12,10 +14,29 @@ export const FormCompanyRegister3 = ({
   locality,
   province,
   valErrors,
+  setValErrors
 }) => {
   const localityProvince = locality?.filter(
     (e) => e.province_id === Number(newCompany2.province_id),
   );
+
+  const turnPage = async() => {
+          try {
+            companyRegisterSchema3.parse({... newCompany1, ...newCompany2});
+            setCurrentFormPage(4)
+          } catch (error) {
+            if (error instanceof ZodError) {
+                    const fieldsErrors = {};
+                    error.issues.forEach((elem) => {
+                      fieldsErrors[elem.path[0]] = elem.message;
+                    });
+                    setValErrors(fieldsErrors);
+                  } else {
+                    console.log(error);
+                    
+                  }
+          }
+        }
 
   return (
     <>
@@ -111,7 +132,7 @@ export const FormCompanyRegister3 = ({
                 btnClass={'btn-red'}
               />
               <MyButton
-                onSubmit={() => setCurrentFormPage(4)}
+                onSubmit={turnPage}
                 text="Siguiente"
                 btnClass='btn-green'
               />

@@ -3,6 +3,8 @@ import './formCompanyRegister.css'
 import { question3 } from '../../data/CompanyRegisterData/Question3'
 import { MyButton } from '../MyButton/MyButton'
 import '../../components/MyButton/MyButton.css'
+import { companyRegisterSchema1 } from '../../../schemas/companyRegister'
+import { ZodError } from 'zod';
 
 export const FormCompanyRegister1 = ({
   newCompany1,
@@ -11,7 +13,27 @@ export const FormCompanyRegister1 = ({
   setCurrentFormPage,
   navigate,
   valErrors,
-  fetchError }) => {
+  fetchError, 
+  setValErrors}) => {
+
+    const turnPage = async() => {
+      try {
+        companyRegisterSchema1.parse({... newCompany1, ...newCompany2});
+        setCurrentFormPage(2)
+      } catch (error) {
+        if (error instanceof ZodError) {
+                const fieldsErrors = {};
+                error.issues.forEach((elem) => {
+                  fieldsErrors[elem.path[0]] = elem.message;
+                });
+                setValErrors(fieldsErrors);
+              } else {
+                console.log(error);
+                
+              }
+      }
+    }
+
   return (
     <>
       <main className='form-main'>
@@ -102,7 +124,7 @@ export const FormCompanyRegister1 = ({
                 text={'Cancelar'}
                 btnClass={'btn-red'} />
               <MyButton
-                onSubmit={() => setCurrentFormPage(2)}
+                onSubmit={turnPage}
                 text='Siguiente'
                 btnClass='btn-green' />
             </div>

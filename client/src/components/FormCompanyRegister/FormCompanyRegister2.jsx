@@ -5,13 +5,35 @@ import { question7 } from '../../data/CompanyRegisterData/Question7';
 import { question8 } from '../../data/CompanyRegisterData/Question8';
 import { question9 } from '../../data/CompanyRegisterData/Question9';
 import { MyButton } from '../MyButton/MyButton';
+import { companyRegisterSchema2 } from '../../../schemas/companyRegister';
+import { ZodError } from 'zod';
 
 export const FormCompanyRegister2 = ({
   newCompany1,
   handleChange,
   setCurrentFormPage,
   valErrors,
+  setValErrors
 }) => {
+
+  const turnPage = async() => {
+        try {
+          companyRegisterSchema2.parse({... newCompany1});
+          setCurrentFormPage(3)
+        } catch (error) {
+          if (error instanceof ZodError) {
+                  const fieldsErrors = {};
+                  error.issues.forEach((elem) => {
+                    fieldsErrors[elem.path[0]] = elem.message;
+                  });
+                  setValErrors(fieldsErrors);
+                } else {
+                  console.log(error);
+                  
+                }
+        }
+      }
+
   return (
     <>
       <main className="form-main">
@@ -111,7 +133,7 @@ export const FormCompanyRegister2 = ({
                 btnClass={'btn-red'}
               />
               <MyButton
-                onSubmit={() => setCurrentFormPage(3)}
+                onSubmit={turnPage}
                 text="Siguiente"
                 btnClass='btn-green'
               />
