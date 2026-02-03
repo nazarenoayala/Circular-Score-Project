@@ -460,19 +460,18 @@ class CompanyController {
     }
   };
 
-  allTestCompaniesData = async (req, res) => {
-    try {
-      const { test_id } = req.params;
-      const result = await companyDal.allTestCompaniesData(test_id);
-      res.status(200).json({
-        message: 'REQ SUCCES',
-        result,
-      });
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  };
+allCompanyTests = async(req, res) => {
+    try {
+      const { user_id } = req.params;
+      const result = await companyDal.allCompanyTests([user_id]);
+      res.status(200).json({result})
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
 }
+
 
 export default new CompanyController();
