@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { QuestionCard } from '../../../components/questionCard/QuestionCard';
@@ -9,7 +9,7 @@ import './newTest.css';
 const apiImage = import.meta.env.VITE_IMAGES;
 
 const NewTest = () => {
-
+  const {state} = useLocation();
   const navigate = useNavigate();
   // Rescatamos el id del test del parámetro dinámico
   const {id} = useParams();
@@ -22,7 +22,7 @@ const NewTest = () => {
   // Guardamos en este estado el array de preguntas que nos traemos de BD
   const [questions, setQuestions] = useState();
   // Seteamos un marcador de pregunta
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(state !== null ? state.index : 0);
   // Creamos un estado para las respuestas:
   const [answer, setAnswer] = useState({});
   // Creamos un estado para poder guardar el answer_set_id

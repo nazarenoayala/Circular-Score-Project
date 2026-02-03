@@ -11,4 +11,7 @@ router.post('/saveQuestions/:id/:answerSetId', verifyToken, answerController.sav
 
 
 
+//ruta que trae las respuestas guardadas
+router.get('/savedAnswers/:answer_set_id', answerController.savedAnswers)
+
 export default router;

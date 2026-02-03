@@ -224,16 +224,14 @@ class UserController {
     }
   }
 
-  // Borrado lógico del usuario
+ // Borrado lógico del usuario
   setUserState = async (req, res) => {
-
-    // Si el setting es 0 activa el usuario, si es 1 lo desactiva
-
-    const {setting, user_id} = req.params;
+ 
+    const {user_id} = req.params;
     try {
-      let banResult = await userDal.setUserState(setting, user_id);
+      let banResult = await userDal.changeUserState(user_id);
       res.status(200).json({
-        message: `Usuario con id ${user_id} ${setting === 0 ? "Activado" : "Desactivado"}`,
+        message: `Usuario con id ${user_id} ${banResult === 0 ? "Activado" : "Desactivado"}`,
         banResult
       });
     } catch (error) {
@@ -241,6 +239,10 @@ class UserController {
       res.status(500).json(error);
     }
   }
+ 
+ 
+
+
 }
 
 export default new UserController();

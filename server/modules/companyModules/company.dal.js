@@ -175,12 +175,12 @@ class CompanyDal {
         u.name, 
         u.last_name, 
         u.user_email, 
-        u.phone_number,
+        u.phone_number, 
         u.is_deleted
         FROM company_data c
         JOIN user u ON c.user_id = u.user_id
         WHERE u.is_confirmed = 1
-       `;
+      `;
 
       return await executeQuery(sql);
 
