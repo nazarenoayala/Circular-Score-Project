@@ -19,6 +19,24 @@ class QuestionClass {
     }
   } 
 
+  updateQuestions = async (req, res) => {
+
+    const {test_id, question_id, question_text} = req.body;
+    const values = [test_id, question_id, question_text];
+
+    try {
+      
+      let result = await questionDal.updateQuestions(values);
+      res.status(200).json({result});
+
+    } catch (error) {
+      res.status(500).json(error)
+      console.log(error);
+      
+    }
+
+  }
+
 }
 
 export default new QuestionClass();

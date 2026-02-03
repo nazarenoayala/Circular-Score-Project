@@ -23,6 +23,7 @@ routes.get('/oneCompany/:user_id', companyController.showOneCompany);
 
 
 //Datos de cada vez que se hizo un test, qué empresa, su sector, fecha y la puntuación del mismo
+routes.get('/allCompaniesData/:test_id', companyController.allTestCompaniesData);
 routes.get('/allCompanyTests/:user_id', verifyToken, companyController.allCompanyTests);
 
 export default routes;

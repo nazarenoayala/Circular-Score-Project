@@ -10,8 +10,11 @@ const urlImage = import.meta.env.VITE_IMAGES;
 
 const OneTestCompany = () => {
 
+
   // Nos traemos el array de los test
-  const { test , token } = useContext(AuthContext);
+  const { test , token, prevTestScore } = useContext(AuthContext);
+  console.log('prevtestscore', prevTestScore);
+  
   // Usamos el useParams para rescatar el id del parámetro dinámico para no tener que volver a hacer la llamada a la base de datos
   const { id } = useParams();
   const navigate = useNavigate();

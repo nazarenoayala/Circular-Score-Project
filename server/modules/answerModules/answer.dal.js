@@ -26,6 +26,8 @@ class AnswerDal {
 
       let result = await executeQuery(sql, [answerSetId]);
 
+      console.log("id sacado del result user_id", user_id, "result executeQuery", result, "answer set", answerSetId);
+      
       // Si el usuaario no coincide con el que está haciendo la petición o el test está completado se envía un res.status de unauthorize
       if (user_id !== result[0].user_id || result[0].completed === 1) {
         

@@ -8,6 +8,7 @@ export const AuthContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [companyData, setCompanyData] = useState();
   const [test, setTest] = useState();
+  const [prevTestScore, setPrevTestScore] = useState();
 
   useEffect(() => {
 
@@ -26,7 +27,7 @@ export const AuthContextProvider = ({ children }) => {
         } catch (error) {
           console.log(error);
         }
-
+        
       }
       fetchUserData();
     }
@@ -48,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => {
     setUserData();
     setCompanyData();
-    localStorage.removeItem("token");
+    localStorage.removeItem("credentials");
   }
 
   return (
@@ -61,7 +62,9 @@ export const AuthContextProvider = ({ children }) => {
         token,
         setToken,
         logout,
-        test
+        test,
+        prevTestScore,
+        setPrevTestScore
       }}>
         {children}
       </AuthContext.Provider>

@@ -66,8 +66,10 @@ const NewTest = () => {
     const fetchAnswerSet = async () => {
       
       try {
+        console.log("ID DEL NEW TEST", id);
         
         let result = await fetchData(`/answerSet/selectAnswerSet/${id}`, 'GET', null, token);
+        console.log("RESULTADO", result);
         setAnswerSetId(result.data.result[0].answer_set_id);
                 
       } catch (error) {
@@ -110,10 +112,11 @@ const NewTest = () => {
       console.log(error);
     }
   }
+  console.log("SAVE QUIESTION", answerSetId);
   
   // Función para salir y guardar progreso de test:
   const saveQuestions = async () => {
-    
+    console.log("MITOKEN EN SAVE QUESTION", token);
     try {
       
       let result = await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);
@@ -127,7 +130,6 @@ const NewTest = () => {
   
   // Función para finalizar el test y guardar las preguntas:
   const finishTest = async () => {
-    
     try {
       
       let resultSaving = await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);
@@ -136,7 +138,7 @@ const NewTest = () => {
       
       // Hay que decidir dónde enviar al usuario tras finalizar el test.
       // navigate(?)
-      navigate(`/oneTestCompany/${id}`);
+      navigate(`/generalGraphic/${id}`);
       
     } catch (error) {
       console.log(error);

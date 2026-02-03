@@ -5,7 +5,7 @@ class AnswerController {
   saveQuestions = async (req, res) => {
 
     const {id, answerSetId} = req.params;
-    console.log(req.params);
+    console.log("******************",req.params);
     const {answer} = req.body;
     const {user_id} = req;
 
