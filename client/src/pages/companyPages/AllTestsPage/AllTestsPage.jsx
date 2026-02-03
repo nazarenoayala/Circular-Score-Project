@@ -9,6 +9,8 @@ const AllTestsPage = () => {
 
   // Nos traemos del AuthContext los datos de los test
   const {test, token} = useContext(AuthContext);
+  console.log(test);
+  
   // Añadimos los tests a un Estado
   const [allTest, setAllTest] = useState(test);
   // Flag para que se cargue el hijo cuando se haya ejecutado el useEffect y así se le pasa la última actualización del Estado

@@ -6,7 +6,7 @@ import { FormCompanyRegister3 } from '../../../components/FormCompanyRegister/Fo
 import { FormCompanyRegister4 } from '../../../components/FormCompanyRegister/FormCompanyRegister4';
 import { useNavigate } from 'react-router';
 import { fetchData } from '../../../../helpers/axiosHelper';
-import { companyRegisterSchema } from '../../../../schemas/companyRegister';
+import { companyRegisterSchema4 } from '../../../../schemas/companyRegister';
 import { ZodError } from 'zod';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 
@@ -95,7 +95,7 @@ const CompanyRegister = () => {
     try {
       e.preventDefault()
       //Validación de datos  
-      companyRegisterSchema.parse({... newCompany1, ...newCompany2});
+      companyRegisterSchema4.parse({... newCompany1});
       console.log('Validación ok'); 
       //mandar datos al Back
       const res = await fetchData(`/company/register/${userData?.user_id}`, 'POST', newCompany1, token);
@@ -132,6 +132,7 @@ const CompanyRegister = () => {
             navigate={navigate}
             valErrors={valErrors}
             fetchError={fetchError}
+            setValErrors={setValErrors}
           />}
 
         {currentFormPage === 2 && (
@@ -140,6 +141,7 @@ const CompanyRegister = () => {
             handleChange={handleChange}
             setCurrentFormPage={setCurrentFormPage}
             valErrors={valErrors}
+            setValErrors={setValErrors}
           />
         )}
         {currentFormPage === 3 && (
@@ -151,6 +153,7 @@ const CompanyRegister = () => {
             locality={locality}
             province={province}
             valErrors={valErrors}
+            setValErrors={setValErrors}
           />
         )}
         {currentFormPage === 4 && (
@@ -161,6 +164,7 @@ const CompanyRegister = () => {
             navigate={navigate}
             onSubmit={onSubmit}
             valErrors={valErrors}
+            setValErrors={setValErrors}
           />
         )}
       </section>
