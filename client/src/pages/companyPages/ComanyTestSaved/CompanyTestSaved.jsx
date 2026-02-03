@@ -6,7 +6,7 @@ import { MyButton } from '../../../components/MyButton/MyButton';
 import './CompanyTestSaved.css';
 
 import { QuestionAnswerCard } from '../../../components/QuestionAnswerCard/QuestionAnswerCard';
-
+//kakakkka
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CompanyTestSaved = () => {
