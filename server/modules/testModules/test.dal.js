@@ -7,7 +7,7 @@ class TestDal {
     try {
 
       // A futuro cambiar is_deleted a 0;
-      let sql = 'SELECT * FROM test WHERE is_public = 1';
+      let sql = 'SELECT * FROM test;';
 
       let result = await executeQuery(sql);
 

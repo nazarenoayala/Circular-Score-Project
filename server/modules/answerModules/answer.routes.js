@@ -8,7 +8,4 @@ const router = express.Router();
 router.post('/saveQuestions/:id/:answerSetId', verifyToken, answerController.saveQuestions);
 
 
-
-
-
 export default router;

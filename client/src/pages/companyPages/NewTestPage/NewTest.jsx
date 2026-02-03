@@ -25,7 +25,7 @@ const NewTest = () => {
   const [index, setIndex] = useState(0);
   // Creamos un estado para las respuestas:
   const [answer, setAnswer] = useState({});
-  // Creamos un estado para poder guardar el answer_set_id
+  // Creamos un estado para poder guardar el answer_set_id:
   const [answerSetId, setAnswerSetId] = useState();
 
   
