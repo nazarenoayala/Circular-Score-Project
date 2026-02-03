@@ -32,6 +32,8 @@ export const HistoricTestContainer = ({ id }) => {
 
   }, []);
 
+  console.log(history);
+
   return (
     <div className='historyTestList'>
       {history?.map((test, i) => {
@@ -50,7 +52,7 @@ export const HistoricTestContainer = ({ id }) => {
             <MyButton
               btnClass='btn-green'
               text='Continuar'
-              onSubmit={() => navigate(`/CompanyTestSaved/${id}`)}
+              onSubmit={() => navigate(`/CompanyTestSaved/${id}/${test.answer_set_id}`)}
             />
             }
           </div>

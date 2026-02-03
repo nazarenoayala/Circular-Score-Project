@@ -13,6 +13,7 @@ const sql = {
   
 
   // Consulta que trae la media del resultado de todas las empresas registradas en la aplicación por ODS(categoría)
+ // historicOneTest: 'SELECT answer_set.user_id, answer_set.answer_set_id, test.test_id, answer_set.test_date, COALESCE(SUM(answer.user_answer), 0) AS result, COUNT(answer.user_answer) AS total_answers, CASE WHEN COUNT(answer.user_answer) = 0 THEN 0 ELSE (SUM(answer.user_answer) / (COUNT(answer.user_answer) * 5.0)) * 100 END AS result_total, answer_set.completed FROM test LEFT JOIN answer_set ON answer_set.test_id = test.test_id AND answer_set.user_id = ? LEFT JOIN answer ON answer.answer_set_id = answer_set.answer_set_id WHERE test.test_id = ? GROUP BY test.test_id, answer_set.test_date, answer_set.completed, answer_set.answer_set_id ORDER BY answer_set.test_date DESC;'
 }
 
 
