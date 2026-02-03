@@ -11,8 +11,6 @@ export const QuestionCard = ({question, answer, setAnswer}) => {
     }))
   }
 
-  console.log(answer);
-
   return (
     <div className='questionContainer'>
       <h2>{question.question_id}. {question.text}</h2>

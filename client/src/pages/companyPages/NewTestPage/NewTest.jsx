@@ -35,8 +35,10 @@ const NewTest = () => {
     const fetchAnswerSet = async () => {
       
       try {
+        console.log("ID DEL NEW TEST", id);
         
         let result = await fetchData(`/answerSet/selectAnswerSet/${id}`, 'GET', null, token);
+        console.log("RESULTADO", result);
         setAnswerSetId(result.data.result[0].answer_set_id);
         
       } catch (error) {
@@ -81,15 +83,15 @@ const NewTest = () => {
       console.log(error);
     }
   }
+  console.log("SAVE QUIESTION", answerSetId);
   
   // Función para salir y guardar progreso de test:
   const saveQuestions = async () => {
     console.log("MITOKEN EN SAVE QUESTION", token);
     try {
-      console.log("SAVE QUIESTION", answerSetId);
       
       let result = await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);
-      console.log(result);
+      console.log("LOG DE SAVE**********",result);
       navigate(`/oneTestCompany/${id}`);
 
     } catch (error) {
