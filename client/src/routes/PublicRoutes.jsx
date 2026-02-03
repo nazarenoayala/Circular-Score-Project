@@ -17,7 +17,7 @@ export const PublicRoutes = () => {
           navigate(`/companyRegister/${userData.user_id}`);
         }
       } else if (userData.type === 1){
-        navigate('/test');
+        navigate('/tests');
       }
     } else {
       navigate('/');
