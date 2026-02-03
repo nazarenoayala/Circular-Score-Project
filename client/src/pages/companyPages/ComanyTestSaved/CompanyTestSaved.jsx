@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
-import './CompanyTestSaved.css';
 import { Link, useNavigate, useParams } from 'react-router';
 import { MyButton } from '../../../components/MyButton/MyButton';
+import './CompanyTestSaved.css';
 
 import { QuestionAnswerCard } from '../../../components/QuestionAnswerCard/QuestionAnswerCard';
 
@@ -16,7 +16,7 @@ const navigate = useNavigate();
   const { test, token } = useContext(AuthContext);
 
   //Rescatar id del test
-  const { id } = useParams();
+  const { id , answer_set_id } = useParams();
   //Filtrar el test que queremos a través del id rescatado
   const uniqueTest = test?.find((e) => e.test_id == id);
 
@@ -96,14 +96,16 @@ const navigate = useNavigate();
 
           const continueTest = () => {
              // busca el índice de la primera pregunta no respondida
-          const pendingIndex = questions.findIndex((q) =>
-             !answer.hasOwnProperty(q.question_id));
+          // const pendingIndex = questions.findIndex((q) =>
+             // !answer.hasOwnProperty(q.question_id));
            
             //  Si todas están contestadas, vamos a la última, si no, a la pendiente
-          const targetIndex = pendingIndex !== -1 ? pendingIndex : questions.length - 1;
+          // const targetIndex = pendingIndex !== -1 ? pendingIndex : questions.length - 1;
            //  navegamos pasando el answer_set_id y el estado con el índice
-          navigate(`/newTest/${id}`, {
-            state: { index: targetIndex },}); 
+          /* navigate(`/newTest/${id}?answer_set_id=${answer_set_id}`, {
+            state: { index: targetIndex },});  */
+
+            navigate(`/newTest/${id}?answer_set_id=${answer_set_id}`); 
            
         };
 

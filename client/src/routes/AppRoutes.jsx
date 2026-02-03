@@ -92,7 +92,7 @@ export const AppRoutes = () => {
               <Route path="/newTest/:id" element={<NewTest />} />
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
-              <Route path='/CompanyTestSaved/:id' element={<CompanyTestSaved />} />
+              <Route path='/CompanyTestSaved/:id/:answer_set_id' element={<CompanyTestSaved />} />
             </Route>
           </Route>
 
