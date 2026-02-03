@@ -12,12 +12,6 @@ routes.get('/locality', verifyToken, companyController.locality);
 routes.get('/province', verifyToken, companyController.Province);
 
 //poner middleware validación inputs
-
-// Rutas de edición de user/company
- routes.put('/editCompany/:user_id', verifyToken, companyController.editCompany)
- routes.put('/editCompanyInUser/:user_id', verifyToken, companyController.editCompanyInUser);
-/*  routes.put('/editCompanyProfile/:user_id', companyController.editCompanyProfile) */
-
  routes.put('/editCompany', verifyToken, companyController.editCompany);
  routes.put('/editCompanyInUser', verifyToken, companyController.editCompanyInUser);
 
@@ -29,6 +23,6 @@ routes.get('/oneCompany/:user_id', companyController.showOneCompany);
 
 
 //Datos de cada vez que se hizo un test, qué empresa, su sector, fecha y la puntuación del mismo
-routes.get('/allCompaniesData/:test_id', companyController.allTestCompaniesData);
+routes.get('/allCompanyTests/:user_id', verifyToken, companyController.allCompanyTests);
 
 export default routes;

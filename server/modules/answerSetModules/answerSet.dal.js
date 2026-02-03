@@ -33,7 +33,7 @@ class AnswerSetDal {
 
     try {
 
-      let sql = 'SELECT answer_set_id FROM answer_set WHERE test_id = ? AND completed = 0';
+      let sql = 'SELECT answer_set_id FROM answer_set WHERE test_id = ? AND user_id = ? AND completed = 0';
       let result = await executeQuery(sql, values);
       return result;
       

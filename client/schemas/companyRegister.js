@@ -33,7 +33,7 @@ const intFromInput = ({max, min = 1, message = "Valor inválido" }) =>
     });
 
 
-export const companyRegisterSchema = z.object({
+export const companyRegisterSchema1 = z.object({
   company_name: z.string()
               .min(2, 'El nombre debe contener al menos 2 caracteres')
               .max(100, 'El nombre debe de contener como máximo 100 caracteres'),
@@ -42,7 +42,7 @@ export const companyRegisterSchema = z.object({
             .min(1, 'El email es obligatorio')
             .email('Debes introducir un email válido'),
 
-  contact_name: z.string()
+  name: z.string()
                      .min(2, 'El nombre debe contener al menos 2 caracteres')
                      .max(50, 'El nombre debe contener como máximo 50 caracteres')
                      .regex(/^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, 'El nombre no puede contener ni números ni carácteres especiales'), 
@@ -55,14 +55,23 @@ export const companyRegisterSchema = z.object({
             .email('Debes introducir un email válido'),
             
   position: intFromInput({max:question3Length}),
+});
+
+export const companyRegisterSchema2 = z.object({
   company_type: intFromInput({max:question6Length}),
   legal_form: intFromInput({max:question7Length}),
   active_years: intFromInput({max:question8Length}), 
   company_size: intFromInput({max:question9Length}),
+})
+
+export const companyRegisterSchema3 = z.object({
   sector_id: intFromInput({max:question10Length}),
   city_id: intFromInput({max: 8117}),
   province_id: intFromInput({max: 53}),
   gso: intFromInput({max:question13Length}),
+})
+
+export const companyRegisterSchema4 = z.object({
   client_segment: z.
                     array(z.number())
                     .min(1, 'Debe seleccionar al menos una opción'),
@@ -71,4 +80,4 @@ export const companyRegisterSchema = z.object({
                     .min(1, 'Debe seleccionar al menos una opción'), 
   sustainability: intFromInput({max:question16Length}),
   ods_background:  intFromInput({max: question17Length})  
-});
+})

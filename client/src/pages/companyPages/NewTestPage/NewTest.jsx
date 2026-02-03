@@ -1,15 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams, useLocation, useSearchParams } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { QuestionCard } from '../../../components/questionCard/QuestionCard';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import './newTest.css';
+import { NavItem } from 'react-bootstrap';
 
 const apiImage = import.meta.env.VITE_IMAGES;
 
 const NewTest = () => {
-
+  const {state} = useLocation();
   const navigate = useNavigate();
   // Rescatamos el id del test del parámetro dinámico
   const {id} = useParams();
@@ -22,13 +23,43 @@ const NewTest = () => {
   // Guardamos en este estado el array de preguntas que nos traemos de BD
   const [questions, setQuestions] = useState();
   // Seteamos un marcador de pregunta
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(state !== null ? state.index : 0);
   // Creamos un estado para las respuestas:
   const [answer, setAnswer] = useState({});
-  // Creamos un estado para poder guardar el answer_set_id
+  console.log('akjbfkqjdbklq', answer);
+  // Creamos un estado para poder guardar el answer_set_id:
   const [answerSetId, setAnswerSetId] = useState();
 
-  
+  const [searchParams] = useSearchParams();
+  let answer_set_id = searchParams.get('answer_set_id');
+  console.log(answer_set_id)
+
+  useEffect(() => {
+
+    if (answer_set_id) {
+
+      const fetchGetAnswers = async () => {
+
+        try {
+          let result = await fetchData(`/answer/savedAnswers/${answer_set_id}`, 'GET', null, token);
+          console.log('abkjabkdnakndkaj', result);
+
+          const convertResult = Object.fromEntries(result.data.result.map(e => [e.question_id, e.user_answer]));
+
+          setAnswer(convertResult);
+
+          console.log('Result de la conversión', convertResult);
+          
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      fetchGetAnswers();
+    }
+
+  },[])
+
   // Hacer llamada a base de datos para traernos las preguntas, respuestas en el caso de que haya y el answerSet
   useEffect(() => {
     
@@ -38,7 +69,7 @@ const NewTest = () => {
         
         let result = await fetchData(`/answerSet/selectAnswerSet/${id}`, 'GET', null, token);
         setAnswerSetId(result.data.result[0].answer_set_id);
-        
+                
       } catch (error) {
         console.log(error);
       }
@@ -53,7 +84,6 @@ const NewTest = () => {
         
         let result = await fetchData(`/question/getQuestions/${id}`, 'GET', null, null);
         setQuestions(result.data.result);
-        console.log(result.data.result);
         
         setLoading(false);
 
@@ -74,7 +104,6 @@ const NewTest = () => {
     try {
       
       let result = await fetchData(`/answerSet/deleteAnswerSet/${answerSetId}`, 'DELETE', null, token);
-      console.log(result);
       navigate(`/oneTestCompany/${id}`);
       
     } catch (error) {
@@ -88,7 +117,6 @@ const NewTest = () => {
     try {
       
       let result = await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);
-      console.log(result);
       navigate(`/oneTestCompany/${id}`);
 
     } catch (error) {
@@ -103,10 +131,8 @@ const NewTest = () => {
     try {
       
       let resultSaving = await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);
-      console.log(resultSaving);
       
       let resultFinish = await fetchData('/answerSet/finishTest', 'PUT', {answerSetId}, token);
-      console.log(resultFinish);
       
       // Hay que decidir dónde enviar al usuario tras finalizar el test.
       // navigate(?)

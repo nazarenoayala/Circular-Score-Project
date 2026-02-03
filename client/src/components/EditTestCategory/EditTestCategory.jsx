@@ -1,0 +1,23 @@
+import React from 'react'
+import { Card, Form } from 'react-bootstrap'
+
+export const EditTestCategory = ({categories, testName, selectedCategory, handleTitleChange, handleCategoryChange}) => {
+  return (
+    <Card>
+        <Card.Body>
+            <Form>
+            {/* Seccion edicion titulo / categoría */}
+            <Form.Group>
+                <Form.Label>Título/ categoría del test</Form.Label>
+                <Form.Control
+                    type="text"
+                    value={testName}
+                    onChange={handleTitleChange}
+                >                    
+                </Form.Control>
+            </Form.Group>
+            </Form>
+        </Card.Body>
+    </Card>
+  )
+}
