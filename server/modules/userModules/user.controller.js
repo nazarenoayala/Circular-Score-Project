@@ -224,12 +224,12 @@ class UserController {
     }
   }
 
-  // Borrado lógico del usuario
+ // Borrado lógico del usuario
   setUserState = async (req, res) => {
-
+ 
     const {user_id} = req.params;
     try {
-      let banResult = await userDal.setUserState(user_id);
+      let banResult = await userDal.changeUserState(user_id);
       res.status(200).json({
         message: `Usuario con id ${user_id} ${banResult === 0 ? "Activado" : "Desactivado"}`,
         banResult
@@ -239,6 +239,10 @@ class UserController {
       res.status(500).json(error);
     }
   }
+ 
+ 
+
+
 }
 
 export default new UserController();

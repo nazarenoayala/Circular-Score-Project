@@ -8,4 +8,10 @@ const router = express.Router();
 router.post('/saveQuestions/:id/:answerSetId', verifyToken, answerController.saveQuestions);
 
 
+
+
+
+//ruta que trae las respuestas guardadas
+router.get('/savedAnswers/:answer_set_id', answerController.savedAnswers)
+
 export default router;
