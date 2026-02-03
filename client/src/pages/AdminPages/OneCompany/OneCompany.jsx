@@ -60,20 +60,20 @@ const OneCompany = () => {
    }
 
   return (
-    <div className='p-5'>
-      <div className='company_name_div px-5'>
+    <div className='one_Company pt-5'>
+      <div className='company_name_div'>
         <h1 className='company_name fw-bold'>{company?.company.company_name}</h1>
         
         {isDeleted === 0 ? (
         <MyButton
           text={"Deshabilitar"}
-          btnClass='btn-red button fw-bold px-4'
+          btnClass='btn-red button fw-bold px-4 '
           onSubmit={()=>delLogicCompany(user_id)}
         />
         ) : (
           <MyButton
           text={"Habilitar"}
-          btnClass='btn-red fw-bold px-4'
+          btnClass='btn-red button fw-bold px-4'
           onSubmit={()=>delLogicCompany(user_id)}
         />
         )}

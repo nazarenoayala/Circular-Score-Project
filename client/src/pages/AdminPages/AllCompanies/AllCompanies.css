@@ -1,54 +1,110 @@
+:root {
+  --gap: 1rem;
+  --ac-padding: 3rem;
+  --ac-border: 1px solid rgb(231, 235, 242);
+  --ac-border-radius: 0.5rem;
+  --ac-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  --padding: 1rem;
+
+  --input-selet-padding: 0.5rem;
+  --input-selet-border: 1px solid #cccccc;
+  --input-select-border-radius: 1rem;
+  --input-min-width: 19rem;
+
+  --noresults-background-color: #f8f9fa;
+    --noresults-border-radius: 8px;
+    --noresults-border: 2px dashed #ccc;
+    --noresults-margin-top: 20px;
+    --noresults-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    --noresults-color: #6c757d;
+    --noresults-font-weight: 400;
+}
+
+
+@media (width <= 850px) {
+  .ACtitle{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}
+
+@media (width <= 1225px) {
+  .search, .selectCont{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-items: center;
+    gap: var(--gap);  
+  }
+
+   .buttons {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+  }
+}
+
+
+
 .AllCompanies {
-  padding: 3rem;
+  padding: var(--ac-padding);
 
   .ACtitle {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     font-weight: bold;
-    padding: 3rem;
-    border-radius: 0.5rem;
+    border: var(--ac-border);
+    border-radius: var(--ac-border-radius);
     background: white;
-    border: 1px solid rgb(231, 235, 242);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--ac-box-shadow);
     min-width: fit-content;
   }
 
+  
+
   .search {
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
     flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--gap);
+    padding: var(--padding);
     align-items: center;
 
     .input {
-      min-width: 19rem;
+      min-width: var(--input-min-width);
     }
+
   }
 
   .input,
   .select {
-    padding: 0.5rem;
-    border: 1px solid #cccccc;
-    border-radius: 1rem;
+    padding: var(--input-selet-padding);
+    border: var(--input-selet-border);
+    border-radius: var(--input-select-border-radius);
   }
 
   .selectCont {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: var(--gap);
+  }
+
   }
 
   .no-results {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    border: 2px dashed #ccc;
-    margin-top: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--noresults-background-color);
+    border-radius: var(--noresults-border-radius);
+    border: var(--noresults-border);
+    margin-top: var(--noresults-margin-top);
+    box-shadow: var(--noresults-box-shadow);
   }
 
   .no-results h4 {
-    color: #6c757d;
-    font-weight: 400;
+    color: var(--noresults-color);
+    font-weight: var(--noresults-font-weight);
   }
 
-}

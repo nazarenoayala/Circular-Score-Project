@@ -67,11 +67,6 @@ class CompanyDal {
     }
   }
 
-<<<<<<< HEAD
-  editCompany = async (values) => {
-    try {
-      
-=======
   editCompany = async (values, multiSelects) => {
 
     const connection = await dbPool.getConnection();
@@ -115,7 +110,6 @@ class CompanyDal {
 
       await connection.commit();
       return {result, resultCcg, resultCs}
->>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
     } catch (error) {
       throw error;
     }
@@ -125,7 +119,6 @@ class CompanyDal {
     try {
       let sql = 'UPDATE user SET name = ?, last_name = ?, position = ?, phone_number = ?, city_id, province_id = ? WHERE user_id = ?';
       let result = await executeQuery(sql, values);
->>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
       return result;
     } catch (error) {
       throw error;
