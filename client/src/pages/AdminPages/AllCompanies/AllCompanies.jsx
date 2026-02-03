@@ -71,7 +71,7 @@ const AllCompanies = () => {
 
   return (
     <div className="AllCompanies">
-      <h2 className="ACtitle pt-3">EMPRESAS REGISTRADAS</h2>
+      <h2 className="ACtitle py-5 px-5">EMPRESAS REGISTRADAS</h2>
 
       <div className="search">
         <form onSubmit={searchCompany}>
@@ -111,7 +111,7 @@ const AllCompanies = () => {
             <option value="18">Otro sector (especificar)</option>
           </select>
 
-          <div className='d-flex gap-2'>
+          <div className='buttons d-flex gap-3'>
             <MyButton text="Buscar" btnClass="btn-white" onSubmit={searchCompany} />
             <MyButton text="Limpiar" btnClass="btn-white" onSubmit={reset} /></div>
         </div>

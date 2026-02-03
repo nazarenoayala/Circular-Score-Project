@@ -1,12 +1,4 @@
-.questionContainer {
-  align-items: center;
-  gap: 2rem;
-  background-color: var(--bg);
-    min-height: 100vh;
-    margin-left: 20px;
-    width: calc(100% - 20px);
 
-  }
 
   .groupCheck {
     display: flex;

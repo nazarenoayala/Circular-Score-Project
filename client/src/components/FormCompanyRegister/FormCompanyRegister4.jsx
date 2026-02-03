@@ -6,6 +6,8 @@ import { question17 } from '../../data/CompanyRegisterData/Question17';
 import { question15 } from '../../data/CompanyRegisterData/Question15';
 import { MyButton } from '../MyButton/MyButton';
 
+
+
 export const FormCompanyRegister4 = ({
   newCompany1,
   handleChange,
@@ -13,6 +15,7 @@ export const FormCompanyRegister4 = ({
   onSubmit,
   valErrors,
 }) => {
+
   return (
     <>
       <main className="form-main">
