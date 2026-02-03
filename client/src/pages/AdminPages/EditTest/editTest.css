@@ -1,0 +1,64 @@
+.edit-test-container {
+    min-height: 100vh;
+    padding-bottom: 50px 20px;
+}
+
+
+.header-content {
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+}
+
+.section {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.section-titles {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-left: 15px;
+}
+
+
+
+/* Seccion categoria y preguntas */
+
+.section-edit .form-label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.section-edit .form-control {
+    border: 1px solid rgba(0, 0, 0, 0.201);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.question-divider {
+    margin-bottom: 1.2rem;
+}
+
+.new-questions {
+    display: flex;
+    gap: 1rem;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0.2rem 0.25rem rgba(0, 0, 0, 0.1);
+}

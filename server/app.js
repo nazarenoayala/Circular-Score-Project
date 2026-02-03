@@ -10,6 +10,7 @@ import statisticsRouter from './modules/statisticsModule/statistics.routes.js';
 import questionRouter from './modules/questionModules/question.routes.js';
 import answerSetRouter from './modules/answerSetModules/answerSet.routes.js';
 import answerRouter from './modules/answerModules/answer.routes.js';
+import sectorRouter from './modules/sectorModules/sector.routes.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
@@ -38,6 +39,7 @@ app.use('/api/statistics', statisticsRouter);
 app.use('/api/question', questionRouter);
 app.use('/api/answerSet', answerSetRouter);
 app.use('/api/answer', answerRouter);
+app.use('/api/sector', sectorRouter);
 
 
 // catch 404 and forward to error handler
