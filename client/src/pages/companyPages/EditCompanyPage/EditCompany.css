@@ -80,8 +80,18 @@
     }
 }
 
-@media (width < 900px) {
+@media (width < 800px) {
     .edit-profile-container {
         margin-left: -3rem;
+    }
+}
+
+@media (width < 400px) {
+    .edit-profile-container {
+        padding: 0;
+    }
+
+    .form-card {
+        padding: 0.5rem;
     }
 }
