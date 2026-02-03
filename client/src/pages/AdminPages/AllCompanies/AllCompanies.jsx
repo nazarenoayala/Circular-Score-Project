@@ -5,6 +5,8 @@ import { CompaniesCard } from '../../../components/CompaniesCard/CompaniesCard';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import './AllCompanies.css';
 
+
+
 const AllCompanies = () => {
   const { token, userData } = useContext(AuthContext);
 
@@ -21,7 +23,9 @@ const AllCompanies = () => {
   const [search, setSearch] = useState('');
 
   const [selectedCategory, setSelectedCategory] = useState('');
+  
 
+  
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);
   };
@@ -33,6 +37,7 @@ const AllCompanies = () => {
         console.log("RES DELK FETCH DE COMPANY DATA",res);
         setAllCompanies(res.data.companyResult);
         setFilteredCompanies(res.data.companyResult);
+       console.log('isdeleted',res.data.companyResult);
       } catch (error) {
         console.log(error);
       }
@@ -114,17 +119,19 @@ const AllCompanies = () => {
 
       <div className="mt-4">
         {filteredCompanies.length > 0 ? (
-          filteredCompanies.map((elem) => (
+            filteredCompanies.map((elem, id) => (
 
-            <CompaniesCard
-              key={elem.user_id}
-              allCompanies={elem}
-              userData={userData}
-              showInfo={showInfo}
-              setShowInfo={setShowInfo}
-              token={token}
-            />
-          ))
+                  <CompaniesCard
+                    key={elem.user_id}
+                    allCompanies={elem}
+                    userData={userData}
+                    showInfo={showInfo}
+                    setShowInfo={setShowInfo}
+                    token={token}
+                    
+                  />
+            ))
+          
         ) : (
 
           <div className=" no-results text-center p-5">

@@ -23,6 +23,7 @@ const UserODSGraphic = lazy(() => import('../pages/companyPages/UserODSGraphic/U
 const OneTestCompany = lazy(() => import("../pages/companyPages/OneTestCompany/OneTestCompany.jsx"));
 const NewTest = lazy(() => import("../pages/companyPages/NewTestPage/NewTest.jsx"));
 const UserTestRecord = lazy(() => import("../pages/companyPages/UserTestRecord/UserTestRecord.jsx"));
+const CompanyTestSaved = lazy(() => import('../pages/companyPages/ComanyTestSaved/CompanyTestSaved.jsx'))
 
 //Páginas privadas administrador
 import { AdminLayout } from '../layouts/AdminLayout.jsx';
@@ -33,6 +34,7 @@ const OneTest = lazy(()=>import('../pages/AdminPages/OneTest/OneTest.jsx'));
 const AllCompanies = lazy(()=>import('../pages/AdminPages/AllCompanies/AllCompanies.jsx'));
 const OneCompany = lazy(()=>import('../pages/AdminPages/OneCompany/OneCompany.jsx'));
 const EditTest = lazy(()=>import('../pages/AdminPages/EditTest/EditTest.jsx'));
+const AdminManageSectors = lazy(()=>import ('../pages/AdminPages/AdminManageSectors/AdminManageSectors.jsx'));
 const Dashboard = lazy(()=> import('../pages/AdminPages/Dashboard/Dashboard.jsx'));
 const Record = lazy(()=> import ('../pages/AdminPages/AdminTestsRecord/AdminTestsRecord.jsx'));
 const AdminGraphics = lazy(()=> import ('../pages/AdminPages/AdminGraphics/AdminGraphics.jsx'));
@@ -90,6 +92,7 @@ export const AppRoutes = () => {
               <Route path="/newTest/:id" element={<NewTest />} />
               <Route path='/userTestRecord' element={<UserTestRecord />} /> {/* historial de tests */}
               {/*  "/IAChat" -> navbar user IA Chat */}
+              <Route path='/CompanyTestSaved/:id/:answer_set_id' element={<CompanyTestSaved />} />
             </Route>
           </Route>
 
@@ -105,8 +108,9 @@ export const AppRoutes = () => {
               <Route path='/oneTest/:id' element={<OneTest />} />
               <Route path='/allCompanies' element={<AllCompanies />} />
               <Route path='/oneCompany/:user_id' element={<OneCompany />} />
-              <Route path='/editTest' element={<EditTest />} />
-              {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+              <Route path='/editTest/:id' element={<EditTest />} />
+              <Route path='/adminManageSectors' element={<AdminManageSectors />} />
+              <Route path='/dashboard' element={<Dashboard />} />
               {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
               {/* <Route path='/graphic' element={<AdminGraphics />} /> */}
               {/* <Route path='/AdminODSGraphic' element={<AdminODSgraphic />} /> */}

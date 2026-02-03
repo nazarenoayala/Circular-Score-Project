@@ -32,6 +32,8 @@ export const HistoricTestContainer = ({ id }) => {
 
   }, []);
 
+  console.log(history);
+
   return (
     <div className='historyTestList'>
       {history?.map((test, i) => {
@@ -40,7 +42,7 @@ export const HistoricTestContainer = ({ id }) => {
             <p>{test.test_date ? test.test_date.split('-').reverse().join('-') : 'No hay tests'}</p>
             <p>-</p>
             <p>PUNTUACIÓN: {test.completed && test.result}</p>
-            <p>{test.completed ? parseInt(test.result_total) : 'NC'} </p>
+            <p>{test.completed ? `${parseInt(test.result_total)} %`  : 'NC'} </p>
             {test.completed ? <MyButton
               btnClass='btn-green'
               text='Detalles'
@@ -50,7 +52,7 @@ export const HistoricTestContainer = ({ id }) => {
             <MyButton
               btnClass='btn-green'
               text='Continuar'
-              onSubmit={() => navigate(`/newTest/${id}`)}
+              onSubmit={() => navigate(`/CompanyTestSaved/${id}/${test.answer_set_id}`)}
             />
             }
           </div>

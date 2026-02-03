@@ -1,0 +1,55 @@
+
+.test-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-left: 2.2rem; 
+  margin-right: 2.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid #EDF2F7;
+}
+
+
+.test-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+
+.company-name .test-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+
+
+.test-image img {
+  width: 5rem;
+  object-fit: contain;
+}
+
+
+.myLink {
+  color: #198754;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .test-card {
+    margin-left: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .test-image {
+    align-self: flex-end;
+  }
+}
