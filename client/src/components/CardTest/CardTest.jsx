@@ -1,18 +1,25 @@
 import {useNavigate} from 'react-router';
 import { MyButton } from '../MyButton/MyButton';
 import './cardTest.css';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTest = ({test}) => {
-
+  
+  // Guardamos el resultado del test anterior aprovechando que lo cargamos aquí, para recogerlo con el context en la vista gráficos
   const navigate = useNavigate();
+  const {setPrevTestScore} = useContext(AuthContext);
 
   // El valor nos llega con decimales, así que lo pasamos a entero
   const {testRes} = test;
   const lastResult = parseInt(testRes);
 
-
+  const onSubmit = () => {
+    setPrevTestScore(test);
+    navigate(`/oneTestCompany/${test.test_id}`);
+  }
 
   let classProgress;
 
@@ -48,7 +55,7 @@ const CardTest = ({test}) => {
       <div className='btnTest'>
         <MyButton
           text = 'Ir a test'
-          onSubmit = {() => navigate(`/oneTestCompany/${test.test_id}`)}
+          onSubmit = {() => onSubmit()}
           btnClass = 'btn-green'
         />
       </div>

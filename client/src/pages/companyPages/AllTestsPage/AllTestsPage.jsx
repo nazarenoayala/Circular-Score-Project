@@ -15,7 +15,7 @@ const AllTestsPage = () => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-
+    
     const fetchResults = async () => {
 
       try {

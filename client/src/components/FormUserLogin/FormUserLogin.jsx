@@ -46,13 +46,13 @@ export const FormUserLogin = () => {
       // Cogemos el user_id para usarlo en navigate
       const user_id = userByToken.data.userData.user_id;
 
-      console.log("QUE PASA CON EL NAVIGATE COLEGA",userByToken);
-
       // Si es tipo admin, navega a test, si no depende de la condición del user
       if(userByToken.data.userData.type === 1){
         navigate('tests');
       } else {
-        // Si hay empresa registrada, a allTests, si no a registrar empresa.
+        // Si hay empresa registrada, a allTests, si n
+        // o a registrar empresa.
+        
         if(userByToken.data.companyData.company_name !== null){
           navigate(`/allTests`);
         } else {

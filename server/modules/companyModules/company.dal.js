@@ -67,11 +67,6 @@ class CompanyDal {
     }
   }
 
-<<<<<<< HEAD
-  editCompany = async (values) => {
-    try {
-      
-=======
   editCompany = async (values, multiSelects) => {
 
     const connection = await dbPool.getConnection();
@@ -115,7 +110,6 @@ class CompanyDal {
 
       await connection.commit();
       return {result, resultCcg, resultCs}
->>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
     } catch (error) {
       throw error;
     }
@@ -123,9 +117,8 @@ class CompanyDal {
 
   editCompanyInUser = async (values) => {
     try {
-      let sql = 'UPDATE user SET name = ?, last_name = ?, position = ?, phone_number = ?, city_id, province_id = ? WHERE user_id = ?';
+      let sql = 'UPDATE user SET name = ?, last_name = ?, position = ?, phone_number = ?, city_id = ?, province_id = ? WHERE user_id = ?';
       let result = await executeQuery(sql, values);
->>>>>>> b94f225a9a5d507ef3fd9ed2c43f60b26434f021
       return result;
     } catch (error) {
       throw error;
@@ -191,18 +184,7 @@ class CompanyDal {
 
   showOneCompany = async(user_id) => {
     try {
-      let sql = `
-      SELECT
-      cd.*,
-      u.*,
-      c.name AS city_name,
-      p.name AS province_name
-      FROM company_data cd
-      LEFT JOIN user u ON cd.user_id = u.user_id
-      LEFT JOIN city c ON u.city_id = c.city_id
-      LEFT JOIN province p ON u.province_id = p.province_id
-      WHERE cd.user_id = ?
-      `;
+      let sql = 'SELECT * FROM company_data LEFT JOIN user ON company_data.user_id = user.user_id WHERE company_data.user_id = ?'
 
       return await executeQuery(sql, [user_id]);
 
