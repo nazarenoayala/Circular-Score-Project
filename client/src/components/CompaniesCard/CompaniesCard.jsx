@@ -91,7 +91,7 @@ export const CompaniesCard = ({
                   ) : (
                     <MyButton
                     text={"Habilitar"}
-                    btnClass='btn-red fw-bold px-4'
+                    btnClass='btn-blue fw-bold px-4'
                     onSubmit={()=>delLogicCompany(allCompanies.user_id)}
                   />
                   )}

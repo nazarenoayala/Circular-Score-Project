@@ -2,17 +2,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   padding: 2rem;
 
   .progress-bar {
     .progress-bar-container {
       height: 20px;
       border-radius: 2rem;
-      width: 70%;
+      width: 100%;
+      /* border: 1px solid black; */
 
       .progress-bar-result {
         background-color: #2C9947;
+        border-radius: 2rem;
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
     }
   }
