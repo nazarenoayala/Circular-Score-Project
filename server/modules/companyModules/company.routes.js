@@ -5,8 +5,8 @@ import { verifyToken } from '../../middlewares/verifyToken.js';
 const routes = express.Router();
 
 //Registro de Empresa
-routes.post('/register/:user_id', verifyToken, companyController.registerCompany);
-routes.put('/registerUpdate/:user_id', verifyToken, companyController.registerCompanyInUser);
+routes.post('/register', verifyToken, companyController.registerCompany);
+routes.put('/registerUpdate', verifyToken, companyController.registerCompanyInUser);
 //pedir datos de localidades y provincias
 routes.get('/locality', verifyToken, companyController.locality);
 routes.get('/province', verifyToken, companyController.Province);
