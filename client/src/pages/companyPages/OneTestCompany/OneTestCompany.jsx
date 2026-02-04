@@ -53,7 +53,7 @@ const OneTestCompany = () => {
           />
         </div>
       </div>
-      <h3 className='p-3'>Tests realizados</h3>
+      <h3 className='title p-3'>Tests realizados</h3>
       <div className='historicTestContainer'>
         
         <HistoricTestContainer id = {id}/>
