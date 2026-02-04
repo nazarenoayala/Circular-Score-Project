@@ -19,20 +19,20 @@ const SimpleBarChart = ({sectorScore, globalScore}) => {
   const data = [
     {
       name: 'Previo',
-      propio: currentResult,
-      comparacion: parseInt(prevTestScore?.testRes),
+      Propio: currentResult,
+      Comparacion: parseInt(prevTestScore?.testRes),
       amt: 100,
     },
     {
       name: 'Por sector',
-      propio: currentResult,
-      comparacion: 50,
+      Propio: currentResult,
+      Comparacion: 50,
       amt: 100,
     },
     {
       name: 'Global',
-      propio: currentResult,
-      comparacion: 50,
+      Propio: currentResult,
+      Comparacion: 50,
       amt: 100,
     },
   ];
@@ -57,8 +57,8 @@ const SimpleBarChart = ({sectorScore, globalScore}) => {
       <YAxis fontSize={'1.5rem'} fontWeight={'bold'} width="auto" />
       <Tooltip />
       <Legend align='left' iconSize={'24px'} iconType='circle' layout='horizontal'/>
-      <Bar dataKey="comparacion" fill="#8884d8" activeBar={{ fill: 'pink', stroke: 'blue' }} radius={[10, 10, 0, 0]} />
-      <Bar  dataKey="propio" fill="#82ca9d" activeBar={{ fill: 'gold', stroke: 'purple' }} radius={[10, 10, 0, 0]} />
+      <Bar dataKey="Comparacion" fill="#447EF7" activeBar={{ fill: 'pink', stroke: 'blue' }} radius={[10, 10, 0, 0]} />
+      <Bar  dataKey="Propio" fill="#00D47E" activeBar={{ fill: 'gold', stroke: 'purple' }} radius={[10, 10, 0, 0]} />
       </BarChart>
   );
 };

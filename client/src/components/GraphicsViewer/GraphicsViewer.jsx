@@ -34,7 +34,7 @@ const GraphicsViewer = () => {
   return (
     <>
       <SimpleBarChart
-        chartData={[ sectorScore, globalScore]}
+        chartData={[ sectorAvg, globalAvg]}
       />
     </>
   )
