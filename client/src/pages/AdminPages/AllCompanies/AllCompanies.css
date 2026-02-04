@@ -23,7 +23,15 @@
 }
 
 
-@media (width <= 850px) {
+
+@media (max-width: 450px) {
+  .search {
+    display: flex;
+    align-content: center;
+  }
+}
+
+@media (max-width: 850px) {
   .ACtitle{
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +39,7 @@
   }
 }
 
-@media (width <= 1225px) {
+@media (max-width: 1225px) {
   .search, .selectCont{
     display: flex;
     flex-wrap: wrap;
