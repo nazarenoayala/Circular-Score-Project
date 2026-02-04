@@ -15,10 +15,15 @@
   }
 }
 
-@media (width <= 450px) {
-  .AdmintestsContainer {
+@media (max-width: 450px) {
+  .AdmintestsContainer>div {
     display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
     justify-content: center;
+    /* width: 100%; */
+    /* max-width: 10rem; */
+    /* padding-inline: 3rem; */
 
   }  
 }

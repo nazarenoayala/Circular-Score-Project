@@ -7,30 +7,24 @@
   --font-size-name: 3rem;
   --name-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   --padding-oneCompany: 3rem;
-  --padding-inline-oneCompany: 6rem;
+  --padding-inline-name: 6rem;
   --button-max-width: 20rem;
+  --button-min-width: 9rem;
   --media-padding: 1rem;
 }
 
 @media (max-width: 450px) {
   .company_name_div {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-inline: 1rem;
-  }
-
-  .company_name_div h1 {
-    text-align: center;
-    margin: 0;
+    display: flex;
+    gap: 1rem;
+    align-content: center;
   }
 
   .button {
-    margin-top: 1rem;
-    width: 100%;
-    max-width: var(--button-max-width);
+    min-width: var(--button-min-width);
   }
 }
+
 
 @media (max-width: 1100px) {
   .company_name_div {
@@ -48,16 +42,9 @@
   }
 }
 
-@media (min-width: 1100px) {
-
-  .company_name_div h1{
-    /* padding: var(--media-padding); */
-  }
-}
-
 
 .one_Company {
-  padding-inline: var(--padding-oneCompany);
+  padding: var(--padding-oneCompany);
 }
 
 
@@ -66,7 +53,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: var(--padding-block-name);
-  padding-inline: var(--padding-inline-oneCompany);
+  padding-inline: var(--padding-inline-name);
   border: var(--border);
   border-radius: var(--border-radius);
   box-shadow: var(--name-box-shadow);

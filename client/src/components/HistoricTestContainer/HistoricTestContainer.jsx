@@ -1,4 +1,4 @@
-import React, { useContext, useEffect , useState } from 'react';
+import { useContext, useEffect , useState } from 'react';
 import {useNavigate} from 'react-router';
 import { fetchData } from '../../../helpers/axiosHelper';
 import { MyButton } from '../MyButton/MyButton';
@@ -39,10 +39,11 @@ export const HistoricTestContainer = ({ id }) => {
       {history?.map((test, i) => {
         return (
           <div className='historyTestCard' key={i}>
-            <p>{test.test_date ? test.test_date.split('-').reverse().join('-') : 'No hay tests'}</p>
+            <p className='fw-bold'>{test.test_date ? test.test_date.split('-').reverse().join('-') : 'No hay tests'}</p>
             <p>-</p>
-            <p>PUNTUACIÓN: {test.completed && `${test.result} / ${test.max_score}`}</p>
-            <p>{test.completed ? `${parseInt(test.result_total)} %`  : 'NC'} </p>
+
+            <p>PUNTUACIÓN: <span className='fw-bold'>{test.completed && `${test.result} / ${test.max_score}`}</span></p>
+            <p className='fw-bold'>{test.completed ? `${parseInt(test.result_total)} %`  : 'NC'} </p>
             {!test.test_date ? null : test.completed ? <MyButton
               btnClass='btn-green'
               text='Detalles'
