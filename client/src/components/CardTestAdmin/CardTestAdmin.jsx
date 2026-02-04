@@ -57,7 +57,7 @@ const CardTestAdmin = ({ test }) => {
         <MyButton
           text='Editar'
           btnClass='btn-green py-2 px-2'
-          onSubmit={() => navigate('/createTest')}
+          onSubmit={() => navigate(`/editTest/${test.test_id}`)}
         />
         {
           isPublic === 1 ?

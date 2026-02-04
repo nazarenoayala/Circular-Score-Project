@@ -51,7 +51,8 @@ export const AuthContextProvider = ({ children }) => {
     setCompanyData();
     localStorage.removeItem("credentials");
   }
-
+  console.log('sssssssssssssssssssssssss', companyData);
+  
   return (
     <>
       <AuthContext.Provider value={{
