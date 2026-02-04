@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { MyButton } from '../MyButton/MyButton';
 import { fetchData } from '../../../helpers/axiosHelper';
 import './cardTestAdmin.css';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTestAdmin = ({ test }) => {
 
+  const {token} = useContext(AuthContext);
   const [isPublic, setIsPublic] = useState(test.is_public);
   const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ const CardTestAdmin = ({ test }) => {
 
     try {
       // Falta meter el token a esta petición:
-      let result = await fetchData(`/test/disableTest/${test.test_id}`, 'PUT', null);
+      let result = await fetchData(`/test/disableTest/${test.test_id}`, 'PUT', null, token);
       setIsPublic(0);
       console.log(result);
     } catch (error) {
@@ -30,7 +32,7 @@ const CardTestAdmin = ({ test }) => {
 
     try {
       // Falta añadir el token;
-      let result = await fetchData(`/test/enableTest/${test.test_id}`, 'PUT', null);
+      let result = await fetchData(`/test/enableTest/${test.test_id}`, 'PUT', null, token);
       setIsPublic(1);
       console.log(result);
     } catch (error) {

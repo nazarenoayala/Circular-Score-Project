@@ -261,83 +261,6 @@ class CompanyController {
     }
   };
 
-  editCompany = async (req, res) => {
-    console.log('eeeeeeeeeeeeeeeeeeeeeeee', req.body);
-
-    try {
-      let { user_id } = req.params;
-      user_id = parseInt(user_id);
-
-      const {
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background,
-      } = req.body;
-
-      let uptResult = await companyDal.editCompany([
-        user_id,
-        company_name,
-        company_email,
-        sector_id,
-        company_type,
-        legal_form,
-        active_years,
-        company_size,
-        gso,
-        client_segment,
-        stakeholders,
-        sustainability,
-        ods_background,
-      ]);
-
-      res.status(200).json({
-        message: 'Actualizado correctamente',
-        uptResult,
-      });
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  };
-
-  editCompanyInUser = async (req, res) => {
-    try {
-      const { user_id } = req.params;
-
-      const {
-        contact_name,
-        last_name,
-        position,
-        phone_number,
-        city_id,
-        province_id,
-      } = req.body;
-
-      let result = await companyDal.editCompanyInUser([
-        name,
-        last_name,
-        position,
-        phone_number,
-        city_id,
-        province_id,
-        user_id,
-      ]);
-
-      res.status(200).json({ message: 'update ok', result });
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  };
 
   locality = async (req, res) => {
     try {
@@ -449,16 +372,6 @@ class CompanyController {
     }
   };
 
-  delLogicCompany = async (req, res) => {
-    const { user_id } = req.params;
-
-    try {
-      await companyDal.delLogicCompany(user_id);
-      res.status(200).json({ message: 'Empresa deshabilitada' });
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  };
 
   allTestCompaniesData = async (req, res) => {
     try {

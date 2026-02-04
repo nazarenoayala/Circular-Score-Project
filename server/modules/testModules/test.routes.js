@@ -1,5 +1,6 @@
 import express from 'express';
 import testController from './test.controller.js';
+import { verifyToken } from '../../middlewares/verifyToken.js';
 
 const routes = express.Router();
 
@@ -7,10 +8,10 @@ const routes = express.Router();
 routes.get('/allTest', testController.selectAllTest);
 
 // Ruta para deshabilitar test:
-//routes.put('/disableTest/:id', testController.disableTest);
+routes.put('/disableTest/:id', verifyToken, testController.disableTest);
 
 // Ruta para habilitar Test:
-//routes.put('/enableTest/:id', testController.enableTest)
+routes.put('/enableTest/:id', verifyToken, testController.enableTest)
 
 export default routes;
 
