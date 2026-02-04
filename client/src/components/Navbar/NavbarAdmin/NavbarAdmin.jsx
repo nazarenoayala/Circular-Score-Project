@@ -12,7 +12,7 @@ export const NavbarAdmin = () => {
           ></img>
           <div className="container-logo">
             <i className="fa-regular fa-house"></i>
-            <Link className='link' to={"/"} > HOME</Link>
+            <Link className='link' to={"/tests"} > HOME</Link>
           </div>
           <div className="container-logo">
             <i className="fa-brands fa-squarespace"></i>
@@ -20,12 +20,12 @@ export const NavbarAdmin = () => {
           </div>
           <div className="container-logo">
             <i className="fa-solid fa-business-time"></i>
-            <Link className='link' to={"allCompanies"}>Empresas registradas</Link>
+            <Link className='link' to={"/allCompanies"}>Empresas registradas</Link>
           </div>
 
           <div className="container-logo">
             <i className="fa-regular fa-file-lines"></i>
-            <Link className='link' to={"tests"}>Control de tests</Link>
+            <Link className='link' to={"/tests"}>Control de tests</Link>
           </div>
           <div className="container-logo">
             <i className="fa-regular fa-calendar"></i>
