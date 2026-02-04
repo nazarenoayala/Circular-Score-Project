@@ -206,7 +206,7 @@ class CompanyDal {
 
   allCompanyTests = async(user_id) => {
     try {
-      let sql = 'SELECT a.answer_set_id, a.test_id, t.test_name, t.test_image, a.test_date, a.completed FROM answer_set a JOIN test t ON t.test_id = a.test_id WHERE a.user_id = ? ORDER BY a.test_id ASC';
+      let sql = "SELECT a.answer_set_id, a.test_id, t.test_name, t.test_image, a.test_date, a.completed FROM answer_set a JOIN test t ON t.test_id = a.test_id WHERE a.user_id = ? ORDER BY a.test_id ASC"
       return await executeQuery(sql, user_id);
     } 
     catch (error) {
@@ -216,3 +216,5 @@ class CompanyDal {
 }
 
 export default new CompanyDal();
+
+/* ; */
