@@ -19,9 +19,8 @@ export const NavbarHeaderGeneral = () => {
     }
   }
 
-  //obtener nombre y apellido
-  const nombre = userData?.name + ' ';
-  const apellido = userData?.last_name;
+  
+  
 
   const handleLogOut = (e) => {
     e.preventDefault();
@@ -33,7 +32,7 @@ export const NavbarHeaderGeneral = () => {
     <div className="navgen">
       <div className='d-flex gap-2'>
         <h3 className='text-muted'>Hola</h3>
-        <h3 className='fw-bold'>{nombre} {apellido ? apellido : ""}</h3>
+        {(userData?.name || userData?.last_name) && <h3 className='fw-bold'>{userData.name && userData.name} {userData.last_name ? userData.last_name : ""}</h3>}
       </div>
       <div className="d-flex gap-3">
         <MyButton

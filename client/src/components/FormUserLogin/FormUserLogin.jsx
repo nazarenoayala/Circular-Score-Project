@@ -85,7 +85,7 @@ export const FormUserLogin = () => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Control
-          type="text"
+          type="password"
           placeholder="Contraseña"
           name="password"
           value={userLogin.password}

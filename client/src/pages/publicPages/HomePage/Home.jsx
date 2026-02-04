@@ -62,16 +62,7 @@ const Home = ({ setShowPage, showPage }) => {
           </div>
         </div>
       </section>
-
-      <section className='collab'>
-        <h2>Entidades colaboradoras</h2>
-        
-        <div className="logos">
-          <img src="/src/assets/Images/forHome/logocatedra.png" alt="" />
-          <img src="/src/assets/Images/forHome/logogeneralitat.png" alt="" />
-        </div>
-      </section>
-
+      
       <section className='section-5'>
         <Row>
           <Col className='col1'>

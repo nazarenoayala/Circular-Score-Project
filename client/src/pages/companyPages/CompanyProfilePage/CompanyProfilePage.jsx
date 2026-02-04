@@ -57,7 +57,7 @@ const CompanyProfilePage = () => {
           </p>
           <p>
             <strong>Persona de contacto:</strong>{' '}
-            {userData?.name + ' ' + userData?.last_name}{' '}
+            {userData?.name} {userData?.last_name}
           </p>
           <p>
             <strong>Teléfono:</strong> {userData?.phone_number}{' '}

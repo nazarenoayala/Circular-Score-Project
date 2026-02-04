@@ -42,7 +42,7 @@ const CompanyRegister = () => {
   const [valErrors, setValErrors] = useState('');
   const [fetchError, setFetchError] = useState('');
 
-  const { token } = useContext(AuthContext)
+  const { token, companyData, setCompanyData, userData, setUserData } = useContext(AuthContext);
 
   const navigate = useNavigate()
 
@@ -50,7 +50,7 @@ const CompanyRegister = () => {
   const handleChange = (e, id) => {
 
     const { name, value, checked } = e.target;
-    console.log(e);
+    
 
     if (name === 'client_segment' || name === 'stakeholders') {
       if (checked) {
@@ -70,8 +70,6 @@ const CompanyRegister = () => {
       setNewCompany1({ ...newCompany1, [name]: value });
       setNewCompany2({ ...newCompany2, [name]: value });
     }
-    console.log("INFO COMPANY1", newCompany1);
-    console.log("INFO COMPANY2", newCompany2);
   };
 
   // pedir a base de datos localidades y provincias. 
@@ -103,6 +101,9 @@ const CompanyRegister = () => {
       if (res) {
         const res2 = await fetchData(`/company/registerUpdate`, 'PUT', newCompany2, token);
         console.log(res2);
+        setUserData({...userData, ...newCompany2})
+        setCompanyData({...companyData, ...newCompany1})
+
       }
       navigate('/allTests');
     } catch (error) {
