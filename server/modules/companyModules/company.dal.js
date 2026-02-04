@@ -205,12 +205,19 @@ class CompanyDal {
     }
   }
 
+  allTestCompaniesData = async(test_id) => {
+    try {
+      let sql = 'SELECT company_data.company_name,sector.sector_name, answer_set.test_id, answer_set.test_date,answer_set.answer_set_id, SUM(answer.user_answer) AS total_score FROM company_data JOIN sector ON company_data.sector_id = sector.sector_id JOIN answer_set ON company_data.user_id = answer_set.user_id JOIN answer ON answer_set.answer_set_id = answer.answer_set_id AND answer_set.test_id = answer.test_id WHERE answer_set.test_id = ? GROUP BY company_data.company_name, sector.sector_name, answer_set.test_id, answer_set.test_date, answer_set.answer_set_id ORDER BY answer_set.test_date'
+      return await executeQuery(sql, test_id);
+      
+    } catch (error) {
+      throw error
+    }
+  }
 
-
-  //Trae los datos de cada vez que se realizó un test, qué empresa lo hizo, su sector, la fecha y la puntuación
   allCompanyTests = async(user_id) => {
     try {
-      let sql = 'SELECT a.answer_set_id, a.test_id, t.test_name, t.test_image, a.test_date, a.completed FROM answer_set a JOIN test t ON t.test_id = a.test_id WHERE a.user_id = ? ORDER BY a.test_id ASC';
+      let sql = "SELECT a.answer_set_id, a.test_id, t.test_name, t.test_image, a.test_date, a.completed FROM answer_set a JOIN test t ON t.test_id = a.test_id WHERE a.user_id = ? ORDER BY a.test_id ASC"
       return await executeQuery(sql, user_id);
     } 
     catch (error) {
@@ -220,3 +227,5 @@ class CompanyDal {
 }
 
 export default new CompanyDal();
+
+/* ; */
