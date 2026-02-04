@@ -8,7 +8,8 @@ import { AuthContext } from '../../context/AuthContext/AuthContext';
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTestAdmin = ({ test }) => {
-  const {token} = useContext(AuthContext)
+
+  const {token} = useContext(AuthContext);
   const [isPublic, setIsPublic] = useState(test.is_public);
   const navigate = useNavigate();
 

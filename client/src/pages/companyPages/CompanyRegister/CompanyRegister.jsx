@@ -42,7 +42,7 @@ const CompanyRegister = () => {
   const [valErrors, setValErrors] = useState('');
   const [fetchError, setFetchError] = useState('');
 
-  const { token, userData } = useContext(AuthContext);
+  const { token } = useContext(AuthContext)
 
   const navigate = useNavigate()
 

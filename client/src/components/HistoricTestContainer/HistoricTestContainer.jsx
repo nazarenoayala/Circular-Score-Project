@@ -41,16 +41,17 @@ export const HistoricTestContainer = ({ id }) => {
           <div className='historyTestCard' key={i}>
             <p className='fw-bold'>{test.test_date ? test.test_date.split('-').reverse().join('-') : 'No hay tests'}</p>
             <p>-</p>
-            <p>PUNTUACIÓN: <span className='fw-bold'>{test.completed && test.result}</span></p>
+
+            <p>PUNTUACIÓN: <span className='fw-bold'>{test.completed && `${test.result} / ${test.max_score}`}</span></p>
             <p className='fw-bold'>{test.completed ? `${parseInt(test.result_total)} %`  : 'NC'} </p>
-            {test.completed ? <MyButton
+            {!test.test_date ? null : test.completed ? <MyButton
               btnClass='btn-green'
               text='Detalles'
               onSubmit={() => navigate('/userTestRecord')}
             />
             :
             <MyButton
-              btnClass='btn-green'
+              btnClass='btn-blue'
               text='Continuar'
               onSubmit={() => navigate(`/CompanyTestSaved/${id}/${test.answer_set_id}`)}
             />
