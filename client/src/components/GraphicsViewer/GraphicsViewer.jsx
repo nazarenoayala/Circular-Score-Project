@@ -8,27 +8,33 @@ const GraphicsViewer = () => {
   
   const {token} = useContext(AuthContext);
   
-  const [currentScore, setCurrentScore] = useState();
-  const [sectorScore, setSectorGr] = useState();
-  const [globalScore, setGlobalGr] = useState();
+  const [sectorAvg, setSectorAvg] = useState();
+  const [globalAvg, setGlobalAvg] = useState();
 
-  /* useEffect(() => {
+  useEffect(() => {
     const getChartsData = async () => {
 
       try {
         
-        let result = await fetchData('/statistics/oneTestResults', 'GET', null, token);
+        let resultSector = await fetchData('/statistics/sameSectorTests', 'GET', null, token);
+        setSectorAvg();
+
+        let resultGlobal = await fetchData('/statistics/globalTests', 'GET', null, token);
+
+        setGlobalAvg();
+
+        
       } catch (error) {
         console.log(error);
       }
     }
     getChartsData();
-  }) */
+  }) 
 
   return (
     <>
       <SimpleBarChart
-        chartData={[currentScore, sectorScore, globalScore]}
+        chartData={[ sectorScore, globalScore]}
       />
     </>
   )
