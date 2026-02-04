@@ -98,10 +98,10 @@ const CompanyRegister = () => {
       companyRegisterSchema4.parse({... newCompany1});
       console.log('Validación ok'); 
       //mandar datos al Back
-      const res = await fetchData(`/company/register`, 'POST', newCompany1, token);
+      const res = await fetchData(`/company/register/${userData.user_id}`, 'POST', newCompany1, token);
       console.log(res);
       if (res) {
-        const res2 = await fetchData(`/company/registerUpdate`, 'PUT', newCompany2, token);
+        const res2 = await fetchData(`/company/registerUpdate/${userData.user_id}`, 'PUT', newCompany2, token);
         console.log(res2);
       }
       navigate('/allTests');

@@ -48,7 +48,7 @@ export const FormUserLogin = () => {
 
       // Si es tipo admin, navega a test, si no depende de la condición del user
       if(userByToken.data.userData.type === 1){
-        navigate('tests');
+        navigate('/tests');
       } else {
         // Si hay empresa registrada, a allTests, si n
         // o a registrar empresa.

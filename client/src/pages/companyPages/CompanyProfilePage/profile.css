@@ -12,14 +12,14 @@
     justify-content: space-between;
 
 
-    .ranking {
+      .ranking {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      align-self: flex-end;
+      }
 
       .data {
         min-width: 20rem;
-      }
+      } 
 
       .position {
         background-color: rgb(25, 43, 72);
@@ -130,5 +130,3 @@
     }
 
   }
-
-}

@@ -19,7 +19,7 @@ const CardTestAdmin = ({ test }) => {
   const disableTest = async () => {
 
     try {
-      // Falta meter el token a esta petición:
+      
       let result = await fetchData(`/test/disableTest/${test.test_id}`, 'PUT', null, token);
       setIsPublic(0);
       console.log(result);
@@ -31,7 +31,7 @@ const CardTestAdmin = ({ test }) => {
   const enableTest = async () => {
 
     try {
-      // Falta añadir el token;
+      
       let result = await fetchData(`/test/enableTest/${test.test_id}`, 'PUT', null, token);
       setIsPublic(1);
       console.log(result);

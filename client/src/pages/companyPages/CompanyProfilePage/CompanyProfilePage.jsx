@@ -68,13 +68,9 @@ const CompanyProfilePage = () => {
         </div>
 
         <div className="ranking">
-          <div>
-            <h4>Ranking</h4>
-            <p className="position">1</p>
-          </div>
           <MyButton
             btnClass={'btn-green'}
-            text={'Editar'}
+            text={'Editar Información'}
             onSubmit={() => navigate(`/editCompany/${id}`)}
           />
         </div>
