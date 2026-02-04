@@ -16,5 +16,8 @@ router.delete('/deleteAnswerSet/:id', verifyToken, answerSetController.deleteAns
 // Ruta para finalizar un test
 router.put('/finishTest', verifyToken, answerSetController.finishTest);
 
+//trae todos los tests finalizados para un usuario
+router.get('/allAnswersTestByUser/:user_id', verifyToken, answerSetController.allAnswersTestByUser);
+
 
 export default router;

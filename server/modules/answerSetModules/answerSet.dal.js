@@ -92,6 +92,20 @@ class AnswerSetDal {
 
   }
 
+  allAnswersTestByUser = async (values) =>{
+
+    try {
+      
+      let sql = 'SELECT COUNT (* )AS set_answer_finished FROM answer_set WHERE user_id = ?'
+      return await executeQuery(sql,values)
+
+    } catch (error) {
+      throw error;
+      
+
+    }
+  }
+
 }
 
 export default new AnswerSetDal();

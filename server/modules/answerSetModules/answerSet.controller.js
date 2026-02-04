@@ -81,6 +81,25 @@ class AnswerSetController {
     }
   }
 
+allAnswersTestByUser = async (req, res) => {
+
+  const {user_id} = req.params;
+try {
+   let [result] = await answerSetDal.allAnswersTestByUser([user_id])
+   console.log(result);
+      res.status(200).json({message: 'ok', numtest: result.set_answer_finished});
+   
+   }catch(error) {
+    console.log(error);
+    
+      res.status(error.status || 500).json({message: error.message});
+  
+}
+ 
+
+}
+
+
 }
 
 export default new AnswerSetController();

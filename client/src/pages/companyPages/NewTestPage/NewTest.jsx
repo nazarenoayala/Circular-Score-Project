@@ -34,6 +34,9 @@ const NewTest = () => {
   let answer_set_id = searchParams.get('answer_set_id');
   console.log(answer_set_id)
 
+  // Lógica para hacer la barra de progreso de realización del test
+  let progressBarResult = ((index + 1) * 100) / 20;
+
   useEffect(() => {
 
     if (answer_set_id) {
@@ -211,9 +214,12 @@ const NewTest = () => {
   return (
     <div className='oneQuestionPages'>
       <div className='progress-bar'>
-        <h4>7 %</h4>
+        <h4>Pregunta {index + 1} de 20 </h4>
         <div className='progress-bar-container'>
-          <div className='progress-bar-result'>
+          <div 
+            className='progress-bar-result'
+            style={{width: `${progressBarResult}%`}}
+          >
           </div>
         </div>
       </div>
@@ -230,34 +236,6 @@ const NewTest = () => {
           setAnswer={setAnswer}
         />}
       </div>
-
-      {/* {<div className='btn-class'>
-        {index > 0 && <MyButton
-          text='Pregunta anterior'
-          btnClass='btn-green'
-          onSubmit={() => setIndex(index - 1)}
-        />}
-
-        {index < questions?.length - 1 && <MyButton
-          text='Siguiente Pregunta'
-          btnClass='btn-green'
-          onSubmit={() => setIndex(index + 1)}
-        />}
-
-        {index < questions?.length - 1 ? <MyButton
-          text='Volver atrás (guardar)'
-          btnClass='btn-blue'
-          onSubmit={saveQuestions}
-        />
-        :
-        <MyButton
-          text='Terminar test'
-          btnClass='btn-blue'
-          onSubmit={finishTest}
-        />
-        }
-
-      </div>} */}
 
       {renderButtons()}
     </div>
