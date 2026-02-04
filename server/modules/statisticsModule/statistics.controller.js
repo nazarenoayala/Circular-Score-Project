@@ -23,6 +23,7 @@ class StatisticsController {
     const {test_id} = req.params;
     const {user_id} = req
     const values = [user_id, test_id];
+console.log(test_id);
 
     try {
 

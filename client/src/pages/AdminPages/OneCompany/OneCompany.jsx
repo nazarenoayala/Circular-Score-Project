@@ -73,7 +73,7 @@ const OneCompany = () => {
         ) : (
           <MyButton
           text={"Habilitar"}
-          btnClass='btn-red button fw-bold px-4'
+          btnClass='btn-blue button fw-bold px-4'
           onSubmit={()=>delLogicCompany(user_id)}
         />
         )}

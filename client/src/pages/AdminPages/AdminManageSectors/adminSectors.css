@@ -1,0 +1,17 @@
+.container-admin {
+    max-width: 800px;
+}
+
+.sector-titles {
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.section {
+    background-color: #fff;
+    border-radius: 0.4rem;
+    border: none;
+    box-shadow: 0 0.2rem 0.25rem rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}

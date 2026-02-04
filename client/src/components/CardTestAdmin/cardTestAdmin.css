@@ -15,6 +15,19 @@
   --buttons-gap: 1rem;
 }
 
+@media (max-width: 450px) {
+
+  .card-test {
+    margin-bottom: 1rem;
+    padding-block: 1rem;
+
+  }
+
+  .image-title {
+    max-width: 17rem;
+  }
+}
+
 .card-test {
   display: flex;
   flex-direction: column;

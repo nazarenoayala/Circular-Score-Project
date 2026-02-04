@@ -14,6 +14,7 @@ const OneTestCompany = () => {
   // Nos traemos el array de los test
   const { test , token, prevTestScore } = useContext(AuthContext);
   console.log('prevtestscore', prevTestScore);
+  console.log(test);
   
   // Usamos el useParams para rescatar el id del parámetro dinámico para no tener que volver a hacer la llamada a la base de datos
   const { id } = useParams();
@@ -41,11 +42,11 @@ const OneTestCompany = () => {
         <h2>{oneTest[0].test_name}</h2>
         <img src={`${urlImage}/ODSimages/${oneTest[0].test_image}`} alt="" />
         <div className='btnOneTest'>
-          <MyButton
+          {oneTest[0].is_public == 1 && <MyButton
             text='Nuevo test'
             btnClass='btn-green'
             onSubmit={createNewAnswerSet}
-          />
+          />}
           <MyButton
             text='Volver atrás'
             btnClass='btn-blue'
@@ -53,7 +54,7 @@ const OneTestCompany = () => {
           />
         </div>
       </div>
-      <h3 className='p-3'>Tests realizados</h3>
+      <h3 className='title p-3'>Tests realizados</h3>
       <div className='historicTestContainer'>
         
         <HistoricTestContainer id = {id}/>
