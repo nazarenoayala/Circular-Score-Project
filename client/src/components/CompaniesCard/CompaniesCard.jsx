@@ -17,7 +17,7 @@ export const CompaniesCard = ({
   const {user_id} = useParams();
   
   //guarda los tests de cada empresa
-  const [testsRealizados, setTestsRealizados] = useState([]);
+  const [testsRealizados, setTestsRealizados] = useState(0);
   
 
   const handleAccordion = async () => {
@@ -25,16 +25,15 @@ export const CompaniesCard = ({
     try {
       //  ruta  que llama a userDal.showTestData para pedir los tests
       let res = await fetchData(
-        `/user/showTestData/${allCompanies.user_id}`,
+        `/answerSet/allAnswersTestByUser/${allCompanies.user_id}`,
         'GET',
         null,
         token,
       );
-
-      //la Api devuelve una lista de tests en utdResult.
-      //el tamaño del array es el nºtotal de test realizado, si no hay test el array está vacío y su length 0.
-      setTestsRealizados(res.data.utdResult || []);
-
+     setTestsRealizados(res.data.numtest);
+      console.log(res.data);
+     
+     
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +94,7 @@ export const CompaniesCard = ({
                     onSubmit={()=>delLogicCompany(allCompanies.user_id)}
                   />
                   )}
-              <strong>Tests Realizados: {testsRealizados.length} </strong>
+              <strong>Tests Realizados: {testsRealizados} </strong>
             </div>
           </div>
         </Accordion.Body>
