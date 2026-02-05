@@ -23,7 +23,7 @@ const AllTestsPage = () => {
       try {
 
         let result = await fetchData('/statistics/allRecentResults', 'GET', null, token);
-        console.log(result);
+      
 
         const updateAllTest = allTest?.map((test, index) => ({
           ...test,

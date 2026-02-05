@@ -91,15 +91,13 @@ const EditTest = () => {
         }
         setQuestions([...questions, newQuestionText])
     }
-    console.log("*****", test);
+   
     
     const saveChanges = async () =>{
         try {
             //Datos que enviare a la DB
-            console.log("actualizando titulo ", testName);
-            
+           
           const resultTitle = await fetchData(`/test/updateName/${id}`, 'PUT', {test_name: testName}, token)  
-          console.log("res del server", resultTitle);
           
             //Creo array de promesas
           const promises = questions.map((elem)=>{  

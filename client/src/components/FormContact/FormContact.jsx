@@ -28,7 +28,6 @@ export const FormContact = () => {
       contactFormSchema.parse(contact);
       //mandar datos al back
       const res = await fetchData('/user/contact', 'POST', contact);
-      console.log(res);
       setContact(initiaalValues)
       setContactMess('Mensaje enviado')
     } catch (error) {

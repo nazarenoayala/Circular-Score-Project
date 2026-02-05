@@ -22,8 +22,7 @@ export const FormUserResPassword = ({ setShowPage }) => {
      
       // Llamamos al back para que busque el email del usuario
       const res = await fetchData("/user/findResetPassword", 'POST', {user_email: userEmail});
-      console.log(res.data.userExists.length);
-      
+    
       if(res.data.userExists.length !== 0){
         setAlertMsg('Compruebe su correo para reestablecer su contraseña.');
         setEmailSent(true);
@@ -41,8 +40,7 @@ export const FormUserResPassword = ({ setShowPage }) => {
         error.issues.forEach((elem) => {
         ErrorObject[elem.path[0]] = elem.message;
         });
-        console.log(ErrorObject);
-
+       
         setErrorValidation(ErrorObject);
       } else {
         console.log('otro error', error);

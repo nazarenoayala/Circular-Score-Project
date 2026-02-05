@@ -26,7 +26,7 @@ const OneTest = () => {
       try {
         let result = await fetchData(`/company/allCompaniesData/${id}`, 'GET', null, token);
         setAllTestsCompanies(result.data.result)
-        console.log(result, "AAAAAAAAAAAA");
+        
       } catch (error) {
         console.log(error);
       }

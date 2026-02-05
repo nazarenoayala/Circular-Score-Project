@@ -39,8 +39,7 @@ export const FormUserRegister = ({ setShowPage }) => {
         error.issues.forEach((elem) => {
           ErrorObject[elem.path[0]] = elem.message;
         });
-        console.log(ErrorObject);
-
+        
         setErrorValidation(ErrorObject);
       } else {
         console.log('otro error', error);

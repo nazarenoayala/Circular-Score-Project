@@ -13,8 +13,6 @@ const OneTestCompany = () => {
 
   // Nos traemos el array de los test
   const { test , token, prevTestScore } = useContext(AuthContext);
-  console.log('prevtestscore', prevTestScore);
-  console.log(test);
   
   // Usamos el useParams para rescatar el id del parámetro dinámico para no tener que volver a hacer la llamada a la base de datos
   const { id } = useParams();
@@ -26,8 +24,7 @@ const OneTestCompany = () => {
     try {
 
       let result = await fetchData(`/answerSet/newAnswerSet/${id}`, 'POST', null, token);
-      console.log(result);
-
+      
       navigate(`/newTest/${id}`);
       
     } catch (error) {

@@ -22,7 +22,6 @@ const CardTestAdmin = ({ test }) => {
       
       let result = await fetchData(`/test/disableTest/${test.test_id}`, 'PUT', null, token);
       setIsPublic(0);
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +33,6 @@ const CardTestAdmin = ({ test }) => {
       
       let result = await fetchData(`/test/enableTest/${test.test_id}`, 'PUT', null, token);
       setIsPublic(1);
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
