@@ -44,7 +44,6 @@ class UserController {
       // Enviamos correo de confirmación
       const user_id = result.insertId;
       await sendActivationMail({user_email: user_email, user_id: user_id});
-
       res.status(200).json({message: 'Datos insertados en BD'});
 
     } catch (error){

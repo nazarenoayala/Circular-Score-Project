@@ -39,7 +39,7 @@ class StatisticsDal {
       
       // Extraemos primero los últimos sets de respuestas completados para las empresas del sector. Las consultas vienen de un .js que trae un objeto con las strings sql
       let resultAswSets = await executeQuery(sql.sectorTestAnswerSets, [sector_id]);
-
+      
       // Devuelve un objeto, por lo que lo pasamos a array, direcamente los valores
       let answerSetArr = [];
       for (let elem of resultAswSets){
@@ -52,7 +52,7 @@ class StatisticsDal {
         for(let elem of arr){
           let val = [question_count, test_id, elem]
           let resultScore = await executeQuery(sql.allAnswerSetAvg, val);
-          total = total + resultScore[0].answerSum; 
+          total = total + parseInt(resultScore[0].answerSum); 
         }
         return total;
       }
@@ -82,12 +82,13 @@ class StatisticsDal {
         answerSetArr.push(elem.aSet);
       }
       
+      
       const sumAllScores = async (arr) => {
         let total = 0;
         for(let elem of arr){
           let val = [question_count, test_id, elem]
           let resultScore = await executeQuery(sql.allAnswerSetAvg, val);
-          total = total + resultScore[0].answerSum; 
+          total = total + parseInt(resultScore[0].answerSum); 
         }
         return total;
       }
