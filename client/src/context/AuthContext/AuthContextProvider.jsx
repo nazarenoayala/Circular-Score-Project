@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
   const [thisTest, setThisTest] = useState();
   const [prevTestScore, setPrevTestScore] = useState();
   const [currentTestScore, setCurrentTestScore] = useState();
+  const [reset, setReset] = useState(false);
 
   useEffect(() => {
 
@@ -46,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
     }
     fetchTest();
 
-  }, []);
+  }, [reset]);
 
   const logout = () => {
     setUserData();
@@ -69,6 +70,8 @@ export const AuthContextProvider = ({ children }) => {
         setPrevTestScore,
         setCurrentTestScore,
         currentTestScore,
+        reset,
+        setReset
         setThisTest,
         thisTest
       }}>

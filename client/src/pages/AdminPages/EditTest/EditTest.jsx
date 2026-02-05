@@ -13,7 +13,7 @@ const EditTest = () => {
     const navigate = useNavigate();
     //Rescato id del test
     const {id} = useParams(); 
-    const {token, test} = useContext(AuthContext);
+    const {token, test, setReset, reset} = useContext(AuthContext);
 
     //Estado del titulo
     const [testName, setTestName] = useState("");
@@ -71,13 +71,28 @@ const EditTest = () => {
     }
 
     const addQuestion = (question_text) => {
+        let idGenerator = 0;
+
+        //Recorro array de preguntas para buscar si hay un ID mayor a 0
+        for (let i = 0; i < questions.length; i++) {
+            if (questions[i].question_id > idGenerator){
+                idGenerator = questions[i].question_id;
+            }
+        }
+
+        //Sumo 1 al id mas alto
+        const newId = idGenerator + 1;
+
         const newQuestionText = {
             question_text: question_text,
-            test_id: id
+            test_id: id,
+            question_id: newId,
+            premium: 1
         }
         setQuestions([...questions, newQuestionText])
     }
-
+    console.log("*****", test);
+    
     const saveChanges = async () =>{
         try {
             //Datos que enviare a la DB
@@ -112,7 +127,7 @@ const EditTest = () => {
             }else{
                 setMessage("Error al guardar datos")
             }
-            
+            setReset(!reset);
         } catch (error) {
             console.log(error);
             
