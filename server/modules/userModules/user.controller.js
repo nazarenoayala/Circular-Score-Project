@@ -1,6 +1,6 @@
 import {compareString , hashString} from '../../utils/bcryptUtils.js'
 import {generateToken} from '../../utils/jwtUtils.js'
-import sendActivationMail from '../../utils/nodeMailer.js';
+import sendActivationMail, { contactUs } from '../../utils/nodeMailer.js';
 import { resetPasswordMail } from '../../utils/nodeMailer.js';
 import dotenv from 'dotenv'
 import userDal from './user.dal.js';
@@ -241,7 +241,19 @@ class UserController {
   }
  
  
+  contact = async (req, res) => {
 
+    try {
+
+      let resultContact = await contactUs(req.body);
+
+      res.status(200).json({message: 'Correo recibido del usuario', resultContact});
+      
+    } catch (error) {
+      res.status(500).json(error);
+    }
+
+  }
 
 }
 
