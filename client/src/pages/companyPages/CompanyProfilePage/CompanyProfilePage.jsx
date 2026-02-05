@@ -30,7 +30,7 @@ const CompanyProfilePage = () => {
           token,
         );
         setAllCompanyTests(result.data.result);
-        console.log('eeeeeeeeeeeeeeeeee', result);
+      
       } catch (error) {
         console.log(error);
       }

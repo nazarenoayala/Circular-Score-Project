@@ -19,7 +19,7 @@ export const HistoricTestContainer = ({ id }) => {
       try {
 
         let result = await fetchData(`/statistics/oneTestHistory/${id}`, 'GET', null, token);
-        console.log(result);
+        
         setHistory(result.data.result);
 
       } catch (error) {

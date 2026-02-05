@@ -31,9 +31,7 @@ export const CompaniesCard = ({
         token,
       );
      setTestsRealizados(res.data.numtest);
-      console.log(res.data);
-     
-     
+  
     } catch (error) {
       console.log(error);
     }
@@ -41,12 +39,9 @@ export const CompaniesCard = ({
 
 
   const delLogicCompany = async (user_id) => {
-   
-    console.log("comapanyyyy", allCompanies);
  
       try {
         let res = await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
-        console.log("copmanuyyyyy", res);
         setIsDeleted(prev => (prev === 0 ? 1 : 0));
  
      } catch (error) {

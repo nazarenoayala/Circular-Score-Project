@@ -35,7 +35,6 @@ export const FormEditCompany = ({
 }) => {
     //funcion para filtrar ciudades correspondientes a la provincia seleccionada
     const localityProvince = city?.filter(e => Number(e.province_id) === Number(provinceDataId)) || [];
-    console.log("EDIT COMPANY DATA ARRAYAS", editCompanyData);
 
     return (
         <Card>
