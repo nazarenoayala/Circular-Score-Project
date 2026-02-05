@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Form } from 'react-bootstrap'
 
-export const EditTestCategory = ({categories, testName, selectedCategory, handleTitleChange, handleCategoryChange}) => {
+export const EditTestCategory = ({testName, handleTitleChange}) => {
   return (
             <Form>
             {/* Seccion edicion titulo / categoría */}

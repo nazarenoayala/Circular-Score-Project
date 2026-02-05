@@ -13,5 +13,8 @@ routes.put('/disableTest/:id', verifyToken, testController.disableTest);
 // Ruta para habilitar Test:
 routes.put('/enableTest/:id', verifyToken, testController.enableTest)
 
+//Ruta para editar titulo/categoría del test
+routes.put('/updateName/:id', testController.updateTestName);
+
 export default routes;
 

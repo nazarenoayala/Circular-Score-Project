@@ -18,6 +18,8 @@ const AdminManageSectors = () => {
     const [newSector, setNewSector] = useState("");
     //Estado para modal de confirmacion de delete
     const [showModal, setShowModal] = useState(false);
+    //Estado para modal de edicion exitosa
+    const [showModalSucces, setShowModalSucces] = useState(false);
 
     useEffect(() => {
             bringSectors();
@@ -41,9 +43,10 @@ const AdminManageSectors = () => {
     const createSector = async () =>{
         try {
             const res = await fetchData('/sector/create', 'POST', {sector_name: newSector}, token);
-            if (res?.status === 200) {
+            if (res?.status >= 200 && res?.status < 300) {
             setNewSector("");
-            bringSectors();
+            await bringSectors(); //espero a que la lista se refresque
+            setShowModalSucces(true);
             }
         } catch (error) {
             console.log(error);
@@ -53,11 +56,15 @@ const AdminManageSectors = () => {
 
     const updatedSector = async () =>{
         try {
+            console.log("1. Iniciando actualización...");
             const res = await fetchData(`/sector/update/${selectedSectorId}`, 'PUT', {sector_name: editSector}, token);
-            if (res?.status === 200) {
+            console.log("2. Respuesta recibida:", res);
+            if (res?.status >= 200 && res?.status < 300) {
+                console.log("3. Status 200, refrescando...");
                 setSelectedSectorId(""); //reinicio el select
                 setEditSector("");
                 await bringSectors();
+                setShowModalSucces(true);
             }
         } catch (error) {
             console.log(error);
@@ -70,11 +77,11 @@ const AdminManageSectors = () => {
         const searchToken = localStorage.getItem("credentials");
         try {
             const res = await fetchData(`/sector/delete/${selectedSectorId}`, 'DELETE', null, searchToken);
-            if (res?.status === 200) {
+            if (res?.status >= 200 && res?.status < 300) {
             setSelectedSectorId("");
             setEditSector("");
             setShowModal(false);
-            bringSectors();
+            await bringSectors();
             }
         } catch (error) {
             console.log(error);       
@@ -163,7 +170,28 @@ const AdminManageSectors = () => {
                 </Card.Body>
             </Card>
         </Container>
-        <Modal show={showModal} onHide={handleCloseModal} centered>
+            <Modal
+                show={showModalSucces} 
+                onHide={handleCloseModal}
+                centered
+            >
+                    <Modal.Header>
+                        <Modal.Title>CAMBIOS GUARDADOS</Modal.Title>
+                    </Modal.Header>
+                        <Modal.Body>Se han realizado los cambios</Modal.Body>
+                            <Modal.Footer>
+                                <MyButton
+                                    text="OK"
+                                    onSubmit={() => setShowModalSucces(false)}
+                                />
+                            </Modal.Footer>
+                 </Modal>
+
+            <Modal 
+                show={showModal} 
+                onHide={handleCloseModal} 
+                centered
+                >
                 <Modal.Header>
                     <Modal.Title>Confirmacion eliminar categoría</Modal.Title>
                 </Modal.Header>
