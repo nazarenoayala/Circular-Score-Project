@@ -16,6 +16,8 @@ export const FormCompanyRegister2 = ({
   setValErrors
 }) => {
 
+  //funcion para pasar de vista haciendo antes una validación de los datos 
+
   const turnPage = async() => {
         try {
           companyRegisterSchema2.parse({... newCompany1});

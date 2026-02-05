@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import '../../../components/FormCreateTest/formCreateTest.css';
 import { FormCreateTest } from '../../../components/FormCreateTest/FormCreateTest';
-/* import { createTestSchema} from '../../../../schemas/createTest' */
 import { ZodError } from 'zod';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
