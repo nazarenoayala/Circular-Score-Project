@@ -12,9 +12,9 @@ routes.get('/allRecentResults', verifyToken, statisticsController.getAllRecentRe
 routes.get('/oneTestHistory/:test_id', verifyToken, statisticsController.getHistoricFromOneTest);
 
 // Ruta para obtener comparativas con la media de esa categoría de test filtrado por sector de la empresa.
-routes.get('/sectorAvgScore/', verifyToken, statisticsController.getSectorAvgScore);
+routes.post('/sectorAvgScore/', verifyToken, statisticsController.getSectorAvgScore);
 
 // Ruta para obtener comparativas con la media global en la puntuación para un test concreto
-routes.get('/globalAvgScore', verifyToken, statisticsController.getGlobalAvgScore);
+routes.post('/globalAvgScore', verifyToken, statisticsController.getGlobalAvgScore);
 
 export default routes;

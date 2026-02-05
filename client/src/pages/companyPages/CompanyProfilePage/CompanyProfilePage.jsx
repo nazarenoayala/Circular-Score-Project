@@ -88,6 +88,14 @@ const CompanyProfilePage = () => {
                     alt=""
                   />
                   <h3>{elem?.test_name}</h3>
+                  <div className='progressBarContainer'>
+                    <div 
+                      className='progressBarHigh'
+                      style={{width: `${elem?.result_total}%`}}
+                    >
+                    </div>
+                  </div>
+                  <h3>{parseInt(elem?.result_total)} %</h3>
                   <div
                     className="btn-details"
                     onClick={() =>

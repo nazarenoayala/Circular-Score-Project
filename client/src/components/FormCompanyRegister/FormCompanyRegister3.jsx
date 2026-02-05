@@ -16,9 +16,14 @@ export const FormCompanyRegister3 = ({
   valErrors,
   setValErrors
 }) => {
+
+  // filtramos las ciudades para que aparezcan, dependiendo de la provincia elegida
+  
   const localityProvince = locality?.filter(
     (e) => e.province_id === Number(newCompany2.province_id),
   );
+
+  //funcion para pasar de vista haciendo antes una validación de los datos 
 
   const turnPage = async() => {
           try {

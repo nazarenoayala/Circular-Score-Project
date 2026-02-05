@@ -16,6 +16,8 @@ export const FormCreateTest = ({
 }) => {
   const navigate = useNavigate();
 
+  //funcion para poder eliminar una pregunta del array.
+
   const deleteQuestion = (idx) => {
     const newArray = questions.filter((e, i) => i !== idx);
     setQuestions(newArray);

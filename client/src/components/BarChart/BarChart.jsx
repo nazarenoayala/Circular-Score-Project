@@ -1,43 +1,42 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 
 import './barChart.css'
-const SimpleBarChart = ({sectorScore, globalScore}) => {
+const SimpleBarChart = ({chartData}) => {
   
+  
+  const {sectorAvg, globalAvg} = chartData;
+  console.log("actual *****",sectorAvg, globalAvg);
+
   // Recuperamos la puntuación ya procesada desde el authcontext, que recogimos del último test realizado antes que el actual, además de los datos de las respuestas del actual
   const {prevTestScore, currentTestScore} = useContext(AuthContext);
 
   // Sumamos todos los valores para después dividirlo por en número de preguntas
-  const currentResult = currentTestScore.answers
-                        .reduce((tot, num)=>{return tot + num},0) * 100 / (currentTestScore.count * 5);
-  console.log("resultado procesado", currentResult  );
-  
-  
+  const currentResult = Math.trunc(currentTestScore.answers
+                        .reduce((tot, num)=>{return tot + num},0) * 100 / (currentTestScore.count * 5));
 
   const data = [
     {
       name: 'Previo',
-      propio: currentResult,
-      comparacion: parseInt(prevTestScore?.testRes),
+      Propio: currentResult,
+      Comparacion: parseInt(prevTestScore?.testRes),
       amt: 100,
     },
     {
       name: 'Por sector',
-      propio: currentResult,
-      comparacion: 50,
+      Propio: currentResult,
+      Comparacion: sectorAvg,
       amt: 100,
     },
     {
       name: 'Global',
-      propio: currentResult,
-      comparacion: 50,
+      Propio: currentResult,
+      Comparacion: globalAvg,
       amt: 100,
     },
   ];
-
-
 
   return (
 
@@ -57,8 +56,8 @@ const SimpleBarChart = ({sectorScore, globalScore}) => {
       <YAxis fontSize={'1.5rem'} fontWeight={'bold'} width="auto" />
       <Tooltip />
       <Legend align='left' iconSize={'24px'} iconType='circle' layout='horizontal'/>
-      <Bar dataKey="comparacion" fill="#8884d8" activeBar={{ fill: 'pink', stroke: 'blue' }} radius={[10, 10, 0, 0]} />
-      <Bar  dataKey="propio" fill="#82ca9d" activeBar={{ fill: 'gold', stroke: 'purple' }} radius={[10, 10, 0, 0]} />
+      <Bar dataKey="Comparacion" fill="#447EF7" activeBar={{ fill: 'pink', stroke: 'blue' }} radius={[10, 10, 0, 0]} />
+      <Bar  dataKey="Propio" fill="#00D47E" activeBar={{ fill: 'gold', stroke: 'purple' }} radius={[10, 10, 0, 0]} />
       </BarChart>
   );
 };

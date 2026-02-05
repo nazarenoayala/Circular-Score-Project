@@ -47,7 +47,8 @@ export const HistoricTestContainer = ({ id }) => {
             {!test.test_date ? null : test.completed ? <MyButton
               btnClass='btn-green'
               text='Detalles'
-              onSubmit={() => navigate('/userTestRecord')}
+
+                onSubmit={() => navigate(`/infoOneTest/${test.test_id}/${test.answer_set_id}?navigate=1`)}
             />
             :
             <MyButton

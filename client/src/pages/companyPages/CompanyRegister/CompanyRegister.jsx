@@ -73,6 +73,7 @@ const CompanyRegister = () => {
   };
 
   // pedir a base de datos localidades y provincias. 
+
   useEffect(() => {
     const fetchDataGeo = async () => {
       try {
@@ -89,6 +90,7 @@ const CompanyRegister = () => {
 
 
   // Mandamos datos al back, POST y PUT con Validaciones. 
+  
   const onSubmit = async (e) => {
     try {
       e.preventDefault()

@@ -110,4 +110,28 @@ export const resetPasswordMail = async (userData) => {
   }
 }
 
+export const contactUs = async(userContact) => {
+
+  const {subject, email, message} = userContact;
+
+  try {
+
+    const info = await transporter.sendMail({
+
+      from: email,
+      to: process.env.MAIL_ADMIN,
+      subject,
+      text: `Mensaje de: ${email} - ${message}`
+    })
+
+    console.log('Correo de contacto enviado', info.messageId);
+    return {info: info}
+
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+
+}
+
 export default sendActivationMail;

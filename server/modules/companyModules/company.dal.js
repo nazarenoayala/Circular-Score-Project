@@ -217,7 +217,8 @@ class CompanyDal {
 
   allCompanyTests = async(user_id) => {
     try {
-      let sql = "SELECT a.answer_set_id, a.test_id, t.test_name, t.test_image, a.test_date, a.completed FROM answer_set a JOIN test t ON t.test_id = a.test_id WHERE a.user_id = ? ORDER BY a.test_id ASC"
+      let sql = "SELECT ans.answer_set_id, ans.test_id, t.test_name, t.test_image, ans.test_date, ans.completed, COALESCE(SUM(a.user_answer), 0) AS result, COUNT(a.user_answer) AS total_answers, CASE WHEN COUNT(a.user_answer) = 0 THEN 0 ELSE (SUM(a.user_answer) / (COUNT(a.user_answer) * 5.0)) * 100 END AS result_total FROM answer_set ans JOIN test t ON t.test_id = ans.test_id JOIN answer a ON a.answer_set_id = ans.answer_set_id WHERE ans.user_id = ? AND ans.answer_set_id = (SELECT MAX(ans2.answer_set_id) FROM answer_set ans2 WHERE ans2.user_id = ans.user_id AND ans2.test_id = ans.test_id) GROUP BY ans.answer_set_id, ans.test_id, t.test_name, t.test_image, ans.test_date, ans.completed ORDER BY ans.test_id ASC;"
+
       return await executeQuery(sql, user_id);
     } 
     catch (error) {
