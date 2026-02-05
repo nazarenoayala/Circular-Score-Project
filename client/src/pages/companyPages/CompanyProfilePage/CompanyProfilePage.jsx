@@ -83,31 +83,37 @@ const CompanyProfilePage = () => {
             return (
               <div className="oneTest" key={idx}>
                 <div className="test-info">
-                  <img
-                    src={`${urlImage}/ODSimages/${elem?.test_image}`}
-                    alt=""
-                  />
-                  <h3>{elem?.test_name}</h3>
-                  <div className='progressBarContainer'>
-                    <div 
-                      className='progressBarHigh'
-                      style={{width: `${elem?.result_total}%`}}
-                    >
-                    </div>
+                  <div className="image-title">
+                    <img
+                      src={`${urlImage}/ODSimages/${elem?.test_image}`}
+                      alt=""
+                    />
+                    <h3>{elem?.test_name}</h3>
                   </div>
-                  <h3>{parseInt(elem?.result_total)} %</h3>
-                  <div
-                    className="btn-details"
-                    onClick={() =>
-                      setShowTestsDetails(
-                        showTestsDetails === elem.answer_set_id
-                        ? null
-                        : elem.answer_set_id,
-                      )
-                    }
-                  >
-                    <img src={uploadImage} className="img" alt="" />
-                    <p>Detalles</p>
+
+                  <div className="progressContainer">
+                    <div className='progressBarContainer'>
+                      <div
+                        className='progressBarHigh'
+                        style={{width: `${elem?.result_total}%`}}
+                      >
+                      </div>
+                    </div>
+                      <h3>{parseInt(elem?.result_total)} %</h3>
+
+                    <div
+                      className="btn-details"
+                      onClick={() =>
+                        setShowTestsDetails(
+                          showTestsDetails === elem.answer_set_id
+                          ? null
+                          : elem.answer_set_id,
+                        )
+                      }
+                      >
+                      <img src={uploadImage} className="img" alt="" />
+                      <p>Detalles</p>
+                    </div>
                   </div>
                 </div>
                 {showTestsDetails === elem.answer_set_id && (
