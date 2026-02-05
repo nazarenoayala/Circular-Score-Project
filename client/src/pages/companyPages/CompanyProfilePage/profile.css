@@ -53,6 +53,39 @@
       vertical-align: middle;
     }
 
+    .progressBarContainer {
+      
+      width: 150px;
+      height: 20px;
+      border-radius: 2rem;
+      background-color: #E5E7EA;
+
+
+      .progressBarHigh {
+        height: 20px;
+        border-radius: 2rem;
+        margin: 0;
+        padding: 0;
+        background-color: #4caf50;
+      }
+
+      .progressBarMed {
+        height: 20px;
+        border-radius: 2rem;
+        margin: 0;
+        padding: 0;
+        background-color: #ff9800;
+      }
+
+      .progressBarLow {
+        height: 20px;
+        border-radius: 2rem;
+        margin: 0;
+        padding: 0;
+        background-color: #f44336;
+      }
+    }
+
     .btn-details{
       display: flex;
       padding: .6rem;

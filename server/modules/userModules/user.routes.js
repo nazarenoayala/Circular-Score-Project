@@ -45,4 +45,7 @@ routes.get('/userByToken', verifyToken, userController.userByToken);
 // Hay que verificar el token con el middleware !!!!
 routes.get('/showTestData/:user_id', userController.showTestData);
 
+// Aquí va la ruta para recibir los datos de un usuario no registrado y que quiera contactar con nosotros
+routes.post('/contact', userController.contact);
+
 export default routes;
