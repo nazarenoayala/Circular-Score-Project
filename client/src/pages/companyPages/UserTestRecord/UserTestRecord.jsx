@@ -6,4 +6,4 @@ const UserTestRecord = () => {
   )
 }
 
-export default UserTestRecord;
+export default UserTestRecord

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import './CompanyTestSaved.css';
 import options from '../../../data/CompanyRegisterData/options';
@@ -12,7 +12,8 @@ const urlImage = import.meta.env.VITE_IMAGES;
 
 const CompanyTestSaved = () => {
   const navigate = useNavigate();
-
+const [searchParams] = useSearchParams();
+const navType = searchParams.get('navigate')
   // Nos traemos el array de los test
   const { test, token, companyData } = useContext(AuthContext);
   console.log('', companyData);
@@ -75,19 +76,7 @@ const CompanyTestSaved = () => {
 console.log(answersTorender);
 
   
-  
-  useEffect(() => {
-    //respuestas guardadas
-    const fetchAnswers = async () => {
-      try {
-        
-      } catch (error) {
-        console.error(error);
-        setLoading(false);
-      }
-    };
-    fetchAnswers();
-  }, []);
+
 
  
 
@@ -120,7 +109,7 @@ console.log(answersTorender);
              <div className='d-flex gap-2'>
               <input type="radio" 
               readOnly
-               checked={answersTorender[elem.question] == options.value}
+               checked
                 />
                 <p className="mb-0 text-muted ">{elem.answer? elem.answer : 'No aplica'}</p>
              </div>
@@ -132,11 +121,16 @@ console.log(answersTorender);
        }
       </div>
       <div className="p-4">
+          {navType?<MyButton
+            text="Volver"
+            btnClass="btn-green"
+            onSubmit={()=>navigate(-1)}
+          />: 
           <MyButton
             text="Continuar Test"
             btnClass="btn-green"
             onSubmit={continueTest}
-          />
+          />}
         </div>
     </div>
   );
