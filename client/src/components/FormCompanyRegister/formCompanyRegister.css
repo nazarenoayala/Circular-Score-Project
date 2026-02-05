@@ -1,28 +1,13 @@
 :root {
-    --form-padding: 0;
+    --padding-fontsize: 1rem;
+  }
 
-    --card-bgcolor: #FFFFFF;
-    --card-border: 1px solid hsl(210, 38%, 95%);
-    --card-border-radious: 16px;
-    --card-padding-block: 2.5rem;
-    --card-padding-inline: 1rem;
-    --card-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --font-weight: 600;
-    --font-size: 1rem;
-    --gap: .9rem;
+  @media (min-width: 450px) {
+    .form-card {
+      display: flex;
+      /* max-width: 40rem; */
 
-    --input-border-radius: 0.5rem;
-    --width: 60%;
-    --padding: 0.2rem;
-    --margin-inline-start: 1rem;
-
-    --title-font-size: clamp(1.9rem, 3vw, 2.5rem);
-    --title-font-weight: 600;
-    --color: #475569;
-    --padding-block: 1.5rem;
-
-    --btn-padding: 1rem;
-    --btn-gap: 2rem;
+    }
   }
 
 @media (max-width: 450px) {
@@ -39,8 +24,19 @@
   .form-card  {
     display: flex;
     justify-content: center;
-    max-width: 50%;
+    max-width: 20rem;
   }
+
+  h3 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  label {
+    text-align: center;
+  }
+
+
   
   .btnform {
     margin-top: 1rem;
@@ -82,48 +78,50 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: var(--form-padding);
+    padding-top: 0;
     
   }
   
   .form-card {
-    background-color: var(--card-bgcolor);
-    border-radius: var(--card-border-radious);
-    padding-block: var(--card-padding-block);
-    padding-inline: var(--card-padding-inline);
-    border: var(--card-border);
-    box-shadow: var(--card-box-shadow);
-    font-weight: var(--font-weight);
-    font-size: var(--font-size);
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding-block: 2.5rem;
+    border: 1px solid hsl(210, 38%, 95%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    font-size: var(--padding-fontsize);
     display: flex;
     flex-direction: column;
-    align-items: left;
-    gap: var(--gap);
+    align-items: center;
+    gap: 0.9rem;
+
+
+
     
     
     .myinput {
-      border-radius: var(--input-border-radius);
-      width: var(--width);
-      padding: var(--padding);
-      margin-inline-start: var(--margin-inline-start);
+      border-radius: 0.5rem;
+      width: 60%;
+      padding: 0.2rem;
+      margin-inline-start: var(--padding-fontsize);
     }
   }
   
 
 
   .title-form {
-    font-size: var(--title-font-size);
-    font-weight: var(--title-font-weight);
-    color: var(--color);
-    padding-block: var(--padding-block);
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
+    font-weight: 600;
+    color: #475569;
+    padding-block: 1.5rem;
     
   }
 
   .btnform {
-    padding: var(--btn-padding);
+    padding: var(--padding-fontsize);
     display: flex;
     justify-content: center;
-    gap: var(--btn-gap);
+    gap: 2rem;
     
   }
 
