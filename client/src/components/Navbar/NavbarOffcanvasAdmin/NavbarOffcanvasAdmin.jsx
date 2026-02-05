@@ -49,28 +49,6 @@ const NavTop = ({ ...props }) => {
               <i className="fa-regular fa-file-lines"></i>
               <Link className='off-link' to={"tests"}>Control de tests</Link>
             </div>
-            <div className="offcontainer-logo">
-              <i className="fa-regular fa-calendar"></i>
-              <Link className='off-link' to={"/AdminTestsRecord"}>Historial de tests</Link>
-            </div>
-
-            <div className="offcontainer-graphics">
-              <details>
-                <summary className='offSumary'>
-                  <i className="fa-solid fa-chart-column"></i>
-                  <p className='text-white'>Datos analíticos</p>
-                </summary>
-                <div className='offoptions-cont pt-2'>
-                  <Link className='off-link' to={"/graphic"}>· Gráficos</Link>
-                  <Link className='off-link' to={"/AdminODSgraphic"}>· Gráficos de ODS</Link>
-                </div>
-              </details>
-            </div>
-
-            {/*   <div className="offcontainer-logo">
-              <i className="fa-solid fa-circle-notch"></i>
-              <Link className='off-link' to={"/IApromptEdit"}>IA Prompt Editor</Link>
-            </div> */}
 
           </div>
         </Offcanvas.Body>

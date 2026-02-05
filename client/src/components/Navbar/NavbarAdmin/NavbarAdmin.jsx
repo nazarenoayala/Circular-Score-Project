@@ -27,7 +27,7 @@ export const NavbarAdmin = () => {
             <i className="fa-regular fa-file-lines"></i>
             <Link className='link' to={"/tests"}>Control de tests</Link>
           </div>
-          <div className="container-logo">
+{/*           <div className="container-logo">
             <i className="fa-regular fa-calendar"></i>
             <Link className='link' to={"/AdminTestsRecord"}>Historial de tests</Link>
           </div>
@@ -48,7 +48,7 @@ export const NavbarAdmin = () => {
           <div className="container-logo">
             <i className="fa-solid fa-circle-notch"></i>
             <Link className='link' to={"/IApromptEdit"}>IA Prompt Editor</Link>
-          </div>
+          </div> */}
         </div>
 
         {/* SIN LINKEAR */}

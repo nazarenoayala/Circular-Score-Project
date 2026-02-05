@@ -27,7 +27,7 @@ export const NavbarUser = () => {
             <i className="fa-regular fa-file-lines"></i>
             <Link className='link' to={"/allTests"}>Todos los tests</Link>
           </div>
-          <div className="container-logo">
+{/*           <div className="container-logo">
             <i className="fa-regular fa-calendar"></i>
             <Link className='link' to={"/userTestRecord"}>Historial de tests</Link>
           </div>
@@ -50,7 +50,7 @@ export const NavbarUser = () => {
           <div className="container-logo">
             <i className="fa-solid fa-circle-notch"></i>
             <Link className='link' to={"/IAChat"}>IA Chat</Link>
-          </div>
+          </div> */}
         </>}
 
         </div>
