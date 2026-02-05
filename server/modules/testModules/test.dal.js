@@ -83,6 +83,16 @@ class TestDal {
       }
     }
     }
+    
+    updateTestName = async (values) =>{
+      try {
+        let sql = 'UPDATE test SET test_name = ? WHERE test_id = ?';
+        let result = await executeQuery(sql, values);
+        return result;
+      } catch (error) {
+        throw error;
+      }
+    }
 }
 
 export default new TestDal();
