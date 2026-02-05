@@ -13,7 +13,7 @@ export const QuestionCard = ({question, answer, setAnswer}) => {
 
   return (
     <div className='questionContainer'>
-      <h2>{question.question_id}. {question.text}</h2>
+      <h2>{question.question_id}. {question.question_text}</h2>
 
       <div className='groupCheck'>
         {values?.map((option, id) => {

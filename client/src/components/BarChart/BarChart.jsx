@@ -1,38 +1,32 @@
 import { useContext } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList } from 'recharts';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 
 import './barChart.css'
 const SimpleBarChart = ({chartData}) => {
   
-  
   const {sectorAvg, globalAvg} = chartData;
-  console.log("actual *****",sectorAvg, globalAvg);
 
   // Recuperamos la puntuación ya procesada desde el authcontext, que recogimos del último test realizado antes que el actual, además de los datos de las respuestas del actual
   const {prevTestScore, currentTestScore} = useContext(AuthContext);
-
-  // Sumamos todos los valores para después dividirlo por en número de preguntas
-  const currentResult = Math.trunc(currentTestScore.answers
-                        .reduce((tot, num)=>{return tot + num},0) * 100 / (currentTestScore.count * 5));
-
+  
   const data = [
     {
       name: 'Previo',
-      Propio: currentResult,
-      Comparacion: parseInt(prevTestScore?.testRes),
+      Propio: currentTestScore,
+      Comparacion: prevTestScore,
       amt: 100,
     },
     {
       name: 'Por sector',
-      Propio: currentResult,
+      Propio: currentTestScore,
       Comparacion: sectorAvg,
       amt: 100,
     },
     {
       name: 'Global',
-      Propio: currentResult,
+      Propio: currentTestScore,
       Comparacion: globalAvg,
       amt: 100,
     },
@@ -55,9 +49,14 @@ const SimpleBarChart = ({chartData}) => {
       <XAxis fontSize={'1.5rem'} fontWeight={'bold'} dataKey="name" />
       <YAxis fontSize={'1.5rem'} fontWeight={'bold'} width="auto" />
       <Tooltip />
-      <Legend align='left' iconSize={'24px'} iconType='circle' layout='horizontal'/>
-      <Bar dataKey="Comparacion" fill="#447EF7" activeBar={{ fill: 'pink', stroke: 'blue' }} radius={[10, 10, 0, 0]} />
-      <Bar  dataKey="Propio" fill="#00D47E" activeBar={{ fill: 'gold', stroke: 'purple' }} radius={[10, 10, 0, 0]} />
+      <Legend align='left' iconSize={'20px'} iconType='square' layout='horizontal'/>
+
+      <Bar dataKey="Comparacion" fill="#447EF7" activeBar={{ fill: 'pink', stroke: 'blue' }} radius={[10, 10, 0, 0]}>
+        <LabelList dataKey="Comparacion" position="top" />
+      </Bar>
+      <Bar dataKey="Propio" fill="#00D47E" activeBar={{ fill: 'gold', stroke: 'purple' }} radius={[10, 10, 0, 0]}>
+        <LabelList dataKey="Propio" position="top" />
+      </Bar>
       </BarChart>
   );
 };

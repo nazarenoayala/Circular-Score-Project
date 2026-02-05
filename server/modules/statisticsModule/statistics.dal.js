@@ -33,7 +33,7 @@ class StatisticsDal {
 
   getSectorAvgScore = async (values) => {
 
-    const {question_count, sector_id, test_id} = values;
+    const {sector_id, test_id} = values;
 
     try {
       
@@ -50,8 +50,16 @@ class StatisticsDal {
       const sumAllScores = async (arr) => {
         let total = 0;
         for(let elem of arr){
-          let val = [question_count, test_id, elem]
+
+          // Necesitamos contar las respuestas que ha dado ese usuario en ese set de respuestas concreto
+          let rawSql = `SELECT COUNT(answer.user_answer) AS count, answer_set.answer_set_id from answer, answer_set where answer_set.answer_set_id = answer.answer_set_id and answer_set.answer_set_id = ?;`
+
+          let resultCount = await executeQuery(rawSql, [elem]);
+
+          let val = [resultCount[0].count, parseInt(test_id), elem];
+          
           let resultScore = await executeQuery(sql.allAnswerSetAvg, val);
+          
           total = total + parseInt(resultScore[0].answerSum); 
         }
         return total;
@@ -70,8 +78,8 @@ class StatisticsDal {
 
   getGlobalAvgScore = async (values) => {
 
-    const {question_count, test_id} = values;
-
+    const {test_id} = values;
+    
     try {
       
       // Extraemos primero los últimos sets de respuestas completados para todas las empresas que hayan completado este test
@@ -86,7 +94,14 @@ class StatisticsDal {
       const sumAllScores = async (arr) => {
         let total = 0;
         for(let elem of arr){
-          let val = [question_count, test_id, elem]
+
+          // Necesitamos contar las respuestas que ha dado ese usuario en ese set de respuestas concreto
+          let rawSql = `SELECT COUNT(answer.user_answer) AS count, answer_set.answer_set_id from answer, answer_set where answer_set.answer_set_id = answer.answer_set_id and answer_set.answer_set_id = ?;`
+
+          let resultCount = await executeQuery(rawSql, [elem]);
+
+          let val = [resultCount[0].count, parseInt(test_id), elem];
+
           let resultScore = await executeQuery(sql.allAnswerSetAvg, val);
           total = total + parseInt(resultScore[0].answerSum); 
         }
