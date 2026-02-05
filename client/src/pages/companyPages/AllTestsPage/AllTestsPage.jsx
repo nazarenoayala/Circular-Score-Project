@@ -9,7 +9,7 @@ const AllTestsPage = () => {
 
   // Nos traemos del AuthContext los datos de los test
   const {test, token} = useContext(AuthContext);
-  console.log(test);
+  
   
   // Añadimos los tests a un Estado
   const [allTest, setAllTest] = useState(test);

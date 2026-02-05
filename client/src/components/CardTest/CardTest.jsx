@@ -7,8 +7,8 @@ import { AuthContext } from '../../context/AuthContext/AuthContext';
 const urlImage = import.meta.env.VITE_IMAGES;
 
 const CardTest = ({test}) => {
-console.log(test);
-
+  
+  // Guardamos el resultado del test anterior aprovechando que lo cargamos aquí, para recogerlo con el context en la vista gráficos
   const navigate = useNavigate();
   const {setPrevTestScore} = useContext(AuthContext);
 

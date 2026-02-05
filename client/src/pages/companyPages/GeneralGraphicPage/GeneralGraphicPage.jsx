@@ -13,7 +13,7 @@ const GeneralGraphicPage = () => {
   const oneTest = test.filter((e) => e.test_id == id);
 
   return (
-    <Container>
+    <Container className="px-3 py-3">
       <Row>
         <GraphicsViewer id={id} oneTest={oneTest}/>
       </Row>

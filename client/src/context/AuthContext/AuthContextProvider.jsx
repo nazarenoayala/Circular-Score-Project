@@ -9,6 +9,7 @@ export const AuthContextProvider = ({ children }) => {
   const [companyData, setCompanyData] = useState();
   const [test, setTest] = useState();
   const [prevTestScore, setPrevTestScore] = useState();
+  const [currentTestScore, setCurrentTestScore] = useState();
 
   useEffect(() => {
 
@@ -51,7 +52,8 @@ export const AuthContextProvider = ({ children }) => {
     setCompanyData();
     localStorage.removeItem("credentials");
   }
-
+  console.log('sssssssssssssssssssssssss', companyData);
+  
   return (
     <>
       <AuthContext.Provider value={{
@@ -64,7 +66,9 @@ export const AuthContextProvider = ({ children }) => {
         logout,
         test,
         prevTestScore,
-        setPrevTestScore
+        setPrevTestScore,
+        setCurrentTestScore,
+        currentTestScore
       }}>
         {children}
       </AuthContext.Provider>

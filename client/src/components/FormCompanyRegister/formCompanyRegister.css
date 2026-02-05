@@ -1,80 +1,130 @@
+:root {
+    --form-padding: 0;
+
+    --card-bgcolor: #FFFFFF;
+    --card-border: 1px solid hsl(210, 38%, 95%);
+    --card-border-radious: 16px;
+    --card-padding-block: 2.5rem;
+    --card-padding-inline: 1rem;
+    --card-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --font-weight: 600;
+    --font-size: 1rem;
+    --gap: .9rem;
+
+    --input-border-radius: 0.5rem;
+    --width: 60%;
+    --padding: 0.2rem;
+    --margin-inline-start: 1rem;
+
+    --title-font-size: clamp(1.9rem, 3vw, 2.5rem);
+    --title-font-weight: 600;
+    --color: #475569;
+    --padding-block: 1.5rem;
+
+    --btn-padding: 1rem;
+    --btn-gap: 2rem;
+  }
+
+@media (max-width: 450px) {
+  .title-form {
+    padding-top: 2rem;
+  }
+  
+  .form-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .form-card  {
+    display: flex;
+    justify-content: center;
+    max-width: 50%;
+  }
+  
+  .btnform {
+    margin-top: 1rem;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    min-width: 18rem;
+  }
+  
+  .checkbox-item {
+    font-size: 0.9rem;
+  }
+}
+
+@media (width > 1000px) {
+  .form-card {
+    width: 50rem;
+  }
+}
+
+@media (width < 1100px) {
+  .form-card {
+    width: 40rem;
+  }
+}
+
+
 .register-profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: -100px;
-  padding: 0.5rem;
-
+  
   .form-main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: var(--form-padding);
+    
   }
-
+  
   .form-card {
-    background-color: #FFFFFF;
-    border-radius: 16px;
-    padding: 2.5rem;
-    border: 1px solid #EDF2F7;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    margin-top: 1rem;
-    font-weight: 600;
-    font-size: 1rem;
+    background-color: var(--card-bgcolor);
+    border-radius: var(--card-border-radious);
+    padding-block: var(--card-padding-block);
+    padding-inline: var(--card-padding-inline);
+    border: var(--card-border);
+    box-shadow: var(--card-box-shadow);
+    font-weight: var(--font-weight);
+    font-size: var(--font-size);
     display: flex;
     flex-direction: column;
     align-items: left;
-    gap: .9rem;
-
+    gap: var(--gap);
+    
+    
     .myinput {
-      border-radius: 0.5rem;
-      width: 60%;
-      padding: 0.2rem;
-      margin-inline-start: 1rem;
+      border-radius: var(--input-border-radius);
+      width: var(--width);
+      padding: var(--padding);
+      margin-inline-start: var(--margin-inline-start);
     }
   }
+  
 
-  @media (width > 1000px) {
-    .form-card {
-      width: 50rem;
-    }
-  }
-
-  @media (width < 1100px) {
-    .form-card {
-      width: 40rem;
-    }
-  }
-
-  @media (width < 900px) {
-    .form-card {
-      width: 30rem;
-    }
-  }
-
-  @media (width < 850px) {
-    .form-card {
-      width: fit-content;
-    }
-
-    .title-form {
-      padding: -2rem;
-    }
-  }
 
   .title-form {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: #475569;
-    margin-left: 50px;
+    font-size: var(--title-font-size);
+    font-weight: var(--title-font-weight);
+    color: var(--color);
+    padding-block: var(--padding-block);
+    
   }
 
   .btnform {
-    padding: 1rem;
+    padding: var(--btn-padding);
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: var(--btn-gap);
+    
   }
 
   /* Estilo check boxes */
@@ -83,12 +133,14 @@
     background-color: #F8FAFC;
     border: 1px solid #E2E8F0;
     border-radius: 0.5rem;
+    
 
     .checkbox-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       line-height: 1.5rem;
       padding: 1rem;
+      
     }
 
     .checkbox-item {
@@ -97,6 +149,7 @@
       display: flex;
       align-items: center;
       cursor: pointer;
+      
     }
   }
 

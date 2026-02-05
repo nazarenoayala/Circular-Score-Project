@@ -69,7 +69,7 @@ export const FormUserRegister = ({ setShowPage }) => {
 
         <Form.Group className="mb-3">
           <Form.Control
-            type="text"
+            type="password"
             placeholder="Contraseña"
             name="password"
             value={registerUser.password}
@@ -79,7 +79,7 @@ export const FormUserRegister = ({ setShowPage }) => {
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Control
-            type="text"
+            type="password"
             placeholder="Confirmar contraseña"
             name="repPassword"
             value={registerUser.repPassword}
