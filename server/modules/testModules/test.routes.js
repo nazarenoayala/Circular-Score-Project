@@ -19,7 +19,7 @@ routes.put('/updateName/:id', testController.updateTestName);
 
 //Ruta para la creación de nuevo Test 
 
-routes.post('/createTest', verifyToken, uploadImage('tests'), testController.createTest);
+routes.post('/createTest', verifyToken, uploadImage('ODSimages'), testController.createTest);
 
 export default routes;
 
