@@ -79,7 +79,13 @@ const OneTest = () => {
                         <div>
                           <Link to={`/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
                           <h5> {elem.sector_name} </h5>
+                          
                         </div>
+                        <div> <MyButton
+                           text={"Detalle del test"}
+                           btnClass={"btn-green"}
+                           onSubmit={() => navigate(`/infoOneTest/${elem.test_id}/${elem.answer_set_id}?navigate=1`)}
+                           /></div>
                         <div className='text-end'>
                           {/* para revertir la fecha de YYYY-MM-DD a DD-MM-YYYY */}
                           <h5> {elem.test_date.split('-').reverse().join('-')} </h5>

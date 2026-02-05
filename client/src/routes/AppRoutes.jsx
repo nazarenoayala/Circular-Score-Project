@@ -39,7 +39,7 @@ const Dashboard = lazy(()=> import('../pages/AdminPages/Dashboard/Dashboard.jsx'
 const Record = lazy(()=> import ('../pages/AdminPages/AdminTestsRecord/AdminTestsRecord.jsx'));
 const AdminGraphics = lazy(()=> import ('../pages/AdminPages/AdminGraphics/AdminGraphics.jsx'));
 const AdminODSGraphics = lazy(()=> import ('../pages/AdminPages/AdminODSGraphic/AdminODSGraphic.jsx'));
-
+const InfoOneTest = lazy(()=> import ('../pages/companyPages/ComanyTestSaved/CompanyTestSaved.jsx'));
 
 export const AppRoutes = () => {
 
@@ -114,8 +114,10 @@ export const AppRoutes = () => {
               {/* <Route path='/AdminTestsRecord' element={<Record />} /> historial de tests */}
               {/* <Route path='/graphic' element={<AdminGraphics />} /> */}
               {/* <Route path='/AdminODSGraphic' element={<AdminODSgraphic />} /> */}
+              <Route path='/infoOneTest/:id/:answer_set_id' element={<InfoOneTest />} />
             </Route>
             {/* "/IApromptEdit" -> navbar admin IA Prompt Editor */}
+            
           </Route>
 
           {/* rutas para el error */}
