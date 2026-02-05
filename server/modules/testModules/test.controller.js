@@ -76,6 +76,20 @@ class TestController {
       res.status(500).json(error)
     }
   }
+
+    updateTestName = async (req, res) => {
+      const {id} = req.params;
+      const {test_name} = req.body;
+      let values = [test_name, id];
+      try {
+        let result = await testDal.updateTestName(values);
+        res.status(200).json({message: 'nombre de test actualizado', result});
+      } catch (error) {
+          console.log(error);
+          res.status(500).json(error);
+          
+      }
+    }
 }
 
 export default new TestController();

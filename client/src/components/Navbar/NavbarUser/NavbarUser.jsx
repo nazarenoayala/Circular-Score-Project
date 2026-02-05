@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 
 export const NavbarUser = () => {
-  const { userData } = useContext(AuthContext);
+  const { userData , companyData } = useContext(AuthContext);
 
   return (
     <div className="front-page">
@@ -13,6 +13,8 @@ export const NavbarUser = () => {
           <img
             src="/src/assets/Images/Logo/logoblanco.png"
           ></img>
+        {companyData?.company_name && <>
+
           <div className="container-logo">
             <i className="fa-regular fa-house"></i>
             <Link className='link' to={"/"} > HOME</Link>
@@ -34,7 +36,7 @@ export const NavbarUser = () => {
             <details
               name=""
               id=""
-            >
+              >
               <summary>
                 <i className="fa-solid fa-chart-column"></i>
                 <p>Datos analíticos</p>
@@ -45,11 +47,12 @@ export const NavbarUser = () => {
               </div>
             </details>
           </div>
-
           <div className="container-logo">
             <i className="fa-solid fa-circle-notch"></i>
             <Link className='link' to={"/IAChat"}>IA Chat</Link>
           </div>
+        </>}
+
         </div>
 
         {/* Sin linkear */}

@@ -1,0 +1,73 @@
+.AllDashboard {
+    padding: var(--ac-padding, 2rem);
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+}
+
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap, 1rem);
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.input-search {
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 1px solid #19212e;
+    min-width: 300px;
+}
+
+.btn {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.776);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    transform: translate(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgb(86, 51, 51);
+    margin-bottom: 0.5rem;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgb(37, 24, 24);
+    margin-bottom: 0.5rem;
+}   
+
+.card-content p {
+    font-size: 0.8rem;
+    color: rgba(37, 24, 24, 0.639);
+    line-height: 1.5;
+    margin: 0;
+}
