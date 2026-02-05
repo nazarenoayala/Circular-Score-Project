@@ -1,6 +1,7 @@
 import express from 'express';
 import testController from './test.controller.js';
 import { verifyToken } from '../../middlewares/verifyToken.js';
+import { uploadImage } from '../../middlewares/multer.js';
 
 const routes = express.Router();
 
@@ -15,6 +16,10 @@ routes.put('/enableTest/:id', verifyToken, testController.enableTest)
 
 //Ruta para editar titulo/categoría del test
 routes.put('/updateName/:id', testController.updateTestName);
+
+//Ruta para la creación de nuevo Test 
+
+routes.post('/createTest', verifyToken, uploadImage('tests'), testController.createTest);
 
 export default routes;
 
