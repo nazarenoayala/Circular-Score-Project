@@ -34,8 +34,6 @@ const OneTest = () => {
     fetchAllTestsCompanies();
   }, []);
 
-  console.log(AllTestsCompanies);
-
   return (
     <div className='one-test-admin'>
       <div className='ot-cont'>

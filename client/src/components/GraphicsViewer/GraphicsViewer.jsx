@@ -4,9 +4,10 @@ import SimpleBarChart from '../BarChart/BarChart';
 
 import './graphicsViewer.css';
 import { fetchData } from '../../../helpers/axiosHelper';
+import CompanyTestSaved from '../../pages/companyPages/ComanyTestSaved/CompanyTestSaved';
 const GraphicsViewer = () => {
   
-  const {token} = useContext(AuthContext);
+  const {token, companyData, thisTest, currentTestScore} = useContext(AuthContext);
   
   const [sectorAvg, setSectorAvg] = useState();
   const [globalAvg, setGlobalAvg] = useState();
@@ -16,12 +17,20 @@ const GraphicsViewer = () => {
 
       try {
         
-        let resultSector = await fetchData('/statistics/sameSectorTests', 'GET', null, token);
-        setSectorAvg();
-
-        let resultGlobal = await fetchData('/statistics/globalTests', 'GET', null, token);
-
-        setGlobalAvg();
+        let values = {
+          question_count: currentTestScore.count,
+          sector_id: companyData.sector_id,
+          test_id: thisTest[0].test_id
+        };
+        let resultSector = await fetchData('/statistics/sectorAvgScore', 'POST', values, token);
+        setSectorAvg(resultSector.data.result);
+        
+        values = {
+          question_count: currentTestScore.count,
+          test_id: thisTest[0].test_id
+        };
+        let resultGlobal = await fetchData('/statistics/globalAvgScore', 'POST', values, token);
+        setGlobalAvg(resultGlobal.data.result);
 
         
       } catch (error) {
@@ -34,8 +43,9 @@ const GraphicsViewer = () => {
   return (
     <>
       <SimpleBarChart
-        chartData={[ sectorAvg, globalAvg]}
+        chartData={{sectorAvg, globalAvg}}
       />
+      <CompanyTestSaved paramProp1="valor1" paramProp2="valor2"/>
     </>
   )
 }

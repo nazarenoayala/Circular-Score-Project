@@ -23,7 +23,7 @@ class StatisticsController {
     const {test_id} = req.params;
     const {user_id} = req
     const values = [user_id, test_id];
-console.log(test_id);
+    console.log(test_id);
 
     try {
 
@@ -43,7 +43,8 @@ console.log(test_id);
     try {
       
       let result = await statisticsDal.getSectorAvgScore({question_count, sector_id, test_id});
-
+      console.log("RESULT", result);
+      
       res.status(200).json({message: 'Media por sector obtenida.', result});
     } catch (error) {
       res.status(500).json(error);

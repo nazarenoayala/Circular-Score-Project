@@ -5,7 +5,6 @@ import { fetchData } from '../../../../helpers/axiosHelper';
 import { QuestionCard } from '../../../components/questionCard/QuestionCard';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import './newTest.css';
-import { NavItem } from 'react-bootstrap';
 
 const apiImage = import.meta.env.VITE_IMAGES;
 
@@ -15,7 +14,7 @@ const NewTest = () => {
   // Rescatamos el id del test del parámetro dinámico
   const {id} = useParams();
   // Nos traemos del contexto tanto los tests como el token
-  const {test, token, setCurrentTestScore} = useContext(AuthContext);
+  const {test, token, setCurrentTestScore, setThisTest} = useContext(AuthContext);
   // Hacemos un filtro mediante el id de test del parámetro dinámico para elegir el test
   const oneTest = test.filter((test) => test.test_id == id);
   // Creamos un estado loading para que no se rendericen los hijos hasta que no hagamos el useEffect para poder pasar los datos actualizados
@@ -26,13 +25,11 @@ const NewTest = () => {
   const [index, setIndex] = useState(state !== null ? state.index : 0);
   // Creamos un estado para las respuestas:
   const [answer, setAnswer] = useState({});
-  console.log('akjbfkqjdbklq', answer);
   // Creamos un estado para poder guardar el answer_set_id:
   const [answerSetId, setAnswerSetId] = useState();
 
   const [searchParams] = useSearchParams();
   let answer_set_id = searchParams.get('answer_set_id');
-  console.log(answer_set_id)
 
   // Lógica para hacer la barra de progreso de realización del test
   let progressBarResult = ((index + 1) * 100) / 20;
@@ -45,13 +42,10 @@ const NewTest = () => {
 
         try {
           let result = await fetchData(`/answer/savedAnswers/${answer_set_id}`, 'GET', null, token);
-          console.log('abkjabkdnakndkaj', result);
 
           const convertResult = Object.fromEntries(result.data.result.map(e => [e.question_id, e.user_answer]));
 
           setAnswer(convertResult);
-
-          console.log('Result de la conversión', convertResult);
           
         } catch (error) {
           console.log(error);
@@ -69,12 +63,10 @@ const NewTest = () => {
     const fetchAnswerSet = async () => {
       
       try {
-        console.log("ID DEL NEW TEST", id);
         
         let result = await fetchData(`/answerSet/selectAnswerSet/${id}`, 'GET', null, token);
-        console.log("RESULTADO", result);
         setAnswerSetId(result.data.result[0].answer_set_id);
-                
+        
       } catch (error) {
         console.log(error);
       }
@@ -89,6 +81,7 @@ const NewTest = () => {
         
         let result = await fetchData(`/question/getQuestions/${id}`, 'GET', null, null);
         setQuestions(result.data.result);
+        setThisTest(oneTest);
         
         setLoading(false);
 
@@ -115,11 +108,9 @@ const NewTest = () => {
       console.log(error);
     }
   }
-  console.log("SAVE QUIESTION", answerSetId);
   
   // Función para salir y guardar progreso de test:
   const saveQuestions = async () => {
-    console.log("MITOKEN EN SAVE QUESTION", token);
     try {
       
       let result = await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);

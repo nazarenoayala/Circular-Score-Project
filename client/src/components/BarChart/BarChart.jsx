@@ -1,20 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 
 import './barChart.css'
-const SimpleBarChart = ({sectorScore, globalScore}) => {
+const SimpleBarChart = ({chartData}) => {
   
+  
+  const {sectorAvg, globalAvg} = chartData;
+  console.log("actual *****",sectorAvg, globalAvg);
+
   // Recuperamos la puntuación ya procesada desde el authcontext, que recogimos del último test realizado antes que el actual, además de los datos de las respuestas del actual
   const {prevTestScore, currentTestScore} = useContext(AuthContext);
 
   // Sumamos todos los valores para después dividirlo por en número de preguntas
-  const currentResult = currentTestScore.answers
-                        .reduce((tot, num)=>{return tot + num},0) * 100 / (currentTestScore.count * 5);
-  console.log("resultado procesado", currentResult  );
-  
-  
+  const currentResult = Math.trunc(currentTestScore.answers
+                        .reduce((tot, num)=>{return tot + num},0) * 100 / (currentTestScore.count * 5));
 
   const data = [
     {
@@ -26,18 +27,16 @@ const SimpleBarChart = ({sectorScore, globalScore}) => {
     {
       name: 'Por sector',
       Propio: currentResult,
-      Comparacion: 50,
+      Comparacion: sectorAvg,
       amt: 100,
     },
     {
       name: 'Global',
       Propio: currentResult,
-      Comparacion: 50,
+      Comparacion: globalAvg,
       amt: 100,
     },
   ];
-
-
 
   return (
 
