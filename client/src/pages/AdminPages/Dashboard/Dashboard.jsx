@@ -9,13 +9,10 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const menu =[
-    {title: "Control de Tests", route:"/tests", description:"Listado de tests: habilitar/deshabilitar/editar"},
-    {title: "Crear nuevo Test", route:"/createTest", description:"Configurar test desde cero"},
-    {title: "Empresas", route:"/allCompanies", description:"Listado de empresas: información, y opción de deshabilitar"},
-    {title: "Categorías de empresas", route:"/adminManageSectors", description:"Listado de categorias: crear, modificar o eliminar"},
-    {title: "Historial de Tests", route:"/adminTestsRecord", description:"Consultar tests realizados"},
-    {title: "Gráficos y Estadísticas", route:"/graphic", description:"Gráficas de rendimiento de los tests"}
-
+    {img: '/logo/controlTest.svg', title: "Control de Tests", route:"/tests", description:"Listado de tests: habilitar/deshabilitar/editar"},
+    {img: '/logo/newTest.svg', title: "Crear nuevo Test", route:"/createTest", description:"Configurar test desde cero"},
+    {img: '/logo/company.svg', title: "Empresas", route:"/allCompanies", description:"Listado de empresas: información, y opción de deshabilitar"},
+    {img: '/logo/category.svg', title: "Categorías de empresas", route:"/adminManageSectors", description:"Listado de categorias: crear, modificar o eliminar"}
   ]
 
   const [search, setSearch] = useState("");
@@ -68,6 +65,7 @@ const Dashboard = () => {
             onClick={() => navigate(elem.route)}
           >
             <div className='card-content'>
+              <img className='w-25' src={elem.img} alt="" />
               <h3>{elem.title}</h3>
               <p>{elem.description}</p>
             </div>
