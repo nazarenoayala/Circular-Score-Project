@@ -10,16 +10,19 @@ import options from '../../../data/CompanyRegisterData/options';
 
 const urlImage = import.meta.env.VITE_IMAGES;
 
-const CompanyTestSaved = () => {
+const CompanyTestSaved = ({navFrom}) => {
   const navigate = useNavigate();
-const [searchParams] = useSearchParams();
-const navType = searchParams.get('navigate')
+  const [searchParams] = useSearchParams();
+  let navType = searchParams.get('navigate');
+  if(navFrom){
+    navType = 2;
+  } 
   // Nos traemos el array de los test
   const { test, token, companyData } = useContext(AuthContext);
-  console.log('', companyData);
 
   //Rescatar id del test
-  const { id, answer_set_id } = useParams();
+  let { id, answer_set_id } = useParams();
+
   //Filtrar el test que queremos a través del id rescatado
   const currentTest = test?.find((e) => e.test_id == id);
 
@@ -28,11 +31,10 @@ const navType = searchParams.get('navigate')
   // Guardamos en este estado el array de preguntas que nos traemos de BD
   const [questions, setQuestions] = useState([]);
 
-  console.log(questions);
-
   useEffect(() => {
     //preguntas del test
     const fetchQuestions = async () => {
+      
       try {
         let result = await fetchData(
           `/question/getQuestions/${id}`,
@@ -41,7 +43,6 @@ const navType = searchParams.get('navigate')
           token,
         );
         const allQ = result.data.result;
-        console.log(allQ);
      
         let result2 = await fetchData(
           `/answer/savedAnswers/${answer_set_id}`,
@@ -51,7 +52,6 @@ const navType = searchParams.get('navigate')
         );
        // console.log(result2);
         const allanswers = result2.data.result
-        console.log(allanswers);
         
         const finalData = allanswers.map((a)=> {
            const question = allQ.find(q=> q.question_id === a.question_id)
@@ -59,26 +59,19 @@ const navType = searchParams.get('navigate')
       
            return {
             question_id: question?.question_id,
-            question: question?.text, 
+            question: question?.question_text, 
             answer: opts?.name
            }
           
         })
         setAnswersTorender(finalData)
-       console.log(finalData);
      
       } catch (error) {
         console.log(error);
       }
     };
     fetchQuestions();
-  }, []);
-console.log(answersTorender);
-
-  
-
-
- 
+  }, [id, answer_set_id]);
 
   const continueTest = () => {
     navigate(`/newTest/${id}?answer_set_id=${answer_set_id}`);
@@ -120,6 +113,7 @@ console.log(answersTorender);
 
        }
       </div>
+      {navType !== 2 &&
       <div className="p-4">
           {navType?<MyButton
             text="Volver"
@@ -132,6 +126,7 @@ console.log(answersTorender);
             onSubmit={continueTest}
           />}
         </div>
+    }
     </div>
   );
 };

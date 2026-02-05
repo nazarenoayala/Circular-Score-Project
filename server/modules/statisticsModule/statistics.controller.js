@@ -38,12 +38,13 @@ class StatisticsController {
   
   getSectorAvgScore = async (req, res) => {
     
-    const {question_count, sector_id, test_id} = req.body;
+    const { sector_id, test_id} = req.body;
+    console.log("testid de los cojone", test_id);
+    
     
     try {
       
-      let result = await statisticsDal.getSectorAvgScore({question_count, sector_id, test_id});
-      console.log("RESULT", result);
+      let result = await statisticsDal.getSectorAvgScore({sector_id, test_id});
       
       res.status(200).json({message: 'Media por sector obtenida.', result});
     } catch (error) {
@@ -53,11 +54,11 @@ class StatisticsController {
   
   getGlobalAvgScore = async (req, res) => {
     
-    const {question_count, test_id} = req.body;
+    const {test_id} = req.body;
     
     try {
       
-      let result = await statisticsDal.getGlobalAvgScore({question_count ,test_id});
+      let result = await statisticsDal.getGlobalAvgScore({test_id});
 
       res.status(200).json({message: 'Media global obtenida.', result});
     } catch (error) {

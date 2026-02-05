@@ -14,7 +14,7 @@ const NewTest = () => {
   // Rescatamos el id del test del parámetro dinámico
   const {id} = useParams();
   // Nos traemos del contexto tanto los tests como el token
-  const {test, token, setCurrentTestScore, setThisTest} = useContext(AuthContext);
+  const {test, token} = useContext(AuthContext);
   // Hacemos un filtro mediante el id de test del parámetro dinámico para elegir el test
   const oneTest = test.filter((test) => test.test_id == id);
   // Creamos un estado loading para que no se rendericen los hijos hasta que no hagamos el useEffect para poder pasar los datos actualizados
@@ -81,7 +81,6 @@ const NewTest = () => {
         
         let result = await fetchData(`/question/getQuestions/${id}`, 'GET', null, null);
         setQuestions(result.data.result);
-        setThisTest(oneTest);
         
         setLoading(false);
 
@@ -129,13 +128,8 @@ const NewTest = () => {
       await fetchData(`/answer/saveQuestions/${id}/${answerSetId}`, 'POST', {answer}, token);
       
       await fetchData('/answerSet/finishTest', 'PUT', {answerSetId}, token);
-      
-      // Convierto el objeto directamente a array, sacando solo los values y guardo el length
-      const quesitonArr = Object.values(answer);
-      const questionCount = quesitonArr.length;
 
-      setCurrentTestScore({answers: quesitonArr, count: questionCount});
-      navigate(`/generalGraphic/${id}`);
+      navigate(`/generalGraphic/${id}/${answerSetId}?navigate=2`);
       
     } catch (error) {
       console.log(error);

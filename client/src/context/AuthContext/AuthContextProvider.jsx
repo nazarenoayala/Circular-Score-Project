@@ -8,7 +8,6 @@ export const AuthContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [companyData, setCompanyData] = useState();
   const [test, setTest] = useState();
-  const [thisTest, setThisTest] = useState();
   const [prevTestScore, setPrevTestScore] = useState();
   const [currentTestScore, setCurrentTestScore] = useState();
   const [reset, setReset] = useState(false);
@@ -72,8 +71,6 @@ export const AuthContextProvider = ({ children }) => {
         currentTestScore,
         reset,
         setReset,
-        setThisTest,
-        thisTest
       }}>
         {children}
       </AuthContext.Provider>
