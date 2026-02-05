@@ -32,10 +32,10 @@
     background-color: white;
     display: flex;
     justify-content: space-around;
-    gap: var(--border-gap-padding);
+    gap: var(--gap-padding);
     align-items: center;
-    border-radius: var(--border-gap-padding);
-    padding: var(--border-gap-padding);
+    border-radius: var(--gap-padding);
+    padding: 1.5rem;
     min-width: 10rem;
 
     p {

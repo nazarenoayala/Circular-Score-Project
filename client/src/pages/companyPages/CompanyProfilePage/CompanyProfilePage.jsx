@@ -77,7 +77,7 @@ const CompanyProfilePage = () => {
       </div>
 
       <div className="tests">
-        <h2 className="py-4">Tests realizados</h2>
+        <h2 className="pt-5 pb-4">Tests realizados</h2>
         <div className="testscont">
           {uniqueTests?.map((elem, idx) => {
             return (

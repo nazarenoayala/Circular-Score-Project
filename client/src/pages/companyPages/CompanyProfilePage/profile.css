@@ -1,5 +1,71 @@
+@media (max-width: 450px) {
+  .data {
+   display: flex;
+   flex-direction: column;
+  }
+
+
+  .ranking {
+    display: flex;
+    margin-inline: auto;
+  }
+  
+  .profileContainer {
+    padding: 1.5rem;
+  }
+
+  .testscont {
+    padding: 1rem;
+  }
+
+  .oneTest {
+    padding: 1rem;
+
+    img {
+      max-width: 3.5rem;
+    }
+
+    h3 {
+      padding-inline: 0.5rem;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);;
+    }
+
+
+    .btn-details {
+      max-width: 6rem;
+      max-height: 2rem;
+      font-size: 0.9rem;
+    }
+
+  }
+
+
+
+}
+
+@media (min-width: 1100px){
+ .profileContainer  {
+    padding: 3rem;
+  }
+
+  .ranking {
+    display: flex;
+    align-self: flex-end;
+  }
+
+  .testscont {
+    padding: 2rem;
+  }
+
+  .oneTest {
+    padding: 2rem;
+  }
+
+
+}
+
 .profileContainer {
-  padding: 3rem;
+  
 
   .profile {
     background-color: #FFFFFF;
@@ -12,10 +78,6 @@
     justify-content: space-between;
 
 
-      .ranking {
-      display: flex;
-      align-self: flex-end;
-      }
 
       .data {
         min-width: 20rem;
@@ -36,7 +98,6 @@
     background-color: white;
     border: 1px solid rgb(221, 224, 230);
     border-radius: 1rem;
-    padding: 2rem;
     display: flex;
     gap: 2rem;
     flex-wrap: flex;
@@ -78,7 +139,7 @@
       flex-direction: column;
       gap:3rem;
       border-radius: 20px;
-      padding: 2rem;
+      
       .test-info{
       display: flex;
       align-items: center;
