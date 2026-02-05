@@ -3,6 +3,8 @@ import { Card, CardBody, Form } from 'react-bootstrap'
 import { MyButton } from '../MyButton/MyButton'
 
 export const EditTestQuestion = ({questions, handleQuestionChange, addQuestion}) => {
+    
+    
     // Estado para la nueva pregunta
     const [newQuestion, setNewQuestion] = useState("");
     // Funcion para evitar preguntas vacias, y limpiar input
@@ -24,7 +26,7 @@ export const EditTestQuestion = ({questions, handleQuestionChange, addQuestion})
                 {questions?.map((preg, idx) =>(
                     <div key={idx} className='question-divider'>
                         <Form.Control type="text" 
-                               value={preg.text || ""}
+                               value={preg.question_text || ""}
                                onChange={(e) => handleQuestionChange(idx, e.target.value)} 
                         />
                     </div>

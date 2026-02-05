@@ -12,5 +12,8 @@ routes.get('/allTest', testController.selectAllTest);
 // Ruta para habilitar Test:
 //routes.put('/enableTest/:id', testController.enableTest)
 
+//Ruta para editar titulo/categoría del test
+routes.put('/updateName/:id', testController.updateTestName);
+
 export default routes;
 
