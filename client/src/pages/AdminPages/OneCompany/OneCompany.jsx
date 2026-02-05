@@ -18,12 +18,10 @@ const OneCompany = () => {
   //Mostrar toda la información nada más cargar la página
   useEffect(() => {
     const fetchCompany = async () => {
-      console.log(user_id)
       
       try {
         const res = await fetchData(`/company/oneCompany/${user_id}`, "GET",  null, token)
-        
-        console.log("REsssss", res)
+      
         setCompany(res.data)
         setIsDeleted(res.data.company.is_deleted);
         
@@ -40,11 +38,9 @@ const OneCompany = () => {
   //Botón deshabilitar/habilitar empresa
   const delLogicCompany = async (user_id) => {
     
-    console.log("company", company);
-  
       try {
         let res = await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
-        console.log("copmanuyyyyy", res);
+      
         setIsDeleted(prev => (prev === 0 ? 1 : 0));
 
      } catch (error) {

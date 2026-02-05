@@ -72,7 +72,7 @@ export const AuthContextProvider = ({ children }) => {
         currentTestScore,
         reset,
         setReset,
-        setThisTest
+        setThisTest,
         thisTest
       }}>
         {children}

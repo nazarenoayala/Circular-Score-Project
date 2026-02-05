@@ -56,11 +56,11 @@ const AdminManageSectors = () => {
 
     const updatedSector = async () =>{
         try {
-            console.log("1. Iniciando actualización...");
+           
             const res = await fetchData(`/sector/update/${selectedSectorId}`, 'PUT', {sector_name: editSector}, token);
-            console.log("2. Respuesta recibida:", res);
+           
             if (res?.status >= 200 && res?.status < 300) {
-                console.log("3. Status 200, refrescando...");
+               
                 setSelectedSectorId(""); //reinicio el select
                 setEditSector("");
                 await bringSectors();

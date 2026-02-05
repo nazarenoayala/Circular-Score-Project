@@ -34,10 +34,10 @@ const AllCompanies = () => {
     const fetchAllCompanies = async () => {
       try {
         let res = await fetchData('/company/allCompanies', 'GET', null, token);
-        console.log("RES DELK FETCH DE COMPANY DATA",res);
+       
         setAllCompanies(res.data.companyResult);
         setFilteredCompanies(res.data.companyResult);
-       console.log('isdeleted',res.data.companyResult);
+      
       } catch (error) {
         console.log(error);
       }

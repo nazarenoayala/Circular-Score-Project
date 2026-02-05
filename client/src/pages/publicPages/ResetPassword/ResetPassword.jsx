@@ -39,7 +39,7 @@ const ResetPassword = ({setShowPage}) => {
         error.issues.forEach((elem)=> {
           ErrorObject[elem.path[0]] = elem.message;
         });
-        console.log(ErrorObject);
+        
         setErrorValidation(ErrorObject);
       } else {
         console.log("Otro error", error);
