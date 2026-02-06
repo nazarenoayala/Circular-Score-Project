@@ -1,5 +1,5 @@
 .homepage {
-  padding: 3rem;
+  padding: 3rem 0;
   background-color: rgb(250, 252, 254);
   text-align: center;
 
@@ -107,8 +107,7 @@
     color: white;
     display: flex;
     flex-wrap: wrap;
-    margin-left: -50px;
-    margin-right: -50px;
+    box-sizing: border-box;
     background-color: rgb(16, 40, 48);
     background-size: 70px 120px;
     background-image:
@@ -130,8 +129,6 @@
 
   .recon {
     padding-top: 3rem;
-    margin-left: -50px;
-    margin-right: -50px;
     height: 30rem;
     background-image: url("/src/assets/Images/forHome/lineBg2.svg");
     background-size: cover;
