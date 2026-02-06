@@ -166,7 +166,7 @@
 @media (width < 500px) {
   .homepage {
     margin-top: 5rem;
-    padding: 2rem;
+    padding: 2rem 0;
 
     section {
       padding: 1rem;
