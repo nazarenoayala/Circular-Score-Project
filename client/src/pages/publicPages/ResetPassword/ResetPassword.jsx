@@ -29,7 +29,7 @@ const ResetPassword = ({setShowPage}) => {
       resetPassSchema.parse(newUserPassword);
 
       await fetchData(`/user/updatePassword/${token}/${user_id}`, 'POST', {password: newUserPassword.password});
-      setShowPage('login')
+      setShowPage('login');
       navigate('/');
     } catch (error) {
       if(error instanceof ZodError) {

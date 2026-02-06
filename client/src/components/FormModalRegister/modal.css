@@ -1,25 +1,11 @@
-.modal-show {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-  text-align: center;
-
-}
-
-.modal-dialog{
-  display: flex;
-  justify-self: center;
-  justify-items: center;
-}
-
 .modal-content {
   background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: 420px;
-  width: 100%;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+@media (width < 500px) {
+  .modal-content {
+    padding: .5rem;
+  }
 }
