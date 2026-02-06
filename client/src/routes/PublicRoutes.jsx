@@ -7,6 +7,7 @@ export const PublicRoutes = () => {
 
   const {userData, companyData} = useContext(AuthContext);
   const navigate = useNavigate();
+  const isThereToken = localStorage.getItem("credentials");
 
   useEffect(()=> {
     if(userData){
@@ -20,7 +21,9 @@ export const PublicRoutes = () => {
         navigate('/tests');
       }
     } else {
-      navigate('/');
+      if(isThereToken !== null){
+        navigate('/');
+      }
     }
   }, [userData]);
 
