@@ -152,7 +152,7 @@ const EditCompanyPage = () => {
   return (
     
     <div className='edit-profile-container'>
-    <main className='container mt-5 mb-5'>
+    <main className='container pt-0'>
       <header className='header-content mb-4'>
       </header>
       {/* Card 1: Form empresa */}
