@@ -1,7 +1,6 @@
 import './FormUserResPassword.css'
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { ZodError } from 'zod';
 import { fetchData } from '../../../helpers/axiosHelper';
 
 
@@ -18,12 +17,13 @@ export const FormUserResPassword = ({ setShowPage }) => {
   
   const onSubmit = async () => {
     try {
-      //registerSchema.parse(userEmail);
-     
+
       // Llamamos al back para que busque el email del usuario
       const res = await fetchData("/user/findResetPassword", 'POST', {user_email: userEmail});
-    
-      if(res.data.userExists.length !== 0){
+      console.log("findresetpassword",res.data);
+      
+      
+      if(res.data.userExists !== 0){
         setAlertMsg('Compruebe su correo para reestablecer su contraseña.');
         setEmailSent(true);
       } else {
@@ -32,19 +32,7 @@ export const FormUserResPassword = ({ setShowPage }) => {
       
       
     } catch (error) {
-      if (error instanceof ZodError) {
-        
-        //objecto que guarda todos los errores
-        const ErrorObject = {};
-
-        error.issues.forEach((elem) => {
-        ErrorObject[elem.path[0]] = elem.message;
-        });
-       
-        setErrorValidation(ErrorObject);
-      } else {
-        console.log('otro error', error);
-      }
+      console.log(error);
     }
   };
 

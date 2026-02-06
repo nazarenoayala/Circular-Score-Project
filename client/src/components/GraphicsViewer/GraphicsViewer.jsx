@@ -23,11 +23,19 @@ const GraphicsViewer = () => {
         try {
           
           const result = await fetchData(`/statistics/oneTestHistory/${id}`,"get", null , token)
-          let twoLastTests = result.data.result.slice(0,2);
           
-          setThisTest(twoLastTests[0]?.test_id);
-          setCurrentTestScore(twoLastTests[0].result);
-          setPrevTestScore(twoLastTests[1].result);
+          // El usuario puede no tener un test previo por lo que no deberíamos 
+          // setear el valor con la segunda posición del array por que no va a existir
+          let lastTests = result.data.result.slice(0,1);
+          if(result.data.result.length !== 1){
+            lastTests = result.data.result.slice(0,2);
+            setPrevTestScore(lastTests[1].result);
+          } else {
+            setPrevTestScore("ND");
+          }
+          
+          setThisTest(lastTests[0]?.test_id);
+          setCurrentTestScore(lastTests[0].result);
 
         } catch (error) {
           console.log(error);
@@ -35,7 +43,6 @@ const GraphicsViewer = () => {
       }
       fetchScores();
   }, []);
-  console.log("thistest", thisTest);
   
   useEffect(() => {
     const getChartsData = async () => {

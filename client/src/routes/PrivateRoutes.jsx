@@ -4,9 +4,12 @@ import { Outlet, useNavigate } from 'react-router';
 export const PrivateRoutes = ({userData, requiredType}) => {
 
   const navigate = useNavigate();
-  
+
   useEffect(()=> {
-    if(userData?.type !== requiredType) navigate("/");
+    const isThereToken = localStorage.getItem("credentials");
+    if(!isThereToken){
+      if(userData?.type !== requiredType) navigate("/");
+    }
   },[userData]);
 
   return (
