@@ -11,12 +11,7 @@ export const NavbarPublic = ({setShowPage, showPage}) => {
         <img id='inicio' src="/src/assets/Images/logo/logo.png" />
       </div>
       <div className='buttons-cont'>
-        {/* Botones que redirigen de una sección a otra del home */}
-        <MyButton
-          text='Inicio'
-          onSubmit={() => document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' })}
-          btnClass='btn-white'
-        />
+        {/* Redirigen de una sección a otra del home */}
         <MyButton
           text='Características'
           onSubmit={() => document.getElementById('caracteristicas').scrollIntoView({ behavior: 'smooth' })}
