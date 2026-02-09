@@ -42,7 +42,7 @@ const CompanyRegister = () => {
   const [valErrors, setValErrors] = useState('');
   const [fetchError, setFetchError] = useState('');
 
-  const { token, companyData, setCompanyData, userData, setUserData } = useContext(AuthContext);
+  const { token, companyData, setCompanyData, userData, setUserData, setReset, reset } = useContext(AuthContext);
 
   const navigate = useNavigate()
 
@@ -108,6 +108,7 @@ const CompanyRegister = () => {
         setCompanyData({...companyData, ...newCompany1})
 
       }
+      setReset(prev => !prev);
       navigate('/allTests');
     } catch (error) {
       if (error instanceof ZodError) {
