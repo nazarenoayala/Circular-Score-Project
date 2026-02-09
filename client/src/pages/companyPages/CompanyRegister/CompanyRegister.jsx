@@ -102,7 +102,8 @@ const CompanyRegister = () => {
      
       if (res) {
         const res2 = await fetchData(`/company/registerUpdate`, 'PUT', newCompany2, token);
-      
+        console.log(res2);
+        
         setUserData({...userData, ...newCompany2})
         setCompanyData({...companyData, ...newCompany1})
 
