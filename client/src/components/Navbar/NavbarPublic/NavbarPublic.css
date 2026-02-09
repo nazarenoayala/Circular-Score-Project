@@ -16,7 +16,15 @@
     gap: 0.5rem;
   }
 
+}
 
+@media (width < 850px) {
+  .header-public {
+    flex-direction: column;
+    padding: 1rem;
 
-
+    img {
+      width: 18rem;
+    }
+  }
 }

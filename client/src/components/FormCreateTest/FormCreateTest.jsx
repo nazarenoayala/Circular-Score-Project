@@ -124,14 +124,9 @@ export const FormCreateTest = ({
                             text="Eliminar"
                           />
                         </div>
-                        <div className="premium-basic">
-                          {elem.premium === 1 && (
-                            <p className="premium">Premium</p>
-                          )}
-                          {elem.premium === 0 && (
-                            <p className="basic">Básica</p>
-                          )}
-                        </div>
+                      {elem.premium === 1 && <div className="premium-basic">
+                            <p className="premium">⭐</p>
+                        </div>}
                       </div>
                     </div>
                   );
@@ -147,7 +142,7 @@ export const FormCreateTest = ({
                 <MyButton
                   text="Cancelar"
                   btnClass="btn-red"
-                  onSubmit={() => navigate('/allTests')}
+                  onSubmit={() => navigate('/dashboard')}
                 />
               </div>
             </div>

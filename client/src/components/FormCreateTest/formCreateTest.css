@@ -109,12 +109,6 @@
   border-radius: 20px;
   padding: 1.2rem;
   align-items: center;
-  .premium{
-    color: rgb(180, 162, 66);
-  }
-  .basic{
-    color: rgb(194, 37, 37);
-  }
 }
 
 .premium-basic{
@@ -131,6 +125,12 @@
   p{
    margin-block-start: .5rem;
   }
+}
+.premium{
+  color: rgb(180, 162, 66);
+}
+.basic{
+  color: white;
 }
 
 .red{

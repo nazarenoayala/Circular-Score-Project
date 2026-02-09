@@ -17,7 +17,7 @@ export const FooterPublic = () => {
         />
       </div>
 
-      <div>
+      <div className='bottom-foot'>
         <div className='child2'>
           <p>Privacidad</p>
           <p>Cookies</p>

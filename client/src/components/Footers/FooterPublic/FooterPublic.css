@@ -2,7 +2,6 @@
   background-color: rgb(16, 40, 48);
   height: 20dvh;
   padding-inline: 7rem;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -13,15 +12,36 @@
     width: 20rem;
   }
 
-  .child2 {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-  }
+  .bottom-foot {
+    text-align: center;
 
-  .logos {
-    i {
-      width: 4rem;
+    .child2 {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .logos {
+      i {
+        width: 4rem;
+      }
+    }
+
+  }
+}
+
+@media (width < 500px) {
+  .footer-public {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.2rem;
+
+    img {
+      display: none;
+    }
+
+    .child2 {
+      gap: 1.5rem;
     }
   }
 }

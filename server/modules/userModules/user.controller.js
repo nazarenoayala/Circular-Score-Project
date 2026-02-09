@@ -74,14 +74,16 @@ class UserController {
     try {
       
       const result = await userDal.findResetPassword(user_email);
+      console.log("resultado",result);
       
       let message = "Email no encontrado";
-      if(res.length !== 0){
+      let mailResult = 0;
+      if(result.length !== 0){
         message = "Correo de recuperación enviado";
         // Enviamos correo de restauración de contraseña
-        const mailResult = await resetPasswordMail({user_email: user_email, user_id: result[0].user_id});
+        mailResult = await resetPasswordMail({user_email: user_email, user_id: result[0].user_id});
       }
-      res.status(201).json({message: message});
+      res.status(201).json({message: message, userExists: mailResult});
 
     } catch (error) {
       console.log(error);

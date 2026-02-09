@@ -209,6 +209,7 @@ class CompanyController {
     try {
       const { test_id } = req.params;
       const result = await companyDal.allTestCompaniesData(test_id);
+      console.log(result);
       res.status(200).json({
         message: 'REQ SUCCES',
         result,

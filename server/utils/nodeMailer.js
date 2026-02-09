@@ -81,7 +81,6 @@ const sendActivationMail = async (userData) => {
 
 export const resetPasswordMail = async (userData) => {
   const {user_email, user_id} = userData;
-  console.log("ENTRAMOS AL RESET PASSWORD MAIL");
   
   try{
     const resetPassToken = generateToken(user_id, "15m");
@@ -95,8 +94,6 @@ export const resetPasswordMail = async (userData) => {
     .replace("{{navigationLink}}", resetPassLink)
     .replace("{{linkText}}", "MODIFICA TU CONSTRASEÑA AQUÍ");
     
-    console.log(html);
-    console.log("ESTADO DEL HTML TRAS PROCESAR RESETPASSMAIL", html);
     const info = await transporter.sendMail({
       to: user_email,
       subject,

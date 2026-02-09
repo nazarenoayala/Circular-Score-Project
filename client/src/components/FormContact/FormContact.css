@@ -3,13 +3,25 @@
   border: 1px solid lightgray;
   border-radius: 1rem;
   background-color: white;
-  width: 40rem;
+  max-width: 40rem;
 
   h1 {
     padding-bottom: 2rem;
   }
 }
 
-.red{
+.red {
   color: red;
+}
+
+@media (width >=501px) {
+  .contact-container {
+    min-width: 40rem;
+  }
+}
+
+@media (width < 500px) {
+  .contact-container {
+    padding: 1.5rem;
+  }
 }

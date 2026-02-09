@@ -14,8 +14,10 @@ const OneTest = () => {
   const { test, token } = useContext(AuthContext);
   //Rescatar id del test
   const { id } = useParams();
+  console.log(id);
   //Array traído del back
   const [AllTestsCompanies, setAllTestsCompanies] = useState();
+  console.log(AllTestsCompanies);
   //Filtrar el test que queremos a través del id rescatado
   const uniqueTest = test?.find((e) => e.test_id == id);
   //Para ir a otra página
@@ -26,7 +28,7 @@ const OneTest = () => {
       try {
         let result = await fetchData(`/company/allCompaniesData/${id}`, 'GET', null, token);
         setAllTestsCompanies(result.data.result)
-        
+
       } catch (error) {
         console.log(error);
       }
@@ -77,13 +79,13 @@ const OneTest = () => {
                         <div>
                           <Link to={`/oneCompany/${elem.user_id}`} className='text-success myLink'> <h4> {elem.company_name} </h4></Link>
                           <h5> {elem.sector_name} </h5>
-                          
+
                         </div>
                         <div> <MyButton
-                           text={"Detalle del test"}
-                           btnClass={"btn-green"}
-                           onSubmit={() => navigate(`/infoOneTest/${elem.test_id}/${elem.answer_set_id}?navigate=1`)}
-                           /></div>
+                          text={"Detalle del test"}
+                          btnClass={"btn-green"}
+                          onSubmit={() => navigate(`/infoOneTest/${elem.test_id}/${elem.answer_set_id}?navigate=1`)}
+                        /></div>
                         <div className='text-end'>
                           {/* para revertir la fecha de YYYY-MM-DD a DD-MM-YYYY */}
                           <h5> {elem.test_date.split('-').reverse().join('-')} </h5>
@@ -92,12 +94,6 @@ const OneTest = () => {
                       </div>
                     )
                   })}
-                </div>
-
-              </Tab>
-              <Tab eventKey="profile" title="Gráficas de resultados obtenidos" className='mytab'>
-                <div className="graphics-box">
-                  AÑADIR GRÁFICA
                 </div>
               </Tab>
             </Tabs>

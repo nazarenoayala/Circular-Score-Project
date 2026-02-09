@@ -27,7 +27,7 @@ const CreateTest = () => {
   const [questions, setQuestions] = useState([]);
   const [valErrors, setValErrors] = useState([]);
   const [message, setMessage] = useState('');
-  const { token } = useContext(AuthContext);
+  const { token, setReset } = useContext(AuthContext);
 
   // control de los inputs
 
@@ -92,10 +92,12 @@ const CreateTest = () => {
       //mandar datos al Back
       const res = await fetchData(`/test/createTest`, 'POST', newFormData, token);
         console.log(res);
-        setMessage('');
+        setMessage('Test creado correctamente');
         setNewTest(initialValues);
+        setReset(prev => !prev)
         setQuestions([]);
         setValErrors('');
+        /* navigate('/tests') */
       } catch (error) {
         if (error instanceof ZodError) {
           const fieldErrors = {};
