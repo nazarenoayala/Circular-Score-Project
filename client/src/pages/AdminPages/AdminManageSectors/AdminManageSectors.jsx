@@ -3,10 +3,12 @@ import { Card, Container, Form, Modal } from 'react-bootstrap';
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
+import { useNavigate } from 'react-router';
 import './adminSectors.css'
 
 
 const AdminManageSectors = () => {
+    const navigate = useNavigate();
     const {token} = useContext(AuthContext); 
     //Estado para lista de sectores
     const [sectors, setSectors] = useState([]);
@@ -20,6 +22,7 @@ const AdminManageSectors = () => {
     const [showModal, setShowModal] = useState(false);
     //Estado para modal de edicion exitosa
     const [showModalSucces, setShowModalSucces] = useState(false);
+    
 
     useEffect(() => {
             bringSectors();
@@ -169,6 +172,12 @@ const AdminManageSectors = () => {
                     />
                 </Card.Body>
             </Card>
+            <div className='btn-back'>
+                <MyButton
+                    text="Volver"
+                    onSubmit={() => navigate('/dashboard')}
+                />
+            </div>
         </Container>
             <Modal
                 show={showModalSucces} 
