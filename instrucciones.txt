@@ -1,0 +1,12 @@
+1. Cargar la estructura de carpetas del proyecto en la ubicación que estime oportuna.
+
+2. Una vez colocado el proyecto, acceder desde el entorno de programación utilizado (por ejemplo VSC) a la carpeta raíz, abrir 2 terminales de cmd o el equivalente en Mac (este proyecto requiere de 2 servidores para funcionar, Front, para el cliente; y Back, para el desarrollador).
+
+3. Ejecutar el comando npm install en ambos terminales, esto instalará todas las dependencias, paquetes y librerías usadas en este proyecto.
+
+4. Tenemos 2 archivos de variable de entorno muy importantes su configuración, uno para el front y otro para el back.
+
+5. Comprobar bien estos dos archivos y modificar lo que se necesite a su criterio teniendo en cuenta el propio host, modificar nombre de BBDD o cualquier otra situación. En el .env del back se configura la dirección de correo electrónico y la clave de aplicación para poder hacer funcional la parte de notificaciones al usuario, esto incluye la activación de cuenta y el reseteo de contraseñas entre otros.
+
+6. Junto con el proyecto (en la raíz) se envía un script de SQL para montar la BBDD. Este script se ejecuta completo para generar la BBDD y las relaciones que alimentan la aplicación.
+

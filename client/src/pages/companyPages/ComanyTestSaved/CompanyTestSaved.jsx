@@ -80,17 +80,23 @@ const CompanyTestSaved = ({navFrom}) => {
   return (
     <div>
       <div className='test-card'>
-        <div>
-          <h4 className='company-name d-flex gap-2'>Nombre de la empresa:  <Link
+        <div className='company_div'>
+          <h4 className='company-name d-flex gap-3'>Nombre de la empresa:  <Link
             to={`/companyProfile/${companyData.user_id}`}
             className="text-success myLink" > {' '}
+
             <h4> {companyData.company_name} </h4>
           </Link></h4>
+        </div>
+
+        <div className="test_div">
           <h4 className='test-name'>Test: {currentTest.test_name}</h4>
+          
+          <div className='test-image'>
+            <img src={`${urlImage}/ODSimages/${currentTest.test_image}`} alt="" />
           </div>
-        <div className='test-image'>
-          <img src={`${urlImage}/ODSimages/${currentTest.test_image}`} alt="" />
-        </div>  
+          
+        </div>
       </div>
          
       <div className='test-info'>

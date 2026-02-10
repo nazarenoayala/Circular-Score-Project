@@ -79,6 +79,7 @@ useEffect(() => {
         <div className='chart'>
           <SimpleBarChart
             chartData={{sectorAvg, globalAvg}}
+          
           /> 
         </div>
         <div>

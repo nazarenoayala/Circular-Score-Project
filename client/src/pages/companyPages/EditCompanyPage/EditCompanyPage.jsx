@@ -5,6 +5,7 @@ import { FormEditUser } from '../../../components/FormEditUser/FormEditUser';
 import { fetchData } from '../../../../helpers/axiosHelper'
 import { MyButton } from '../../../components/MyButton/MyButton';
 import { useNavigate } from 'react-router';
+import { Modal } from 'react-bootstrap';
 
 import './EditCompany.css';
 
@@ -34,10 +35,11 @@ const initialValueUser = {
 const EditCompanyPage = () => {
   //para usar boton volver y que redirija al perfil usuario useNavigate, podria usarlo en mybutton?
   const navigate = useNavigate();
-  //estado para mensaje que se guardaron los cambios con exito
-  const [message, setMessage] = useState("");
+  //Estado para modal al guardar cambios
+  const [showModal, setShowModal] = useState(false);
+  
 
-  const { companyData, userData, token, logout } = useContext(AuthContext);
+  const { companyData, userData, token, reset, setReset } = useContext(AuthContext);
 
   //Estado para empresa
   const [editCompanyData, setEditCompanyData] = useState(initialValueCompany);
@@ -104,6 +106,11 @@ const EditCompanyPage = () => {
     }))
   }
 
+  const closeModal = () => {
+    setShowModal(false);
+    navigate(`/companyProfile/${userData?.user_id}`);
+  }
+
   //Pido a DB datos de localidades y provincias
     useEffect(()=>{
       const fetchDataGeo = async()=>{
@@ -134,7 +141,6 @@ const EditCompanyPage = () => {
           ...editCompanyData,
           ...editUserData,  
         }
-        console.log('enviando datos al server!!!!!!', updatedData);
         
         //Hago peticion PUT en user.routes.js la ruta pide eso
         const result = await fetchData(`/company/editCompany`, 'PUT', updatedData, token);
@@ -142,7 +148,10 @@ const EditCompanyPage = () => {
         const resultUser = await fetchData('/company/editCompanyInUser', 'PUT', updatedData, token);
 
         if (result || resultUser) {
-          setMessage("Los cambios se guardaron con éxito");
+          setShowModal(true);
+
+          //Cambio valor de reset para que el useEffect del authContext se ejecute
+          setReset(!reset);
         }
       } catch (error) {
         console.log('Error al guardar en la DB', error);     
@@ -152,7 +161,7 @@ const EditCompanyPage = () => {
   return (
     
     <div className='edit-profile-container'>
-    <main className='container mt-5 mb-5'>
+    <main className='container pt-0'>
       <header className='header-content mb-4'>
       </header>
       {/* Card 1: Form empresa */}
@@ -162,8 +171,8 @@ const EditCompanyPage = () => {
         {/* paso por props datos y funcion a los hijos */}
         <FormEditCompany
           editCompanyData={editCompanyData}
-          provinceDataId={editUserData.province_id}
-          cityDataId={editUserData.city_id}
+          provinceDataId={editCompanyData.province_id}
+          cityDataId={editCompanyData.city_id}
           handleCompanyChange={handleCompanyChange}
           city={locality}
           province={province}
@@ -182,16 +191,31 @@ const EditCompanyPage = () => {
       </section>  
 
       <footer className='btn-footer gap-3 mt-4'>
-        <p>{message}</p>
         <MyButton
           onSubmit={sendDb}
           text="Guardar"
         />
         <MyButton
-        onSubmit={()=> navigate(`/companyProfile/${companyData?.user_id}`)}
+        onSubmit={()=> navigate(`/companyProfile/${userData?.user_id}`)}
         text="Volver"
         />
       </footer>
+      <Modal
+        show={showModal} 
+        onHide={closeModal}
+        centered
+     >
+         <Modal.Header>
+                <Modal.Title>CAMBIOS GUARDADOS</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Se han realizado los cambios</Modal.Body>
+                <Modal.Footer>
+                    <MyButton
+                        text="Ir al perfil"
+                        onSubmit={closeModal}
+                    />
+                </Modal.Footer>
+     </Modal>
     </main>
     </div>
   )

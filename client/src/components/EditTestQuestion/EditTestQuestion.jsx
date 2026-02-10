@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, CardBody, Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { MyButton } from '../MyButton/MyButton'
 
 export const EditTestQuestion = ({questions, handleQuestionChange, addQuestion}) => {

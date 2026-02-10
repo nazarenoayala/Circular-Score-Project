@@ -14,10 +14,8 @@ const OneTest = () => {
   const { test, token } = useContext(AuthContext);
   //Rescatar id del test
   const { id } = useParams();
-  console.log(id);
   //Array traído del back
   const [AllTestsCompanies, setAllTestsCompanies] = useState();
-  console.log(AllTestsCompanies);
   //Filtrar el test que queremos a través del id rescatado
   const uniqueTest = test?.find((e) => e.test_id == id);
   //Para ir a otra página
