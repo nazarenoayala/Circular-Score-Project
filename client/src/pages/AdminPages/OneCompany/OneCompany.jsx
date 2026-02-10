@@ -39,7 +39,7 @@ const OneCompany = () => {
   const delLogicCompany = async (user_id) => {
     
       try {
-        let res = await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
+        await fetchData(`/user/setUserLogicState/${user_id}`, "PUT", null, token);
       
         setIsDeleted(prev => (prev === 0 ? 1 : 0));
 

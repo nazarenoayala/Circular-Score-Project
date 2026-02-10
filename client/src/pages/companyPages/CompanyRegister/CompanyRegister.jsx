@@ -26,6 +26,7 @@ const initialValues1 = {
 };
 const initialValues2 = {
   name: '',
+  last_name: '',
   position: '',
   phone_number: '',
   user_email: '',

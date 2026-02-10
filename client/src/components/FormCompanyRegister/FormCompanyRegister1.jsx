@@ -79,6 +79,19 @@ export const FormCompanyRegister1 = ({
             {valErrors?.name && (
               <p className='red'>{valErrors.name}</p>
             )}
+
+            <label>3. Apellidos de la persona de contacto</label>
+            <input
+              type="text" 
+              className='myinput'
+              placeholder='Apellidos de la persona de contacto'
+              value={newCompany2.last_name}
+              name='last_name'
+              onChange={handleChange} />
+            {valErrors?.last_name && (
+              <p className='red'>{valErrors.last_name}</p>
+            )}
+
             <label>4. Cargo de la persona de contacto</label>
             <select
               value={newCompany2.position}
