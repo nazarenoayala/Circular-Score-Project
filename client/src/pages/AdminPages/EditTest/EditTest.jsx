@@ -5,7 +5,7 @@ import { MyButton } from '../../../components/MyButton/MyButton';
 import { fetchData } from '../../../../helpers/axiosHelper';
 import { EditTestCategory } from '../../../components/EditTestCategory/EditTestCategory';
 import { EditTestQuestion } from '../../../components/EditTestQuestion/EditTestQuestion';
-import { Col, Container, Modal, Row } from 'react-bootstrap';
+import {  Container, Modal, Row } from 'react-bootstrap';
 
 import './editTest.css';
 
@@ -164,7 +164,7 @@ const EditTest = () => {
         <footer className='footer-section'>
             <MyButton
                 text="Volver"
-                onSubmit={()=> navigate('/dashboard')} 
+                onSubmit={()=> navigate(-1)} 
             />
             <MyButton
                 text="Guardar"
