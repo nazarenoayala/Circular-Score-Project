@@ -41,7 +41,7 @@ export const FormCreateTest = ({
               </div>
 
               <div className="premium-wrapper">
-                <label htmlFor="">Test Premiun</label>
+                <label htmlFor="">Premium</label>
                 <input
                   className="premium-checkbox"
                   type="checkbox"
@@ -60,7 +60,7 @@ export const FormCreateTest = ({
               <img
                 src={uploadImage}
                 alt=""
-                className='icon'
+                className='upload-icon'
               />
               Subir Imagen del Test
             </label>
@@ -88,7 +88,7 @@ export const FormCreateTest = ({
               </div>
 
               <div className="premium-wrapper">
-                <label htmlFor="">Pregunta Premiun</label>
+                <label htmlFor="">Premium</label>
                 <input
                   className="premium-checkbox"
                   type="checkbox"
@@ -103,8 +103,12 @@ export const FormCreateTest = ({
               <p className="red">{valErrors.question_text}</p>
             )}
 
-            <div className="mb-4">
-              <MyButton text="Añadir pregunta" onSubmit={addQuestion} />
+            <div className="add-question mb-4 px-3">
+              <MyButton 
+                btnClass={"fs-5"} 
+                text="Añadir pregunta" 
+                onSubmit={addQuestion} 
+              />
             </div>
 
             <h3>Preguntas del nuevo Test</h3>
@@ -136,12 +140,12 @@ export const FormCreateTest = ({
               <div className="btnOnsubmit ">
                 <MyButton
                   text="Enviar"
-                  btnClass="btn-green"
+                  btnClass="btn-green fs-5"
                   onSubmit={onSubmit}
                 />
                 <MyButton
                   text="Cancelar"
-                  btnClass="btn-red"
+                  btnClass="btn-red fs-5"
                   onSubmit={() => navigate('/dashboard')}
                 />
               </div>
