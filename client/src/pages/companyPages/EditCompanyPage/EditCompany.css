@@ -82,7 +82,11 @@
 
 @media (width < 800px) {
     .edit-profile-container {
-        margin-left: -3rem;
+        width: 100%;
+        
+    }
+    .container {
+        padding-block: 0;
     }
 }
 

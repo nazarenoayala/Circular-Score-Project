@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import '../../../components/FormCreateTest/formCreateTest.css';
 import { FormCreateTest } from '../../../components/FormCreateTest/FormCreateTest';
 import { ZodError } from 'zod';
 import { fetchData } from '../../../../helpers/axiosHelper';
@@ -9,6 +8,7 @@ import {
   questionSchema,
 } from '../../../../schemas/createTest';
 
+import '../../../components/FormCreateTest/formCreateTest.css';
 const initialValues = {
   test_name: '',
   test_image: '',
@@ -114,8 +114,8 @@ const CreateTest = () => {
       return (
         <>
           <div className="create-test-container">
-            <main>
-              <header>
+            <main className='ct-main'>
+              <header >
                 <h1 className="title-form">Creación de test</h1>
               </header>
               <FormCreateTest
